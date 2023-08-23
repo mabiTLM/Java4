@@ -103,7 +103,7 @@ public class Main
 				2,
 				1,
 				3,
-				3,d
+				3,
 				4,
 				2,
 				0,
