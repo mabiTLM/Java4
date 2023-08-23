@@ -327,4 +327,4 @@ public class Persona5_0821
 		//m.getfusionTable();
 	}
 
-}
+}//확인용
