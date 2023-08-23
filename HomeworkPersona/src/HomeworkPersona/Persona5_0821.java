@@ -210,7 +210,8 @@ class Pixie{
 
 class PersonaSkillInfo //클래스 자체를 배열화시키자
 {
-	enum Persona {에이하,슬래시,스쿤다,몽견침,역경의_각오,지오,디아,파트라,타루카쟈,혼란_내성};//스킬이 몇번이지 까먹지 않기위해서
+	PersonaSkillInfo[] PersonaSkillInfo = new PersonaSkillInfo[3];
+	
 	String skillname[] = {"에이하","슬래시","스쿤다","몽견침","역경의 각오","지오","디아","파트라","타루카쟈","혼란 내성"};
 	int useMp[] = {4,0,8,0,0,4,3,4,8,0};
 	int useHp[] = {0,6,0,8,0,0,0,0,0,0};
@@ -218,8 +219,6 @@ class PersonaSkillInfo //클래스 자체를 배열화시키자
 	int targetNumber[] = {1,1,1,1,1,1,1,1,1,1};
 	String type[] = {"어둠","물리","변화","물리","물리","패시브","전기","회복","변화","변화","패시브"};
 }
-
-
 
 class MixPersona //합성
 {
