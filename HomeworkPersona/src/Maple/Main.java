@@ -1,5 +1,6 @@
 package Maple;
 import HomeworkPersona.PersonaBase;
+import AmongUs.Crew;
 
 public class Main
 {
@@ -129,5 +130,11 @@ public class Main
 		pixie.getStatus();
 		pixie.levelup();
 		pixie.getStatus();
+		
+		Crew crew= new Crew();
+		//crew.die = 1;
+		Imporster imporster = new Imporster();
+		imporster.character.die = 1;
+		
 	}
 }
