@@ -21,17 +21,34 @@ class Player//플레이어 캐릭터
 
 class TotalPersonaBook//페르소나 전서
 {
-	String personaName[] ={"아르센","픽시"} ;
-	String personaArcana[] ={"광대","연인"} ;
-	int personaDefaultLevel[] = {1,2};
-	boolean confirmedpersona[] = {true,false};//페르소나 확인여부
+	String personaName;// 페르소나 이름
+	String personaArcana; //페르소나 아르카나
+	int personaDefaultLevel; // 페르소나 저장 레벨
+	boolean confirmedpersona;//페르소나 확인여부
+	
+	TotalPersonaBook(String personaName,String personaArcana,int personaDefaultLevel,boolean confirmedpersona)
+	{
+		
+	}
+	
+	TotalPersonaBook()
+	{}
+	
+	TotalPersonaBook[] totalPersonaBook =
+		{
+			new TotalPersonaBook("아르센","광대",1,true),
+			new TotalPersonaBook("픽시","연인",2,false)
+			};
+	
 	
 	void personaBookList()
 	{
-		for(int i = 0; i<personaName.length; i++) 
+		for(int i = 0; i<personaName.length(); i++) 
 		{
-			if(confirmedpersona[i])
-			System.out.println(personaName[i] + "	" + personaArcana[i] + "	" + personaDefaultLevel[i]);
+			if(confirmedpersona) 
+			{
+			System.out.println(personaName + "	" + personaArcana + "	" + personaDefaultLevel);
+			}
 		}
 	}
 	
@@ -39,9 +56,16 @@ class TotalPersonaBook//페르소나 전서
 
 
 
-class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드 할 수 있을 것 같습니다.
+class Arsene
 {
-	PersonaSkillInfo PersonaSkillInfo = new PersonaSkillInfo();
+	PersonaSkillInfo[] personaSkillInfo = 
+		{
+			new PersonaSkillInfo("에이하",4,"enemy",1,"어둠"),
+			new PersonaSkillInfo("슬래시",6.0,"enemy",1,"물리"),
+			new PersonaSkillInfo("스쿤다",8,"enemy",1,"스탯변화"),
+			new PersonaSkillInfo("몽견침",8.0,"enemy",1,"물리"),
+			new PersonaSkillInfo("역경의 각오",0,"passive",1,"패시브"),
+	};
 	final String name = "아르센";
 	final String personaBookInfo = "전서 설명 : 프랑스의 소설가 모리스 르블랑이 발표한 소설 '아르센 뤼팽' 시리즈의 주인공에서 유래된 존재."
 	+ " 신출귀몰한 변장의 달인. 선량한 시민들을 돕는 의적이라는 면도 겸비했다.";
@@ -53,16 +77,6 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 	int luck = 1;
 	int exp = 0;
 	public int[] upstatus = {2,2,1,4,1};
-	
-	void levelup()//레벨당 자료가 없어서 임의 수치
-	{
-		level = level+1;
-		str = str+2;
-		magic = magic +2;
-		def = def+1;
-		speed = speed +4;
-		luck = luck+1;
-	}
 	
 	final String arcana = "광대";//아르카나는 변화하지 않는다.
 	String[] weak = {"얼음", "빛"};//공격받을 때 공격속성이 일치하는게 있으면
@@ -92,17 +106,17 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 	void learn()//스킬 이름을 가져온후 습득레벨과 비교한다 , 레벨업 했을 때 한번 수행
 	{
 		int temp = 1;
-		for(int i = 0; i <PersonaSkillInfo.skillname.length; i++)// 전체 스킬 목록에서
+		for(int i = 0; i <personaSkillInfo.length; i++)// 전체 스킬 목록에서
 		{
 			for(int j = 0; j <canLearnSkillname.length; j++)//배울 수 있는 스킬이 있는가?
 				{
-				if(PersonaSkillInfo.skillname[i].equals(canLearnSkillname[j]))
+				if(personaSkillInfo[i].skillname.equals(canLearnSkillname[j]))
 				{
 					if(this.level==canLearnSkillLevel[j])//레벨이 같으면
 						{
 						if(nowSkill[temp].isEmpty())//빈공간이있으면 추가
 							{
-							nowSkill[temp] = PersonaSkillInfo.skillname[i];
+							nowSkill[temp] = personaSkillInfo[i].skillname;
 							break;
 							}
 						else
@@ -129,7 +143,15 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 
 
 class Pixie{
-	PersonaSkillInfo PersonaSkillInfo = new PersonaSkillInfo();
+	PersonaSkillInfo[] personaSkillInfo =
+		{
+				new PersonaSkillInfo("지오",4,"enemy",1,"전기"),
+				new PersonaSkillInfo("디아",3,"ally",1,"회복"),
+				new PersonaSkillInfo("파트라",4,"ally",1,"상태이상"),
+				new PersonaSkillInfo("타루카쟈",8,"ally",1,"스탯변화"),
+				new PersonaSkillInfo("혼란 내성",0,"passive",1,"패시브")
+				};
+	
 	final String name = "픽시";
 	final String personaBookInfo = "잉글랜드에 전해지는 자그마한 숲의 요정. 사람의 눈을 피해 살지만 우호적이고, "
 	+ "은혜를 베풀면 보답한다고 한다. 게으른 자에게는 벌을 내리는 등 도덕적인 면도 있다."
@@ -142,16 +164,6 @@ class Pixie{
 	int luck = 2;
 	int exp = 0;
 	public int[] upstatus = new int[]{1,2,2,3,2};
-	void levelup()//레벨당 자료가 없어서 임의 수치
-	{
-		level = level+1;
-		str = str+1;
-		magic = magic+2;
-		def = def+2;
-		speed = speed+3;
-		luck = luck+2;
-	}
-
 	
 	final String arcana = "연인";//아르카나는 변화하지 않는다.
 	String[] weak = new String[]{"총격", "얼음","어둠"};//공격받을 때 공격속성이 일치하는게 있으면
@@ -165,25 +177,25 @@ class Pixie{
 			"이름, 습득레벨, 소비, 설명",
 			"지오 1 SP 4 적 하나에게 전격 속성 소 대미지",
 			"디아 1 SP 3 아군 하나의 HP 소 회복",
-			"파트라 3 SP 4 3턴간 적 하나의 명중율, 회피율 저하,",
-			"타루카쟈 5 SP 8 적 하나에게 물리 속성 중 대미지. 중간 확률로 수면,",
-			"혼란 내성 6 - 포위되었을 때 크리티컬 확률이 상승"};
+			"파트라 3 SP 4 아군 하나의 현기증, 망각, 수면, 공복 상태를 치유",
+			"타루카쟈 5 SP 8 3턴간 아군 하나의 공격력 상승",
+			"혼란 내성 6 - 혼란 상태이상에 걸릴 확률이 반감된다"};
 	int[] canLearnSkillLevel = new int[]{1,1,3,5,6};
 	
 	void learn()//스킬 이름을 가져온후 습득레벨과 비교한다 , 레벨업 했을 때 한번 수행
 	{
 		int temp = 1;
-		for(int i = 0; i <PersonaSkillInfo.skillname.length; i++)//전체 스킬 목록에서
+		for(int i = 0; i <personaSkillInfo.length; i++)//전체 스킬 목록에서
 		{
 			for(int j = 0; j <canLearnSkillname.length; j++)//배울 수 있는 스킬이 있는가?
 			{
-				if(PersonaSkillInfo.skillname[i].equals(canLearnSkillname[j]))
+				if(personaSkillInfo[i].skillname.equals(canLearnSkillname[j]))
 				{
 					if(this.level==canLearnSkillLevel[i])//레벨이 같으면
 					{
 						if(nowSkill[temp].isEmpty())//빈공간이있으면 추가
 						{
-							nowSkill[temp] = PersonaSkillInfo.skillname[i];
+							nowSkill[temp] = personaSkillInfo[i].skillname;
 							break;
 						}
 						else
@@ -210,14 +222,53 @@ class Pixie{
 
 class PersonaSkillInfo //클래스 자체를 배열화시키자
 {
-	PersonaSkillInfo[] PersonaSkillInfo = new PersonaSkillInfo[3];
+	String skillname;
+	int useMp;
+	double useHp;
+	String target;
+	int targetNumber;
+	String type;
 	
-	String skillname[] = {"에이하","슬래시","스쿤다","몽견침","역경의 각오","지오","디아","파트라","타루카쟈","혼란 내성"};
-	int useMp[] = {4,0,8,0,0,4,3,4,8,0};
-	int useHp[] = {0,6,0,8,0,0,0,0,0,0};
-	String target[] = {"enemy","enemy","enemy","enemy","passive","enemy","ally","enemy","enemy","passive"};
-	int targetNumber[] = {1,1,1,1,1,1,1,1,1,1};
-	String type[] = {"어둠","물리","변화","물리","물리","패시브","전기","회복","변화","변화","패시브"};
+	
+	PersonaSkillInfo(String skillname, int useMp, String target, int targetNumber, String type)
+	{
+		this.skillname=skillname;
+		this.useMp=useMp;
+		this.target=target;
+		this.targetNumber=targetNumber;	
+		this.type=type;
+	}
+	PersonaSkillInfo(String skillname, double useHp, String target, int targetNumber, String type)
+	{
+		this.skillname=skillname;
+		this.useHp=useHp;
+		this.target=target;
+		this.targetNumber=targetNumber;	
+		this.type=type;
+	}
+	
+	void personaSkillDataBase() //모든 스킬을 보기
+	{
+		PersonaSkillInfo[] dataBase = 
+			{
+				new PersonaSkillInfo("에이하",4,"enemy",1,"어둠"),
+				new PersonaSkillInfo("슬래시",6.0,"enemy",1,"물리"),
+				new PersonaSkillInfo("스쿤다",8,"enemy",1,"스탯변화"),
+				new PersonaSkillInfo("몽견침",8.0,"enemy",1,"물리"),
+				new PersonaSkillInfo("역경의 각오",0,"passive",1,"패시브"),
+				new PersonaSkillInfo("지오",4,"enemy",1,"전기"),
+				new PersonaSkillInfo("디아",3,"ally",1,"회복"),
+				new PersonaSkillInfo("파트라",4,"ally",1,"상태이상"),
+				new PersonaSkillInfo("타루카쟈",8,"ally",1,"스탯변화"),
+				new PersonaSkillInfo("혼란 내성",0,"passive",1,"패시브")
+		};
+		
+		for(int i = 0; i<dataBase.length;i++)
+		{
+			System.out.println(dataBase[i]);
+		}
+	}
+
 }
 
 class MixPersona //합성

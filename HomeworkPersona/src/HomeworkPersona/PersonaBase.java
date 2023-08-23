@@ -2,7 +2,7 @@ package HomeworkPersona;
 
 public class PersonaBase 
 {
-	public PersonaSkillInfo PersonaSkillInfo = new PersonaSkillInfo();
+	public PersonaSkillInfo[] PersonaSkillInfo;
 	public String name;
 	public String personaBookInfo;
 	public int level;
@@ -65,7 +65,8 @@ public class PersonaBase
 			String[] nowSkill,
 			String[] canLearnSkillname,
 			String[] learnSkillInfo,
-			int[] canLearnSkillLevel
+			int[] canLearnSkillLevel,
+			PersonaSkillInfo[] PersonaSkillInfo
 			)
 	{
 		this.name=name;                
@@ -88,7 +89,47 @@ public class PersonaBase
 		this.canLearnSkillname=canLearnSkillname; 
 		this.learnSkillInfo=learnSkillInfo;    
 		this.canLearnSkillLevel=canLearnSkillLevel;
+		this.PersonaSkillInfo=PersonaSkillInfo;
 	}
+	
+	void learn()//스킬 이름을 가져온후 습득레벨과 비교한다 , 레벨업 했을 때 한번 수행
+	{
+		int temp = 1;
+		for(int i = 0; i <PersonaSkillInfo.length; i++)//배울수 있는 스킬 목록에서
+		{
+			if(level==canLearnSkillLevel[i])//레벨이 같으면
+				{
+				if(nowSkill[temp].isEmpty())//빈공간이있으면 추가
+					{
+					nowSkill[temp] = PersonaSkillInfo[i].skillname;
+					break;
+					}
+				else
+				{
+					temp++;
+					i--;
+					if(temp>7)
+					{
+						break;
+					}
+				}
+			}
+		}
+	}
+	
+	void getSkill() 
+	{
+		for(int i = 0; i < nowSkill.length; i++) 
+		{
+			if(nowSkill[i].isEmpty())
+			{
+				break;
+			}
+			System.out.println(nowSkill[i]);
+			
+		}
+	}
+	
 }
 			
 			
