@@ -208,7 +208,7 @@ class Pixie{
 
 
 
-class PersonaSkillInfo //클래스 자체를 배열화시키자
+class PersonaSkillInfo //클래스 자체를 배열화시키자sf
 {
 	enum Persona {에이하,슬래시,스쿤다,몽견침,역경의_각오,지오,디아,파트라,타루카쟈,혼란_내성};//스킬이 몇번이지 까먹지 않기위해서
 	String skillname[] = {"에이하","슬래시","스쿤다","몽견침","역경의 각오","지오","디아","파트라","타루카쟈","혼란 내성"};
