@@ -52,6 +52,7 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 	int speed = 3;
 	int luck = 1;
 	int exp = 0;
+	public int[] upstatus = {2,2,1,4,1};
 	
 	void levelup()//레벨당 자료가 없어서 임의 수치
 	{
@@ -63,15 +64,14 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 		luck = luck+1;
 	}
 	
-	static final String arcana = "광대";//아르카나는 변화하지 않는다.
+	final String arcana = "광대";//아르카나는 변화하지 않는다.
 	String[] weak = {"얼음", "빛"};//공격받을 때 공격속성이 일치하는게 있으면
 	String[] resist = {"어둠"}; ////공격할 때 공격속성이 일치하는게 있으면
-	String changeItem[] = {"괴도신사 스틱","대 괴도 스틱"};//통상인지 경보인지는 아이템화 시키는 곳에서
-	static final String summonSpeech = "내 이름은 황혼의 약탈자 아르센! 다시금 나의 힘이 필요한가...? 좋다. 마음껏 휘둘러 보거라.";//생성할 때 호출
+	String[] changeItem = {"괴도신사 스틱","대 괴도 스틱"};//통상인지 경보인지는 아이템화 시키는 곳에서
+	final String summonSpeech = "내 이름은 황혼의 약탈자 아르센! 다시금 나의 힘이 필요한가...? 좋다. 마음껏 휘둘러 보거라.";//생성할 때 호출
 	String[] specificity = {"배수의 닻","배턴 터치를 받았을 때, 포위당했을 때의 전용 스킬을 사용할 수 있다","계승 가능"};//효과를 불러올때는 0번으로 계승여부확인은 2번으로
 	String[] nowSkill = {"에이하","","","","","","",""};//페르소나가 소지할 수 있는 스킬 8개
-	String canLearnSkillname[] = {"에이하","슬래시","스쿤다","몽견침","역경의 각오"};
-	int canLearnSkillLevel[] = {1,2,4,5,7};
+	String[] canLearnSkillname = {"에이하","슬래시","스쿤다","몽견침","역경의 각오"};
 	String[] learnSkillInfo = {//이름과 뒷부분 분리후 배울 수 있는 스킬과 대조해서 불러오자
 			"이름, 습득레벨, 소비, 설명\n",
 			"에이하"," 1 SP 4 적 하나에게 주원 속성 소 대미지\n",
@@ -79,7 +79,7 @@ class Arsene//공통부분으로 상위클래스를 만들어서 오버라이드
 			"스쿤다"," 4 SP 8 3턴간 적 하나의 명중율, 회피율 저하\n",
 			"몽견침"," 5 HP 8.0% 적 하나에게 물리 속성 중 대미지. 중간 확률로 수면\n",
 			"역경의 각오"," 7 - 포위되었을 때 크리티컬 확률이 상승\n"};
-	
+	int[] canLearnSkillLevel = {1,2,4,5,7};
 	void printLearnSkill()//합치는 부분에 넣을 수 있을 것 같은 부분
 	{
 		for(int i = 0; i < learnSkillInfo.length; i++)
@@ -141,7 +141,7 @@ class Pixie{
 	int speed = 4;
 	int luck = 2;
 	int exp = 0;
-	
+	public int[] upstatus = new int[]{1,2,2,3,2};
 	void levelup()//레벨당 자료가 없어서 임의 수치
 	{
 		level = level+1;
@@ -151,23 +151,24 @@ class Pixie{
 		speed = speed+3;
 		luck = luck+2;
 	}
+
 	
-	static final String arcana = "연인";//아르카나는 변화하지 않는다.
-	String[] weak = {"총격", "얼음","어둠"};//공격받을 때 공격속성이 일치하는게 있으면
-	String[] resist = {"전기","빛"}; ////공격할 때 공격속성이 일치하는게 있으면
-	String changeItem[] = {"지오(스킬 카드)","마하지오(스킬 카드)"};//통상인지 경보인지는 아이템화 시키는 곳에서
-	static final String summonSpeech = "난 픽시야! 네 가면이 되어서 같이 소란피울 거야!";
-	String[] specificity = {"추가 전도체","다운된 적에 대한 감전율이 상승한다","계승 가능"};//효과를 불러올때는 0번으로 계승여부확인은 2번으로
-	String[] nowSkill = {"지오","디아","","","","","",""};//페르소나가 소지할 수 있는 스킬 8개
-	String canLearnSkillname[] = {"지오","디아","파트라","타루카쟈","혼란 내성"};
-	String[] learnSkill = {
+	final String arcana = "연인";//아르카나는 변화하지 않는다.
+	String[] weak = new String[]{"총격", "얼음","어둠"};//공격받을 때 공격속성이 일치하는게 있으면
+	String[] resist = new String[]{"전기","빛"}; ////공격할 때 공격속성이 일치하는게 있으면
+	String[] changeItem = new String[]{"지오(스킬 카드)","마하지오(스킬 카드)"};//통상인지 경보인지는 아이템화 시키는 곳에서
+	final String summonSpeech = "난 픽시야! 네 가면이 되어서 같이 소란피울 거야!";
+	String[] specificity = new String[]{"추가 전도체","다운된 적에 대한 감전율이 상승한다","계승 가능"};//효과를 불러올때는 0번으로 계승여부확인은 2번으로
+	String[] nowSkill = new String[]{"지오","디아","","","","","",""};//페르소나가 소지할 수 있는 스킬 8개
+	String[] canLearnSkillname = new String[]{"지오","디아","파트라","타루카쟈","혼란 내성"};
+	String[] learnSkill = new String[]{
 			"이름, 습득레벨, 소비, 설명",
 			"지오 1 SP 4 적 하나에게 전격 속성 소 대미지",
 			"디아 1 SP 3 아군 하나의 HP 소 회복",
 			"파트라 3 SP 4 3턴간 적 하나의 명중율, 회피율 저하,",
 			"타루카쟈 5 SP 8 적 하나에게 물리 속성 중 대미지. 중간 확률로 수면,",
 			"혼란 내성 6 - 포위되었을 때 크리티컬 확률이 상승"};
-	int[] canLearnSkillLevel = {1,1,3,5,6};
+	int[] canLearnSkillLevel = new int[]{1,1,3,5,6};
 	
 	void learn()//스킬 이름을 가져온후 습득레벨과 비교한다 , 레벨업 했을 때 한번 수행
 	{
