@@ -5,6 +5,5 @@ public abstract class ItemBase
 	String weaponName;
 	String[] weaponType;
 	int weaponDamage;
-	int proficiency;//숙련도
-	
+	//참조 숙련도
 }
