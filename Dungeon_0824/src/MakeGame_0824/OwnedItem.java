@@ -1,4 +1,4 @@
-package MakeGame_0824;
+package MakeGame_0824;//
 
 public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도하다. 총 아이템중 가진 아이템만 장착하려했는데 오류가 자주 발생하는듯
 {

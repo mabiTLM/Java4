@@ -41,7 +41,6 @@ public class MainPlayerCharacter extends CharacterBase
 			setOwnedItem(OwnedItem);
 		}
 
-	}
-	
+	}	
 	//장비장착
 }
