@@ -92,6 +92,30 @@ public class PersonaBase
 		this.PersonaSkillInfo=PersonaSkillInfo;
 	}
 	
+	public PersonaBase(
+			String name,
+			int str,
+			int magic,
+			int def,
+			int speed,
+			int luck,
+			String[] weak,
+			String[] resist,
+			String[] nowSkill
+			)
+	{
+		this.name=name;                                 
+		this.str=str;                    
+		this.magic=magic;                  
+		this.def=def;                    
+		this.speed=speed;                  
+		this.luck=luck;                                
+		this.weak=weak;              
+		this.resist=resist;                  
+		this.nowSkill=nowSkill;        
+	}
+	
+	
 	void learn()//스킬 이름을 가져온후 습득레벨과 비교한다 , 레벨업 했을 때 한번 수행
 	{
 		int temp = 1;
