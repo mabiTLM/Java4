@@ -36,14 +36,12 @@ public class Exe
 //		DungeonMiniMap d =new DungeonMiniMap();
 //		d.minimap();
 		
-		MainPlayerCharacter c = new MainPlayerCharacter();
-		c.equip();
-		
-		System.out.println("현재 장착한 아이템은 ");
-		for(int i = 0; i < c.getOwnedItem().length;i++)
-		{
-			System.out.println();
-		}
+//		MainPlayerCharacter c = new MainPlayerCharacter();
+//		c.equip();
+//		OwnedItem[] i = c.getOwnedItem(); //주소값이!!!
+//		System.out.println(i[0].getItemName());
+            
+        
 		
 	}
 

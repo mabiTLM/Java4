@@ -29,13 +29,19 @@ public class MainPlayerCharacter extends CharacterBase
 		
 		if(temp.equals("낡은 활")) 
 		{
-			w.bowDatabase();
+			ItemBase[] bow = w.bowDatabase();
+			OwnedItem[0] = new OwnedItem(bow[0].getItemName(),bow[0].getWeaponType(),bow[0].getWeaponAtk(),bow[0].getPrice());
+			setOwnedItem(OwnedItem);
+			
 		}
 		else if(temp.equals("낡은 검"))
 		{
-			w.swordDatabase();
+			ItemBase[] sword = w.swordDatabase();
+			OwnedItem[0] = new OwnedItem(sword[0].getItemName(),sword[0].getWeaponType(),sword[0].getWeaponAtk(),sword[0].getPrice());
+			setOwnedItem(OwnedItem);
 		}
 
 	}
+	
 	//장비장착
 }

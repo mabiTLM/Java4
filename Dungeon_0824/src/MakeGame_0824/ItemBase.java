@@ -48,15 +48,43 @@ public class ItemBase
 		this.price=price;
 	}
 	
+	//set모음
+	
+	void setItemName(String itemName)
+	{
+		this.itemName=itemName;
+	}
+	void setWeaponType(String weaponType)
+	{
+		this.weaponType=weaponType;
+	}
+	void setWeaponAtk(int weaponAtk)
+	{
+		this.weaponAtk=weaponAtk;
+	}
+	
+	void setPrice(int price)
+	{
+		this.price=price;
+	}
+	
 	
 	//get 모음
 	int getWeaponAtk() {
 		return weaponAtk;
 	}
+	int getPrice() 
+	{
+		return price;
+	}
 	
 	String getItemName()
 	{
 		return itemName;
+	}
+	String getWeaponType()
+	{
+		return weaponType;
 	}
 	
 	

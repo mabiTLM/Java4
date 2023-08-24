@@ -5,7 +5,7 @@ public abstract class CharacterBase
 	private String name;
 	private String[] inventory;//가진아이템
 	private String[] ownedSkill;//소지스킬
-	private OwnedItem[] OwnedItem;//장비아이템
+	OwnedItem[] OwnedItem;//장비아이템
 	private int hp;
 	private int mp;
 	private int sp;
