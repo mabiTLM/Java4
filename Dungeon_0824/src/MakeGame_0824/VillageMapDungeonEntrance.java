@@ -28,7 +28,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		}
 		if(3==Integer.valueOf(move))
 		{
-			setCurrentLocation(2);
+			setCurrentLocation(100);
 		}
 	}
 }

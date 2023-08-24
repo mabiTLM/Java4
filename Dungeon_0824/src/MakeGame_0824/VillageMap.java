@@ -12,6 +12,7 @@ public class VillageMap
 		printMap();
 		System.out.println("뭐를 할까요?");
 		System.out.println("1.대화한다.");
+		//나중에 숫자 이외 입력시 예외처리 넣을곳
 	}
 	
 	

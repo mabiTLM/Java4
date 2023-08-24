@@ -3,8 +3,8 @@ package MakeGame_0824;
 public abstract class CharacterBase 
 {
 	private String name;
-	private String[] ownedSkill;
-	private String[] ownedItem;
+	private OwnedSkill[] OwnedSkill;
+	private OwnedItem[] OwnedItem;
 	private int hp;
 	private int mp;
 	private int sp;
@@ -14,22 +14,22 @@ public abstract class CharacterBase
 	
 	//String standingmotion;//일단 보류 
 	
-	CharacterBase(String name,String[] ownedSkill,String[] ownedItem,int hp,int mp,int sp, int[] proficiency)
+	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
 	{//플레이어블 캐릭터
 		this.name=name;
-		this.ownedSkill=ownedSkill;
-		this.ownedItem=ownedItem;
+		this.OwnedSkill=OwnedSkill;
+		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
 		this.sp=sp;
 		this.proficiency=proficiency;
 	}
 	
-	CharacterBase(String name,String[] ownedSkill,String[] ownedItem,int hp,int mp,int sp, int atk, int def)
+	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
 	{//적 캐릭터
 		this.name=name;
-		this.ownedSkill=ownedSkill;
-		this.ownedItem=ownedItem;
+		this.OwnedSkill=OwnedSkill;
+		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
 		this.sp=sp;
@@ -42,7 +42,7 @@ public abstract class CharacterBase
 	void Status() 
 	{
 		System.out.println("이름 :" + getName());
-		String[] ownedSkill = getOwnedSkill();
+		OwnedSkill[] ownedSkill = getOwnedSkill();
 		System.out.print("소지 스킬 : ");
 		for(int i = 0; i < ownedSkill.length;i++)
 		{
@@ -60,14 +60,14 @@ public abstract class CharacterBase
 		return name;
 	}
 	
-	public String[] getOwnedSkill() 
+	public OwnedSkill[] getOwnedSkill() 
 	{
-		return ownedSkill;
+		return OwnedSkill;
 	}
 	
-	public String[] getOwnedItem() 
+	public OwnedItem[] getOwnedItem() 
 	{
-		return ownedItem;
+		return OwnedItem;
 	}
 	
 	public int getHp() 

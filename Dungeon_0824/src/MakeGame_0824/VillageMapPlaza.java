@@ -15,7 +15,7 @@ public class VillageMapPlaza extends VillageMap
 		System.out.println("뭐를 할까요?");
 		System.out.println("1.대화한다.");
 		System.out.println("2.집으로");
-		System.out.println("3.던전으로");
+		System.out.println("3.던전입구로");
 		
 		String move = scan.nextLine();
 		
