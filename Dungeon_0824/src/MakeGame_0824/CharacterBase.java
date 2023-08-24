@@ -3,8 +3,9 @@ package MakeGame_0824;
 public abstract class CharacterBase 
 {
 	private String name;
-	private OwnedSkill[] OwnedSkill;
-	private OwnedItem[] OwnedItem;
+	private String[] inventory;//가진아이템
+	private String[] ownedSkill;//소지스킬
+	private OwnedItem[] OwnedItem;//장비아이템
 	private int hp;
 	private int mp;
 	private int sp;
@@ -14,10 +15,11 @@ public abstract class CharacterBase
 	
 	//String standingmotion;//일단 보류 
 	
-	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
+	CharacterBase(String name,String[] inventory,String[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
 	{//플레이어블 캐릭터
 		this.name=name;
-		this.OwnedSkill=OwnedSkill;
+		this.inventory=inventory;
+		this.ownedSkill=OwnedSkill;
 		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
@@ -25,10 +27,10 @@ public abstract class CharacterBase
 		this.proficiency=proficiency;
 	}
 	
-	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
+	CharacterBase(String name,String[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
 	{//적 캐릭터
 		this.name=name;
-		this.OwnedSkill=OwnedSkill;
+		this.ownedSkill=OwnedSkill;
 		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
@@ -42,7 +44,7 @@ public abstract class CharacterBase
 	void Status() 
 	{
 		System.out.println("이름 :" + getName());
-		OwnedSkill[] ownedSkill = getOwnedSkill();
+		String[] ownedSkill = getOwnedSkill();
 		System.out.print("소지 스킬 : ");
 		for(int i = 0; i < ownedSkill.length;i++)
 		{
@@ -54,15 +56,23 @@ public abstract class CharacterBase
 		System.out.println("스태미나 : "+getSp());
 	}
 	
+	
+	//set 모음
+	public void setOwnedItem(OwnedItem[] OwnedItem)
+	{
+		this.OwnedItem=OwnedItem;
+	}
+	
+	
 	//get 모음
 	public String getName() 
 	{
 		return name;
 	}
 	
-	public OwnedSkill[] getOwnedSkill() 
+	public String[] getOwnedSkill() 
 	{
-		return OwnedSkill;
+		return ownedSkill;
 	}
 	
 	public OwnedItem[] getOwnedItem() 

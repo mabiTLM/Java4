@@ -4,8 +4,8 @@ public class Exe
 {
 	public static void main(String[] args)
 	{
-		BulidGame b= new BulidGame();
-		b.build();
+//		BulidGame b= new BulidGame();
+//		b.build();
 		
 		//스텟 테스트
 //		MainPlayerCharacter m = new MainPlayerCharacter();		
@@ -35,6 +35,15 @@ public class Exe
 		//미니맵테스트
 //		DungeonMiniMap d =new DungeonMiniMap();
 //		d.minimap();
+		
+		MainPlayerCharacter c = new MainPlayerCharacter();
+		c.equip();
+		
+		System.out.println("현재 장착한 아이템은 ");
+		for(int i = 0; i < c.getOwnedItem().length;i++)
+		{
+			System.out.println();
+		}
 		
 	}
 
