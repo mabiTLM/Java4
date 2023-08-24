@@ -2,7 +2,7 @@ package MakeGame_0824;
 
 public class BulidGame
 {
-	DungeonMiniMap d = new DungeonMiniMap();
+	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap();
 	void build() 
 	{
@@ -24,18 +24,56 @@ public class BulidGame
 				}
 				else if(v.getCurrentLocation()==100)
 				{
+					System.out.println("던전으로 들어갑니다");
+					d.setFloor(1);
+					v.setCurrentLocation(99);
+					break;
+				}
+				else
+				{
 					break;
 				}
 				v.villageMapMove();
-			}//마일 while 끝
+			}//마을 while 끝
 			
 			
-			System.out.println("던전으로 들어갑니다");
-			while(true) 
+			
+			
+			
+				
+			if(d.getFloor()==1) //층수조절
 			{
+				d= new DungeonFirstMap();
+				d.MapSetting();
+				//반복을 막기 위해 층수를 음수로 빼둡니다
+			}
+			else if(d.getFloor()==-1)
+			{
+				d= new DungeonFirstMapReverse();
+				d.MapSetting();
+			}
+			else if(d.getFloor()==2)
+			{
+				d= new DungeonSecondMap();
+				d.MapSetting();
+			}
+			
+			while(true) 
+			{	
+				int floorTemp = d.getFloor();
 				d.minimap();
 				d.dungeonMapMove();
-				System.out.println("이벤트");
+				
+				if(floorTemp!=d.getFloor()) //층이바뀌면 다시
+				{
+					break;
+				}
+				
+			}
+			
+			if(d.getFloor()==0)//출구로 나왔을때만
+			{
+				v.setCurrentLocation(2);
 			}
 			
 			
