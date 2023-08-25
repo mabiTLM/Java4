@@ -77,6 +77,16 @@ public abstract class CharacterBase
 		this.hp=hp;
 	}
 	
+	public void setMp(int mp)
+	{
+		this.mp=mp;
+	}
+	
+	public void setSp(int sp)
+	{
+		this.sp=sp;
+	}
+	
 	public void setInventory(String[] inventory)
 	{
 		this.inventory=inventory;

@@ -32,7 +32,7 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	public OwnedItem[] swordDatabase()
 	{		
 		sword[0] = new OwnedItem("낡은 검", "검", 5, 1000);
-		sword[1] = new OwnedItem("보통 검", "검", 10, 10000);
+		sword[1] = new OwnedItem("강력한 검", "검", 100, 10000);
 		return sword;
 	}	
 	
@@ -40,17 +40,17 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	
 	public OwnedItem[] bowDatabase()
 	{		
-		sword[0] = new OwnedItem("낡은 활", "검", 5, 1000);
-		sword[1] = new OwnedItem("보통 활", "검", 10, 10000);
-		return sword;
+		bow[0] = new OwnedItem("낡은 활", "검", 5, 1000);
+		bow[1] = new OwnedItem("보통 활", "검", 10, 10000);
+		return bow;
 	}
 	
 	OwnedItem[] armor = new OwnedItem[2];
 	
 	public OwnedItem[] armorDatabase()
 	{		
-		sword[0] = new OwnedItem("천갑옷", 5, 1000);
-		sword[1] = new OwnedItem("가죽갑옷", 10, 10000);
+		armor[0] = new OwnedItem("천갑옷", 5, 1000);
+		armor[1] = new OwnedItem("가죽갑옷", 10, 10000);
 		return armor;
 	}
 	

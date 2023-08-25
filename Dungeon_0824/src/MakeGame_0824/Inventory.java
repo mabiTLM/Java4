@@ -1,14 +1,16 @@
 package MakeGame_0824;
 
 import java.util.Scanner;
+
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 
-public class Inventory extends MainPlayerCharacter
+public class Inventory
 {
 	Scanner scan= new Scanner(System.in);
+	MainPlayerCharacter c = new MainPlayerCharacter();
 	public void inventoryOpen()
 	{
-		String[] inven =getInventory();
+		String[] inven =c.getInventory();
 		
 		for(int i = 0; i< inven.length; i++)
 		{
@@ -43,7 +45,7 @@ public class Inventory extends MainPlayerCharacter
 			switch(temp)
 			{
 			case 1:
-				equip(); //이거 주소일치시켜야한다
+				c.equip();
 				System.out.println();
 				break;
 			case 2:

@@ -2,10 +2,9 @@ package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
-import MakeGame_0824.Inventory;
-
 public class VillageMapHouse extends VillageMap
 {
+	
 	@Override
 	public void villageMapMove()
 	{
@@ -16,6 +15,7 @@ public class VillageMapHouse extends VillageMap
 		System.out.println("1.대화한다.");
 		System.out.println("2.마을 광장으로");
 		System.out.println("3.인벤토리");
+		System.out.println("4.휴식한다");
 		String move = scan.nextLine();
 		while(true) 
 		{
@@ -42,6 +42,12 @@ public class VillageMapHouse extends VillageMap
 		else if(3==Integer.valueOf(move))
 		{
 			i.inventoryOpen();
+		}
+		else if(4==Integer.valueOf(move))
+		{
+			c.setHp(300);
+			c.setMp(10);
+			c.setSp(10);
 		}
 		else
 		{

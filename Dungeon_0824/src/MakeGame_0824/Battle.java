@@ -6,12 +6,15 @@ import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 
 public class Battle
 {
+	
 	OwnedItem[] OwnedItem;
+	OwnedSkill[] OwnedSkill;
 	public EnemyCharacter enemyChar = new EnemyCharacter();
 	public MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	private EnemyCharacter[] eArray;
 	private int playerChoice;
 	private int enemyNumber = 0;
+	Scanner scan= new Scanner(System.in);
 	
 	void enemyEncount() 
 	{
@@ -25,11 +28,25 @@ public class Battle
 	void battleChoice()
 	{
 			System.out.println("1.싸운다");
-			System.out.println("2.아이템");
-			System.out.println("3.방어");
-			System.out.println("4.도망친다");
-			Scanner scan= new Scanner(System.in);
+			System.out.println("2.스킬");
+			System.out.println("3.아이템");
+			System.out.println("4.방어");
+			System.out.println("5.도망친다");
 			String playerChoice = scan.nextLine();
+			
+			while(true) 
+			{
+				if(playerChoice.isEmpty()==false&playerChoice.replaceAll("[0-9]","").isEmpty()) 
+				{
+					break;
+				}
+				else
+				{
+					System.out.println("숫자만 입력해주세요");
+					playerChoice = scan.nextLine();
+				}
+			}
+			
 			this.playerChoice=Integer.valueOf(playerChoice);
 			setPlayerChoice(this.playerChoice);
 	}
@@ -52,7 +69,74 @@ public class Battle
 		OwnedItem[] o = getOwnedItem();
 		System.out.println("적의 공격 " + eArray[enemyNumber].getAtk());
 		mainChar.setHp(mainChar.getHp()-eArray[enemyNumber].getAtk());
-		System.out.println("내 hp :"+mainChar.getHp());
+	}
+	
+	void usePlayerSkill()
+	{	
+		OwnedSkill[] o = getOwnedSkill();
+		int useSkillNumber=-1;
+		
+		System.out.print("가지고 있는 스킬 목록 ");
+		for(OwnedSkill OwnedSkill:o)
+		{			
+			System.out.print(OwnedSkill.getName()+", ");
+		}
+		System.out.print("사용할 스킬 : ");
+		String temp = scan.nextLine();
+		
+		for(int i = 0; i<o.length; i++)
+		{
+			if(o[i].getName().equals(temp))
+			{
+				useSkillNumber=i;
+				System.out.println("사용한 스킬 : " + o[useSkillNumber].getName());
+				break;
+			}
+		}
+		
+		if(useSkillNumber==-1)
+		{
+			System.out.println("스킬을 잘 못 사용했다");
+		}
+		else
+		{
+			if(o[useSkillNumber].getType().equals("물리"))//물리 타입 기술 사용시
+			{
+				if(mainChar.getSp()-o[useSkillNumber].getConsumeSp()>=0)
+				{
+				System.out.println("공격 " + o[useSkillNumber].getAtk());
+				eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk());
+				System.out.println("적 hp :"+eArray[enemyNumber].getHp());
+				mainChar.setSp(mainChar.getSp()-o[useSkillNumber].getConsumeSp());
+				}
+				else
+				{
+					System.out.println("sp가 부족해서 스킬발동에 실패했다.");
+				}
+			}
+			else if(o[useSkillNumber].getType().equals("힐")) //회복타입
+			{
+				System.out.println("회복합니다.");
+				
+				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
+				{
+					if(mainChar.getHp()+(int)o[useSkillNumber].getHeal()>=300)
+					{
+						mainChar.setHp(300);
+					}
+					else
+					{
+						mainChar.setHp(mainChar.getHp()+(int)o[useSkillNumber].getHeal());
+						System.out.println("내 hp :"+mainChar.getHp());
+					}
+				}
+				else
+				{
+					System.out.println("mp가 부족해서 스킬발동에 실패했다.");					
+				}
+			}
+		}
+		
 	}
 	
 	
@@ -60,6 +144,11 @@ public class Battle
 	void setOwnedItem(OwnedItem[] OwnedItem)
 	{
 		this.OwnedItem = OwnedItem;
+	}
+	
+	void setOwnedSkill(OwnedSkill[] OwnedSkill)
+	{
+		this.OwnedSkill = OwnedSkill;
 	}
 	
 	void setEnemyNumber(int enemyNumber)
@@ -71,9 +160,6 @@ public class Battle
 	{
 		this.playerChoice=playerChoice;
 	}
-	
-	
-	
 	
 	
 	//진짜 변수가 아닌 get이기에 주의
@@ -92,12 +178,15 @@ public class Battle
 	{
 		return playerChoice;
 	}
-	
-
-	
+		
 	OwnedItem[] getOwnedItem()
 	{
 		return OwnedItem;
+	}
+	
+	OwnedSkill[] getOwnedSkill()
+	{
+		return OwnedSkill;
 	}
 	
 	

@@ -19,21 +19,25 @@ public class MainPlayerCharacter extends CharacterBase
 				new String[] 
 						{
 								"낡은 검",
-								"낡은 활"
+								"강력한 검"
 						},
-				new OwnedSkill[20],
+				new OwnedSkill[] 
+						{
+								new OwnedSkill("혼신의 일격","물리",100,1),
+								new OwnedSkill("힐","회복",100.0,1.0)
+						},
 				new OwnedItem[]
 						{
 								new OwnedItem("맨손","근거리",2,0),
 								new OwnedItem("옷",2,0)
 								}, //장착
-				100,
+				300,
 				10,
-				100,
+				10,
 				new int[]{1,1,1});
 	}
 	
-	public void PickUpDropItemp(String dropitem) 
+	public void PickUpDropItemp(String dropitem) //장비줍기
 	{
 		String[] inven = new String[getInventory().length+1];
 		for(int i = 0; i<inven.length ;i++)
@@ -45,10 +49,8 @@ public class MainPlayerCharacter extends CharacterBase
 		}
 		setInventory(inven);
 	}
-	
-	
-	
-	public void equip() //장착을 어떻게 할까?
+		
+	public void equip()//장비장착
 	{
 		System.out.println("어떤 아이템을 사용 할까요?");
 		Scanner scan = new Scanner(System.in);
@@ -72,6 +74,14 @@ public class MainPlayerCharacter extends CharacterBase
 			setOwnedItem(OwnedItem);
 		}
 		
+		else if(temp.equals("강력한 검"))
+		{
+			int weaponNumber = 1;
+			OwnedItem[] sword = weqponBase.swordDatabase();
+			OwnedItem[0] = sword[weaponNumber];
+			setOwnedItem(OwnedItem);
+		}
+		
 		else if(temp.equals("천 옷"))
 		{
 			int weaponNumber = 0;
@@ -79,8 +89,7 @@ public class MainPlayerCharacter extends CharacterBase
 			OwnedItem[1] = armor[weaponNumber];
 			setOwnedItem(OwnedItem);
 		}
-
 	}
-	//장비장착
+	
 	
 }

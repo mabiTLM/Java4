@@ -15,26 +15,26 @@ public class BulidGame
 	int money =10000;
 	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap();
-	MainPlayerCharacter c = new MainPlayerCharacter();
+	MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	Battle b = new Battle();
-	void build() 
+	void build()
 	{	
-		b.mainChar=c;
-		//c.equip();//장비변경탭따로만들것
-		
-		
+		b.mainChar=mainChar;
+		//c.equip();
+		//장비변경탭따로만들것
 		while(true)
 		{
-			if(c.getHp()<=0)//죽엇을때 끝내기
+			if(mainChar.getHp()<=0)//죽엇을때 끝내기
 			{
 				break;
 			}
 			while(true) 
 			{
-				if(c.getHp()<=0)//죽엇을때 끝내기
+				if(mainChar.getHp()<=0)//죽엇을때 끝내기
 				{
 					break;
 				}
+				System.out.println("현재소지금"+money);
 				if(v.getCurrentLocation()==0)
 				{
 					v  = new VillageMapHouse();
@@ -58,6 +58,8 @@ public class BulidGame
 				{
 					break;
 				}
+				v.c=mainChar;
+				v.i.c=mainChar; // 주소를 일치시켜야 장비가 바뀐다.
 				v.villageMapMove();
 				
 			}//마을 while 끝
@@ -82,23 +84,27 @@ public class BulidGame
 			
 			while(true) 
 			{	
-				if(c.getHp()<=0)//죽엇을때 끝내기
+				if(mainChar.getHp()<=0)//죽엇을때 끝내기
 				{
 					break;
 				}
+				System.out.println("현재소지금"+money);
 				int floorTemp = d.getFloor();
 				d.minimap();
 				d.dungeonMapMove();
 				
 				int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
-				if(ramdomEncount<30)
+				if(ramdomEncount<20)
 				{
 					b.enemyEncount(); //적 조우
-					b.setOwnedItem(c.getOwnedItem());//현재끼고있는 장비를 넣어준다
+					b.setOwnedItem(mainChar.getOwnedItem());//현재끼고있는 장비를 넣어준다
+					b.setOwnedSkill(mainChar.getOwnedSkill());
 					while(true) 
 					{
-						System.out.println(c.getHp());
-						b.battleChoice();//선택지
+						System.out.println("현재 hp : "+mainChar.getHp());
+						System.out.println("현재 mp : "+mainChar.getMp());
+						System.out.println("현재 sp : "+mainChar.getSp());
+						b.battleChoice();//싸움 선택지
 						if(b.getPlayerChoice()==1)
 						{
 							b.battleCalculator();
@@ -109,14 +115,32 @@ public class BulidGame
 								break;
 								}
 							b.enemyBattleCalculator();
-							if(c.getHp()<=0)
+							if(mainChar.getHp()<=0)
 							{
 								System.out.print("당신은 죽었습니다.");
 								break;
 							}
 						}
 						
-						else if(b.getPlayerChoice()==4)
+						else if(b.getPlayerChoice()==2)
+						{
+							b.usePlayerSkill();//스킬 목록 밑 스킬 발동 구현
+							
+							if(b.getEnemyHP()<=0)
+							{
+							System.out.println("이겼다");
+							money += b.getEnemyPrice();
+							break;
+							}							
+							b.enemyBattleCalculator();
+							if(mainChar.getHp()<=0)
+							{
+								System.out.print("당신은 죽었습니다.");
+								break;
+							}
+						}
+						
+						else if(b.getPlayerChoice()==5)
 						{
 							System.out.println("도망쳤다");
 							break;

@@ -1,9 +1,11 @@
 package MakeGame_0824.MapBundle;
 
 import MakeGame_0824.Inventory;
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 
 public class VillageMap 
 {
+	public MainPlayerCharacter c= new MainPlayerCharacter();
 	public Inventory i = new Inventory();
 	private String[] map = {"집","마을 광장","던전입구"};
 	
