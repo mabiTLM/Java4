@@ -12,8 +12,7 @@ public class ItemBase
 	private int price;
 	
 	ItemBase()
-	{
-		
+	{		
 	}
 	
 	ItemBase(String itemName,String weaponType,int weaponAtk,int price)//무기
@@ -21,8 +20,7 @@ public class ItemBase
 		this.itemName=itemName;
 		this.weaponType=weaponType;
 		this.weaponAtk=weaponAtk;
-		this.price=price;
-		
+		this.price=price;		
 	}
 	
 	ItemBase(String itemName,int weaponDef,int price)//방어구
@@ -38,8 +36,7 @@ public class ItemBase
 		this.hpHeal=hpHeal;
 		this.mpHeal=mpHeal;
 		this.spHeal=spHeal;
-		this.price=price;
-		
+		this.price=price;		
 	}
 	
 	ItemBase(String itemName,int price)//판매전용

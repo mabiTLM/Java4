@@ -6,8 +6,8 @@ public class Exe
 {
 	public static void main(String[] args)
 	{
-		BulidGame b= new BulidGame();
-		b.build();
+//		BulidGame b= new BulidGame();
+//		b.build();
 		
 		//스텟 테스트
 //		MainPlayerCharacter m = new MainPlayerCharacter();		
@@ -45,6 +45,11 @@ public class Exe
 //		c.equip();
 //		OwnedItem[] i = c.getOwnedItem(); //주소값이!!!
 //		System.out.println(i[0].getItemName());
+		
+		//전투 실행테스트
+//		Battle b = new Battle();
+//		
+//		b.battleCalculator();
             
         
 		

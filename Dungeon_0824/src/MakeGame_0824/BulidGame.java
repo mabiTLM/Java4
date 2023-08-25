@@ -46,11 +46,7 @@ public class BulidGame
 				v.villageMapMove();
 			}//마을 while 끝
 			
-			
-			
-			
-			
-				
+			//던전입장
 			if(d.getFloor()==1) //층수조절
 			{
 				d= new DungeonFirstMap();

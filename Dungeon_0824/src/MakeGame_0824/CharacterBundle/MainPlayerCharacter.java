@@ -8,7 +8,7 @@ import MakeGame_0824.Weapon;
 
 public class MainPlayerCharacter extends CharacterBase
 {	
-	Weapon w = new Weapon(); //아이템 정보
+	Weapon w = new Weapon(); //아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
 	OwnedItem[] OwnedItem = new OwnedItem[2];
 
 	public MainPlayerCharacter()
@@ -33,15 +33,17 @@ public class MainPlayerCharacter extends CharacterBase
 		
 		if(temp.equals("낡은 활")) 
 		{
+			int weaponNumber = 0;
 			ItemBase[] bow = w.bowDatabase();
-			OwnedItem[0] = new OwnedItem(bow[0].getItemName(),bow[0].getWeaponType(),bow[0].getWeaponAtk(),bow[0].getPrice());
+			OwnedItem[0] = new OwnedItem(bow[weaponNumber].getItemName(),bow[weaponNumber].getWeaponType(),bow[weaponNumber].getWeaponAtk(),bow[weaponNumber].getPrice());
 			setOwnedItem(OwnedItem);
 			
 		}
 		else if(temp.equals("낡은 검"))
 		{
+			int weaponNumber = 0;
 			ItemBase[] sword = w.swordDatabase();
-			OwnedItem[0] = new OwnedItem(sword[0].getItemName(),sword[0].getWeaponType(),sword[0].getWeaponAtk(),sword[0].getPrice());
+			OwnedItem[0] = new OwnedItem(sword[weaponNumber].getItemName(),sword[weaponNumber].getWeaponType(),sword[weaponNumber].getWeaponAtk(),sword[weaponNumber].getPrice());
 			setOwnedItem(OwnedItem);
 		}
 

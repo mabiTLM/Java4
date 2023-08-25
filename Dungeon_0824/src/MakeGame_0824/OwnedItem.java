@@ -20,14 +20,36 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 		this.price=price;
 	}
 	
+	
+	//set 모음
 	public void setItemName(String itemName)
 	{
 		this.itemName=itemName;
 	}
 	
+
+	//get 모음
+	
 	public String getItemName()
 	{
 		return itemName;
+	}
+	
+	public String getWeaponType()
+	{
+		return weaponType;
+	}
+	public int getWeaponAtk()
+	{
+		return weaponAtk;
+	}
+	public int getWeaponDef()
+	{
+		return weaponDef;
+	}
+	public int getPrice()
+	{
+		return price;
 	}
 }	
 
