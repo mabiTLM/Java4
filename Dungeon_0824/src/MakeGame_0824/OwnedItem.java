@@ -12,7 +12,7 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	{
 		
 	}
-	OwnedItem(String itemName,String weaponType,int weaponAtk,int price)//무기
+	public OwnedItem(String itemName,String weaponType,int weaponAtk,int price)//무기
 	{
 		this.itemName=itemName;
 		this.weaponType=weaponType;
@@ -20,12 +20,12 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 		this.price=price;
 	}
 	
-	void setItemName(String itemName)
+	public void setItemName(String itemName)
 	{
 		this.itemName=itemName;
 	}
 	
-	String getItemName()
+	public String getItemName()
 	{
 		return itemName;
 	}

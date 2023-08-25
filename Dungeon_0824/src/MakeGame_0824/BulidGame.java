@@ -1,5 +1,15 @@
 package MakeGame_0824;
 
+import MakeGame_0824.MapBundle.DungeonFirstMap;
+
+import MakeGame_0824.MapBundle.DungeonFirstMapReverse;
+import MakeGame_0824.MapBundle.DungeonMap;
+import MakeGame_0824.MapBundle.DungeonSecondMap;
+import MakeGame_0824.MapBundle.VillageMap;
+import MakeGame_0824.MapBundle.VillageMapDungeonEntrance;
+import MakeGame_0824.MapBundle.VillageMapHouse;
+import MakeGame_0824.MapBundle.VillageMapPlaza;
+
 public class BulidGame
 {
 	DungeonMap d = new DungeonMap();

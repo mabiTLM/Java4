@@ -50,39 +50,39 @@ public class ItemBase
 	
 	//set모음
 	
-	void setItemName(String itemName)
+	public void setItemName(String itemName)
 	{
 		this.itemName=itemName;
 	}
-	void setWeaponType(String weaponType)
+	public void setWeaponType(String weaponType)
 	{
 		this.weaponType=weaponType;
 	}
-	void setWeaponAtk(int weaponAtk)
+	public void setWeaponAtk(int weaponAtk)
 	{
 		this.weaponAtk=weaponAtk;
 	}
 	
-	void setPrice(int price)
+	public void setPrice(int price)
 	{
 		this.price=price;
 	}
 	
 	
 	//get 모음
-	int getWeaponAtk() {
+	public int getWeaponAtk() {
 		return weaponAtk;
 	}
-	int getPrice() 
+	public int getPrice() 
 	{
 		return price;
 	}
 	
-	String getItemName()
+	public String getItemName()
 	{
 		return itemName;
 	}
-	String getWeaponType()
+	public String getWeaponType()
 	{
 		return weaponType;
 	}

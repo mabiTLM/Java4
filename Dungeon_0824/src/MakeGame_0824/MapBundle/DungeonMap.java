@@ -1,4 +1,4 @@
-package MakeGame_0824;
+package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
@@ -31,7 +31,7 @@ public class DungeonMap {
 	}
 	
 	
-	void minimap() 
+	public void minimap() 
 	{
 		whereAmI();//내위치를 잡고
 		//주변을 출력

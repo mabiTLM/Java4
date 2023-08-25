@@ -1,4 +1,4 @@
-package MakeGame_0824;
+package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class VillageMapPlaza extends VillageMap
 
 {
 	@Override
-	void villageMapMove()
+	public void villageMapMove()
 	{
 		setCurrentLocation(1);
 		printMap();

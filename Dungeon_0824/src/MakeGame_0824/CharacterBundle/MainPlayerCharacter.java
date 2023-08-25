@@ -1,17 +1,21 @@
-package MakeGame_0824;
+package MakeGame_0824.CharacterBundle;
 
 import java.util.Scanner;
+import MakeGame_0824.ItemBase;
+import MakeGame_0824.OwnedItem;
+import MakeGame_0824.OwnedSkill;
+import MakeGame_0824.Weapon;
 
 public class MainPlayerCharacter extends CharacterBase
 {	
 	Weapon w = new Weapon(); //아이템 정보
 	OwnedItem[] OwnedItem = new OwnedItem[2];
 
-	MainPlayerCharacter()
+	public MainPlayerCharacter()
 	{
 		super("주인공",
 				new String[20],
-				new String[20],
+				new OwnedSkill[20],
 				new OwnedItem[2], //여기껴야하는데
 				10,
 				10,
@@ -19,7 +23,7 @@ public class MainPlayerCharacter extends CharacterBase
 				new int[]{1,1,1});
 	}
 	
-	void equip() //장착을 어떻게 할까?
+	public void equip() //장착을 어떻게 할까?
 	{
 		System.out.println("어떤 아이템을 사용 할까요?");
 		Scanner scan = new Scanner(System.in);

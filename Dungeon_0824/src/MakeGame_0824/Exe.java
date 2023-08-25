@@ -1,11 +1,13 @@
 package MakeGame_0824;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+
 public class Exe 
 {
 	public static void main(String[] args)
 	{
-//		BulidGame b= new BulidGame();
-//		b.build();
+		BulidGame b= new BulidGame();
+		b.build();
 		
 		//스텟 테스트
 //		MainPlayerCharacter m = new MainPlayerCharacter();		
@@ -33,9 +35,12 @@ public class Exe
 //		}
 
 		//미니맵테스트
-//		DungeonMiniMap d =new DungeonMiniMap();
+//		DungeonFirstMap d =new DungeonFirstMap();
+//		d.MapSetting();
 //		d.minimap();
+//		d.dungeonMapMove();
 		
+		//장비장착테스트
 //		MainPlayerCharacter c = new MainPlayerCharacter();
 //		c.equip();
 //		OwnedItem[] i = c.getOwnedItem(); //주소값이!!!

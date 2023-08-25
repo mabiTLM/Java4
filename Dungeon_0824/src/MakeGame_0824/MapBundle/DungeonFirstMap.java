@@ -1,4 +1,4 @@
-package MakeGame_0824;
+package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 

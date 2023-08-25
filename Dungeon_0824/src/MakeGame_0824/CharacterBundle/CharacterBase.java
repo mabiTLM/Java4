@@ -1,10 +1,13 @@
-package MakeGame_0824;
+package MakeGame_0824.CharacterBundle;
+
+import MakeGame_0824.OwnedItem;
+import MakeGame_0824.OwnedSkill;
 
 public abstract class CharacterBase 
 {
 	private String name;
 	private String[] inventory;//가진아이템
-	private String[] ownedSkill;//소지스킬
+	private OwnedSkill[] OwnedSkill;//소지스킬
 	OwnedItem[] OwnedItem;//장비아이템
 	private int hp;
 	private int mp;
@@ -13,13 +16,19 @@ public abstract class CharacterBase
 	private int atk;
 	private int def;
 	
-	//String standingmotion;//일단 보류 
+	//String standingmotion;//일단 보류
 	
-	CharacterBase(String name,String[] inventory,String[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
+	
+	CharacterBase()
+	{
+		
+	}
+	
+	CharacterBase(String name,String[] inventory,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
 	{//플레이어블 캐릭터
 		this.name=name;
 		this.inventory=inventory;
-		this.ownedSkill=OwnedSkill;
+		this.OwnedSkill=OwnedSkill;
 		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
@@ -27,10 +36,10 @@ public abstract class CharacterBase
 		this.proficiency=proficiency;
 	}
 	
-	CharacterBase(String name,String[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
+	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
 	{//적 캐릭터
 		this.name=name;
-		this.ownedSkill=OwnedSkill;
+		this.OwnedSkill=OwnedSkill;
 		this.OwnedItem=OwnedItem;
 		this.hp=hp;
 		this.mp=mp;
@@ -44,7 +53,7 @@ public abstract class CharacterBase
 	void Status() 
 	{
 		System.out.println("이름 :" + getName());
-		String[] ownedSkill = getOwnedSkill();
+		OwnedSkill[] ownedSkill = getOwnedSkill();
 		System.out.print("소지 스킬 : ");
 		for(int i = 0; i < ownedSkill.length;i++)
 		{
@@ -70,9 +79,9 @@ public abstract class CharacterBase
 		return name;
 	}
 	
-	public String[] getOwnedSkill() 
+	public OwnedSkill[] getOwnedSkill() 
 	{
-		return ownedSkill;
+		return OwnedSkill;
 	}
 	
 	public OwnedItem[] getOwnedItem() 

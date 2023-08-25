@@ -1,4 +1,4 @@
-package MakeGame_0824;
+package MakeGame_0824.MapBundle;
 
 public class VillageMap 
 {
@@ -6,7 +6,7 @@ public class VillageMap
 	
 	private int currentLocation = 0;
 	
-	void villageMapMove() // 공통부분 일부만 만들고 상속받아서 오버라이드
+	public void villageMapMove() // 공통부분 일부만 만들고 상속받아서 오버라이드
 	{
 		setCurrentLocation(0);
 		printMap();
