@@ -1,7 +1,10 @@
 package MakeGame_0824.MapBundle;
 
+import MakeGame_0824.Inventory;
+
 public class VillageMap 
 {
+	public Inventory i = new Inventory();
 	private String[] map = {"집","마을 광장","던전입구"};
 	
 	private int currentLocation = 0;

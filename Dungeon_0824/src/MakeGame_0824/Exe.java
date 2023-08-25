@@ -1,13 +1,11 @@
 package MakeGame_0824;
 
-import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
-
 public class Exe 
 {
 	public static void main(String[] args)
 	{
-//		BulidGame b= new BulidGame();
-//		b.build();
+		BulidGame b= new BulidGame();
+		b.build();
 		
 		//스텟 테스트
 //		MainPlayerCharacter m = new MainPlayerCharacter();		
@@ -51,6 +49,9 @@ public class Exe
 //		
 //		b.battleCalculator();
             
+		//인벤토리 호출테스트
+//		Inventory i = new Inventory();
+//		i.inventoryOpen();
         
 		
 	}

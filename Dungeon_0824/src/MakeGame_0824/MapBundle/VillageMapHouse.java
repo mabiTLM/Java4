@@ -2,6 +2,8 @@ package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
+import MakeGame_0824.Inventory;
+
 public class VillageMapHouse extends VillageMap
 {
 	@Override
@@ -13,18 +15,37 @@ public class VillageMapHouse extends VillageMap
 		System.out.println("뭐를 할까요?");
 		System.out.println("1.대화한다.");
 		System.out.println("2.마을 광장으로");
-		
+		System.out.println("3.인벤토리");
 		String move = scan.nextLine();
-//		if(move.replaceAll("[0-9]","").isEmpty())
+		while(true) 
+		{
+			if(move.isEmpty()==false&move.replaceAll("[0-9]","").isEmpty()) 
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("숫자만 입력해주세요");
+				move = scan.nextLine();
+			}
+		}
 		
 		if(1==Integer.valueOf(move))
 		{
 			System.out.println("안녕!");
 		}
 		
-		if(2==Integer.valueOf(move))
+		else if(2==Integer.valueOf(move))
 		{
 			setCurrentLocation(1);
+		}
+		else if(3==Integer.valueOf(move))
+		{
+			i.inventoryOpen();
+		}
+		else
+		{
+			System.out.println("다시 입력해주세요");
 		}
 	}
 }

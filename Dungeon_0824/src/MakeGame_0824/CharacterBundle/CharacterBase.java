@@ -8,7 +8,7 @@ public abstract class CharacterBase
 	private String name;
 	private String[] inventory;//가진아이템
 	private OwnedSkill[] OwnedSkill;//소지스킬
-	OwnedItem[] OwnedItem;//장비아이템
+	private OwnedItem[] OwnedItem;//장비아이템
 	private int hp;
 	private int mp;
 	private int sp;
@@ -72,6 +72,15 @@ public abstract class CharacterBase
 		this.OwnedItem=OwnedItem;
 	}
 	
+	public void setHp(int hp)
+	{
+		this.hp=hp;
+	}
+	
+	public void setInventory(String[] inventory)
+	{
+		this.inventory=inventory;
+	}
 	
 	//get 모음
 	public String getName() 
@@ -103,8 +112,22 @@ public abstract class CharacterBase
 	{
 		return sp;
 	}
+	public int getAtk()
+	{
+		return atk;
+	}
+	public int getDef()
+	{
+		return atk;
+	}
+	
 	public int[] getProficiency()
 	{
 		return proficiency;
+	}
+	
+	public String[] getInventory()
+	{
+		return inventory;
 	}
 }
