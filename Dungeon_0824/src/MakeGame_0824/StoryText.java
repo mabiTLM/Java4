@@ -20,6 +20,10 @@ String[] endingStory=
 }
 
 
+void timeRemaining()
+{}
+
+
 //set모음
 
 void setCurrentDay(int currentDay)
