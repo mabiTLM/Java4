@@ -8,7 +8,8 @@ String[] mainStory={}
 
 String[] endingStory=
 {
-"엔딩1 ",
+"엔딩0 "
+"엔딩1 헛된 죽음/n당신은 던전에서 죽었습니다./n혼자 남겨진 당신의 동생도 곧 뒤따라가겠지요",
 "",
 
 }
@@ -16,5 +17,16 @@ String[] endingStory=
 public String getStart()
 {
 return start;
+}
+
+public String[] getMainStory()
+{
+return mainStory;
+}
+
+
+public String[] getEndingStory()
+{
+return endingStory
 }
 }
