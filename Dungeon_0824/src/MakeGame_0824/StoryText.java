@@ -7,6 +7,13 @@ int currentDay = 1; //경과일에 따른 스토리 변경이 있으므로 여�
 
 int dayLimit =100;
 
+int encountProbability= 30;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
+
+int evilCount = 0;
+
+int goodCount = 0;
+
+
 private String start ="이동과 선택지는 숫자로 선택하며 스킬발동은 가진 스킬을 입력해서 사용합니다."
 
 String[] mainStory={}
@@ -15,7 +22,7 @@ String[] endingStory=
 {
 "엔딩0 다시 일상으로/n동생은 완치 됐습니다.쌩쌩한것 앞으로 100년은 더 살것처럼보이네요."
 "엔딩1 헛된 죽음/n당신은 던전에서 죽었습니다./n혼자 남겨진 당신의 동생도 곧 뒤따라가겠지요.",
-"",
+"엔딩2 ",
 
 }
 
