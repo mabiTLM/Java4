@@ -7,8 +7,7 @@ import MakeGame_0824.OwnedSkill;
 
 public class MainPlayerCharacter extends CharacterBase
 {
-	OwnedItem w = new OwnedItem(); //아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
-	OwnedItem[] OwnedItem = new OwnedItem[2];	
+	//아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
 
 	public MainPlayerCharacter()
 	{
@@ -25,9 +24,9 @@ public class MainPlayerCharacter extends CharacterBase
 						},
 				new OwnedItem[]
 						{
-								new OwnedItem("맨손","근거리",2,0,"맨손 : 공격력 2"),
-								new OwnedItem("옷",2,0)
-								}, //장착
+								new OwnedItem("맨손","무기","근거리",2,0,"맨손 : 공격력 2"),
+								new OwnedItem("옷","갑옷",2,0)
+						}, //장착
 				300,
 				10,
 				10,
@@ -54,39 +53,56 @@ public class MainPlayerCharacter extends CharacterBase
 		String temp = scan.nextLine();
 		
 		//인벤토리에 있는지 확인 추가 필요
+		OwnedItem w = new OwnedItem();
+		OwnedItem[] totalItem = w.itemDatabase();	
 		
-		if(temp.equals("낡은 활")) 
+		for(int i = 0; i<totalItem.length; i++)
 		{
-			int weaponNumber = 0;
-			OwnedItem[] bow = w.bowDatabase();
-			OwnedItem[0] = bow[weaponNumber];
-			setOwnedItem(OwnedItem);
+			if(temp.equals(totalItem[i].getItemName()))
+			{
+				if((totalItem[i].getItemType()).equals("무기"))
+				{
+					OwnedItem[] OwnedItem = new OwnedItem[2];
+					OwnedItem[0] = totalItem[i];
+					setOwnedItem(OwnedItem);
+					break;
+				}
+				
+			}
+			else if(i==totalItem.length-1)
+			{
+				System.out.println("그런 아이템은 없다.");
+			}
 		}
 		
-		else if(temp.equals("낡은 검"))
-		{
-			int weaponNumber = 0;
-			OwnedItem[] sword = w.swordDatabase();
-			OwnedItem[0] = sword[weaponNumber];
-			setOwnedItem(OwnedItem);
-		}
 		
-		else if(temp.equals("강력한 검"))
-		{
-			int weaponNumber = 1;
-			OwnedItem[] sword = w.swordDatabase();
-			OwnedItem[0] = sword[weaponNumber];
-			setOwnedItem(OwnedItem);
-		}
-		
-		else if(temp.equals("천 옷"))
-		{
-			int weaponNumber = 0;
-			OwnedItem[] armor = w.armorDatabase();
-			OwnedItem[1] = armor[weaponNumber];
-			setOwnedItem(OwnedItem);
-		}
+//		if(temp.equals("낡은 검")) 
+//		{
+//			int weaponNumber = 0;
+//			setOwnedItem(OwnedItem);
+//		}
+//		
+//		else if(temp.equals("낡은 검"))
+//		{
+//			int weaponNumber = 0;
+//
+//			setOwnedItem(OwnedItem);
+//		}
+//		
+//		else if(temp.equals("강력한 검"))
+//		{
+//			int weaponNumber = 1;
+//			OwnedItem[] sword = w.swordDatabase();
+//			OwnedItem[0] = sword[weaponNumber];
+//			setOwnedItem(OwnedItem);
+//		}
+//		
+//		else if(temp.equals("천 옷"))
+//		{
+//			int weaponNumber = 0;
+//			OwnedItem[] armor = w.armorDatabase();
+//			OwnedItem[1] = armor[weaponNumber];
+//			setOwnedItem(OwnedItem);
+//		}
 	}
-	
-	
 }

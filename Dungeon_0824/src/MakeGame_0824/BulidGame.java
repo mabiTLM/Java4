@@ -13,15 +13,12 @@ import MakeGame_0824.MapBundle.VillageMapPlaza;
 public class BulidGame
 {
 	int money =10000;
-	DungeonMap d = new DungeonMap();
-	VillageMap v = new VillageMap();
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
-	Battle b = new Battle();
+	DungeonMap d = new DungeonMap();
+	VillageMap v = new VillageMap();	
+	Battle b = new Battle(mainChar);
 	void build()
-	{	
-		b.mainChar=mainChar;
-		//c.equip();
-		//장비변경탭따로만들것
+	{
 		while(true)
 		{
 			if(mainChar.getHp()<=0)//죽엇을때 끝내기
@@ -59,7 +56,6 @@ public class BulidGame
 					break;
 				}
 				v.c=mainChar;
-				v.i.c=mainChar; // 주소를 일치시켜야 장비가 바뀐다.
 				v.villageMapMove();
 				
 			}//마을 while 끝

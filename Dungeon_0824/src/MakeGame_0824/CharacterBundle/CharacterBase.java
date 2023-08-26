@@ -24,7 +24,15 @@ public abstract class CharacterBase
 		
 	}
 	
-	CharacterBase(String name,String[] inventory,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int[] proficiency)
+	CharacterBase(
+			String name,
+			String[] inventory,
+			OwnedSkill[] OwnedSkill,
+			OwnedItem[] OwnedItem,
+			int hp,
+			int mp,
+			int sp,
+			int[] proficiency)
 	{//플레이어블 캐릭터
 		this.name=name;
 		this.inventory=inventory;

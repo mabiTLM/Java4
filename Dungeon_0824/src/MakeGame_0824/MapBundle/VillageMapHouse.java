@@ -41,7 +41,7 @@ public class VillageMapHouse extends VillageMap
 		}
 		else if(3==Integer.valueOf(move))
 		{
-			i.inventoryOpen();
+			i.inventoryOpen(c);
 		}
 		else if(4==Integer.valueOf(move))
 		{

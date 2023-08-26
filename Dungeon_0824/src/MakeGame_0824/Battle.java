@@ -10,15 +10,19 @@ public class Battle
 	OwnedItem[] OwnedItem;
 	OwnedSkill[] OwnedSkill;
 	public EnemyCharacter enemyChar = new EnemyCharacter();
-	public MainPlayerCharacter mainChar = new MainPlayerCharacter();
+	private MainPlayerCharacter mainChar;
 	private EnemyCharacter[] eArray;
 	private int playerChoice;
 	private int enemyNumber = 0;
 	Scanner scan= new Scanner(System.in);
 	
+	Battle(MainPlayerCharacter mainChar)
+	{
+		this.mainChar=mainChar;
+	}
+	
 	void enemyEncount() 
 	{
-		OwnedItem[] o = getOwnedItem();
 		this.eArray = enemyChar.firstEnemyDatabase();
 		setEnemyNumber((int)(Math.random()*2));
 		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
@@ -57,7 +61,7 @@ public class Battle
 		//MainPlayerCharacter m = new MainPlayerCharacter(); //캐릭터 자료불러오고
 		//m.equip(); //장비장착
 		//OwnedItem[] o= m.getOwnedItem(); //장비 장착한걸 클래스화
-		OwnedItem[] o = getOwnedItem();
+		OwnedItem[] o = mainChar.getOwnedItem();
 		System.out.println("장작한 아이템" + o[0].getItemName());
 		System.out.println("공격 " + o[0].getWeaponAtk());
 		eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[0].getWeaponAtk());

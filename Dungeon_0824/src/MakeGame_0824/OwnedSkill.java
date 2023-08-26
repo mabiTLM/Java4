@@ -15,12 +15,13 @@ public class OwnedSkill
 		
 	}
 	
-	public OwnedSkill(String name,String type,int atk,int consumeSp)//물리
+	public OwnedSkill(String name,String type,int atk,int consumeSp, String skillDescription)//물리
 	{
 		this.name=name;
 		this.type=type;
 		this.atk=atk;		
 		this.consumeSp=consumeSp;
+		this.skillDescription=skillDescription;
 	}
 	
 	public OwnedSkill(String name,String type,int atk,double consumeMp)//마법
@@ -90,5 +91,10 @@ public class OwnedSkill
 	public double getHeal()
 	{
 		return heal;
+	}
+	
+	public String getSkillDescription()
+	{
+		return skillDescription;
 	}
 }

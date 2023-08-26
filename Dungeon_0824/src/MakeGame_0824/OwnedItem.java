@@ -3,9 +3,13 @@ package MakeGame_0824;
 public class OwnedItem
 {
 	private String itemName;
-	private String weaponType;
+	private String itemType;
+	private String weaponType;	
 	private int weaponAtk;
 	private int weaponDef;
+	private int hpHeal;
+	private int mpHeal;
+	private int spHeal;
 	private int price;
 	private String itemDescription;
 	
@@ -13,54 +17,61 @@ public class OwnedItem
 	{
 		
 	}
-	public OwnedItem(String itemName,String weaponType,int weaponAtk,int price, String itemDescription)//무기
+	public OwnedItem(
+			String itemName,
+			String itemType,
+			String weaponType,
+			int weaponAtk,
+			int price,
+			String itemDescription)//무기
 	{
 		this.itemName=itemName;
 		this.weaponType=weaponType;
+		this.itemType=itemType;
 		this.weaponAtk=weaponAtk;
 		this.price=price;
 		this.itemDescription=itemDescription;
 	}
 	
-	public OwnedItem(String itemName,int weaponDef, int price)//방어구
+	public OwnedItem(String itemName,String itemType, int weaponDef, int price)//방어구
 	{
 		this.itemName=itemName;
+		this.itemType=itemType;
 		this.weaponDef=weaponDef;
 		this.price=price;
 	}
 	
-	OwnedItem[] sword = new OwnedItem[2];
 	
-	public OwnedItem[] swordDatabase()
+	OwnedItem[] totalItem = new OwnedItem[6];
+	
+	public OwnedItem[] itemDatabase()
 	{		
-		sword[0] = new OwnedItem("낡은 검", "검", 5, 1000,"낡은 검 : 공격력 5 가격 1000");
-		sword[1] = new OwnedItem("강력한 검", "검", 100, 10000,"");
-		return sword;
+		totalItem[0] = new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 공격력 5 가격 1000");
+		totalItem[1] = new OwnedItem("강력한 검","무기","검", 100, 10000,"");		
+		totalItem[2] = new OwnedItem("낡은 지팡이","무기","지팡이", 3, 1000,"낡은 지팡이 : 공격력 3 가격 1000");
+		totalItem[3] = new OwnedItem("보통 지팡이","무기","지팡이", 10, 10000,"");		
+		totalItem[4] = new OwnedItem("천갑옷","갑옷", 5, 1000);
+		totalItem[5] = new OwnedItem("가죽갑옷","갑옷",10, 10000);
+		return totalItem;
 	}	
-	
-	OwnedItem[] bow = new OwnedItem[2];
-	
-	public OwnedItem[] bowDatabase()
-	{		
-		bow[0] = new OwnedItem("낡은 활", "검", 5, 1000,"낡은 활 : 공격력 5 가격 1000");
-		bow[1] = new OwnedItem("보통 활", "검", 10, 10000,"");
-		return bow;
-	}
-	
-	OwnedItem[] armor = new OwnedItem[2];
-	
-	public OwnedItem[] armorDatabase()
-	{		
-		armor[0] = new OwnedItem("천갑옷", 5, 1000);
-		armor[1] = new OwnedItem("가죽갑옷", 10, 10000);
-		return armor;
-	}
-	
-	
+		
 	//set 모음
 	public void setItemName(String itemName)
 	{
 		this.itemName=itemName;
+	}	
+	public void setWeaponType(String weaponType)
+	{
+		this.weaponType=weaponType;
+	}
+	public void setWeaponAtk(int weaponAtk)
+	{
+		this.weaponAtk=weaponAtk;
+	}
+	
+	public void setPrice(int price)
+	{
+		this.price=price;
 	}
 
 
@@ -69,6 +80,11 @@ public class OwnedItem
 	public String getItemName()
 	{
 		return itemName;
+	}
+	
+	public String getItemType()
+	{
+		return itemType;
 	}
 	
 	public String getItemDescription()
@@ -91,6 +107,11 @@ public class OwnedItem
 	public int getPrice()
 	{
 		return price;
+	}
+	
+	public OwnedItem[] getOwnedItem()
+	{
+		return totalItem;
 	}
 }	
 

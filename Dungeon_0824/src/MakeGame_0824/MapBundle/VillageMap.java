@@ -5,7 +5,7 @@ import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 
 public class VillageMap 
 {
-	public MainPlayerCharacter c= new MainPlayerCharacter();
+	public MainPlayerCharacter c;
 	public Inventory i = new Inventory();
 	private String[] map = {"집","마을 광장","던전입구"};
 	

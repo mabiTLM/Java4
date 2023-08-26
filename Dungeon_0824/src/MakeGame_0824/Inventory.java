@@ -7,8 +7,8 @@ import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 public class Inventory
 {
 	Scanner scan= new Scanner(System.in);
-	MainPlayerCharacter c = new MainPlayerCharacter();
-	public void inventoryOpen()
+	MainPlayerCharacter c;
+	public void inventoryOpen(MainPlayerCharacter c)
 	{
 		String[] inven =c.getInventory();
 		
