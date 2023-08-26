@@ -3,7 +3,9 @@ package MakeGame_0824;
 public class StoryText
 {
 
-int day = 1; //경과일에 따른 스토리 변경이 있으므로 여기서 계산합니다.
+int currentDay = 1; //경과일에 따른 스토리 변경이 있으므로 여기서 계산합니다.
+
+int dayLimit =100;
 
 private String start ="이동과 선택지는 숫자로 선택하며 스킬발동은 가진 스킬을 입력해서 사용합니다."
 
@@ -17,17 +19,36 @@ String[] endingStory=
 
 }
 
+
+//set모음
+
+void setCurrentDay(int currentDay)
+{
+this.currentDay=currentDay;
+}
+void setDayLimit(int dayLimit)
+{
+this.dayLimit=dayLimit;
+}
+
+//get모음
+
+public int getCurrentDay()
+{
+return currentDay;
+}
+public int getDayLimit()
+{
+return dayLimit;
+}
 public String getStart()
 {
 return start;
 }
-
 public String[] getMainStory()
 {
 return mainStory;
 }
-
-
 public String[] getEndingStory()
 {
 return endingStory
