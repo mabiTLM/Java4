@@ -10,15 +10,14 @@ public class VillageMapPlaza extends VillageMap
 	{
 		setCurrentLocation(1);
 		printMap();
-		System.out.println("	ㄴ장비 상점-소모품상점");
+		System.out.println("	ㄴ상점");
 		Scanner scan = new Scanner(System.in);
 		System.out.println("뭐를 할까요?");
 		System.out.println("1.대화한다.");
 		System.out.println("2.집으로");
 		System.out.println("3.던전입구로");
-		System.out.println("4.장비 상점으로");
-		System.out.println("5.소모품 상점으로");
-		System.out.println("6.인벤토리");
+		System.out.println("4.상점으로");
+		System.out.println("5.인벤토리");
 		
 		
 		String move = scan.nextLine();
@@ -37,13 +36,9 @@ public class VillageMapPlaza extends VillageMap
 		}
 		else if(move.equals("4"))
 		{
-		
+			setCurrentLocation(3);		
 		}
 		else if(move.equals("5"))
-		{
-			
-		}
-		else if(move.equals("6"))
 		{
 			i.inventoryOpen(c);
 		}

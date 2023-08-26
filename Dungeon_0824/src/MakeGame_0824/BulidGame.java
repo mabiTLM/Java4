@@ -9,10 +9,11 @@ import MakeGame_0824.MapBundle.VillageMap;
 import MakeGame_0824.MapBundle.VillageMapDungeonEntrance;
 import MakeGame_0824.MapBundle.VillageMapHouse;
 import MakeGame_0824.MapBundle.VillageMapPlaza;
+import MakeGame_0824.MapBundle.VillageMapShop;
 
 public class BulidGame
 {
-	int money =10000;
+	int money =10000;//어느 위치에 넣을지 고민되서 일단 빼놨는데 캐릭터에 넣는게 맞는거같습니다.
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap();	
@@ -43,6 +44,10 @@ public class BulidGame
 				else if(v.getCurrentLocation()==2)
 				{
 					v  = new VillageMapDungeonEntrance();
+				}
+				else if(v.getCurrentLocation()==3)
+				{
+					v  = new VillageMapShop();
 				}
 				else if(v.getCurrentLocation()==100)
 				{

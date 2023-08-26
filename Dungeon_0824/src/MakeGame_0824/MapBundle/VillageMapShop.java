@@ -1,0 +1,62 @@
+package MakeGame_0824.MapBundle;
+
+import java.util.Scanner;
+
+public class VillageMapShop extends VillageMap 
+{
+	@Override
+	public void villageMapMove()
+	{
+		setCurrentLocation(3);
+		printMap();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("뭐를 할까요?");
+		System.out.println("1.대화한다.");
+		System.out.println("2.마을광장으로");
+		System.out.println("3.구매한다");
+		System.out.println("4.판매한다");
+		System.out.println("5.인벤토리");
+		
+		String move = scan.nextLine();
+		
+		if(move.equals("1"))
+		{
+			System.out.println("물건 좀 사고갈래?");
+		}
+		
+		else if(move.equals("2"))
+		{
+			setCurrentLocation(1);
+		}
+		
+		else if(move.equals("3"))
+		{
+			//일단 미구현
+		}
+		else if(move.equals("4"))
+		{
+			//일단 미구현
+		}		
+		
+		else if(move.equals("5"))
+		{
+			i.inventoryOpen(c);
+		}
+	}
+	
+	@Override
+	void printMap()
+	{
+		for(int i = 0; i < getMap().length; i++)
+		{
+				System.out.print(getMap()[i]);
+				if(i!=getMap().length-1) 
+				{
+					System.out.print("-");
+				}
+		}
+		System.out.println();
+		System.out.println("	ㄴ[상점]");
+	}
+
+}
