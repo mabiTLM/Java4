@@ -8,23 +8,29 @@ public class Inventory
 {
 	Scanner scan= new Scanner(System.in);
 	MainPlayerCharacter c;
+	OwnedItem o = new OwnedItem();
 	public void inventoryOpen(MainPlayerCharacter c)
 	{
 		String[] inven =c.getInventory();
 		
+		OwnedItem[] own = o.itemDatabase();
+		
 		for(int i = 0; i< inven.length; i++)
 		{
-			System.out.print(inven[i] + "	");
-			if((i+1)%6==0)
+			for(int j = 0; j< own.length; j++)
 			{
-				System.out.println();
-			}
+				if(inven[i].equals(own[j].getItemName()))
+				{
+					System.out.println(own[j].getItemDescription());
+					break;
+				}
+			}			
 		}
 		System.out.println();
 		
 		while(true)
 		{
-			System.out.println("1. 아이템 장비하기 2.소모품 사용하기 3.돌아가기");
+			System.out.println("1. 아이템 사용하기 2.돌아가기");
 			String choice = scan.nextLine();
 			
 			while(true) 
@@ -49,9 +55,6 @@ public class Inventory
 				System.out.println();
 				break;
 			case 2:
-				System.out.println("미구현");
-				break;
-			case 3:
 				break;
 			}
 			

@@ -16,21 +16,36 @@ public class VillageMapPlaza extends VillageMap
 		System.out.println("1.대화한다.");
 		System.out.println("2.집으로");
 		System.out.println("3.던전입구로");
+		System.out.println("4.장비 상점으로");
+		System.out.println("5.소모품 상점으로");
+		System.out.println("6.인벤토리");
+		
 		
 		String move = scan.nextLine();
 		
-		if(1==Integer.valueOf(move))
+		if(move.equals("1"))
 		{
 			System.out.println("어디가니?");
 		}
-		
-		if(2==Integer.valueOf(move))
+		else if(move.equals("2"))
 		{
 			setCurrentLocation(0);
 		}
-		if(3==Integer.valueOf(move))
+		else if(move.equals("3"))
 		{
 			setCurrentLocation(2);
+		}
+		else if(move.equals("4"))
+		{
+		
+		}
+		else if(move.equals("5"))
+		{
+			
+		}
+		else if(move.equals("6"))
+		{
+			i.inventoryOpen(c);
 		}
 	}
 }

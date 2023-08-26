@@ -17,33 +17,21 @@ public class VillageMapHouse extends VillageMap
 		System.out.println("3.인벤토리");
 		System.out.println("4.휴식한다");
 		String move = scan.nextLine();
-		while(true) 
-		{
-			if(move.isEmpty()==false&move.replaceAll("[0-9]","").isEmpty()) 
-			{
-				break;
-			}
-			else
-			{
-				System.out.println("숫자만 입력해주세요");
-				move = scan.nextLine();
-			}
-		}
 		
-		if(1==Integer.valueOf(move))
+		if(move.equals("1"))
 		{
 			System.out.println("안녕!");
 		}
 		
-		else if(2==Integer.valueOf(move))
+		else if(move.equals("2"))
 		{
 			setCurrentLocation(1);
 		}
-		else if(3==Integer.valueOf(move))
+		else if(move.equals("3"))
 		{
 			i.inventoryOpen(c);
 		}
-		else if(4==Integer.valueOf(move))
+		else if(move.equals("4"))
 		{
 			c.setHp(300);
 			c.setMp(10);

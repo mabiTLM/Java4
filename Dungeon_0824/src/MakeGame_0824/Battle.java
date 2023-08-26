@@ -144,6 +144,47 @@ public class Battle
 	}
 	
 	
+	void battelFinish()
+	{
+		
+		//인벤가득차면 5칸 늘려준다
+		if(mainChar.getInventory()[mainChar.getInventory().length-1].isEmpty()==false)
+		{
+			String[] temp = new String[mainChar.getInventory().length+5];
+			for(int i = 0; i<temp.length; i++)
+			{
+				temp[i]="";
+			}
+			for(int i = 0; i<mainChar.getInventory().length; i++)
+			{
+				temp[i]=mainChar.getInventory()[i];
+			}
+			mainChar.setInventory(temp);
+		}
+		
+		
+		int temp = (int)(Math.random()*100);
+		
+		if(eArray[enemyNumber].getDropPercent()>temp)
+		{
+			for(int i = 0; i <eArray[enemyNumber].getDropItem().length;i++)
+			{
+				for(int j = 0; j <mainChar.getInventory().length;j++) 
+				{
+					if(mainChar.getInventory()[j].isEmpty())
+					{
+						mainChar.getInventory()[j]=eArray[enemyNumber].getDropItem()[i];
+						System.out.println(mainChar.getInventory()[j]+"를 얻었다");
+						break;
+					}
+				}
+				
+			}
+		}		
+	}
+	
+	
+	
 	//set모음
 	void setOwnedItem(OwnedItem[] OwnedItem)
 	{
@@ -173,7 +214,7 @@ public class Battle
 	}
 	int getEnemyPrice()
 	{
-		return eArray[enemyNumber].getPrice();
+		return eArray[enemyNumber].getDropMoney();
 	}
 	////////////////
 	

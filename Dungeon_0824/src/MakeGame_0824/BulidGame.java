@@ -89,6 +89,7 @@ public class BulidGame
 				d.minimap();
 				d.dungeonMapMove();
 				
+				// 여기 밑에서부터 전투인데 통채로 뜯어서 클래스화 가능해보입니다. 배틀클래스가 너무 길기에 적행동을 나누는게 좋아보입니다.
 				int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
 				if(ramdomEncount<20)
 				{
@@ -108,6 +109,7 @@ public class BulidGame
 								{
 								System.out.println("이겼다");
 								money += b.getEnemyPrice();
+								b.battelFinish();
 								break;
 								}
 							b.enemyBattleCalculator();
@@ -126,6 +128,7 @@ public class BulidGame
 							{
 							System.out.println("이겼다");
 							money += b.getEnemyPrice();
+							b.battelFinish();
 							break;
 							}							
 							b.enemyBattleCalculator();
@@ -134,6 +137,10 @@ public class BulidGame
 								System.out.print("당신은 죽었습니다.");
 								break;
 							}
+						}
+						else if(b.getPlayerChoice()==3)
+						{
+							v.i.inventoryOpen(mainChar);
 						}
 						
 						else if(b.getPlayerChoice()==5)

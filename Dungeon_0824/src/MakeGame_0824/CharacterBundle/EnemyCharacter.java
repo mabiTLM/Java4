@@ -7,37 +7,70 @@ public class EnemyCharacter extends CharacterBase
 {
 	
 	private String name;
-	private OwnedItem[] OwnedItem;//가진아이템
+	private String[] dropItem;//가진아이템
 	private OwnedSkill[] OwnedSkill;//소지스킬
 	private int hp;
 	private int mp;
 	private int sp;
 	private int atk;
 	private int def;
-	private int price;
+	private int dropMoney;
+	private double dropPercent;
 
 	public EnemyCharacter() {
 		super("적", new OwnedSkill[20],new OwnedItem[2], 5, 5, 10, 5, 5);
 	}
 	
-	public EnemyCharacter(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def, int price)
+	public EnemyCharacter(
+			String name,
+			OwnedSkill[] OwnedSkill, //아직 스킬은 없지만 일단 넣어두자 혹시 사용한다면 적행동클래스를 따로만들어서 행동을 지정할것 
+			String[] dropItem, //드랍 아이템
+			int hp,
+			int mp,
+			int sp,
+			int atk,
+			int def,
+			int dropMoney,
+			double dropPercent
+			)
 	{
 		this.name=name;
 		this.OwnedSkill=OwnedSkill;
-		this.OwnedItem=OwnedItem;
+		this.dropItem=dropItem;
 		this.hp=hp;
 		this.mp=mp;
 		this.atk=atk;
 		this.def=def;
-		this.price=price;
+		this.dropMoney=dropMoney;
+		this.dropPercent=dropPercent;
 	}
 	
 	public EnemyCharacter[] enemy = new EnemyCharacter[2];
 	
 	public EnemyCharacter[] firstEnemyDatabase() //층마다 다를수 있으니까 나눠두자
 	{
-		enemy[0] = new EnemyCharacter("도적", new OwnedSkill[20],new OwnedItem[2], 5, 5, 10, 5, 5,1000);
-		enemy[1] = new EnemyCharacter("미친 뿔사슴", new OwnedSkill[20],new OwnedItem[2], 50, 50, 100, 50, 50,10000);
+		enemy[0] = new EnemyCharacter(
+				"도적",
+				new OwnedSkill[0],
+				new String[]{"낡은 지팡이"},
+				5,
+				5,
+				10,
+				5,
+				5,
+				1000,
+				100);
+		enemy[1] = new EnemyCharacter(
+				"미친 뿔사슴",
+				new OwnedSkill[0],
+				new String[]{"낡은 지팡이"},
+				50,
+				50,
+				100,
+				50,
+				50,
+				10000,
+				100);
 		return enemy;
 	}
 	
@@ -45,10 +78,6 @@ public class EnemyCharacter extends CharacterBase
 	public void setName(String name) 
 	{
 		this.name = name;
-	}
-	public void setInventory(OwnedItem[] OwnedItem)
-	{
-		this.OwnedItem=OwnedItem;
 	}
 	public void setOwnedSkill(OwnedSkill[] OwnedSkill)
 	{
@@ -81,9 +110,9 @@ public class EnemyCharacter extends CharacterBase
 	{
 		return name;
 	}
-	public OwnedItem[] getOwnedItem() 
+	public String[] getDropItem() 
 	{
-		return OwnedItem;
+		return dropItem;
 	}
 	public OwnedSkill[] getOwnedSkill() 
 	{
@@ -110,14 +139,18 @@ public class EnemyCharacter extends CharacterBase
 		return atk;
 	}
 	
-	public int getPrice()
+	public int getDropMoney()
 	{
-		return price;
+		return dropMoney;
 	}
 	
 	public EnemyCharacter[] getEnemyCharacter() {
 		return enemy;
 	}
 	
+	public double getDropPercent()
+	{
+		return dropPercent;
+	}
 
 }

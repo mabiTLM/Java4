@@ -46,8 +46,8 @@ public class OwnedItem
 	
 	public OwnedItem[] itemDatabase()
 	{		
-		totalItem[0] = new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 공격력 5 가격 1000");
-		totalItem[1] = new OwnedItem("강력한 검","무기","검", 100, 10000,"");		
+		totalItem[0] = new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000");
+		totalItem[1] = new OwnedItem("강력한 검","무기","검", 100, 10000,"강력한 검 : 무기, 검, 공격력 100, 가격1000");		
 		totalItem[2] = new OwnedItem("낡은 지팡이","무기","지팡이", 3, 1000,"낡은 지팡이 : 공격력 3 가격 1000");
 		totalItem[3] = new OwnedItem("보통 지팡이","무기","지팡이", 10, 10000,"");		
 		totalItem[4] = new OwnedItem("천갑옷","갑옷", 5, 1000);

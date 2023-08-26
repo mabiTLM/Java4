@@ -32,19 +32,6 @@ public class MainPlayerCharacter extends CharacterBase
 				10,
 				new int[]{1,1,1});
 	}
-	
-	public void PickUpDropItemp(String dropitem) //장비줍기
-	{
-		String[] inven = new String[getInventory().length+1];
-		for(int i = 0; i<inven.length ;i++)
-		{
-			if(inven[i].isEmpty())
-			{
-				inven[i]=dropitem;
-			}
-		}
-		setInventory(inven);
-	}
 		
 	public void equip()//장비장착
 	{
