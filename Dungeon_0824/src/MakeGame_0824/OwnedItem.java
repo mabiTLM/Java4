@@ -1,23 +1,25 @@
-package MakeGame_0824;//
+package MakeGame_0824;
 
-public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도하다. 총 아이템중 가진 아이템만 장착하려했는데 오류가 자주 발생하는듯
+public class OwnedItem
 {
 	private String itemName;
 	private String weaponType;
 	private int weaponAtk;
 	private int weaponDef;
 	private int price;
-		
+	private String itemDescription;
+	
 	public OwnedItem()
 	{
 		
 	}
-	public OwnedItem(String itemName,String weaponType,int weaponAtk,int price)//무기
+	public OwnedItem(String itemName,String weaponType,int weaponAtk,int price, String itemDescription)//무기
 	{
 		this.itemName=itemName;
 		this.weaponType=weaponType;
 		this.weaponAtk=weaponAtk;
 		this.price=price;
+		this.itemDescription=itemDescription;
 	}
 	
 	public OwnedItem(String itemName,int weaponDef, int price)//방어구
@@ -31,8 +33,8 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	
 	public OwnedItem[] swordDatabase()
 	{		
-		sword[0] = new OwnedItem("낡은 검", "검", 5, 1000);
-		sword[1] = new OwnedItem("강력한 검", "검", 100, 10000);
+		sword[0] = new OwnedItem("낡은 검", "검", 5, 1000,"낡은 검 : 공격력 5 가격 1000");
+		sword[1] = new OwnedItem("강력한 검", "검", 100, 10000,"");
 		return sword;
 	}	
 	
@@ -40,8 +42,8 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	
 	public OwnedItem[] bowDatabase()
 	{		
-		bow[0] = new OwnedItem("낡은 활", "검", 5, 1000);
-		bow[1] = new OwnedItem("보통 활", "검", 10, 10000);
+		bow[0] = new OwnedItem("낡은 활", "검", 5, 1000,"낡은 활 : 공격력 5 가격 1000");
+		bow[1] = new OwnedItem("보통 활", "검", 10, 10000,"");
 		return bow;
 	}
 	
@@ -60,13 +62,18 @@ public class OwnedItem //extends ItemBase //상속을 받는게 문제 같기도
 	{
 		this.itemName=itemName;
 	}
-	
+
 
 	//get 모음
 	
 	public String getItemName()
 	{
 		return itemName;
+	}
+	
+	public String getItemDescription()
+	{
+		return itemDescription;
 	}
 	
 	public String getWeaponType()

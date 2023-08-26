@@ -8,6 +8,7 @@ public class OwnedSkill
 	private int consumeSp;
 	private double consumeMp;
 	private double heal;
+	private String skillDescription;
 	
 	public OwnedSkill()
 	{

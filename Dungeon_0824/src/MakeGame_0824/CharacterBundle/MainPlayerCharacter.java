@@ -1,17 +1,14 @@
 package MakeGame_0824.CharacterBundle;
 
 import java.util.Scanner;
-import MakeGame_0824.ItemBase;
 import MakeGame_0824.OwnedItem;
 import MakeGame_0824.OwnedSkill;
-import MakeGame_0824.Weapon;
+
 
 public class MainPlayerCharacter extends CharacterBase
 {
-	Weapon w = new Weapon(); //아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
-	OwnedItem[] OwnedItem = new OwnedItem[2];
-	OwnedItem weqponBase = new OwnedItem();
-	
+	OwnedItem w = new OwnedItem(); //아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
+	OwnedItem[] OwnedItem = new OwnedItem[2];	
 
 	public MainPlayerCharacter()
 	{
@@ -28,7 +25,7 @@ public class MainPlayerCharacter extends CharacterBase
 						},
 				new OwnedItem[]
 						{
-								new OwnedItem("맨손","근거리",2,0),
+								new OwnedItem("맨손","근거리",2,0,"맨손 : 공격력 2"),
 								new OwnedItem("옷",2,0)
 								}, //장착
 				300,
@@ -61,7 +58,7 @@ public class MainPlayerCharacter extends CharacterBase
 		if(temp.equals("낡은 활")) 
 		{
 			int weaponNumber = 0;
-			OwnedItem[] bow = weqponBase.bowDatabase();
+			OwnedItem[] bow = w.bowDatabase();
 			OwnedItem[0] = bow[weaponNumber];
 			setOwnedItem(OwnedItem);
 		}
@@ -69,7 +66,7 @@ public class MainPlayerCharacter extends CharacterBase
 		else if(temp.equals("낡은 검"))
 		{
 			int weaponNumber = 0;
-			OwnedItem[] sword = weqponBase.swordDatabase();
+			OwnedItem[] sword = w.swordDatabase();
 			OwnedItem[0] = sword[weaponNumber];
 			setOwnedItem(OwnedItem);
 		}
@@ -77,7 +74,7 @@ public class MainPlayerCharacter extends CharacterBase
 		else if(temp.equals("강력한 검"))
 		{
 			int weaponNumber = 1;
-			OwnedItem[] sword = weqponBase.swordDatabase();
+			OwnedItem[] sword = w.swordDatabase();
 			OwnedItem[0] = sword[weaponNumber];
 			setOwnedItem(OwnedItem);
 		}
@@ -85,7 +82,7 @@ public class MainPlayerCharacter extends CharacterBase
 		else if(temp.equals("천 옷"))
 		{
 			int weaponNumber = 0;
-			OwnedItem[] armor = weqponBase.armorDatabase();
+			OwnedItem[] armor = w.armorDatabase();
 			OwnedItem[1] = armor[weaponNumber];
 			setOwnedItem(OwnedItem);
 		}
