@@ -119,7 +119,7 @@ public class BulidGame
 				d.minimap();
 				d.dungeonMapMove();
 				
-				// 여기 밑에서부터 전투인데 통채로 뜯어서 클래스화 가능해보입니다. 배틀클래스가 너무 길기에 적행동을 나누는게 좋아보입니다.
+				// 여기 밑에서부터 전투
 				int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
 				if(ramdomEncount<s.getEncountProbability())
 				{
@@ -189,8 +189,17 @@ public class BulidGame
 								b.enemyBattleCalculator();
 							}
 						}
+						
+						s.weaponStory();
+						
+					}//전투단 끝
+					if(mainChar.getHp()<=0)//죽엇을때 끝내기
+					{
+						break;
 					}
+					s.weaponStory();
 				}
+				
 				int repeatStoryEncount = (int)(Math.random()*100);//적 조우 확률
 				if(repeatStoryEncount<10)
 				{
@@ -202,9 +211,7 @@ public class BulidGame
 					break;
 				}
 				
-			}//던전 while
-			
-			
+			}//던전 while			
 			
 			if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
 			{

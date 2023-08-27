@@ -50,9 +50,9 @@ public class VillageMapHouse extends VillageMap
 		}
 		else if(move.equals("4"))
 		{
-			mainChar.setHp(300);
-			mainChar.setMp(10);
-			mainChar.setSp(10);
+			mainChar.setHp(mainChar.getMaxHp());
+			mainChar.setMp(mainChar.getMaxMp());
+			mainChar.setSp(mainChar.getMaxSp());
 		}
 		else if(move.equals("5"))
 		{

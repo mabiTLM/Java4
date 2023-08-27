@@ -76,6 +76,11 @@ public class Battle
 			tempProficiency=(int)mainChar.getProficiency()[0];
 			mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
 		}
+		else if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 사용시 숙련도 가져오기 +숙련도증가 밸런스상 휘둘러도 올라야?
+		{
+			tempProficiency=(int)mainChar.getProficiency()[1];
+			mainChar.setProficiency(mainChar.getProficiency()[1]+0.1, 0);	
+		}
 		System.out.println("장작한 아이템" + o[0].getItemName());
 		System.out.println("공격 " + (o[0].getWeaponAtk()+tempProficiency));
 		tempDamage=o[0].getWeaponAtk()+tempProficiency-eArray[enemyNumber].getDef();		
@@ -164,21 +169,14 @@ public class Battle
 					System.out.println("sp가 부족해서 스킬발동에 실패했다.");
 				}
 			}
-			else if(o[useSkillNumber].getType().equals("힐")) //회복타입
+			else if(o[useSkillNumber].getType().equals("회복")) //회복타입
 			{
 				System.out.println("회복합니다.");
 				
 				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
 				{
-					if(mainChar.getHp()+(int)o[useSkillNumber].getHpHeal()>=300)
-					{
-						mainChar.setHp(300);
-					}
-					else
-					{
-						mainChar.setHp(mainChar.getHp()+(int)o[useSkillNumber].getHpHeal());
-						System.out.println("내 hp :"+mainChar.getHp());
-					}
+					mainChar.setHp(mainChar.getHp()+o[useSkillNumber].getHpHeal());
+					System.out.println("내 hp :"+mainChar.getHp());
 				}
 				else
 				{

@@ -8,7 +8,6 @@ public class OwnedSkill
 	private int consumeSp;
 	private double consumeMp;
 	private int hpHeal;
-	private int mpHeal;
 	private int spHeal;	
 	private String skillDescription;
 	
@@ -17,7 +16,12 @@ public class OwnedSkill
 		
 	}
 	
-	public OwnedSkill(String name,String type,int atk,int consumeSp, String skillDescription)//물리
+	public OwnedSkill(
+			String name,
+			String type,
+			int atk,
+			int consumeSp,
+			String skillDescription)//물리
 	{
 		this.name=name;
 		this.type=type;
@@ -26,7 +30,12 @@ public class OwnedSkill
 		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill(String name,String type,int atk,double consumeMp, String skillDescription)//마법
+	public OwnedSkill(
+			String name,
+			String type,
+			int atk,
+			double consumeMp,
+			String skillDescription)//마법
 	{
 		this.name=name;
 		this.type=type;
@@ -35,23 +44,32 @@ public class OwnedSkill
 		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill(String name,String type,int hpHeal,int mpHeal,int spHeal, int consumeMp, String skillDescription)//회복
+	public OwnedSkill(
+			String name,
+			String type,
+			int hpHeal,
+			int spHeal,
+			double consumeMp,
+			String skillDescription)//회복
 	{
 		this.name=name;
 		this.type=type;
 		this.hpHeal=hpHeal;
+		this.spHeal=spHeal;
 		this.consumeMp=consumeMp;
 		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill[] skill = new OwnedSkill[30];
+	public OwnedSkill[] skill = new OwnedSkill[4];
 	
 	
 	OwnedSkill[] skillList() 
 	{
-		skill[0] = new OwnedSkill("혼신의 일격","물리",10,1,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다");
-		skill[1] = new OwnedSkill("힐","회복",100,1,"힐 : hp를 100회복합니다");
-		skill[2] = new OwnedSkill("매직미사일","마법",20,1.0,"매직미사일 : 20의 마법데미지를 줍니다");
+		skill[0] = new OwnedSkill("혼신의 일격","물리",10,5,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다 소비 sp5");
+		skill[4] = new OwnedSkill("결사의 일격","물리",30,10,"결사의 일격 : 무기 공격력*30의 물리데미지를 줍니다 소비 sp10");
+		skill[1] = new OwnedSkill("힐","회복",100,0,1.0,"힐 : hp를 100회복합니다. 소비mp1");
+		skill[2] = new OwnedSkill("매직미사일","마법",20,1.0,"매직미사일 : 20의 마법데미지를 줍니다. 소비mp 1");
+		skill[3] = new OwnedSkill("메기도","마법",60,2.0,"메기도 : 60의 마법데미지를 줍니다. 소비mp2");
 		return skill;
 	}
 	
@@ -67,21 +85,16 @@ public class OwnedSkill
 		this.name=name;
 	}
 	
-	
-	
-	//get모음
-	
+	//get모음	
 	
 	public String getName()
 	{
 		return name;
-	}
-	
+	}	
 	public String getType()
 	{
 		return type;
 	}
-
 	public int getAtk()
 	{
 		return atk;
@@ -97,8 +110,7 @@ public class OwnedSkill
 	public int getHpHeal()
 	{
 		return hpHeal;
-	}
-	
+	}	
 	public String getSkillDescription()
 	{
 		return skillDescription;

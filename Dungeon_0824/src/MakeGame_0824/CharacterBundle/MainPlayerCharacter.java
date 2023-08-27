@@ -14,23 +14,21 @@ public class MainPlayerCharacter extends CharacterBase
 		super("주인공",
 				new String[] 
 						{
-								"낡은 지팡이"
 						},
 				new OwnedSkill[] 
 						{
-								new OwnedSkill("혼신의 일격","물리",10,1,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다"),
-								new OwnedSkill("힐","회복",100,1,"힐 : hp를 100회복합니다"),
-								new OwnedSkill("매직미사일","마법",20,1.0,"매직미사일 : 20의 마법데미지를 줍니다")
+								new OwnedSkill("혼신의 일격","물리",10,1,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다. 소비sp 1"),
+								new OwnedSkill("힐","회복",100,0,1.0,"힐 : hp를 100회복합니다. 소비mp1")
 						},
 				new OwnedItem[]
 						{
-								new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000"),
-								new OwnedItem("천 갑옷","갑옷", 3, 1000,"천 갑옷 : 방어력3 가격1000")
+								new OwnedItem("맨손","무기","검", 1, 0,"맨손 : 무기, 검, 공격력 1"),
+								new OwnedItem("거적대기","갑옷", 1, 0,"거적대기 : 방어구, 방어력1, 가격0")
 						}, //장착
 				200,
 				10,
 				100,
-				new double[]{1,2,1},//0.검,1.지팡이 2는 아직 더미
+				new double[]{1.0,1.0,1.0},//0.검,1.지팡이 2는 아직 더미
 				1000
 				); 
 	}

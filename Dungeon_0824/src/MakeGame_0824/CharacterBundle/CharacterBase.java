@@ -75,7 +75,7 @@ public abstract class CharacterBase
 		System.out.println("마나 : "+getMp());
 		System.out.println("스태미나 : "+getSp());
 		
-		System.out.println("소지 스킬 : "); //너무 지저분해 보여서 일단 제거
+		System.out.println("소지 스킬 : ");
 		for(int i = 0; i < getOwnedSkill().length;i++)
 		{
 			System.out.println(getOwnedSkill()[i].getSkillDescription());
@@ -85,7 +85,9 @@ public abstract class CharacterBase
 		{
 			System.out.println(getOwnedItem()[i].getItemDescription());
 		}
-
+		
+		System.out.println("검숙련도 :"+getProficiency()[0]);
+		System.out.println("지팡이숙련도 :"+getProficiency()[1]);
 		System.out.println("============================");
 	}
 	
@@ -100,6 +102,14 @@ public abstract class CharacterBase
 	{
 		this.OwnedItem[slot]=OwnedItem[slot];
 	}
+	
+	
+	public void setOwnedSkill(OwnedSkill[] OwnedSkill)
+	{
+		this.OwnedSkill=OwnedSkill;
+	}
+	
+	
 	
 	
 	public void setMaxHp(int maxHp)
