@@ -1,7 +1,8 @@
 package MakeGame_0824;
 
+
 public class Exe 
-{
+{	
 	public static void main(String[] args)
 	{
 		BulidGame b= new BulidGame();

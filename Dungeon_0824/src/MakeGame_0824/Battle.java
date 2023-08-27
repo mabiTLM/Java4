@@ -3,12 +3,14 @@ package MakeGame_0824;
 import java.util.Scanner;
 import MakeGame_0824.CharacterBundle.EnemyCharacter;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.DungeonMap;
 
 public class Battle
 {
 	
 	OwnedItem[] OwnedItem;
 	OwnedSkill[] OwnedSkill;
+	DungeonMap dungeonMap;
 	public EnemyCharacter enemyChar = new EnemyCharacter();
 	private MainPlayerCharacter mainChar;
 	private EnemyCharacter[] eArray;
@@ -16,15 +18,23 @@ public class Battle
 	private int enemyNumber = 0;
 	Scanner scan= new Scanner(System.in);
 	
-	Battle(MainPlayerCharacter mainChar)
+	Battle(MainPlayerCharacter mainChar, DungeonMap dungeonMap)
 	{
 		this.mainChar=mainChar;
+		this.dungeonMap=dungeonMap;
 	}
 	
 	void enemyEncount() 
 	{
-		this.eArray = enemyChar.firstEnemyDatabase();
-		setEnemyNumber((int)(Math.random()*2));
+		if(Math.abs(dungeonMap.getFloor())==1) //1층적
+		{
+			this.eArray = enemyChar.firstEnemyDatabase();
+		}
+		else if(Math.abs(dungeonMap.getFloor())==2)//2층적 
+		{
+			this.eArray = enemyChar.firstEnemyDatabase();
+		}
+		setEnemyNumber((int)(Math.random()*(eArray.length-1)));
 		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
 		System.out.println("적hp"+eArray[enemyNumber].getHp());
 	}
@@ -221,18 +231,19 @@ public class Battle
 		}
 		
 		
-		int temp = (int)(Math.random()*100);
+		int temp = (int)(Math.random()*100);//드랍확률
 		
-		if(eArray[enemyNumber].getDropPercent()>temp)
+		if(eArray[enemyNumber].getDropPercent()>temp)//드랍확률이상이면 나온다
 		{
 			for(int i = 0; i <eArray[enemyNumber].getDropItem().length;i++)
 			{
 				for(int j = 0; j <mainChar.getInventory().length;j++) 
 				{
-					if(mainChar.getInventory()[j].isEmpty())
+					if(mainChar.getInventory()[j].isEmpty()&eArray[enemyNumber].getDropPercent()>temp)//가진 아이템별 드랍확률다르게 조정
 					{
 						mainChar.getInventory()[j]=eArray[enemyNumber].getDropItem()[i];
 						System.out.println(mainChar.getInventory()[j]+"를 얻었다");
+						temp = (int)(Math.random()*100);
 						break;
 					}
 				}

@@ -3,12 +3,14 @@ package MakeGame_0824;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.StoryBundle.StoryText;
 
 public class Inventory
 {
 	Scanner scan= new Scanner(System.in);
 	MainPlayerCharacter c;
 	OwnedItem o = new OwnedItem();
+	StoryText storyT= new StoryText(c);
 	public void inventoryOpen(MainPlayerCharacter c)
 	{
 		String[] inven =c.getInventory();
@@ -64,8 +66,13 @@ public class Inventory
 	
 	public void buyItem(MainPlayerCharacter c)
 	{
-		int storyDummy = 14; //스토리 만들어지면 경과에 따라 조절하는걸로 바꿀 것
-		OwnedItem[] own = o.itemDatabase();
+		int storyDummy = 7+storyT.getCurrentDay();
+		OwnedItem[] own = o.buyItemDatabase();
+		if(storyDummy>=own.length)
+		{
+			storyDummy=own.length-1;
+		}
+		
 		System.out.println("좋은 물건이 아주 많아");
 		for(int i = 0; i < storyDummy; i++)
 		{
@@ -98,8 +105,7 @@ public class Inventory
 			{
 				System.out.println(tempBuyDbItem);
 				continue;
-			}
-			
+			}			
 			if(c.getMoney()-own[tempBuyDbNumber].getPrice()>=0)
 			{
 				String[] tempInven = new String[c.getInventory().length+1];	

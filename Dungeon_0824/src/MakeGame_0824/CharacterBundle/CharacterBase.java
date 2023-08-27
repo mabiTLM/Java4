@@ -12,9 +12,9 @@ public abstract class CharacterBase
 	private int hp;
 	private int mp;
 	private int sp;
-	private int maxHp;
-	private int maxMp;
-	private int maxSp;
+	private int maxHp=200;
+	private int maxMp=10;
+	private int maxSp=100;
 	private double[] proficiency;//숙련도
 	private int atk;
 	private int def;
@@ -120,16 +120,28 @@ public abstract class CharacterBase
 	
 	public void setHp(int hp)
 	{
+		if(hp>getMaxHp())
+		{
+			hp=getMaxHp();
+		}
 		this.hp=hp;
 	}
 	
 	public void setMp(int mp)
 	{
+		if(mp>getMaxMp())
+		{
+			mp=getMaxMp();
+		}
 		this.mp=mp;
 	}
 	
 	public void setSp(int sp)
 	{
+		if(sp>getMaxSp())
+		{
+			sp=getMaxSp();
+		}
 		this.sp=sp;
 	}
 	
@@ -209,7 +221,7 @@ public abstract class CharacterBase
 	}
 	public int getDef()
 	{
-		return atk;
+		return def;
 	}
 	
 	public double[] getProficiency()

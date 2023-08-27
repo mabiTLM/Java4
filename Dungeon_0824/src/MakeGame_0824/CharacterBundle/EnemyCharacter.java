@@ -26,8 +26,8 @@ public class EnemyCharacter extends CharacterBase
 			OwnedSkill[] OwnedSkill, //아직 스킬은 없지만 일단 넣어두자 혹시 사용한다면 적행동클래스를 따로만들어서 행동을 지정할것 
 			String[] dropItem, //드랍 아이템
 			int hp,
-			int mp,
-			int sp,
+			int mp,//얘도 현재는 더미
+			int sp,//얘도 현재는 더미
 			int atk,
 			int def,
 			int dropMoney,
@@ -39,40 +39,124 @@ public class EnemyCharacter extends CharacterBase
 		this.dropItem=dropItem;
 		this.hp=hp;
 		this.mp=mp;
+		this.sp=sp;
 		this.atk=atk;
 		this.def=def;
 		this.dropMoney=dropMoney;
 		this.dropPercent=dropPercent;
 	}
 	
-	public EnemyCharacter[] enemy = new EnemyCharacter[2];
+	public EnemyCharacter[] enemyFirstFloor = new EnemyCharacter[7];
 	
 	public EnemyCharacter[] firstEnemyDatabase() //층마다 다를수 있으니까 나눠두자
 	{
-		enemy[0] = new EnemyCharacter(
-				"도적",
+		enemyFirstFloor[0] = new EnemyCharacter(
+				"슬라임",
 				new OwnedSkill[0],
-				new String[]{"낡은 지팡이"},
+				new String[]{"슬라임 점액"},
 				5,
+				0,
+				0,
+				4,
 				5,
+				100,
+				30);		
+		enemyFirstFloor[1] = new EnemyCharacter(
+				"슬라임",
+				new OwnedSkill[0],
+				new String[]{"슬라임 점액"},
+				5,
+				0,
+				0,
+				4,
+				5,
+				100,
+				30);
+		enemyFirstFloor[2] = new EnemyCharacter(
+				"슬라임",
+				new OwnedSkill[0],
+				new String[]{"슬라임 점액"},
+				5,
+				0,
+				0,
+				4,
+				5,
+				100,
+				30);
+		enemyFirstFloor[3] = new EnemyCharacter(
+				"슬라임",
+				new OwnedSkill[0],
+				new String[]{"슬라임 점액"},
+				5,
+				0,
+				0,
+				4,
+				5,
+				100,
+				30);
+		enemyFirstFloor[4] = new EnemyCharacter(
+				"황금 슬라임",
+				new OwnedSkill[0],
+				new String[]{"황금 슬라임 점액"},
+				20,
+				0,
+				0,
 				10,
-				5,
+				40,
+				1000,
+				30);
+		
+		enemyFirstFloor[5] = new EnemyCharacter(
+				"무장한 고블린",
+				new OwnedSkill[0],
+				new String[]{"평범한 검","가죽 갑옷"},
+				50,
+				0,
+				0,
+				30,
 				5,
 				1000,
-				100);
-		enemy[1] = new EnemyCharacter(
+				30);		
+		enemyFirstFloor[6] = new EnemyCharacter(
 				"미친 뿔사슴",
 				new OwnedSkill[0],
-				new String[]{"낡은 지팡이"},
-				50,
-				50,
-				100,
+				new String[]{"녹용"},
+				500,
+				0,
+				0,
 				50,
 				50,
 				10000,
-				100);
-		return enemy;
+				50);
+		return enemyFirstFloor;
 	}
+	
+//	public EnemyCharacter[] firstEnemyDatabase() //층마다 다를수 있으니까 나눠두자
+//	{
+//		enemy[0] = new EnemyCharacter(
+//				"도적",
+//				new OwnedSkill[0],
+//				new String[]{"낡은 지팡이"},
+//				5,
+//				5,
+//				10,
+//				5,
+//				5,
+//				1000,
+//				100);
+//		enemy[1] = new EnemyCharacter(
+//				"미친 뿔사슴",
+//				new OwnedSkill[0],
+//				new String[]{"낡은 지팡이"},
+//				50,
+//				50,
+//				100,
+//				50,
+//				50,
+//				10000,
+//				100);
+//		return enemy;
+//	}
 	
 	//set모음
 	public void setName(String name) 
@@ -136,7 +220,7 @@ public class EnemyCharacter extends CharacterBase
 	}
 	public int getDef()
 	{
-		return atk;
+		return def;
 	}
 	
 	public int getDropMoney()
@@ -144,8 +228,8 @@ public class EnemyCharacter extends CharacterBase
 		return dropMoney;
 	}
 	
-	public EnemyCharacter[] getEnemyCharacter() {
-		return enemy;
+	public EnemyCharacter[] getEnemyFirstFloor() {
+		return firstEnemyDatabase();
 	}
 	
 	public double getDropPercent()

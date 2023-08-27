@@ -14,8 +14,7 @@ public class MainPlayerCharacter extends CharacterBase
 		super("주인공",
 				new String[] 
 						{
-								"낡은 지팡이",
-								"강철 검"
+								"낡은 지팡이"
 						},
 				new OwnedSkill[] 
 						{
@@ -26,11 +25,11 @@ public class MainPlayerCharacter extends CharacterBase
 				new OwnedItem[]
 						{
 								new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000"),
-								new OwnedItem("천 갑옷","갑옷", 5, 1000,"천 갑옷 : 방어력5 가격1000")
+								new OwnedItem("천 갑옷","갑옷", 3, 1000,"천 갑옷 : 방어력3 가격1000")
 						}, //장착
-				300,
+				200,
 				10,
-				10,
+				100,
 				new double[]{1,2,1},//0.검,1.지팡이 2는 아직 더미
 				1000
 				); 
@@ -82,9 +81,10 @@ public class MainPlayerCharacter extends CharacterBase
 				else if((totalItem[i].getItemType()).equals("회복"))
 				{
 					setHp(getHp()+totalItem[i].getHpHeal());
-					setHp(getMp()+totalItem[i].getMpHeal());
-					setHp(getSp()+totalItem[i].getSpHeal());
+					setMp(getMp()+totalItem[i].getMpHeal());
+					setSp(getSp()+totalItem[i].getSpHeal());
 					System.out.println(totalItem[i].getItemName()+"을 사용했다.");
+					break;
 				}
 				else
 				{

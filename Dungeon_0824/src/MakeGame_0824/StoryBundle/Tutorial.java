@@ -2,11 +2,24 @@ package MakeGame_0824.StoryBundle;
 
 import java.util.Scanner;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+
 public class Tutorial extends StoryText
 {
 	
+	public Tutorial(MainPlayerCharacter mainChar) {
+		super(mainChar);
+		// TODO Auto-generated constructor stub
+	}
+
 	private String start =
-			"마을에서의 이동\n"
+			"목적\n"
+			+ "던전을 돌아서 돈을 벌어서 치료제를 사자!\n"
+			+ "게임오버 조건\n"
+			+ "1. hp나 sp가 0이 된다.\n"
+			+ "2. 시간이 너무 오래 지체된다.\n"
+			+ "3. 그외에 이벤트들\n"
+			+ "마을에서의 이동\n"
 			+ "마을 이동은 숫자로 선택 할 수 있으며 글자로도 선택 할 수 있습니다.\n"
 			+ "ex) 집에 있을 때 2번을 눌러서 마을 광장으로 이동 할 수 있고 던전입구를 입력해서 던전입구로 이동 할 수도 있습니다.\n"
 			+ "던전에서의 이동\n"

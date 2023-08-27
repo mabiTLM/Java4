@@ -10,6 +10,8 @@ import MakeGame_0824.MapBundle.VillageMapDungeonEntrance;
 import MakeGame_0824.MapBundle.VillageMapHouse;
 import MakeGame_0824.MapBundle.VillageMapPlaza;
 import MakeGame_0824.MapBundle.VillageMapShop;
+import MakeGame_0824.StoryBundle.IntroStory;
+import MakeGame_0824.StoryBundle.StoryText;
 import MakeGame_0824.StoryBundle.Tutorial;
 
 public class BulidGame
@@ -17,8 +19,10 @@ public class BulidGame
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap(mainChar);	
-	Battle b = new Battle(mainChar);
-	Tutorial t = new Tutorial();
+	Battle b = new Battle(mainChar,d);
+	StoryText s= new StoryText(mainChar);
+	Tutorial t = new Tutorial(mainChar);
+	IntroStory intro = new IntroStory(mainChar);
 	void build()
 	{
 		while(true)
@@ -29,7 +33,18 @@ public class BulidGame
 			}
 			while(true) 
 			{
+				intro.introText();
 				t.tutorialText();
+				
+				s.setTime(s.getTime()+1);
+				if(s.getTime()>9)
+				{
+					s.setTime(0);
+					s.setCurrentDay(s.getCurrentDay()+1);
+					mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
+				}
+				s.timeRemaining();
+				s.endingCheck();//엔딩체크가 최우선				
 				if(mainChar.getHp()<=0)//죽엇을때 끝내기
 				{
 					break;
@@ -37,7 +52,7 @@ public class BulidGame
 				System.out.println("현재소지금"+mainChar.getMoney());
 				if(v.getCurrentLocation()==0)
 				{
-					v  = new VillageMapHouse(mainChar);
+					v  = new VillageMapHouse(mainChar,s);
 				}
 				else if(v.getCurrentLocation()==1)
 				{
@@ -85,7 +100,16 @@ public class BulidGame
 			}
 			
 			while(true) 
-			{	
+			{
+				s.setTime(s.getTime()+1);
+				if(s.getTime()>9)
+				{
+					s.setTime(0);
+					s.setCurrentDay(s.getCurrentDay()+1);
+					mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
+				}
+				s.timeRemaining();
+				s.endingCheck();//엔딩체크가 최우선
 				if(mainChar.getHp()<=0)//죽엇을때 끝내기
 				{
 					break;
@@ -97,7 +121,7 @@ public class BulidGame
 				
 				// 여기 밑에서부터 전투인데 통채로 뜯어서 클래스화 가능해보입니다. 배틀클래스가 너무 길기에 적행동을 나누는게 좋아보입니다.
 				int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
-				if(ramdomEncount<20)
+				if(ramdomEncount<s.getEncountProbability())
 				{
 					b.enemyEncount(); //적 조우
 					b.setOwnedItem(mainChar.getOwnedItem());//현재끼고있는 장비를 넣어준다
@@ -118,7 +142,7 @@ public class BulidGame
 							b.enemyBattleCalculator();
 							if(mainChar.getHp()<=0)
 							{
-								System.out.print("당신은 죽었습니다.");
+								System.out.println("당신은 죽었습니다.");
 								break;
 							}
 						}
@@ -137,7 +161,7 @@ public class BulidGame
 							b.enemyBattleCalculator();
 							if(mainChar.getHp()<=0)
 							{
-								System.out.print("당신은 죽었습니다.");
+								System.out.println("당신은 죽었습니다.");
 								break;
 							}
 						}
@@ -153,11 +177,25 @@ public class BulidGame
 						
 						else if(b.getPlayerChoice()==5)
 						{
-							System.out.println("도망쳤다");
-							break;
+							int temp = (int)(Math.random()*100);
+							if(temp<85)//도망칠 확률 
+							{
+								System.out.println("도망쳤다.");
+								break;
+							}
+							else
+							{
+								System.out.println("도망에 실패했다.");
+								b.enemyBattleCalculator();
+							}
 						}
 					}
-				}				
+				}
+				int repeatStoryEncount = (int)(Math.random()*100);//적 조우 확률
+				if(repeatStoryEncount<10)
+				{
+					s.repeatStoryEvent();
+				}
 				
 				if(floorTemp!=d.getFloor()) //층이바뀌면 다시
 				{
@@ -166,14 +204,12 @@ public class BulidGame
 				
 			}//던전 while
 			
-			if(d.getFloor()==0)//출구로 나왔을때만
+			
+			
+			if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
 			{
 				v.setCurrentLocation(2);
-			}
-			
-			
-			//종료 확인단
-			
+			}			
 		}
 	}
 }
