@@ -12,12 +12,13 @@ public abstract class CharacterBase
 	private int hp;
 	private int mp;
 	private int sp;
-	private int maxHp;//계산을 위해 넣긴 했는데 게임 구성상 별로 쓸일이 없는듯 합니다.
+	private int maxHp;
 	private int maxMp;
 	private int maxSp;
 	private double[] proficiency;//숙련도
 	private int atk;
 	private int def;
+	private int money;
 	
 	//String standingmotion;//일단 보류
 	
@@ -35,7 +36,9 @@ public abstract class CharacterBase
 			int hp,
 			int mp,
 			int sp,
-			double[] proficiency)
+			double[] proficiency,
+			int money
+			)
 	{//플레이어블 캐릭터
 		this.name=name;
 		this.inventory=inventory;
@@ -45,6 +48,7 @@ public abstract class CharacterBase
 		this.mp=mp;
 		this.sp=sp;
 		this.proficiency=proficiency;
+		this.money=money;
 	}
 	
 	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
@@ -65,7 +69,12 @@ public abstract class CharacterBase
 	{
 		//System.out.println("이름 :" + getName());
 		System.out.println("============================");
-		System.out.println("스테이터스");		
+		System.out.println("스테이터스");
+		
+		System.out.println("생명력 : "+getHp());
+		System.out.println("마나 : "+getMp());
+		System.out.println("스태미나 : "+getSp());
+		
 		System.out.println("소지 스킬 : "); //너무 지저분해 보여서 일단 제거
 		for(int i = 0; i < getOwnedSkill().length;i++)
 		{
@@ -76,9 +85,7 @@ public abstract class CharacterBase
 		{
 			System.out.println(getOwnedItem()[i].getItemDescription());
 		}
-		System.out.println("생명력 : "+getHp());
-		System.out.println("마나 : "+getMp());
-		System.out.println("스태미나 : "+getSp());
+
 		System.out.println("============================");
 	}
 	
@@ -88,6 +95,28 @@ public abstract class CharacterBase
 	{
 		this.OwnedItem=OwnedItem;
 	}
+	
+	public void setOwnedItem(OwnedItem[] OwnedItem, int slot)
+	{
+		this.OwnedItem[slot]=OwnedItem[slot];
+	}
+	
+	
+	public void setMaxHp(int maxHp)
+	{
+		this.maxHp=maxHp;
+	}
+	
+	public void setMaxMp(int maxMp)
+	{
+		this.maxMp=maxMp;
+	}
+	
+	public void setMaxSp(int maxSp)
+	{
+		this.maxSp=maxSp;
+	}
+	
 	
 	public void setHp(int hp)
 	{
@@ -108,6 +137,10 @@ public abstract class CharacterBase
 	{
 		this.inventory=inventory;
 	}
+	public void setInventory(String inventory, int slot)
+	{
+		this.inventory[slot]=inventory;
+	}
 	
 	public void setProficiency(double[] proficiency)
 	{
@@ -116,6 +149,11 @@ public abstract class CharacterBase
 	public void setProficiency(double proficiency, int number)
 	{
 		this.proficiency[number]=proficiency;
+	}
+	
+	public void setMoeny(int money)
+	{
+		this.money=money;
 	}
 	
 	//get 모음
@@ -148,6 +186,23 @@ public abstract class CharacterBase
 	{
 		return sp;
 	}
+	
+	public int getMaxHp()
+	{
+		return maxHp;
+	}
+	
+	public int getMaxMp()
+	{
+		return maxMp;
+	}
+	
+	public int getMaxSp()
+	{
+		return maxSp;
+	}
+	
+	
 	public int getAtk()
 	{
 		return atk;
@@ -165,5 +220,10 @@ public abstract class CharacterBase
 	public String[] getInventory()
 	{
 		return inventory;
+	}
+	
+	public int getMoney()
+	{
+		return money;
 	}
 }

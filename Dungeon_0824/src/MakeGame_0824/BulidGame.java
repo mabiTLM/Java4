@@ -13,7 +13,6 @@ import MakeGame_0824.MapBundle.VillageMapShop;
 
 public class BulidGame
 {
-	int money =10000;//어느 위치에 넣을지 고민되서 일단 빼놨는데 캐릭터에 넣는게 맞는거같습니다.
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap(mainChar);	
@@ -32,7 +31,7 @@ public class BulidGame
 				{
 					break;
 				}
-				System.out.println("현재소지금"+money);
+				System.out.println("현재소지금"+mainChar.getMoney());
 				if(v.getCurrentLocation()==0)
 				{
 					v  = new VillageMapHouse(mainChar);
@@ -88,7 +87,7 @@ public class BulidGame
 				{
 					break;
 				}
-				System.out.println("현재소지금"+money);
+				System.out.println("현재소지금"+mainChar.getMoney());
 				int floorTemp = d.getFloor();
 				d.minimap();
 				d.dungeonMapMove();
@@ -109,7 +108,7 @@ public class BulidGame
 							if(b.getEnemyHP()<=0)
 								{
 								System.out.println("이겼다");
-								money += b.getEnemyPrice();
+								mainChar.setMoeny(mainChar.getMoney()+b.getEnemyPrice()); 
 								b.battelFinish();
 								break;
 								}
@@ -128,7 +127,7 @@ public class BulidGame
 							if(b.getEnemyHP()<=0)
 							{
 							System.out.println("이겼다");
-							money += b.getEnemyPrice();
+							mainChar.setMoeny(mainChar.getMoney()+b.getEnemyPrice());
 							b.battelFinish();
 							break;
 							}							

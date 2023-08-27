@@ -9,7 +9,6 @@ public class VillageMapHouse extends VillageMap
 	
 	public VillageMapHouse(MainPlayerCharacter mainChar) {
 		super(mainChar);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -23,6 +22,7 @@ public class VillageMapHouse extends VillageMap
 		System.out.println("2.마을 광장으로");
 		System.out.println("3.인벤토리");
 		System.out.println("4.휴식한다");
+		System.out.println("5.스테이터스");
 		String move = scan.nextLine();
 		
 		if(move.equals("1"))
@@ -43,6 +43,10 @@ public class VillageMapHouse extends VillageMap
 			mainChar.setHp(300);
 			mainChar.setMp(10);
 			mainChar.setSp(10);
+		}
+		else if(move.equals("5"))
+		{
+			mainChar.Status();
 		}
 		else
 		{

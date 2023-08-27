@@ -31,18 +31,18 @@ public class VillageMapShop extends VillageMap
 			System.out.println("물건 좀 사고갈래?");
 		}
 		
-		else if(move.equals("2"))
+		else if(move.equals("2")|move.equals("마을광장")|move.equals("마을광장으로"))
 		{
 			setCurrentLocation(1);
 		}
 		
 		else if(move.equals("3"))
 		{
-			//일단 미구현
+			i.buyItem(mainChar);//일단 미구현
 		}
 		else if(move.equals("4"))
 		{
-			//일단 미구현
+			i.sellItem(mainChar);//일단 미구현
 		}		
 		
 		else if(move.equals("5"))
