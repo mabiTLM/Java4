@@ -2,8 +2,15 @@ package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+
 public class VillageMapDungeonEntrance extends VillageMap 
 {
+	public VillageMapDungeonEntrance(MainPlayerCharacter mainChar) {
+		super(mainChar);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void villageMapMove()
 	{
@@ -30,7 +37,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		
 		else if(move.equals("3"))
 		{
-			i.inventoryOpen(c);
+			i.inventoryOpen(mainChar);
 		}
 		
 		

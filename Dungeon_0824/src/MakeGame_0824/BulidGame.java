@@ -16,7 +16,7 @@ public class BulidGame
 	int money =10000;//어느 위치에 넣을지 고민되서 일단 빼놨는데 캐릭터에 넣는게 맞는거같습니다.
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
 	DungeonMap d = new DungeonMap();
-	VillageMap v = new VillageMap();	
+	VillageMap v = new VillageMap(mainChar);	
 	Battle b = new Battle(mainChar);
 	void build()
 	{
@@ -35,19 +35,19 @@ public class BulidGame
 				System.out.println("현재소지금"+money);
 				if(v.getCurrentLocation()==0)
 				{
-					v  = new VillageMapHouse();
+					v  = new VillageMapHouse(mainChar);
 				}
 				else if(v.getCurrentLocation()==1)
 				{
-					v  = new VillageMapPlaza();
+					v  = new VillageMapPlaza(mainChar);
 				}
 				else if(v.getCurrentLocation()==2)
 				{
-					v  = new VillageMapDungeonEntrance();
+					v  = new VillageMapDungeonEntrance(mainChar);
 				}
 				else if(v.getCurrentLocation()==3)
 				{
-					v  = new VillageMapShop();
+					v  = new VillageMapShop(mainChar);
 				}
 				else if(v.getCurrentLocation()==100)
 				{
@@ -60,7 +60,6 @@ public class BulidGame
 				{
 					break;
 				}
-				v.c=mainChar;
 				v.villageMapMove();
 				
 			}//마을 while 끝
@@ -103,9 +102,6 @@ public class BulidGame
 					b.setOwnedSkill(mainChar.getOwnedSkill());
 					while(true) 
 					{
-						System.out.println("현재 hp : "+mainChar.getHp());
-						System.out.println("현재 mp : "+mainChar.getMp());
-						System.out.println("현재 sp : "+mainChar.getSp());
 						b.battleChoice();//싸움 선택지
 						if(b.getPlayerChoice()==1)
 						{
@@ -146,6 +142,11 @@ public class BulidGame
 						else if(b.getPlayerChoice()==3)
 						{
 							v.i.inventoryOpen(mainChar);
+						}
+						
+						else if(b.getPlayerChoice()==4)
+						{
+							mainChar.Status();
 						}
 						
 						else if(b.getPlayerChoice()==5)

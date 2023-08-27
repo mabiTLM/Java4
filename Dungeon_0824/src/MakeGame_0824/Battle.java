@@ -34,7 +34,7 @@ public class Battle
 			System.out.println("1.싸운다");
 			System.out.println("2.스킬");
 			System.out.println("3.아이템");
-			System.out.println("4.방어");
+			System.out.println("4.스테이터스 확인");
 			System.out.println("5.도망친다");
 			String playerChoice = scan.nextLine();
 			
@@ -55,36 +55,55 @@ public class Battle
 			setPlayerChoice(this.playerChoice);
 	}
 	
-	void battleCalculator() 
+	void battleCalculator() //통상공격
 	{
-		//임시 변수명 코드 확정될때 수정할 것
-		//MainPlayerCharacter m = new MainPlayerCharacter(); //캐릭터 자료불러오고
-		//m.equip(); //장비장착
-		//OwnedItem[] o= m.getOwnedItem(); //장비 장착한걸 클래스화
+		
 		OwnedItem[] o = mainChar.getOwnedItem();
+		int tempDamage = 0;
+		int tempProficiency = 0;
+		if(mainChar.getOwnedItem()[0].getWeaponType()=="검") //검 사용시 숙련도 가져오기 +숙련도증가
+		{
+			tempProficiency=(int)mainChar.getProficiency()[0];
+			mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+		}
 		System.out.println("장작한 아이템" + o[0].getItemName());
-		System.out.println("공격 " + o[0].getWeaponAtk());
-		eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[0].getWeaponAtk());
+		System.out.println("공격 " + (o[0].getWeaponAtk()+tempProficiency));
+		tempDamage=o[0].getWeaponAtk()+tempProficiency-eArray[enemyNumber].getDef();		
+		if(tempDamage<0)
+		{
+			tempDamage=0;
+		}
+		
+		eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-tempDamage);
 		System.out.println("적 hp :"+eArray[enemyNumber].getHp());
 	}
 	
 	void enemyBattleCalculator() 
 	{		
-		OwnedItem[] o = getOwnedItem();
+		int tempDamage = 0;
+		OwnedItem[] o = mainChar.getOwnedItem();
 		System.out.println("적의 공격 " + eArray[enemyNumber].getAtk());
-		mainChar.setHp(mainChar.getHp()-eArray[enemyNumber].getAtk());
+		tempDamage=eArray[enemyNumber].getAtk()-o[1].getWeaponDef();
+		if(tempDamage<0)
+		{
+			tempDamage = 0;
+		}
+		mainChar.setHp(mainChar.getHp()-tempDamage);
+		System.out.println("내 hp :"+mainChar.getHp());
 	}
 	
 	void usePlayerSkill()
 	{	
-		OwnedSkill[] o = getOwnedSkill();
+		OwnedSkill[] o = mainChar.getOwnedSkill();
 		int useSkillNumber=-1;
 		
-		System.out.print("가지고 있는 스킬 목록 ");
-		for(OwnedSkill OwnedSkill:o)
-		{			
-			System.out.print(OwnedSkill.getName()+", ");
+		System.out.println("가지고 있는 스킬 목록 ");
+		
+		for(int i = 0; i < o.length;i++)
+		{
+			System.out.println(o[i].getSkillDescription());
 		}
+		
 		System.out.print("사용할 스킬 : ");
 		String temp = scan.nextLine();
 		
@@ -106,12 +125,29 @@ public class Battle
 		{
 			if(o[useSkillNumber].getType().equals("물리"))//물리 타입 기술 사용시
 			{
-				if(mainChar.getSp()-o[useSkillNumber].getConsumeSp()>=0)
+				if(mainChar.getSp()-o[useSkillNumber].getConsumeSp()>0)
 				{
-				System.out.println("공격 " + o[useSkillNumber].getAtk());
-				eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk());
-				System.out.println("적 hp :"+eArray[enemyNumber].getHp());
-				mainChar.setSp(mainChar.getSp()-o[useSkillNumber].getConsumeSp());
+					int tempProficiency = 0;
+					int tempDamage = 0;
+					if(mainChar.getOwnedItem()[0].getWeaponType()=="검") //검 사용시 숙련도 가져오기 +숙련도증가
+					{
+						tempProficiency=(int)mainChar.getProficiency()[0];
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+					}
+					else if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
+					{
+						tempProficiency=(int)mainChar.getProficiency()[1];
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+					}
+					System.out.println("공격 " + (o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk());
+					tempDamage=(o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk()-eArray[enemyNumber].getDef();
+					if(tempDamage<0)
+					{
+						tempDamage=0;
+					}
+					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-tempDamage);
+					System.out.println("적 hp :"+eArray[enemyNumber].getHp());
+					mainChar.setSp(mainChar.getSp()-o[useSkillNumber].getConsumeSp());
 				}
 				else
 				{
@@ -124,19 +160,41 @@ public class Battle
 				
 				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
 				{
-					if(mainChar.getHp()+(int)o[useSkillNumber].getHeal()>=300)
+					if(mainChar.getHp()+(int)o[useSkillNumber].getHpHeal()>=300)
 					{
 						mainChar.setHp(300);
 					}
 					else
 					{
-						mainChar.setHp(mainChar.getHp()+(int)o[useSkillNumber].getHeal());
+						mainChar.setHp(mainChar.getHp()+(int)o[useSkillNumber].getHpHeal());
 						System.out.println("내 hp :"+mainChar.getHp());
 					}
 				}
 				else
 				{
 					System.out.println("mp가 부족해서 스킬발동에 실패했다.");					
+				}
+			}
+			
+			
+			else if(o[useSkillNumber].getType().equals("마법"))//마법 타입 기술 사용시 마법은 방어 관통이다
+			{
+				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
+				{
+					int tempProficiency = 1;
+					if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
+					{
+						tempProficiency=(int)mainChar.getProficiency()[1];
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+					}
+					System.out.println("공격 " + o[useSkillNumber].getAtk()*tempProficiency);
+					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk()*tempProficiency);
+					System.out.println("적 hp :"+eArray[enemyNumber].getHp());
+					mainChar.setMp(mainChar.getMp()-(int)o[useSkillNumber].getConsumeMp());
+				}
+				else
+				{
+					System.out.println("mp가 부족해서 스킬발동에 실패했다.");
 				}
 			}
 		}

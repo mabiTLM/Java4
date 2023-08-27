@@ -5,11 +5,16 @@ import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 
 public class VillageMap 
 {
-	public MainPlayerCharacter c;
+	public MainPlayerCharacter mainChar;
 	public Inventory i = new Inventory();
 	private String[] map = {"집","마을 광장","던전입구"};
 	
 	private int currentLocation = 0;
+	
+	public VillageMap(MainPlayerCharacter mainChar)
+	{
+		this.mainChar=mainChar;
+	}
 	
 	public void villageMapMove() // 공통부분 일부만 만들고 상속받아서 오버라이드
 	{

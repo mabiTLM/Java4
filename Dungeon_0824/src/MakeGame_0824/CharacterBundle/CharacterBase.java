@@ -12,7 +12,10 @@ public abstract class CharacterBase
 	private int hp;
 	private int mp;
 	private int sp;
-	private int[] proficiency;//숙련도
+	private int maxHp;//계산을 위해 넣긴 했는데 게임 구성상 별로 쓸일이 없는듯 합니다.
+	private int maxMp;
+	private int maxSp;
+	private double[] proficiency;//숙련도
 	private int atk;
 	private int def;
 	
@@ -32,7 +35,7 @@ public abstract class CharacterBase
 			int hp,
 			int mp,
 			int sp,
-			int[] proficiency)
+			double[] proficiency)
 	{//플레이어블 캐릭터
 		this.name=name;
 		this.inventory=inventory;
@@ -58,19 +61,25 @@ public abstract class CharacterBase
 	
 	
 	
-	void Status() 
+	public void Status() 
 	{
-		System.out.println("이름 :" + getName());
-		OwnedSkill[] ownedSkill = getOwnedSkill();
-		System.out.print("소지 스킬 : ");
-		for(int i = 0; i < ownedSkill.length;i++)
+		//System.out.println("이름 :" + getName());
+		System.out.println("============================");
+		System.out.println("스테이터스");		
+		System.out.println("소지 스킬 : "); //너무 지저분해 보여서 일단 제거
+		for(int i = 0; i < getOwnedSkill().length;i++)
 		{
-			System.out.print(ownedSkill[i]);
+			System.out.println(getOwnedSkill()[i].getSkillDescription());
 		}
-		System.out.println();
+		System.out.println("장비아이템 : ");
+		for(int i = 0; i < getOwnedItem().length;i++)
+		{
+			System.out.println(getOwnedItem()[i].getItemDescription());
+		}
 		System.out.println("생명력 : "+getHp());
 		System.out.println("마나 : "+getMp());
 		System.out.println("스태미나 : "+getSp());
+		System.out.println("============================");
 	}
 	
 	
@@ -98,6 +107,15 @@ public abstract class CharacterBase
 	public void setInventory(String[] inventory)
 	{
 		this.inventory=inventory;
+	}
+	
+	public void setProficiency(double[] proficiency)
+	{
+		this.proficiency=proficiency;
+	}
+	public void setProficiency(double proficiency, int number)
+	{
+		this.proficiency[number]=proficiency;
 	}
 	
 	//get 모음
@@ -139,7 +157,7 @@ public abstract class CharacterBase
 		return atk;
 	}
 	
-	public int[] getProficiency()
+	public double[] getProficiency()
 	{
 		return proficiency;
 	}

@@ -2,9 +2,16 @@ package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+
 public class VillageMapPlaza extends VillageMap
 
 {
+	public VillageMapPlaza(MainPlayerCharacter mainChar) {
+		super(mainChar);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void villageMapMove()
 	{
@@ -40,7 +47,7 @@ public class VillageMapPlaza extends VillageMap
 		}
 		else if(move.equals("5"))
 		{
-			i.inventoryOpen(c);
+			i.inventoryOpen(mainChar);
 		}
 	}
 }

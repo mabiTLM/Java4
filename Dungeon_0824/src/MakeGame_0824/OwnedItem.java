@@ -33,12 +33,13 @@ public class OwnedItem
 		this.itemDescription=itemDescription;
 	}
 	
-	public OwnedItem(String itemName,String itemType, int weaponDef, int price)//방어구
+	public OwnedItem(String itemName,String itemType, int weaponDef, int price,String itemDescription)//방어구
 	{
 		this.itemName=itemName;
 		this.itemType=itemType;
 		this.weaponDef=weaponDef;
 		this.price=price;
+		this.itemDescription=itemDescription;
 	}
 	
 	
@@ -50,8 +51,8 @@ public class OwnedItem
 		totalItem[1] = new OwnedItem("강력한 검","무기","검", 100, 10000,"강력한 검 : 무기, 검, 공격력 100, 가격1000");		
 		totalItem[2] = new OwnedItem("낡은 지팡이","무기","지팡이", 3, 1000,"낡은 지팡이 : 공격력 3 가격 1000");
 		totalItem[3] = new OwnedItem("보통 지팡이","무기","지팡이", 10, 10000,"");		
-		totalItem[4] = new OwnedItem("천갑옷","갑옷", 5, 1000);
-		totalItem[5] = new OwnedItem("가죽갑옷","갑옷",10, 10000);
+		totalItem[4] = new OwnedItem("천 갑옷","갑옷", 5, 1000,"천 갑옷 : 방어력5 가격1000");
+		totalItem[5] = new OwnedItem("가죽 갑옷","갑옷",10, 10000,"가죽 갑옷 : 방어력10 가격10000");
 		return totalItem;
 	}	
 		

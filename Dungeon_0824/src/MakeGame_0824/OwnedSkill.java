@@ -7,7 +7,9 @@ public class OwnedSkill
 	private int atk;
 	private int consumeSp;
 	private double consumeMp;
-	private double heal;
+	private int hpHeal;
+	private int mpHeal;
+	private int spHeal;	
 	private String skillDescription;
 	
 	public OwnedSkill()
@@ -24,28 +26,32 @@ public class OwnedSkill
 		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill(String name,String type,int atk,double consumeMp)//마법
+	public OwnedSkill(String name,String type,int atk,double consumeMp, String skillDescription)//마법
 	{
 		this.name=name;
 		this.type=type;
 		this.atk=atk;
 		this.consumeMp=consumeMp;
+		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill(String name,String type,double heal, double consumeMp)//회복
+	public OwnedSkill(String name,String type,int hpHeal,int mpHeal,int spHeal, int consumeMp, String skillDescription)//회복
 	{
 		this.name=name;
 		this.type=type;
-		this.heal=heal;
+		this.hpHeal=hpHeal;
 		this.consumeMp=consumeMp;
+		this.skillDescription=skillDescription;
 	}
 	
-	public OwnedSkill[] skill = new OwnedSkill[2];
+	public OwnedSkill[] skill = new OwnedSkill[30];
 	
 	
 	OwnedSkill[] skillList() 
 	{
-		skill[0] = new OwnedSkill("혼신의 일격","물리",100,1);
+		skill[0] = new OwnedSkill("혼신의 일격","물리",4,1,"혼신의 일격 : 무기 공격력*4의 데미지를 줍니다");
+		skill[1] = new OwnedSkill("힐","회복",100,1,"힐 : hp를 100회복합니다");
+		skill[2] = new OwnedSkill("파이어","마법",40,1.0,"파이어 : 40의 데미지를 줍니다");
 		return skill;
 	}
 	
@@ -88,9 +94,9 @@ public class OwnedSkill
 	{
 		return consumeMp;
 	}
-	public double getHeal()
+	public int getHpHeal()
 	{
-		return heal;
+		return hpHeal;
 	}
 	
 	public String getSkillDescription()
