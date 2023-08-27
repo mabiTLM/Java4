@@ -74,12 +74,12 @@ public class Battle
 		if(mainChar.getOwnedItem()[0].getWeaponType()=="검") //검 사용시 숙련도 가져오기 +숙련도증가
 		{
 			tempProficiency=(int)mainChar.getProficiency()[0];
-			mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+			mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 0);	
 		}
 		else if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 사용시 숙련도 가져오기 +숙련도증가 밸런스상 휘둘러도 올라야?
 		{
 			tempProficiency=(int)mainChar.getProficiency()[1];
-			mainChar.setProficiency(mainChar.getProficiency()[1]+0.1, 0);	
+			mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);
 		}
 		System.out.println("장작한 아이템" + o[0].getItemName());
 		System.out.println("공격 " + (o[0].getWeaponAtk()+tempProficiency));
@@ -147,12 +147,12 @@ public class Battle
 					if(mainChar.getOwnedItem()[0].getWeaponType()=="검") //검 사용시 숙련도 가져오기 +숙련도증가
 					{
 						tempProficiency=(int)mainChar.getProficiency()[0];
-						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 0);	
 					}
 					else if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];
-						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 1);	
 					}
 					System.out.println("공격 " + (o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk());
 					tempDamage=(o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk()-eArray[enemyNumber].getDef();
@@ -193,7 +193,7 @@ public class Battle
 					if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];
-						mainChar.setProficiency(mainChar.getProficiency()[0]+0.1, 0);	
+						mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 1);	
 					}
 					System.out.println("공격 " + o[useSkillNumber].getAtk()*tempProficiency);
 					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk()*tempProficiency);

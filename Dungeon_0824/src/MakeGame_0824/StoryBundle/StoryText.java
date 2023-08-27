@@ -65,20 +65,8 @@ public class StoryText
 	
 	public void weaponStory()
 	{
-		if(mainChar.getProficiency()[1]==2)
-		{
-			System.out.println(staffStory[0]);
-			OwnedSkill[] tempOwn = new OwnedSkill[mainChar.getOwnedSkill().length+1];
-			
-			for(int i = 0; i <mainChar.getOwnedSkill().length; i++)
-			{
-				tempOwn[i]=mainChar.getOwnedSkill()[i];
-			}
-			tempOwn[tempOwn.length-1]=new OwnedSkill("매직미사일","마법",20,1.0,"매직미사일 : 20의 마법데미지를 줍니다. 소비mp 1");
-			mainChar.setOwnedSkill(tempOwn);
-			mainChar.setProficiency(1.1, 1);
-		}
-		if(mainChar.getProficiency()[0]==2)
+		
+		if((int)(mainChar.getProficiency()[0]*10)==20)
 		{
 			System.out.println(swordStory[0]);
 			OwnedSkill[] tempOwn = new OwnedSkill[mainChar.getOwnedSkill().length+1];
@@ -89,23 +77,24 @@ public class StoryText
 			}
 			tempOwn[tempOwn.length-1]=new OwnedSkill("혼신의 일격","물리",10,5,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다 소비 sp5");
 			mainChar.setOwnedSkill(tempOwn);
-			mainChar.setProficiency(1.1, 0);
-		}
-		
-		
-		if(mainChar.getProficiency()[1]==4)
+			mainChar.setProficiency(2.1, 0);
+		}		
+		if((int)(mainChar.getProficiency()[1]*10)==20)
 		{
-			System.out.println(staffStory[1]);
+			System.out.println(staffStory[0]);
 			OwnedSkill[] tempOwn = new OwnedSkill[mainChar.getOwnedSkill().length+1];
 			
 			for(int i = 0; i <mainChar.getOwnedSkill().length; i++)
 			{
 				tempOwn[i]=mainChar.getOwnedSkill()[i];
 			}
-			tempOwn[tempOwn.length-1]=new OwnedSkill("메기도","마법",60,2.0,"메기도 : 60의 마법데미지를 줍니다. 소비mp2");
-			mainChar.setProficiency(4.1, 1);
+			tempOwn[tempOwn.length-1]=new OwnedSkill("매직미사일","마법",20,1.0,"매직미사일 : 20의 마법데미지를 줍니다. 소비mp 1");
+			mainChar.setOwnedSkill(tempOwn);
+			mainChar.setProficiency(2.1, 1);
 		}
-		if(mainChar.getProficiency()[0]==4)
+		
+		
+		if((int)(mainChar.getProficiency()[0]*10)==40)
 		{
 			System.out.println(swordStory[1]);
 			OwnedSkill[] tempOwn = new OwnedSkill[mainChar.getOwnedSkill().length+1];
@@ -117,7 +106,20 @@ public class StoryText
 			tempOwn[tempOwn.length-1]=new OwnedSkill("결사의 일격","물리",30,10,"결사의 일격 : 무기 공격력*30의 물리데미지를 줍니다 소비 sp10");
 			mainChar.setOwnedSkill(tempOwn);
 			mainChar.setProficiency(1.1, 0);
+		}		
+		if((int)(mainChar.getProficiency()[1]*10)==40)
+		{
+			System.out.println(staffStory[1]);
+			OwnedSkill[] tempOwn = new OwnedSkill[mainChar.getOwnedSkill().length+1];
+			
+			for(int i = 0; i <mainChar.getOwnedSkill().length; i++)
+			{
+				tempOwn[i]=mainChar.getOwnedSkill()[i];
+			}
+			tempOwn[tempOwn.length-1]=new OwnedSkill("메기도","마법",60,2.0,"메기도 : 60의 마법데미지를 줍니다. 소비mp2");
+			mainChar.setProficiency(4.1, 1);
 		}
+		
 	}
 	
 	

@@ -31,7 +31,7 @@ public class VillageMapPlaza extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			System.out.println("어디가니?");
+			System.out.println("던전에 가기전에 준비를 단단히 하고 가자");
 		}
 		else if(move.equals("2")|move.equals("집"))
 		{

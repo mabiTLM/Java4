@@ -38,7 +38,7 @@ public class VillageMapHouse extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			System.out.println("안녕!");
+			System.out.println("동생 : 너무 무리하지는 마");
 		}		
 		else if(move.equals("2")|move.equals("마을 광장"))
 		{

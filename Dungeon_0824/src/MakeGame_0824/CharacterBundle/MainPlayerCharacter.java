@@ -17,7 +17,6 @@ public class MainPlayerCharacter extends CharacterBase
 						},
 				new OwnedSkill[] 
 						{
-								new OwnedSkill("혼신의 일격","물리",10,1,"혼신의 일격 : 무기 공격력*10의 물리데미지를 줍니다. 소비sp 1"),
 								new OwnedSkill("힐","회복",100,0,1.0,"힐 : hp를 100회복합니다. 소비mp1")
 						},
 				new OwnedItem[]
