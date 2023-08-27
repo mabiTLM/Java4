@@ -37,7 +37,7 @@ public class BulidGame
 				t.tutorialText();
 				
 				s.setTime(s.getTime()+1);
-				if(s.getTime()>9)
+				if(s.getTime()>6) //일정 행동이상 할때마다
 				{
 					s.setTime(0);
 					s.setCurrentDay(s.getCurrentDay()+1);
@@ -102,7 +102,7 @@ public class BulidGame
 			while(true) 
 			{
 				s.setTime(s.getTime()+1);
-				if(s.getTime()>9)
+				if(s.getTime()>6)//일정 행동이상 할때마다
 				{
 					s.setTime(0);
 					s.setCurrentDay(s.getCurrentDay()+1);
