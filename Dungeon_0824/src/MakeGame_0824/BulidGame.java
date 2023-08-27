@@ -64,7 +64,7 @@ public class BulidGame
 				}
 				else if(v.getCurrentLocation()==3)
 				{
-					v  = new VillageMapShop(mainChar);
+					v  = new VillageMapShop(mainChar,s);
 				}
 				else if(v.getCurrentLocation()==100)
 				{

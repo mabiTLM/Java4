@@ -8,12 +8,21 @@ import MakeGame_0824.StoryBundle.StoryText;
 public class Inventory
 {
 	Scanner scan= new Scanner(System.in);
-	MainPlayerCharacter c;
-	OwnedItem o = new OwnedItem();
-	StoryText storyT= new StoryText(c);
-	public void inventoryOpen(MainPlayerCharacter c)
+	MainPlayerCharacter mainChar;
+	StoryText storyT;
+	
+	public Inventory(MainPlayerCharacter mainChar)
 	{
-		String[] inven =c.getInventory();
+		this.mainChar=mainChar;
+	}	
+	OwnedItem o = new OwnedItem();	
+	
+	
+	
+	
+	public void inventoryOpen(MainPlayerCharacter mainChar)
+	{
+		String[] inven =mainChar.getInventory();
 		
 		OwnedItem[] own = o.itemDatabase();
 		
@@ -53,7 +62,7 @@ public class Inventory
 			switch(temp)
 			{
 			case 1:
-				c.equip();
+				mainChar.equip();
 				System.out.println();
 				break;
 			case 2:
@@ -64,9 +73,9 @@ public class Inventory
 		}
 	}
 	
-	public void buyItem(MainPlayerCharacter c)
+	public void buyItem(MainPlayerCharacter mainChar, StoryText storyT)
 	{
-		int storyDummy = 7+storyT.getCurrentDay();
+		int storyDummy = 7+storyT.getCurrentDay(); //이부분이 갱신이 안된다
 		OwnedItem[] own = o.buyItemDatabase();
 		if(storyDummy>=own.length)
 		{
@@ -106,26 +115,26 @@ public class Inventory
 				System.out.println(tempBuyDbItem);
 				continue;
 			}			
-			if(c.getMoney()-own[tempBuyDbNumber].getPrice()>=0)
+			if(mainChar.getMoney()-own[tempBuyDbNumber].getPrice()>=0)
 			{
-				String[] tempInven = new String[c.getInventory().length+1];	
+				String[] tempInven = new String[mainChar.getInventory().length+1];	
 				for(int i = 0; i<tempInven.length; i++)
 				{
 					tempInven[i]="";//null오류방지용 초기화
 				}
-				for(int i = 0; i<c.getInventory().length; i++)
+				for(int i = 0; i<mainChar.getInventory().length; i++)
 				{
-					tempInven[i]=c.getInventory()[i];
+					tempInven[i]=mainChar.getInventory()[i];
 				}
 				for(int i = 0; i<tempInven.length; i++)
 				{
 					if(tempInven[i].isEmpty())
 					{
 						tempInven[i]=tempBuyChoice;
-						c.setInventory(tempInven);
+						mainChar.setInventory(tempInven);
 						System.out.println(tempBuyChoice+"를 "+ own[tempBuyDbNumber].getPrice()+"골드에 구매했습니다.");
-						c.setMoeny(c.getMoney()-own[tempBuyDbNumber].getPrice());
-						System.out.println("현재 소지금" + c.getMoney());
+						mainChar.setMoeny(mainChar.getMoney()-own[tempBuyDbNumber].getPrice());
+						System.out.println("현재 소지금" + mainChar.getMoney());
 						break;
 					}
 				}
@@ -137,9 +146,9 @@ public class Inventory
 		}		
 	}
 	
-	public void sellItem(MainPlayerCharacter c)
+	public void sellItem(MainPlayerCharacter mainChar)
 	{
-		String[] inven =c.getInventory();
+		String[] inven =mainChar.getInventory();
 		OwnedItem[] own = o.itemDatabase();
 		
 		System.out.println("판매 가격은 구매가격의 절반이니까 주의하라고");
@@ -172,7 +181,7 @@ public class Inventory
 				if(temp.equals(inven[i]))
 				{
 					tempSellItemName=inven[i];
-					c.setInventory("",i);//판매한칸 비어주고
+					mainChar.setInventory("",i);//판매한칸 비어주고
 					break;
 				}
 			}
@@ -180,9 +189,9 @@ public class Inventory
 			{
 				if(tempSellItemName.equals(own[i].getItemName()))
 				{
-					c.setMoeny(c.getMoney()+(own[i].getPrice()/2));
+					mainChar.setMoeny(mainChar.getMoney()+(own[i].getPrice()/2));
 					System.out.println(own[i].getItemName()+"(이)가 "+own[i].getPrice()/2+"골드에 팔렸습니다.");
-					System.out.println("현재 소지금" + c.getMoney());
+					System.out.println("현재 소지금" + mainChar.getMoney());
 					break;
 				}
 			}

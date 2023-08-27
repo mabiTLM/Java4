@@ -3,11 +3,14 @@ package MakeGame_0824.MapBundle;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.StoryBundle.StoryText;
 
 public class VillageMapShop extends VillageMap 
 {
-	public VillageMapShop(MainPlayerCharacter mainChar) {
+	public StoryText storyT;
+	public VillageMapShop(MainPlayerCharacter mainChar,StoryText storyT) {
 		super(mainChar);
+		this.storyT=storyT;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -38,7 +41,7 @@ public class VillageMapShop extends VillageMap
 		
 		else if(move.equals("3"))
 		{
-			i.buyItem(mainChar);
+			i.buyItem(mainChar,storyT);
 		}
 		else if(move.equals("4"))
 		{

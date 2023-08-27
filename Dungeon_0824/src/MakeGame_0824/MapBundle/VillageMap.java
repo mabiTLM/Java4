@@ -2,11 +2,12 @@ package MakeGame_0824.MapBundle;
 
 import MakeGame_0824.Inventory;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.StoryBundle.StoryText;
 
 public class VillageMap 
 {
 	public MainPlayerCharacter mainChar;
-	public Inventory i = new Inventory();
+	public Inventory i = new Inventory(mainChar);
 	private String[] map = {"집","마을 광장","던전입구"};
 	
 	private int currentLocation = 0;
