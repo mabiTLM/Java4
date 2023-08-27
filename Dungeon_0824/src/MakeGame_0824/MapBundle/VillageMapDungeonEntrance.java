@@ -30,7 +30,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 			System.out.println("던전이다");
 		}
 		
-		else if(move.equals("2"))
+		else if(move.equals("2")|move.equals("마을 광장"))
 		{
 			setCurrentLocation(1);
 		}
@@ -39,11 +39,21 @@ public class VillageMapDungeonEntrance extends VillageMap
 		{
 			i.inventoryOpen(mainChar);
 		}
-		
-		
+		else if(move.equals("집"))
+		{
+			setCurrentLocation(0);
+		}
+		else if(move.equals("상점"))
+		{
+			setCurrentLocation(3);		
+		}	
 		else if(move.equals("4"))
 		{
 			setCurrentLocation(100);
+		}
+		else
+		{
+			System.out.println("다시 입력해주세요");
 		}
 	}
 }

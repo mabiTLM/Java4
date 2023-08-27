@@ -34,7 +34,7 @@ public class Battle
 			System.out.println("1.싸운다");
 			System.out.println("2.스킬");
 			System.out.println("3.아이템");
-			System.out.println("4.스테이터스 확인");
+			System.out.println("4.스테이터스");
 			System.out.println("5.도망친다");
 			String playerChoice = scan.nextLine();
 			

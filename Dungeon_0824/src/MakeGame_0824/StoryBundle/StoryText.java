@@ -13,9 +13,6 @@ int evilCount = 0;
 
 int goodCount = 0;
 
-
-private String start ="이동과 선택지는 숫자로 선택하며 스킬발동은 가진 스킬을 입력해서 사용합니다.";
-
 String[] mainStory={};
 
 String[] endingStory=
@@ -51,10 +48,7 @@ public int getDayLimit()
 {
 return dayLimit;
 }
-public String getStart()
-{
-return start;
-}
+
 public String[] getMainStory()
 {
 return mainStory;

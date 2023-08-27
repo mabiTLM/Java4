@@ -10,6 +10,7 @@ import MakeGame_0824.MapBundle.VillageMapDungeonEntrance;
 import MakeGame_0824.MapBundle.VillageMapHouse;
 import MakeGame_0824.MapBundle.VillageMapPlaza;
 import MakeGame_0824.MapBundle.VillageMapShop;
+import MakeGame_0824.StoryBundle.Tutorial;
 
 public class BulidGame
 {
@@ -17,6 +18,7 @@ public class BulidGame
 	DungeonMap d = new DungeonMap();
 	VillageMap v = new VillageMap(mainChar);	
 	Battle b = new Battle(mainChar);
+	Tutorial t = new Tutorial();
 	void build()
 	{
 		while(true)
@@ -27,6 +29,7 @@ public class BulidGame
 			}
 			while(true) 
 			{
+				t.tutorialText();
 				if(mainChar.getHp()<=0)//죽엇을때 끝내기
 				{
 					break;

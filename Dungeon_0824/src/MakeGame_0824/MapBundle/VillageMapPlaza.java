@@ -33,21 +33,25 @@ public class VillageMapPlaza extends VillageMap
 		{
 			System.out.println("어디가니?");
 		}
-		else if(move.equals("2"))
+		else if(move.equals("2")|move.equals("집"))
 		{
 			setCurrentLocation(0);
 		}
-		else if(move.equals("3"))
+		else if(move.equals("3")|move.equals("던전입구"))
 		{
 			setCurrentLocation(2);
 		}
-		else if(move.equals("4"))
+		else if(move.equals("4")|move.equals("상점"))
 		{
 			setCurrentLocation(3);		
 		}
 		else if(move.equals("5"))
 		{
 			i.inventoryOpen(mainChar);
+		}
+		else
+		{
+			System.out.println("다시 입력해주세요");
 		}
 	}
 }
