@@ -122,7 +122,8 @@ public class OwnedItem
 		
 		totalItem[14] = new OwnedItem("슬라임 점액","판매전용",100, "슬라임 점액 : 판매전용 가격 100");
 		totalItem[15] = new OwnedItem("황금 슬라임 점액","판매전용",1000, "황금 슬라임 점액 : 판매전용 가격 1000");
-		totalItem[15] = new OwnedItem("녹용","판매전용",50000, "녹용 : 판매전용 가격 50000");
+		totalItem[16] = new OwnedItem("녹용","판매전용",50000, "녹용 : 판매전용 가격 50000");
+		totalItem[17] = new OwnedItem("행운의 토끼발","판매전용",1000000, "행운의 토끼발 : 판매전용 가격 1000000");
 
 		return totalItem;
 	}

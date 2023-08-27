@@ -32,7 +32,7 @@ public class Battle
 		}
 		else if(Math.abs(dungeonMap.getFloor())==2)//2층적 
 		{
-			this.eArray = enemyChar.firstEnemyDatabase();
+			this.eArray = enemyChar.secondEnemyDatabase();
 		}
 		setEnemyNumber((int)(Math.random()*(eArray.length-1)));
 		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
@@ -48,7 +48,7 @@ public class Battle
 			System.out.println("5.도망친다");
 			String playerChoice = scan.nextLine();
 			
-			while(true) 
+			while(true)
 			{
 				if(playerChoice.isEmpty()==false&playerChoice.replaceAll("[0-9]","").isEmpty()) 
 				{

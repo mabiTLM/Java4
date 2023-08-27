@@ -3,6 +3,7 @@ package MakeGame_0824.MapBundle;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.StoryBundle.StoryText;
 
 public class VillageMapDungeonEntrance extends VillageMap 
 {
@@ -10,6 +11,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		super(mainChar);
 		// TODO Auto-generated constructor stub
 	}
+	StoryText storyT = new StoryText(mainChar);
 
 	@Override
 	public void villageMapMove()
@@ -27,7 +29,8 @@ public class VillageMapDungeonEntrance extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			System.out.println("던전이다");
+			int temp=(int)(Math.random()*storyT.getDungeonEntranceStory().length);
+			System.out.println(storyT.getDungeonEntranceStory(temp));
 		}
 		
 		else if(move.equals("2")|move.equals("마을 광장"))

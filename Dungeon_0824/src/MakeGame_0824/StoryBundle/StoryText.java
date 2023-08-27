@@ -19,6 +19,7 @@ public class StoryText
 	private int evilCount = 0;
 	private int goodCount = 0;
 	private boolean watchAgain=true;
+	
 	private String[] repeatStory= 
 		{
 				"쓰러진 사람을 만났습니다.\n1.도와준다.\n2.물건을 훔친다."
@@ -30,6 +31,14 @@ public class StoryText
 				"엔딩2 너무 늦어 버렸다.\n동생은 이미 싸늘한 시체가 되어있었습니다.",
 				"엔딩3 체포\n당신의 악행이 너무 퍼졌던 걸까요?\n경비병이 당신을 체포했습니다.\n감옥에서 나갈때에 동생은 이미 죽어있겠죠."
 		};
+	
+	private String[] dungeonEntranceStory=
+		{
+				"던전이다. 문지기가 있다.",
+				"문지기 : 슬라임은 방어력이 높으니 마법으로 잡으면 편해",
+				"문지기 : 죽고 싶지 않으면 2층은 가지 않는게 좋을거야 물론 1층이라고 안전한건 아니지만",
+		};
+	
 	
 	
 	public void timeRemaining()//남은 시간
@@ -126,6 +135,15 @@ public class StoryText
 	
 	
 	//get모음
+	
+	public String[] getDungeonEntranceStory()
+	{
+		return dungeonEntranceStory;
+	}	
+	public String getDungeonEntranceStory(int num) //내부겟
+	{
+		return dungeonEntranceStory[num];
+	}
 	
 	public int getTime()
 	{
