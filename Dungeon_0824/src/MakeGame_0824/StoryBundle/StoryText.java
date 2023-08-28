@@ -16,11 +16,12 @@ public class StoryText
 	private int currentDay = 0; //경과일에 따른 스토리 변경이 있으므로 여기서 계산합니다.
 	private int dayLimit =20; //끝날때가지 남은시간
 	private int time=0; //하루시간 목표치까지 행동하면 날짜가 지난다.
-	private int timeLimit=4;
+	private int timeLimit=3;
 	private int encountProbability= 25;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
 	private int evilCount = 0;
 	private int goodCount = 0;
-	private boolean watchAgain=true;
+	private boolean watchAgain=true; //스토리양이 길어지면 중복방지용으로 만들었으나 볼륨이 아직 부족
+	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능
 	
 	private String[] repeatStory= 
 		{
@@ -192,27 +193,27 @@ public class StoryText
 	
 	public void endingCheck(MainPlayerCharacter mainChar)
 	{
-		if(mainChar.getHp()<=0|mainChar.getSp()<=0)//사망을 최우선으로
+		if((mainChar.getHp()<=0|mainChar.getSp()<=0)&&getEndingCheck())//사망을 최우선으로
 		{
 			System.out.println(getEndingStory()[1]);
+			setEndingCheck(false);
 		}
-		else if(getDayLimit()-getCurrentDay()<=0)//시간초과 배드엔딩시 체력0만들어서 게임 끝내기
+		else if(getDayLimit()-getCurrentDay()<=0&&getEndingCheck())//시간초과 배드엔딩시 체력0만들어서 게임 끝내기
 		{
 			mainChar.setHp(0);
 			System.out.println(getEndingStory()[2]);
+			setEndingCheck(false);
 		}
-		else if(getEvilCount()>=10)//체포
+		else if(getEvilCount()>=10&&getEndingCheck())//체포
 		{
 			mainChar.setHp(0);
 			System.out.println(getEndingStory()[3]);
+			setEndingCheck(false);
 		}
-		else if(getDayLimit()>=36000)//치료완료
+		else if(getDayLimit()>=36000&&getEndingCheck())//치료완료
 		{
-			while(watchAgain) 
-			{
-				System.out.println(getEndingStory()[0]);
-				setWatchAgain(false);
-			}
+			System.out.println(getEndingStory()[0]);
+			setEndingCheck(false);
 		}
 		
 	}
@@ -246,6 +247,10 @@ public class StoryText
 	public void setGoodCount(int goodCount)
 	{
 		this.goodCount=goodCount;
+	}
+	public void setEndingCheck(boolean endingCheck)
+	{
+		this.endingCheck=endingCheck;
 	}
 	
 	
@@ -318,5 +323,10 @@ public class StoryText
 	public int getEncountProbability()
 	{
 		return encountProbability;
+	}
+	
+	public boolean getEndingCheck()
+	{
+		return endingCheck;
 	}
 }

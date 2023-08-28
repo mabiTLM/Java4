@@ -26,6 +26,7 @@ public class MoveInDungeon
 	{
 		while(true) 
 		{
+
 			s.setTime(s.getTime()+1);
 			if(s.getTime()>s.getTimeLimit())//일정 행동이상 할때마다
 			{

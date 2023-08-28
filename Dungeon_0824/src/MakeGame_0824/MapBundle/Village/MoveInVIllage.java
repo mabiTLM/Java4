@@ -16,10 +16,11 @@ public class MoveInVIllage
 	Tutorial t = new Tutorial(mainChar);
 	IntroStory intro = new IntroStory(mainChar);
 	
-	public MoveInVIllage(MainPlayerCharacter mainChar,DungeonMap d)
+	public MoveInVIllage(MainPlayerCharacter mainChar,DungeonMap d,VillageMap v)
 	{
 		this.mainChar=mainChar;
 		this.d=d;
+		this.v=v;
 	}
 	
 	public void combineMoveInVillage(MainPlayerCharacter mainChar,DungeonMap d,VillageMap v,StoryText s)
@@ -27,7 +28,15 @@ public class MoveInVIllage
 		intro.introText();
 		t.tutorialText();
 			while(true) //마을while
-			{				
+			{
+				if(v.getCurrentLocation()==100) //중복대사 방지 밑 던전입장시 타임2감소 방지
+				{
+					System.out.println("던전으로 들어갑니다");
+					d.setFloor(1);
+					this.v.setCurrentLocation(99);
+					break;
+				}
+				
 				s.setTime(s.getTime()+1);
 				if(s.getTime()>s.getTimeLimit()) //일정 행동이상 할때마다
 				{
@@ -58,18 +67,12 @@ public class MoveInVIllage
 				{
 					v  = new VillageMapShop(mainChar,s);
 				}
-				else if(v.getCurrentLocation()==100)
-				{
-					System.out.println("던전으로 들어갑니다");
-					d.setFloor(1);
-					v.setCurrentLocation(99);
-					break;
-				}
 				else
 				{
 					break;
 				}
 				v.villageMapMove();
+				
 			}//마을 while 끝
 		}
 	}

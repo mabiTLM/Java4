@@ -28,7 +28,7 @@ public class Battle
 	
 	public void enemyEncount() 
 	{
-		if(Math.abs(dungeonMap.getFloor())==1) //1층적
+		if(Math.abs(dungeonMap.getFloor())==1|Math.abs(dungeonMap.getFloor())==0) //1층+나갈때도 만날수있으니
 		{
 			this.eArray = enemyChar.firstEnemyDatabase();
 		}
@@ -37,6 +37,7 @@ public class Battle
 			this.eArray = enemyChar.secondEnemyDatabase();
 		}
 		setEnemyNumber((int)(Math.random()*(eArray.length-1)));
+		System.out.println(eArray.length);
 		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
 		System.out.println("적hp"+eArray[enemyNumber].getHp());
 	}

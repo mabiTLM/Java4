@@ -102,7 +102,7 @@ public class OwnedItem
 		}
 		
 		totalItem[0] = new OwnedItem("완치약","이벤트",36500.0,1000000,"완치약 : 이 약만 있으면...");
-		totalItem[1] = new OwnedItem("연명약","이벤트",20.0,10000,"연명약 : 기간을 늘려준다");
+		totalItem[1] = new OwnedItem("연명약","이벤트",10.0,10000,"연명약 : 기간을 10일 늘려준다");
 		
 		totalItem[2] = new OwnedItem("작은 hp포션","회복",50,0,0,100,"작은 hp포션 : 생명력을 50회복한다");
 		totalItem[3] = new OwnedItem("작은 mp포션","회복",0,1,0,100,"작은 mp포션 : 마나를 1회복한다");
@@ -134,7 +134,7 @@ public class OwnedItem
 	public OwnedItem[] buyItemDatabase()//상점 아이템목록
 	{	
 		buyItem[0] = new OwnedItem("완치약","이벤트",36500.0,1000000,"완치약 : 이 약만 있으면... 가격 1000000");
-		buyItem[1] = new OwnedItem("연명약","이벤트",20.0,10000,"연명약 : 기간을 늘려준다 가격 10000");
+		buyItem[1] = new OwnedItem("연명약","이벤트",10.0,10000,"연명약 : 기간을 10일 늘려준다 가격 10000");
 		
 		buyItem[2] = new OwnedItem("작은 hp포션","회복",50,0,0,100,"작은 hp포션 : 생명력을 50회복한다 가격 100");
 		buyItem[3] = new OwnedItem("작은 mp포션","회복",0,1,0,100,"작은 mp포션 : 마나를 1회복한다 가격 100");

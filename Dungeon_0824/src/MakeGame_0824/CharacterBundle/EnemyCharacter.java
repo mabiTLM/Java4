@@ -128,11 +128,11 @@ public class EnemyCharacter extends CharacterBase
 		return enemyFirstFloor;
 	}
 	
-	public EnemyCharacter[] enemySecondFloor = new EnemyCharacter[7];
+	public EnemyCharacter[] enemySecondFloor = new EnemyCharacter[3];
 	
 	public EnemyCharacter[] secondEnemyDatabase() //층마다 다를수 있으니까 나눠두자
 	{
-		enemyFirstFloor[0] = new EnemyCharacter(
+		enemySecondFloor[0] = new EnemyCharacter(
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
@@ -143,7 +143,7 @@ public class EnemyCharacter extends CharacterBase
 				50,
 				10000,
 				50);
-		enemyFirstFloor[1] = new EnemyCharacter(
+		enemySecondFloor[1] = new EnemyCharacter(
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
@@ -154,7 +154,7 @@ public class EnemyCharacter extends CharacterBase
 				50,
 				10000,
 				50);
-		enemyFirstFloor[2] = new EnemyCharacter(
+		enemySecondFloor[2] = new EnemyCharacter(
 				"보팔 래빗",
 				new OwnedSkill[0],
 				new String[]{"행운의 토끼발"},
