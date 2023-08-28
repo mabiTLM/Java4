@@ -14,7 +14,7 @@ public class StoryText
 		this.mainChar=mainChar;
 	}
 	private int currentDay = 0; //경과일에 따른 스토리 변경이 있으므로 여기서 계산합니다.
-	private int dayLimit =30; //끝날때가지 남은시간
+	private int dayLimit =20; //끝날때가지 남은시간
 	private int time=0; //하루시간 목표치까지 행동하면 날짜가 지난다.
 	private int timeLimit=4;
 	private int encountProbability= 25;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
@@ -190,7 +190,7 @@ public class StoryText
 	}
 	
 	
-	public void endingCheck()
+	public void endingCheck(MainPlayerCharacter mainChar)
 	{
 		if(mainChar.getHp()<=0|mainChar.getSp()<=0)//사망을 최우선으로
 		{

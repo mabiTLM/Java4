@@ -19,7 +19,7 @@ public class MainPlayerCharacter extends CharacterBase
 						},
 				new OwnedItem[]
 						{
-								new OwnedItem("맨손","무기","검", 1, 0,"맨손 : 무기, 검, 공격력 1"),
+								new OwnedItem("맨손","무기","주먹", 1, 0,"맨손 : 공격력 1"),
 								new OwnedItem("거적대기","갑옷", 1, 0,"거적대기 : 방어구, 방어력1, 가격0")
 						}, //장착
 				200,

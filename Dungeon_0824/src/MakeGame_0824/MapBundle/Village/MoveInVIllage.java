@@ -25,7 +25,7 @@ public class MoveInVIllage
 	public void combineMoveInVillage(MainPlayerCharacter mainChar,DungeonMap d,VillageMap v,StoryText s)
 	{
 		intro.introText();
-		t.tutorialText();			
+		t.tutorialText();
 			while(true) //마을while
 			{				
 				s.setTime(s.getTime()+1);
@@ -36,7 +36,7 @@ public class MoveInVIllage
 					mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
 				}				
 				s.timeRemaining();
-				s.endingCheck();//엔딩체크가 최우선				
+				s.endingCheck(mainChar);//엔딩체크가 최우선				
 				if(mainChar.getHp()<=0|mainChar.getSp()<=0)//죽엇을때 끝내기
 				{
 					break;

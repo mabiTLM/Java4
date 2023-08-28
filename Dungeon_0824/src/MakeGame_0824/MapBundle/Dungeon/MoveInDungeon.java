@@ -34,7 +34,7 @@ public class MoveInDungeon
 				mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
 			}
 			s.timeRemaining();
-			s.endingCheck();//엔딩체크가 최우선
+			s.endingCheck(mainChar);//엔딩체크가 최우선
 			if(mainChar.getHp()<=0)//죽엇을때 끝내기
 			{
 				break;

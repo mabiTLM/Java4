@@ -26,6 +26,7 @@ public class BulidGame
 	{
 		while(true)
 		{
+			
 		villageCombine.combineMoveInVillage(mainChar, d, v, s);
 		//던전입장
 		if(d.getFloor()==1) //층수조절 //여기서 날짜초기화중
@@ -38,13 +39,16 @@ public class BulidGame
 		{
 			d= new DungeonFirstMapReverse();
 			d.MapSetting();
-			}
+		}
 		else if(d.getFloor()==2)
 		{
 			d= new DungeonSecondMap();
 			d.MapSetting();
-			}
-		
+		}
+		if(mainChar.getHp()<=0||mainChar.getSp()<=0)
+		{
+			break;
+		}		
 		dungeonCombine.moveInDungeon(mainChar,d,s,b,v);	
 			
 		if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
