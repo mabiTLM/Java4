@@ -26,7 +26,7 @@ public class Battle
 		this.dungeonMap=dungeonMap;
 	}
 	
-	void enemyEncount() 
+	public void enemyEncount() 
 	{
 		if(Math.abs(dungeonMap.getFloor())==1) //1층적
 		{
@@ -41,7 +41,7 @@ public class Battle
 		System.out.println("적hp"+eArray[enemyNumber].getHp());
 	}
 	
-	void battleChoice()
+	public void battleChoice()
 	{
 			System.out.println("1.싸운다");
 			System.out.println("2.스킬");
@@ -67,7 +67,7 @@ public class Battle
 			setPlayerChoice(this.playerChoice);
 	}
 	
-	void battleCalculator() //통상공격
+	public void battleCalculator() //통상공격
 	{
 		
 		OwnedItem[] o = mainChar.getOwnedItem();
@@ -95,7 +95,7 @@ public class Battle
 		System.out.println("적 hp :"+eArray[enemyNumber].getHp());
 	}
 	
-	void enemyBattleCalculator() 
+	public void enemyBattleCalculator() 
 	{		
 		int tempDamage = 0;
 		OwnedItem[] o = mainChar.getOwnedItem();
@@ -109,7 +109,7 @@ public class Battle
 		System.out.println("내 hp :"+mainChar.getHp());
 	}
 	
-	void usePlayerSkill()
+	public void usePlayerSkill()
 	{	
 		OwnedSkill[] o = mainChar.getOwnedSkill();
 		int useSkillNumber=-1;
@@ -154,7 +154,7 @@ public class Battle
 					else if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];
-						mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 1);	
+						mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);	
 					}
 					System.out.println("공격 " + (o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk());
 					tempDamage=(o[useSkillNumber].getAtk()+tempProficiency)*mainChar.getOwnedItem()[0].getWeaponAtk()-eArray[enemyNumber].getDef();
@@ -195,7 +195,7 @@ public class Battle
 					if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];
-						mainChar.setProficiency(mainChar.getProficiency()[0]+0.10, 1);	
+						mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);	
 					}
 					System.out.println("공격 " + o[useSkillNumber].getAtk()*tempProficiency);
 					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk()*tempProficiency);
@@ -212,7 +212,7 @@ public class Battle
 	}
 	
 	
-	void battelFinish()
+	public void battelFinish()
 	{
 		
 		//인벤가득차면 5칸 늘려준다
@@ -255,12 +255,12 @@ public class Battle
 	
 	
 	//set모음
-	void setOwnedItem(OwnedItem[] OwnedItem)
+	public void setOwnedItem(OwnedItem[] OwnedItem)
 	{
 		this.OwnedItem = OwnedItem;
 	}
 	
-	void setOwnedSkill(OwnedSkill[] OwnedSkill)
+	public void setOwnedSkill(OwnedSkill[] OwnedSkill)
 	{
 		this.OwnedSkill = OwnedSkill;
 	}
@@ -277,18 +277,18 @@ public class Battle
 	
 	
 	//진짜 변수가 아닌 get이기에 주의
-	int getEnemyHP() 
+	public int getEnemyHP() 
 	{
 		return eArray[enemyNumber].getHp();
 	}
-	int getEnemyPrice()
+	public int getEnemyPrice()
 	{
 		return eArray[enemyNumber].getDropMoney();
 	}
 	////////////////
 	
 	//get모음
-	int getPlayerChoice()
+	public int getPlayerChoice()
 	{
 		return playerChoice;
 	}

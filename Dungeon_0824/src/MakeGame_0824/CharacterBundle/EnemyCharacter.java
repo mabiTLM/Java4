@@ -55,7 +55,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				4,
-				5,
+				10,
 				100,
 				30);		
 		enemyFirstFloor[1] = new EnemyCharacter(
@@ -66,7 +66,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				4,
-				5,
+				10,
 				100,
 				30);
 		enemyFirstFloor[2] = new EnemyCharacter(
@@ -77,7 +77,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				4,
-				5,
+				10,
 				100,
 				30);
 		enemyFirstFloor[3] = new EnemyCharacter(
@@ -88,7 +88,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				4,
-				5,
+				10,
 				100,
 				30);
 		enemyFirstFloor[4] = new EnemyCharacter(
@@ -99,7 +99,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				10,
-				40,
+				100,
 				1000,
 				30);
 		
@@ -111,7 +111,7 @@ public class EnemyCharacter extends CharacterBase
 				0,
 				0,
 				30,
-				5,
+				30,
 				1000,
 				30);		
 		enemyFirstFloor[6] = new EnemyCharacter(
@@ -136,7 +136,7 @@ public class EnemyCharacter extends CharacterBase
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
-				500,
+				1000,
 				0,
 				0,
 				50,
@@ -147,7 +147,7 @@ public class EnemyCharacter extends CharacterBase
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
-				500,
+				1000,
 				0,
 				0,
 				50,
@@ -158,7 +158,7 @@ public class EnemyCharacter extends CharacterBase
 				"보팔 래빗",
 				new OwnedSkill[0],
 				new String[]{"행운의 토끼발"},
-				1000,
+				2000,
 				0,
 				0,
 				500,

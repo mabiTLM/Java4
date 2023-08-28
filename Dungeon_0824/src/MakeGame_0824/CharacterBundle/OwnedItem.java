@@ -102,18 +102,18 @@ public class OwnedItem
 		}
 		
 		totalItem[0] = new OwnedItem("완치약","이벤트",36500.0,1000000,"완치약 : 이 약만 있으면...");
-		totalItem[1] = new OwnedItem("연명약","이벤트",30.0,10000,"연명약 : 기간을 늘려준다");
+		totalItem[1] = new OwnedItem("연명약","이벤트",20.0,10000,"연명약 : 기간을 늘려준다");
 		
 		totalItem[2] = new OwnedItem("작은 hp포션","회복",50,0,0,100,"작은 hp포션 : 생명력을 50회복한다");
 		totalItem[3] = new OwnedItem("작은 mp포션","회복",0,1,0,100,"작은 mp포션 : 마나를 1회복한다");
 		totalItem[4] = new OwnedItem("작은 sp포션","회복",0,0,5,100,"작은 sp포션 : 스태미나를 5회복한다");				
 				
-		totalItem[5] = new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000");
+		totalItem[5] = new OwnedItem("낡은 검","무기","검", 10, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000");
 		totalItem[6] = new OwnedItem("낡은 지팡이","무기","지팡이", 2, 1000,"낡은 지팡이 : 무기, 지팡이, 공격력 2, 가격 1000");
 		totalItem[7]= new OwnedItem("천 갑옷","갑옷", 3, 1000,"천 갑옷 : 방어구, 방어력3, 가격1000");
 		
-		totalItem[8] = new OwnedItem("평범한 검","무기","검", 10, 5000,"평범한 검 : 무기, 검, 공격력10 가격 5000");
-		totalItem[9] = new OwnedItem("평범한 지팡이","무기","지팡이", 3, 5000,"평범한 지팡이 : 공격력3 가격 5000");
+		totalItem[8] = new OwnedItem("평범한 검","무기","검", 25, 5000,"평범한 검 : 무기, 검, 공격력 10, 가격 5000");
+		totalItem[9] = new OwnedItem("평범한 지팡이","무기","지팡이", 3, 5000,"평범한 지팡이 : 공격력3, 가격 5000");
 		totalItem[10] = new OwnedItem("가죽 갑옷","갑옷",5, 5000,"가죽 갑옷 : 방어구, 방어력5 가격5000");
 		
 		totalItem[11] = new OwnedItem("강철 검","무기","검", 50, 10000,"강철 검 : 무기, 검, 공격력 50, 가격 10000");
@@ -134,17 +134,17 @@ public class OwnedItem
 	public OwnedItem[] buyItemDatabase()//상점 아이템목록
 	{	
 		buyItem[0] = new OwnedItem("완치약","이벤트",36500.0,1000000,"완치약 : 이 약만 있으면... 가격 1000000");
-		buyItem[1] = new OwnedItem("연명약","이벤트",30.0,10000,"연명약 : 기간을 늘려준다 가격 10000");
+		buyItem[1] = new OwnedItem("연명약","이벤트",20.0,10000,"연명약 : 기간을 늘려준다 가격 10000");
 		
 		buyItem[2] = new OwnedItem("작은 hp포션","회복",50,0,0,100,"작은 hp포션 : 생명력을 50회복한다 가격 100");
 		buyItem[3] = new OwnedItem("작은 mp포션","회복",0,1,0,100,"작은 mp포션 : 마나를 1회복한다 가격 100");
 		buyItem[4] = new OwnedItem("작은 sp포션","회복",0,0,5,100,"작은 sp포션 : 스태미나를 5회복한다 가격 100");				
 				
-		buyItem[5] = new OwnedItem("낡은 검","무기","검", 5, 1000,"낡은 검 : 무기, 검, 공격력 5, 가격 1000");
+		buyItem[5] = new OwnedItem("낡은 검","무기","검", 10, 1000,"낡은 검 : 무기, 검, 공격력 10, 가격 1000");
 		buyItem[6] = new OwnedItem("낡은 지팡이","무기","지팡이", 2, 1000,"낡은 지팡이 : 무기, 지팡이, 공격력 2, 가격 1000");
 		buyItem[7]= new OwnedItem("천 갑옷","갑옷", 3, 1000,"천 갑옷 : 방어구, 방어력3, 가격1000");
 		
-		buyItem[8] = new OwnedItem("평범한 검","무기","검", 10, 5000,"평범한 검 : 무기, 검, 공격력10 가격 5000");
+		buyItem[8] = new OwnedItem("평범한 검","무기","검", 25, 5000,"평범한 검 : 무기, 검, 공격력 25 가격 5000");
 		buyItem[9] = new OwnedItem("평범한 지팡이","무기","지팡이", 3, 5000,"평범한 지팡이 : 공격력3 가격 5000");
 		buyItem[10] = new OwnedItem("가죽 갑옷","갑옷",5, 5000,"가죽 갑옷 : 방어구, 방어력5 가격5000");
 		

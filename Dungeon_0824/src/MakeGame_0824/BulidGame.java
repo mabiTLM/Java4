@@ -5,12 +5,9 @@ import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMap;
 import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMapReverse;
 import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 import MakeGame_0824.MapBundle.Dungeon.DungeonSecondMap;
+import MakeGame_0824.MapBundle.Dungeon.MoveInDungeon;
 import MakeGame_0824.MapBundle.Village.MoveInVIllage;
 import MakeGame_0824.MapBundle.Village.VillageMap;
-import MakeGame_0824.MapBundle.Village.VillageMapDungeonEntrance;
-import MakeGame_0824.MapBundle.Village.VillageMapHouse;
-import MakeGame_0824.MapBundle.Village.VillageMapPlaza;
-import MakeGame_0824.MapBundle.Village.VillageMapShop;
 import MakeGame_0824.StoryBundle.IntroStory;
 import MakeGame_0824.StoryBundle.StoryText;
 import MakeGame_0824.StoryBundle.Tutorial;
@@ -18,151 +15,42 @@ import MakeGame_0824.StoryBundle.Tutorial;
 public class BulidGame
 {
 	MainPlayerCharacter mainChar = new MainPlayerCharacter();
-	DungeonMap d = new DungeonMap();
-	VillageMap v = new VillageMap(mainChar);	
-	Battle b = new Battle(mainChar,d);
+	DungeonMap d = new DungeonMap();	
 	StoryText s= new StoryText(mainChar);
-	Tutorial t = new Tutorial(mainChar);
-	IntroStory intro = new IntroStory(mainChar);
+	Battle b = new Battle(mainChar,d);
+	VillageMap v = new VillageMap(mainChar);
+	
 	MoveInVIllage villageCombine = new MoveInVIllage(mainChar,d);
+	MoveInDungeon dungeonCombine = new MoveInDungeon(mainChar,d,s,b,v);
 	void build()
 	{
-		villageCombine.combineMoveInVillage();
+		while(true)
+		{
+		villageCombine.combineMoveInVillage(mainChar, d, v, s);
+		//던전입장
+		if(d.getFloor()==1) //층수조절 //여기서 날짜초기화중
+			{
+			d= new DungeonFirstMap();
+			d.MapSetting();
+			//반복을 막기 위해 층수를 음수로 빼둡니다
+			}
+		else if(d.getFloor()==-1)
+		{
+			d= new DungeonFirstMapReverse();
+			d.MapSetting();
+			}
+		else if(d.getFloor()==2)
+		{
+			d= new DungeonSecondMap();
+			d.MapSetting();
+			}
 		
-			//던전입장
-			if(d.getFloor()==1) //층수조절
-			{
-				d= new DungeonFirstMap();
-				d.MapSetting();
-				//반복을 막기 위해 층수를 음수로 빼둡니다
-			}
-			else if(d.getFloor()==-1)
-			{
-				d= new DungeonFirstMapReverse();
-				d.MapSetting();
-			}
-			else if(d.getFloor()==2)
-			{
-				d= new DungeonSecondMap();
-				d.MapSetting();
-			}
+		dungeonCombine.moveInDungeon(mainChar,d,s,b,v);	
 			
-			while(true) 
-			{
-				s.setTime(s.getTime()+1);
-				if(s.getTime()>6)//일정 행동이상 할때마다
-				{
-					s.setTime(0);
-					s.setCurrentDay(s.getCurrentDay()+1);
-					mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
-				}
-				s.timeRemaining();
-				s.endingCheck();//엔딩체크가 최우선
-				if(mainChar.getHp()<=0)//죽엇을때 끝내기
-				{
-					break;
-				}
-				System.out.println("현재소지금"+mainChar.getMoney());
-				int floorTemp = d.getFloor();
-				d.minimap();
-				d.dungeonMapMove();
-				
-				// 여기 밑에서부터 전투
-				int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
-				if(ramdomEncount<s.getEncountProbability())
-				{
-					b.enemyEncount(); //적 조우
-					b.setOwnedItem(mainChar.getOwnedItem());//현재끼고있는 장비를 넣어준다
-					b.setOwnedSkill(mainChar.getOwnedSkill());
-					while(true) 
-					{
-						b.battleChoice();//싸움 선택지
-						if(b.getPlayerChoice()==1)
-						{
-							b.battleCalculator();
-							if(b.getEnemyHP()<=0)
-								{
-								System.out.println("이겼다");
-								mainChar.setMoeny(mainChar.getMoney()+b.getEnemyPrice()); 
-								b.battelFinish();
-								break;
-								}
-							b.enemyBattleCalculator();
-							if(mainChar.getHp()<=0)
-							{
-								System.out.println("당신은 죽었습니다.");
-								break;
-							}
-						}
-						
-						else if(b.getPlayerChoice()==2)
-						{
-							b.usePlayerSkill();//스킬 목록 밑 스킬 발동 구현
-							
-							if(b.getEnemyHP()<=0)
-							{
-							System.out.println("이겼다");
-							mainChar.setMoeny(mainChar.getMoney()+b.getEnemyPrice());
-							b.battelFinish();
-							break;
-							}							
-							b.enemyBattleCalculator();
-							if(mainChar.getHp()<=0)
-							{
-								System.out.println("당신은 죽었습니다.");
-								break;
-							}
-						}
-						else if(b.getPlayerChoice()==3)
-						{
-							v.i.inventoryOpen(mainChar);
-						}
-						
-						else if(b.getPlayerChoice()==4)
-						{
-							mainChar.Status();
-						}
-						
-						else if(b.getPlayerChoice()==5)
-						{
-							int temp = (int)(Math.random()*100);
-							if(temp<85)//도망칠 확률 
-							{
-								System.out.println("도망쳤다.");
-								break;
-							}
-							else
-							{
-								System.out.println("도망에 실패했다.");
-								b.enemyBattleCalculator();
-							}
-						}
-						
-						s.weaponStory();
-						
-					}//전투단 끝
-					if(mainChar.getHp()<=0)//죽엇을때 끝내기
-					{
-						break;
-					}
-					s.weaponStory();
-				}
-				
-				int repeatStoryEncount = (int)(Math.random()*100);//적 조우 확률
-				if(repeatStoryEncount<10)
-				{
-					s.repeatStoryEvent();
-				}
-				
-				if(floorTemp!=d.getFloor()) //층이바뀌면 다시
-				{
-					break;
-				}
-				
-		}//던전 while	
 		if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
 		{
 			v.setCurrentLocation(2);
+		}
 		}
 	}
 }

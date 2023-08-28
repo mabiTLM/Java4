@@ -9,11 +9,10 @@ import MakeGame_0824.StoryBundle.Tutorial;
 
 public class MoveInVIllage 
 {
-	MainPlayerCharacter mainChar = new MainPlayerCharacter();
+	MainPlayerCharacter mainChar;
 	DungeonMap d;
-	VillageMap v = new VillageMap(mainChar);	
-	//Battle b = new Battle(mainChar,d);
-	StoryText s= new StoryText(mainChar);
+	VillageMap v;
+	StoryText s;
 	Tutorial t = new Tutorial(mainChar);
 	IntroStory intro = new IntroStory(mainChar);
 	
@@ -23,15 +22,14 @@ public class MoveInVIllage
 		this.d=d;
 	}
 	
-	public void combineMoveInVillage()
+	public void combineMoveInVillage(MainPlayerCharacter mainChar,DungeonMap d,VillageMap v,StoryText s)
 	{
-			
+		intro.introText();
+		t.tutorialText();			
 			while(true) //마을while
-			{
-				intro.introText();
-				t.tutorialText();
+			{				
 				s.setTime(s.getTime()+1);
-				if(s.getTime()>6) //일정 행동이상 할때마다
+				if(s.getTime()>s.getTimeLimit()) //일정 행동이상 할때마다
 				{
 					s.setTime(0);
 					s.setCurrentDay(s.getCurrentDay()+1);
