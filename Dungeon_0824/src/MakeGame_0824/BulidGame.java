@@ -1,15 +1,15 @@
 package MakeGame_0824;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
-import MakeGame_0824.MapBundle.DungeonFirstMap;
-import MakeGame_0824.MapBundle.DungeonFirstMapReverse;
-import MakeGame_0824.MapBundle.DungeonMap;
-import MakeGame_0824.MapBundle.DungeonSecondMap;
-import MakeGame_0824.MapBundle.VillageMap;
-import MakeGame_0824.MapBundle.VillageMapDungeonEntrance;
-import MakeGame_0824.MapBundle.VillageMapHouse;
-import MakeGame_0824.MapBundle.VillageMapPlaza;
-import MakeGame_0824.MapBundle.VillageMapShop;
+import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMap;
+import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMapReverse;
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
+import MakeGame_0824.MapBundle.Dungeon.DungeonSecondMap;
+import MakeGame_0824.MapBundle.Village.VillageMap;
+import MakeGame_0824.MapBundle.Village.VillageMapDungeonEntrance;
+import MakeGame_0824.MapBundle.Village.VillageMapHouse;
+import MakeGame_0824.MapBundle.Village.VillageMapPlaza;
+import MakeGame_0824.MapBundle.Village.VillageMapShop;
 import MakeGame_0824.StoryBundle.IntroStory;
 import MakeGame_0824.StoryBundle.StoryText;
 import MakeGame_0824.StoryBundle.Tutorial;
@@ -31,7 +31,7 @@ public class BulidGame
 			{
 				break;
 			}
-			while(true) 
+			while(true) //마을while
 			{
 				intro.introText();
 				t.tutorialText();

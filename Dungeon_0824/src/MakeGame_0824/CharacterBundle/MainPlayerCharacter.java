@@ -1,8 +1,6 @@
 package MakeGame_0824.CharacterBundle;
 
 import java.util.Scanner;
-import MakeGame_0824.OwnedItem;
-import MakeGame_0824.OwnedSkill;
 
 
 public class MainPlayerCharacter extends CharacterBase

@@ -2,8 +2,8 @@ package MakeGame_0824.StoryBundle;
 
 import java.util.Scanner;
 
-import MakeGame_0824.OwnedSkill;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.CharacterBundle.OwnedSkill;
 
 public class StoryText
 {

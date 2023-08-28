@@ -3,7 +3,9 @@ package MakeGame_0824;
 import java.util.Scanner;
 import MakeGame_0824.CharacterBundle.EnemyCharacter;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
-import MakeGame_0824.MapBundle.DungeonMap;
+import MakeGame_0824.CharacterBundle.OwnedItem;
+import MakeGame_0824.CharacterBundle.OwnedSkill;
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 
 public class Battle
 {

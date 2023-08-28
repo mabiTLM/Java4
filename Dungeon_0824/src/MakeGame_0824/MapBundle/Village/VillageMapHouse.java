@@ -1,9 +1,9 @@
-package MakeGame_0824.MapBundle;
+package MakeGame_0824.MapBundle.Village;
 
 import java.util.Scanner;
 
-import MakeGame_0824.OwnedItem;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.CharacterBundle.OwnedItem;
 import MakeGame_0824.StoryBundle.StoryText;
 import MakeGame_0824.StoryBundle.Tutorial;
 

@@ -1,7 +1,7 @@
-package MakeGame_0824.MapBundle;
+package MakeGame_0824.MapBundle.Village;
 
-import MakeGame_0824.Inventory;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.Inventory;
 
 public class VillageMap 
 {
@@ -25,7 +25,6 @@ public class VillageMap
 		//나중에 숫자 이외 입력시 예외처리 넣을곳
 	}
 	
-	
 	void printMap() 
 	{
 		for(int i = 0; i < map.length; i++)
@@ -43,8 +42,6 @@ public class VillageMap
 		}
 		System.out.println();
 	}
-	
-	
 	
 	public void setCurrentLocation(int location) 
 	{

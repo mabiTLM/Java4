@@ -1,8 +1,5 @@
 package MakeGame_0824.CharacterBundle;
 
-import MakeGame_0824.OwnedItem;
-import MakeGame_0824.OwnedSkill;
-
 public abstract class CharacterBase 
 {
 	private String name;

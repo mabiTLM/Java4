@@ -1,8 +1,9 @@
-package MakeGame_0824;
+package MakeGame_0824.MapBundle;
 
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.CharacterBundle.OwnedItem;
 import MakeGame_0824.StoryBundle.StoryText;
 
 public class Inventory

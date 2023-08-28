@@ -1,7 +1,7 @@
 package MakeGame_0824;
 
 
-public class Exe 
+public class main
 {	
 	public static void main(String[] args)
 	{
