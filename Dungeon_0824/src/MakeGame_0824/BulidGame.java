@@ -5,6 +5,7 @@ import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMap;
 import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMapReverse;
 import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 import MakeGame_0824.MapBundle.Dungeon.DungeonSecondMap;
+import MakeGame_0824.MapBundle.Village.MoveInVIllage;
 import MakeGame_0824.MapBundle.Village.VillageMap;
 import MakeGame_0824.MapBundle.Village.VillageMapDungeonEntrance;
 import MakeGame_0824.MapBundle.Village.VillageMapHouse;
@@ -23,64 +24,11 @@ public class BulidGame
 	StoryText s= new StoryText(mainChar);
 	Tutorial t = new Tutorial(mainChar);
 	IntroStory intro = new IntroStory(mainChar);
+	MoveInVIllage villageCombine = new MoveInVIllage(mainChar,d);
 	void build()
 	{
-		while(true)
-		{
-			if(mainChar.getHp()<=0)//죽엇을때 끝내기
-			{
-				break;
-			}
-			while(true) //마을while
-			{
-				intro.introText();
-				t.tutorialText();
-				
-				s.setTime(s.getTime()+1);
-				if(s.getTime()>6) //일정 행동이상 할때마다
-				{
-					s.setTime(0);
-					s.setCurrentDay(s.getCurrentDay()+1);
-					mainChar.setSp(mainChar.getSp()-1);//날짜바뀌면 스태도 1까인다
-				}
-				s.timeRemaining();
-				s.endingCheck();//엔딩체크가 최우선				
-				if(mainChar.getHp()<=0)//죽엇을때 끝내기
-				{
-					break;
-				}
-				System.out.println("현재소지금"+mainChar.getMoney());
-				if(v.getCurrentLocation()==0)
-				{
-					v  = new VillageMapHouse(mainChar,s);
-				}
-				else if(v.getCurrentLocation()==1)
-				{
-					v  = new VillageMapPlaza(mainChar);
-				}
-				else if(v.getCurrentLocation()==2)
-				{
-					v  = new VillageMapDungeonEntrance(mainChar);
-				}
-				else if(v.getCurrentLocation()==3)
-				{
-					v  = new VillageMapShop(mainChar,s);
-				}
-				else if(v.getCurrentLocation()==100)
-				{
-					System.out.println("던전으로 들어갑니다");
-					d.setFloor(1);
-					v.setCurrentLocation(99);
-					break;
-				}
-				else
-				{
-					break;
-				}
-				v.villageMapMove();
-				
-			}//마을 while 끝
-			
+		villageCombine.combineMoveInVillage();
+		
 			//던전입장
 			if(d.getFloor()==1) //층수조절
 			{
@@ -211,12 +159,11 @@ public class BulidGame
 					break;
 				}
 				
-			}//던전 while			
-			
-			if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
-			{
-				v.setCurrentLocation(2);
-			}			
+		}//던전 while	
+		if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
+		{
+			v.setCurrentLocation(2);
 		}
 	}
 }
+

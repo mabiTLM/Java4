@@ -20,7 +20,7 @@ public class Battle
 	private int enemyNumber = 0;
 	Scanner scan= new Scanner(System.in);
 	
-	Battle(MainPlayerCharacter mainChar, DungeonMap dungeonMap)
+	public Battle(MainPlayerCharacter mainChar, DungeonMap dungeonMap)
 	{
 		this.mainChar=mainChar;
 		this.dungeonMap=dungeonMap;
