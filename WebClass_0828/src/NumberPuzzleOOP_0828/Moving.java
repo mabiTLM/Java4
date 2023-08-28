@@ -82,69 +82,49 @@ return true;
 
 }
 
- 
+protected boolean movePlayer(int[][] puzzle, String direction)
+{
+	int playerX= player.getX();
+	int playerY= player.getY();
+	int movingPlayerX = playerX;
+	int movingPlayerY = playerY;
+	switch(direction)
+	{
+		case "하":
+			movingPlayerY++;
+		break;
+		
+		case "좌":
+			movingPlayerX--;
+		break;
+		
+		case "우":
+			movingPlayerX++;
+		break;
+		
+		case "상":
+			movingPlayerY--;
+		break;
+		
+		default:
+			break;
+	}
 
-// protected boolean movePlayer(int[][] puzzle, String direction)
+ if(getIsOut(puzzle,movingPlayerY,movingPlayerX))
 
-// {
+ {
 
-// int playerX= player.getX();
+ return false;
 
-// int playerY= player.getY();
+ }
 
-// int movingPlayerX = playerX;
+ Shuffle.changeArray(puzzle, playerX, playerY, movingPlayerX, movingPlayerY);
 
-// int movingPlayerY = playerY;
+ player.setPosition(movingPlayerX, movingPlayerY);
 
-// switch(direction) //스트링이 받아지나..?
+ return true;
 
-// {
-
-// case "후":
-
-// movingPlayerY++;
-
-// break;
-
-// case "좌":
-
-// movingPlayerX--;
-
-// break;
-
-// case "우":
-
-// movingPlayerX++;
-
-// break;
-
-// case "상":
-
-// movingPlayerY--;
-
-// break;
-
-// default:
-
-// break;
-
-// }
-
-// if(getIsOut(puzzle,movingPlayerY,movingPlayerX))
-
-// {
-
-// return false;
-
-// }
-
-// Shuffle.changeArray(puzzle, playerX, playerY, movingPlayerX, movingPlayerY);
-
-// player.setPosition(movingPlayerX, movingPlayerY);
-
-// return true;
-
-// }
+ }
 
  
 
