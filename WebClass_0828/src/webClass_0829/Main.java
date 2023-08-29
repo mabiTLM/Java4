@@ -2,17 +2,20 @@ package webClass_0829;
 
 
 interface InterfaceTest {
+	
+	/*public static final*/int NUMBER = 1; //상수는 대문자로 적는다.
+	
 	//얘는 왜 다중 상속이 가능할까? << 이름 밖에 없으니까
 	/* public abstract */void methodTest();
 	static void staticMethodTest() {
 		System.out.println("정적 메서드 가능?!");
-		privateStaticMehodeTest();
+		privateStaticMethodTest();
 	}
 	
-	private void privateMehodeTest(){
+	private void privateMethodTest(){
 		System.out.println("private 메서드 가능?!");
 	}
-	private static void privateStaticMehodeTest(){
+	private static void privateStaticMethodTest(){
 		System.out.println("private 정적 메서드 가능?!");
 	}
 	
@@ -20,6 +23,23 @@ interface InterfaceTest {
 	{
 		return 1;
 	}
+	
+	
+	default void defaultMethodTest() {
+		privateMethodTest();
+	}
+}
+
+class ClassTest implements InterfaceTest
+{
+	@Override
+	public void methodTest() {}
+	
+//	@Override
+//	public	void defaultMethodTest() {
+//		InterfaceTest.super.defaultMethodTest(); //내부적 내용이 있기에 무조건 한번 실행해야한다. 다중상속이 가능하기에 누구것인지 적는다.
+//	}
+	
 }
 
 

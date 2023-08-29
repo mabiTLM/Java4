@@ -10,7 +10,4 @@ public non-sealed class YellowRace extends Person
 		skinColor = new int[] {235,235,235}; //
 		String tempColor = "";
 	}
-	
-	
-	
 }

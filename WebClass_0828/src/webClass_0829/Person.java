@@ -24,6 +24,7 @@ public sealed class Person
 	permits YellowRace, WhiteRace
 {
 	String species;
+	public static final int number = 1;
 	
 	Person()
 	{
