@@ -16,21 +16,28 @@ public interface ForStringCalSetting
 		
 		temp[0] = ""+inputChar[0];
 		
-		if(input.replaceAll("[0-9\\+./\\*()\\-]","").isEmpty())//숫자랑 기호만 받고
-		{			
 			for(int i = 1; i < input.length(); i++) //리플레이스를 하나로
 			{
+				if(temp[0].equals("-"))
+				{
+					tempArrNum--;
+				}
 				if(inputChar[i]=='+'||inputChar[i]=='-'||inputChar[i]=='*'||inputChar[i]=='/')
 				{
 					tempArrNum++;
 				}
 				else if((inputChar[i-1]=='+'||inputChar[i-1]=='-'||inputChar[i-1]=='*'||inputChar[i-1]=='/'))
-				{tempArrNum++;}//푸시 오류 확인
+				{tempArrNum++;}//푸시 오류 확인					
 				
+				if(i>=2) {
+					if(inputChar[i-1]=='-'&&(inputChar[i-2]=='+'||inputChar[i-2]=='-'||inputChar[i-2]=='*'||inputChar[i-2]=='/'))
+					{
+						tempArrNum--;
+						}
+					}				
 				temp[tempArrNum] = temp[tempArrNum]+inputChar[i];
-			}
-		}
-		return temp;
+				}
+			return temp;
 	}	
 }			
 //숫자일경우 앞 배열에 추가 문자일경우
