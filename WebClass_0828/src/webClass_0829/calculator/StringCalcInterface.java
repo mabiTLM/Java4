@@ -1,11 +1,18 @@
 package webClass_0829.calculator;
 
-public interface StringCalcInterface extends StringCalSetting
+public class StringCalcInterface implements ForStringCalSetting //,StringCalSetting
 {
-	public default String[] setNumber(String input)
+//	public default String[] setNumber(String input)
+//	{
+//		String[] temp = {};
+//		temp = StringCalSetting.super.setNumber(input);
+//		return temp;
+//	}
+	
+	public String[] setNumber(String input)
 	{
 		String[] temp = {};
-		temp = StringCalSetting.super.setNumber(input);
+		temp = ForStringCalSetting.super.setNumber(input);
 		return temp;
 	}
 }

@@ -1,4 +1,4 @@
-package webClass_0829.calculator;
+package webClass_0829.calculator.study;
 
 public class Calculator implements CalcInterface
 {
