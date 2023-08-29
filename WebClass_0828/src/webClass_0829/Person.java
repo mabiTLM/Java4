@@ -19,7 +19,7 @@ interface Animal
 	void eat();
 }
 
-public sealed class Person 
+public sealed class Person
 	implements Human,Animal
 	permits YellowRace, WhiteRace
 {
