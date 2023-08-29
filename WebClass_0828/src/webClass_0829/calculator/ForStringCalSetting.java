@@ -25,7 +25,7 @@ public interface ForStringCalSetting
 					tempArrNum++;
 				}
 				else if((inputChar[i-1]=='+'||inputChar[i-1]=='-'||inputChar[i-1]=='*'||inputChar[i-1]=='/'))
-				{tempArrNum++;}
+				{tempArrNum++;}//푸시 오류 확인
 				
 				temp[tempArrNum] = temp[tempArrNum]+inputChar[i];
 			}
