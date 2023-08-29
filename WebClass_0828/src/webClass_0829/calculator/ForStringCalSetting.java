@@ -29,15 +29,25 @@ public interface ForStringCalSetting
 				else if((inputChar[i-1]=='+'||inputChar[i-1]=='-'||inputChar[i-1]=='*'||inputChar[i-1]=='/'))
 				{tempArrNum++;}//푸시 오류 확인					
 				
-				if(i>=2) {
+				if(i>=2) 
+				{
 					if(inputChar[i-1]=='-'&&(inputChar[i-2]=='+'||inputChar[i-2]=='-'||inputChar[i-2]=='*'||inputChar[i-2]=='/'))
 					{
 						tempArrNum--;
-						}
-					}				
+					}
+				}				
 				temp[tempArrNum] = temp[tempArrNum]+inputChar[i];
 				}
-			return temp;
+			
+			String[] result = new String[tempArrNum+1];//공백제거
+			
+			for(int i = 0; i < result.length;i++)
+			{
+				result[i]=temp[i];
+			}
+			
+			
+			return result;
 	}	
 }			
 //숫자일경우 앞 배열에 추가 문자일경우

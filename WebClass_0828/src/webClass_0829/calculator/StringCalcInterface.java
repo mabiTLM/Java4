@@ -1,6 +1,6 @@
 package webClass_0829.calculator;
 
-public class StringCalcInterface implements ForStringCalSetting //,StringCalSetting
+public interface StringCalcInterface extends ForStringCalSetting,StringMultiply,StringDivide //,StringCalSetting
 {
 //	public default String[] setNumber(String input)
 //	{
@@ -9,10 +9,23 @@ public class StringCalcInterface implements ForStringCalSetting //,StringCalSett
 //		return temp;
 //	}
 	
-	public String[] setNumber(String input)
+	public default String[] setNumber(String input)
 	{
 		String[] temp = {};
 		temp = ForStringCalSetting.super.setNumber(input);
+		return temp;
+	}
+	
+	public default String[] muliple(String[] input)
+	{
+		String[] temp = {};
+		temp = StringMultiply.super.multiple(input);
+		return temp;
+	}
+	public default String[] divide(String[] input)
+	{
+		String[] temp = {};
+		temp = StringMultiply.super.multiple(input);
 		return temp;
 	}
 }
