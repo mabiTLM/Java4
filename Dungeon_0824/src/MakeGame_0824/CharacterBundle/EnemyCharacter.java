@@ -15,7 +15,7 @@ public class EnemyCharacter extends CharacterBase
 	private double dropPercent;
 
 	public EnemyCharacter() {
-		super("적", new OwnedSkill[20],new OwnedItem[2], 5, 5, 10, 5, 5);
+		super();
 	}
 	
 	public EnemyCharacter(

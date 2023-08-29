@@ -1,6 +1,6 @@
 package MakeGame_0824.MapBundle.Village;
 
-import MakeGame_0824.Battle;
+import MakeGame_0824.BattleAct.Battle;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 import MakeGame_0824.StoryBundle.IntroStory;
