@@ -20,11 +20,4 @@ public class Calculator implements CalcInterface
 		}
 	}
 	
-	public int calculate(String operator)
-	{
-		
-		
-		return 0;
-	}
-	
 }

@@ -8,6 +8,8 @@ public class Main {
 		System.out.println(calc.calculate('-',10,1,1));
 		System.out.println(calc.calculate('*',2,4,8));
 		System.out.println(calc.calculate('/',1,2,2,2));
+		
 	}
+	
 
 }

@@ -1,6 +1,6 @@
 package webClass_0829.calculator;
 
-public interface CalcInterface extends AddInterface, MinusInterface, MultiplyInterface, DivideInterface
+public interface CalcInterface extends AddInterface, MinusInterface, MultiplyInterface, DivideInterface, remainInterface
 {
 	public default int add(int ...nums) //...은 몇개 받을지 모르고 한번에 처리한다. 
 	{
