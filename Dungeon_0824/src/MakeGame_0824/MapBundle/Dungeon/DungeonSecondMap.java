@@ -33,7 +33,7 @@ public class DungeonSecondMap extends DungeonMap
 	{
 		int temp=0;
 		String move = "";
-		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요?");
+		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요? 5.인벤토리");
 		Scanner scan = new Scanner(System.in);
 		while(true) 
 		{
@@ -96,6 +96,9 @@ public class DungeonSecondMap extends DungeonMap
 				nowMyWidth = nowMyWidth+1;
 				secondMap[nowMyHeight][nowMyWidth] = 1;
 			}
+			break;
+		case 5:
+			i.inventoryOpen(mainChar,this);
 			break;
 		default:
 				System.out.println("8,4,6,2만 입력해주세요");
