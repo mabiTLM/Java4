@@ -34,7 +34,7 @@ public class DungeonFirstMap extends DungeonMap
 	{
 		int temp=0;
 		String move = "";
-		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요?");
+		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요? 5.인벤토리");
 		Scanner scan = new Scanner(System.in);
 		while(true) 
 		{

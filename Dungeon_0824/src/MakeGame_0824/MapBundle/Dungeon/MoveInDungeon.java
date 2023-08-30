@@ -2,6 +2,7 @@ package MakeGame_0824.MapBundle.Dungeon;
 
 import MakeGame_0824.BattleAct.Battle;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.Inventory;
 import MakeGame_0824.MapBundle.Village.VillageMap;
 import MakeGame_0824.StoryBundle.StoryText;
 
@@ -12,6 +13,7 @@ public class MoveInDungeon
 	StoryText s;
 	Battle b;
 	VillageMap v;
+	Inventory i;
 	
 	public MoveInDungeon(MainPlayerCharacter mainChar,DungeonMap d,StoryText s,Battle b,VillageMap v)
 	{
@@ -22,7 +24,7 @@ public class MoveInDungeon
 		this.v=v;
 	}
 	
-	public void moveInDungeon(MainPlayerCharacter mainChar,DungeonMap d, StoryText s,Battle b,VillageMap v)
+	public void moveInDungeon(MainPlayerCharacter mainChar,DungeonMap d, StoryText s,Battle b,VillageMap v,Inventory i)
 	{
 		while(true) 
 		{
@@ -129,7 +131,7 @@ public class MoveInDungeon
 			int repeatStoryEncount = (int)(Math.random()*100);//스토리
 			if(repeatStoryEncount<10)
 			{
-				s.repeatStoryEvent();
+				s.repeatStoryEvent(i);
 			}
 			
 			if(floorTemp!=d.getFloor()) //층이바뀌면 다시

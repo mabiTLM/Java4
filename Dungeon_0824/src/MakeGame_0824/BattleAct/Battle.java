@@ -36,7 +36,7 @@ public class Battle
 		{
 			this.eArray = enemyChar.secondEnemyDatabase();
 		}
-		setEnemyNumber((int)(Math.random()*(eArray.length-1)));
+		setEnemyNumber((int)(Math.random()*(eArray.length)));
 		System.out.println(eArray.length);
 		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
 		System.out.println("적hp"+eArray[enemyNumber].getHp());

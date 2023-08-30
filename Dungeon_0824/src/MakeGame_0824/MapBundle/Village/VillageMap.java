@@ -3,11 +3,13 @@ package MakeGame_0824.MapBundle.Village;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.MapBundle.Inventory;
 import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
+import MakeGame_0824.StoryBundle.StoryText;
 
 public class VillageMap 
 {
 	public MainPlayerCharacter mainChar;
 	DungeonMap d;
+	StoryText storyT = new StoryText(mainChar);
 	public Inventory i = new Inventory(mainChar,d);
 	private String[] map = {"집","마을 광장","던전입구"};
 	

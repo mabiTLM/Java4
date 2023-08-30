@@ -40,7 +40,7 @@ public class OwnedItem
 			int weaponDef,
 			int price,
 			String itemDescription)
-	{//방어구
+	{//방어구,탈출로프도 같은 형식
 		this.itemName=itemName;
 		this.itemType=itemType;
 		this.weaponDef=weaponDef;
@@ -56,7 +56,7 @@ public class OwnedItem
 			int spHeal,
 			int price,
 			String itemDescription)
-	{//회복 아이템
+	{//회복 아이템,도시락,캠핑도구
 		this.itemName=itemName;
 		this.itemType=itemType;
 		this.hpHeal=hpHeal;
@@ -127,7 +127,7 @@ public class OwnedItem
 		totalItem[17] = new OwnedItem("행운의 토끼발","판매전용",1000000, "행운의 토끼발 : 판매전용 가격 1000000");
 		totalItem[18]= new OwnedItem("거적대기","갑옷", 1, 0,"거적대기 : 방어구, 방어력1, 가격0");
 		totalItem[19] = new OwnedItem("던전탈출로프","이동", 0, 50,"던전탈출로프 : 던전에서 탈출한다 가격 50");//던전이용 weaponDef사용
-
+		totalItem[20] = new OwnedItem("도시락","회복",500,500,500,100,"도시락 : 동생이 챙겨준도시락이다. 힘들 때 먹고 힘내자.");
 		return totalItem;
 	}
 	OwnedItem[] buyItem = new OwnedItem[15];
@@ -152,7 +152,7 @@ public class OwnedItem
 		
 		buyItem[12] = new OwnedItem("강철 검","무기","검", 50, 10000,"강철 검 : 무기, 검, 공격력 50, 가격10000");
 		buyItem[13] = new OwnedItem("마력의 지팡이","무기","지팡이", 5, 10000,"마력의 지팡이 : 무기, 지팡이, 공격력 5, 가격10000");
-		buyItem[14] = new OwnedItem("철 갑옷","갑옷",50, 10000,"철 갑옷 : 방어구, 방어력10 가격10000");
+		buyItem[14] = new OwnedItem("철 갑옷","갑옷",50, 10000,"철 갑옷 : 방어구, 방어력50 가격10000");
 
 		return buyItem;
 	}

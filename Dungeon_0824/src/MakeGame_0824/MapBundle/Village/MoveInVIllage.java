@@ -16,6 +16,11 @@ public class MoveInVIllage
 	Tutorial t = new Tutorial(mainChar);
 	IntroStory intro = new IntroStory(mainChar);
 	
+	private boolean firstVisitHouse = true;
+	
+	private boolean firstVisitDungeonEntrance = true;
+	//private boolean firstVisit = true;
+	
 	public MoveInVIllage(MainPlayerCharacter mainChar,DungeonMap d,VillageMap v)
 	{
 		this.mainChar=mainChar;
@@ -51,8 +56,15 @@ public class MoveInVIllage
 					break;
 				}
 				System.out.println("현재소지금"+mainChar.getMoney());
+				
 				if(v.getCurrentLocation()==0)
 				{
+					if(getFirstVisitFirstVisitHouse()==true)//첫입장 스토리
+					{
+						System.out.println(s.getHouseStory(0));						
+						setFirstVisitHouse(false);
+					}
+					
 					v  = new VillageMapHouse(mainChar,s);
 				}
 				else if(v.getCurrentLocation()==1)
@@ -61,10 +73,16 @@ public class MoveInVIllage
 				}
 				else if(v.getCurrentLocation()==2)
 				{
+					if(getFirstVisitDungeonEntrance()==true)//첫입장 스토리
+					{
+						System.out.println(s.getDungeonEntranceStory(0));						
+						setFirstVisitDungeonEntrance(false);
+					}
 					v  = new VillageMapDungeonEntrance(mainChar);
 				}
 				else if(v.getCurrentLocation()==3)
 				{
+					
 					v  = new VillageMapShop(mainChar,s);
 				}
 				else
@@ -75,4 +93,26 @@ public class MoveInVIllage
 				
 			}//마을 while 끝
 		}
+	
+	public void setFirstVisitHouse(boolean firstVisitHouse)
+	{
+		this.firstVisitHouse=firstVisitHouse;
 	}
+	
+	public void setFirstVisitDungeonEntrance(boolean firstVisitDungeonEntrance)
+	{
+		this.firstVisitDungeonEntrance=firstVisitDungeonEntrance;
+	}
+	
+	
+	public boolean getFirstVisitFirstVisitHouse()
+	{
+		return firstVisitHouse;
+	}
+	
+	
+	public boolean getFirstVisitDungeonEntrance()
+	{
+		return firstVisitDungeonEntrance;
+	}
+}

@@ -12,7 +12,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		super(mainChar);
 		// TODO Auto-generated constructor stub
 	}
-	StoryText storyT = new StoryText(mainChar);
+	
 
 	@Override
 	public void villageMapMove(DungeonMap d)
@@ -30,7 +30,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			int temp=(int)(Math.random()*storyT.getDungeonEntranceStory().length);
+			int temp=(int)(Math.random()*(storyT.getDungeonEntranceStory().length-1)+1);
 			System.out.println(storyT.getDungeonEntranceStory(temp));
 		}
 		

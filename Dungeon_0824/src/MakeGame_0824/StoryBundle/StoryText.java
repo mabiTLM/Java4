@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.CharacterBundle.OwnedSkill;
+import MakeGame_0824.MapBundle.Inventory;
 
 public class StoryText
 {
 	MainPlayerCharacter mainChar;
+	Inventory i;
 	Scanner scan = new Scanner(System.in);
 	public StoryText(MainPlayerCharacter mainChar)
 	{
@@ -28,8 +30,10 @@ public class StoryText
 	private String[] repeatStory= 
 		{
 				"쓰러진 사람을 만났습니다.\n1.도와준다.\n2.물건을 훔친다.",
-				"여신상이 있습니다.\n 1.기도한다.\n 2.부순다"
+				"여신상이 있습니다.\n1.기도한다.\n2.부순다",
+				"던전안에서 상인과 마주쳤습니다.\n상인 : 물건 좀 사고 가라구.\n1.물건을 산다.\n2.물건을 훔친다.\n3.무시하고 간다."
 		};
+	
 	private String[] endingStory=
 		{
 				"엔딩0 다시 일상으로\n동생은 완치 됐습니다.쌩쌩한 것이 앞으로 100년은 더 살것처럼보이네요."
@@ -45,11 +49,20 @@ public class StoryText
 				+ " 정말 다행이에요.\n이야기는 이걸로 끝입니다. 하지만 던전을 아직 즐기고 싶으시다면 남아있을 수 있습니다."
 		};
 	
+	private String[] houseStory=
+		{		
+				"동생 : 콜록 콜록... 오늘부터 던전으로 가는거지?\n도시락 싸놨으니까 들고가",
+				"동생 : 너무 무리하지는 마",
+				"동생 : 미안해 나 때문에..",				
+		};
+	
 	private String[] dungeonEntranceStory=
 		{
-				"던전이다. 문지기가 있다.",
-				"문지기 : 슬라임은 방어력이 높으니 마법으로 잡으면 편해",
+				"던전이다. 문지기가 있다.\n문지기 : 처음보는 얼굴인데 던전에 가기전에 무기는 챙겼나?",
+				"문지기 : 1층에서 가장 만만한건 혼 래빗이야.",
+				"문지기 : 슬라임은 방어력이 높으니 마법으로 잡으면 편해.",
 				"문지기 : 죽고 싶지 않으면 2층은 가지 않는게 좋을거야 물론 1층이라고 안전한건 아니지만",
+				"문지기 : 사슴을 조심해 마주치면 바로 도망치는게 좋을거야."
 		};
 	
 	
@@ -135,14 +148,13 @@ public class StoryText
 		System.out.printf("예상 남은 날짜 : %d\n",getDayLimit()-getCurrentDay());
 	}
 	
-	public void repeatStoryEvent()
+	public void repeatStoryEvent(Inventory i)
 	{
 		int temp=(int)(Math.random()*(repeatStory.length+1));
-		
 		if(temp==0)//쓰러진 사람
-		{
+			{
 			System.out.println(repeatStory[temp]);
-			while(true) 
+			while(true)
 			{
 				String tempChoice=scan.nextLine();
 				if(tempChoice.equals("1"))
@@ -150,25 +162,25 @@ public class StoryText
 					setGoodCount(getGoodCount()+1);
 					System.out.println("도와준사람이 감사인사를 하고 떠나갑니다.");
 					break;
-				}
+					}
 				else if(tempChoice.equals("2"))
 				{
 					setEvilCount(getEvilCount()+1);
 					mainChar.setMoeny(mainChar.getMoney()+10000);
 					System.out.println("쓰러진 사람의 짐속에는 무려 10000골드가 있었습니다.");
 					break;
-				}
+					}
 				else
 				{
 					System.out.println("다시 선택하세요");
+					}
 				}
-			}			
-		}
+			}
 		else if(temp==1)//여신상
 			{
 			System.out.println(repeatStory[temp]);
-			while(true) 
-			{				
+			while(true)
+			{
 				String tempChoice=scan.nextLine();
 				if(tempChoice.equals("1"))
 				{
@@ -178,22 +190,48 @@ public class StoryText
 					mainChar.setMaxMp(mainChar.getMaxMp());
 					mainChar.setMaxSp(mainChar.getMaxSp());
 					break;
-				}
+					}
 				else if(tempChoice.equals("2"))
 				{
 					mainChar.setMoeny(mainChar.getMoney()+1000);
 					System.out.println("금으로 만들어진 부분을 슬쩍했습니다. +10000골드");
 					break;
-				}
+					}
 				else
 				{
 					System.out.println("다시 선택하세요");
+					}
 				}
 			}
-		}
-	}
-	
-	
+		else if(temp==2)//상인과의 조우
+			{
+			System.out.println(repeatStory[temp]);
+			while(true)
+			{
+				String tempChoice=scan.nextLine();
+				if(tempChoice.equals("1"))
+				{
+					i.buyItem(mainChar, this);
+					break;
+					}
+				else if(tempChoice.equals("2"))
+				{
+					setEvilCount(getEvilCount()+1);
+					mainChar.setHp(mainChar.getHp()-100);
+					System.out.println("던전에서 장사를 하는 사람이 약할리가 없지요. 반격당해서 100의 피해를 입었습니다.");
+					break;
+					}
+				else if(tempChoice.equals("3"))
+				{
+					break;
+					}
+				else
+				{
+					System.out.println("다시 선택하세요");
+					}
+				}
+			}
+		}	
 	public void endingCheck(MainPlayerCharacter mainChar)
 	{
 		if((mainChar.getHp()<=0|mainChar.getSp()<=0)&&getEndingCheck())//사망을 최우선으로
@@ -211,6 +249,11 @@ public class StoryText
 		{
 			mainChar.setHp(0);
 			System.out.println(getEndingStory()[3]);
+			setEndingCheck(false);
+		}
+		else if(getGoodCount()>=100&&getEndingCheck())//명성
+		{
+			System.out.println(getEndingStory()[4]);
 			setEndingCheck(false);
 		}
 		else if(getDayLimit()>=36000&&getEndingCheck())//치료완료
@@ -257,21 +300,36 @@ public class StoryText
 	}
 	
 	
+	
+	
 	//get모음
+	
+	public String[] getHouseStory() //내부겟
+	{
+		return houseStory;
+	}
+	
+	public String getHouseStory(int num) //내부겟
+	{
+		return houseStory[num];
+	}
+	
 	
 	public String[] getDungeonEntranceStory()
 	{
 		return dungeonEntranceStory;
 	}	
-	public int getTimeLimit()
-	{
-		return timeLimit;
-	}
 	public String getDungeonEntranceStory(int num) //내부겟
 	{
 		return dungeonEntranceStory[num];
 	}
 	
+	
+	
+	public int getTimeLimit()
+	{
+		return timeLimit;
+	}
 	public String[] getStaffStory()
 	{
 		return staffStory;

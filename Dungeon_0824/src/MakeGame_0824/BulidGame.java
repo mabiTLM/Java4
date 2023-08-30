@@ -2,6 +2,7 @@ package MakeGame_0824;
 
 import MakeGame_0824.BattleAct.Battle;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.Inventory;
 import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMap;
 import MakeGame_0824.MapBundle.Dungeon.DungeonFirstMapReverse;
 import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
@@ -22,6 +23,7 @@ public class BulidGame
 	VillageMap v = new VillageMap(mainChar);
 	MoveInDungeon dungeonCombine = new MoveInDungeon(mainChar,d,s,b,v);
 	MoveInVIllage villageCombine = new MoveInVIllage(mainChar,d,v);
+	Inventory i = new Inventory(mainChar, d);
 	
 	void build()
 	{
@@ -50,7 +52,7 @@ public class BulidGame
 			break;
 		}
 		this.b = new Battle(mainChar,d);
-		dungeonCombine.moveInDungeon(mainChar,d,s,b,v);
+		dungeonCombine.moveInDungeon(mainChar,d,s,b,v,i);
 		
 		if(d.getFloor()==0)//출구로 나왔을때만 마을로 돌아간다
 		{

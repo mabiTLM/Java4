@@ -39,7 +39,8 @@ public class VillageMapHouse extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			System.out.println("동생 : 너무 무리하지는 마");
+			int temp=(int)(Math.random()*(storyT.getHouseStory().length-1)+1);
+			System.out.println(storyT.getHouseStory(temp));
 		}		
 		else if(move.equals("2")|move.equals("마을 광장"))
 		{

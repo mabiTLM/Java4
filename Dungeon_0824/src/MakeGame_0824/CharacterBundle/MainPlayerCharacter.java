@@ -15,7 +15,7 @@ public class MainPlayerCharacter extends CharacterBase
 	{
 		super("주인공",
 				new String[] 
-						{
+						{"던전탈출로프","도시락"
 						},
 				new OwnedSkill[] 
 						{
