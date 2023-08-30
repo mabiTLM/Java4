@@ -1,0 +1,4 @@
+module cPro 
+{
+	exports cPro;
+}

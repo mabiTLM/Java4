@@ -1,0 +1,3 @@
+module dPro {
+	exports dPro;
+}

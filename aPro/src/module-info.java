@@ -1,0 +1,3 @@
+module aPro {
+	requires bPro;
+}
