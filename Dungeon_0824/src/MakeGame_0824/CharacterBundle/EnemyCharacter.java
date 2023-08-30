@@ -70,25 +70,25 @@ public class EnemyCharacter extends CharacterBase
 				100,
 				30);
 		enemyFirstFloor[2] = new EnemyCharacter(
-				"슬라임",
+				"혼 래빗",
 				new OwnedSkill[0],
-				new String[]{"슬라임 점액"},
-				5,
+				new String[]{"토끼 발"},
+				15,
 				0,
 				0,
 				4,
-				10,
+				0,
 				100,
 				30);
 		enemyFirstFloor[3] = new EnemyCharacter(
-				"슬라임",
+				"혼 래빗",
 				new OwnedSkill[0],
-				new String[]{"슬라임 점액"},
-				5,
+				new String[]{"토끼 발"},
+				15,
 				0,
 				0,
 				4,
-				10,
+				0,
 				100,
 				30);
 		enemyFirstFloor[4] = new EnemyCharacter(
