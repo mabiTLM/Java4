@@ -13,11 +13,11 @@ public interface StringMultiply
 		
 		for(int i = 0; i < temp.length; i++)
 		{
-			if(temp[i].equals("*"))
+			if(temp[i].equals("*"))//앞에서부터 흝으니까 값을 뒤로 앞에두개를 공백으로
 			{
-				temp[i] = ""+(Double.valueOf(temp[i+1])*Double.valueOf(temp[i-1]));
+				temp[i+1] = ""+(Double.valueOf(temp[i+1])*Double.valueOf(temp[i-1]));
 				temp[i-1] = "";
-				temp[i+1] = "";
+				temp[i] = "";
 				multiCount=multiCount+2;
 			}
 		}

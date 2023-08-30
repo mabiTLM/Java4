@@ -7,7 +7,7 @@ public class StringCal implements StringCalcInterface
 		String[] arrTemp = {};
 		arrTemp = StringCalcInterface.super.setNumber(a);//넣으면 배열로 변환
 		arrTemp = StringCalcInterface.super.muliple(arrTemp);
-		arrTemp = StringCalcInterface.super.divide(arrTemp);
+		//arrTemp = StringCalcInterface.super.divide(arrTemp);
 		
 		double temp = 0;
 		

@@ -8,7 +8,7 @@ public class newmain
 		
 		String[] temp = {};
 		
-		temp=strCal.calculate("1/2+3*4+2");
+		temp=strCal.calculate("1*2+3*4+2");
 		for(int i = 0; i < temp.length; i++) 
 		{
 			System.out.println(temp[i]);
