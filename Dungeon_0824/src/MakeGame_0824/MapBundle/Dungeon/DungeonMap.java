@@ -8,13 +8,13 @@ import MakeGame_0824.MapBundle.Inventory;
 public class DungeonMap {
 	
 	MainPlayerCharacter mainChar;
-	Inventory i;
+	Inventory i = new Inventory(mainChar, this);
 	
 	private int floor=1;
 	
 	int nowMyWidth;
 	int nowMyHeight;	
-	private String[][] map;
+	private int[][] map;
 	
 //	public DungeonMap(){
 //		
@@ -33,7 +33,7 @@ public class DungeonMap {
 		{
 			for(int j = 0; j < map.length; j++) 
 			{
-				if(map[i][j].equals("나")) 
+				if(map[i][j]==1) //길0 내위치1 벽2 밑3 위4
 				{
 					setNowMyHeight(i);
 					setNowMyWidth(j);
@@ -47,12 +47,46 @@ public class DungeonMap {
 	{
 		whereAmI();//내위치를 잡고
 		//주변을 출력
-		for(int i = -1; i<2;i++)
+		
+		int sight = 2;//시야에 변동을 줄 수 있게
+		
+		for(int i = -sight+1; i<sight;i++)
 		{
-			for(int j = -1; j<2;j++)
+			String temp="";
+			for(int j = -sight+1; j<sight;j++)//길0 내위치1 벽2 밑3 위4
 				{
+				
+				if(nowMyHeight+i>map.length-1|nowMyHeight+i<0)
+				{
+					break;
+				}
+				else if(nowMyWidth+j>map.length-1|nowMyWidth+j<0)
+				{
+					continue;
+				}
+				
+				if(map[nowMyHeight+i][nowMyWidth+j]==0)
+				{
+					temp = " ";
+				}
+				if(map[nowMyHeight+i][nowMyWidth+j]==1)
+				{
+					temp = "나";
+				}
+				if(map[nowMyHeight+i][nowMyWidth+j]==2)
+				{
+					temp = "벽";
+				}
+				if(map[nowMyHeight+i][nowMyWidth+j]==3)
+				{
+					temp = "밑";
+				}
+				if(map[nowMyHeight+i][nowMyWidth+j]==4)
+				{
+					temp = "위";
+				}
 
-				System.out.print(map[nowMyHeight+i][nowMyWidth+j]);
+				System.out.print(temp+"	");//
 				}
 			System.out.println();
 		}
@@ -60,7 +94,7 @@ public class DungeonMap {
 	
 	
 	
-	public void dungeonMapMove() //맵이 층마다 다르고 입구출구위치역시 다르기에 층마다 오버라이드 하는게 나은거같습니다.
+	public void dungeonMapMove(MainPlayerCharacter mainChar) //맵이 층마다 다르고 입구출구위치역시 다르기에 층마다 오버라이드 하는게 나은거같습니다.
 	{
 		int temp=0;
 		String move = "";
@@ -86,51 +120,51 @@ public class DungeonMap {
 		switch(temp)
 		{
 		case 8:			
-			if(map[nowMyHeight-1][nowMyWidth].equals("밑"))
+			if(map[nowMyHeight-1][nowMyWidth]==3) //길0 내위치1 벽2 밑3 위4
 			{
 				
 				setFloor(getFloor()+1);
 				break;
 			}			
-			else if(map[nowMyHeight-1][nowMyWidth].equals(" "))
+			else if(map[nowMyHeight-1][nowMyWidth]==0)
 			{
-				map[nowMyHeight][nowMyWidth] = " ";
+				map[nowMyHeight][nowMyWidth] = 0;
 				nowMyHeight = nowMyHeight-1;
-				map[nowMyHeight][nowMyWidth] = "나";
+				map[nowMyHeight][nowMyWidth] = 1;
 				}
 			break;
 		case 2:
-			if(map[nowMyHeight+1][nowMyWidth].equals("위"))
+			if(map[nowMyHeight+1][nowMyWidth]==4)
 			{
 				setFloor(getFloor()-1);
 				break;
 			}	
-			else if(map[nowMyHeight+1][nowMyWidth].equals(" "))
+			else if(map[nowMyHeight+1][nowMyWidth]==0)
 				{
-				map[nowMyHeight][nowMyWidth] = " ";
+				map[nowMyHeight][nowMyWidth] = 0;
 			nowMyHeight = nowMyHeight+1;
-			map[nowMyHeight][nowMyWidth] = "나";
+			map[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
 		case 4:
-			if(map[nowMyHeight][nowMyWidth-1].equals(" "))
+			if(map[nowMyHeight][nowMyWidth-1]==0)
 			{
-				map[nowMyHeight][nowMyWidth] = " ";
+				map[nowMyHeight][nowMyWidth] = 0;
 			nowMyWidth = nowMyWidth-1;
-			map[nowMyHeight][nowMyWidth] = "나";
+			map[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
 		case 6:
-			if(map[nowMyHeight][nowMyWidth+1].equals(" "))
+			if(map[nowMyHeight][nowMyWidth+1]==0)
 			{
-				map[nowMyHeight][nowMyWidth] = " ";
+				map[nowMyHeight][nowMyWidth] = 0;
 			nowMyWidth = nowMyWidth+1;
-			map[nowMyHeight][nowMyWidth] = "나";
+			map[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
-//		case 5:
-//			//i.inventoryOpen(mainChar,d);
-//			break;
+		case 5:
+			i.inventoryOpen(mainChar,this);
+			break;
 		default:
 				System.out.println("8,4,6,2만 입력해주세요");
 				break;
@@ -154,7 +188,7 @@ public class DungeonMap {
 		this.nowMyWidth=nowMyWidth;
 	}
 	
-	public void setMap(String[][] map)
+	public void setMap(int[][] map)
 	{
 		this.map=map;
 	}
@@ -166,10 +200,9 @@ public class DungeonMap {
 		return floor;
 	}
 	
-	public String[][] getMap()
+	public int[][] getMap()
 	{
 		return map;
-	}
-	
+	}	
 	
 }

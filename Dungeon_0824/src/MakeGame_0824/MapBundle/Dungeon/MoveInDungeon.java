@@ -43,7 +43,7 @@ public class MoveInDungeon
 			System.out.println("현재소지금"+mainChar.getMoney());
 			int floorTemp = d.getFloor();
 			d.minimap();
-			d.dungeonMapMove();
+			d.dungeonMapMove(mainChar);
 			
 			// 여기 밑에서부터 전투
 			int ramdomEncount = (int)(Math.random()*100);//적 조우 확률

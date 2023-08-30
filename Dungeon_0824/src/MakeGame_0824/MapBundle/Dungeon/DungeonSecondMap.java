@@ -2,32 +2,34 @@ package MakeGame_0824.MapBundle.Dungeon;
 
 import java.util.Scanner;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+
 public class DungeonSecondMap extends DungeonMap
 {
-	String[][] secondMap;
+	int[][] secondMap;
 	@Override
 	public void MapSetting() 
 	{
-		setFloor(2);
-	setMap(new String[][]//하나의 던전을 돌려서 사용한다
+		setFloor(2); 
+	setMap(new int[][]//하나의 던전을 돌려서 사용한다
 		{
-				{"벽","벽","벽","벽","벽","벽","벽","벽","벽","벽"},
-				{"벽"," "," "," ","벽"," "," "," "," ","벽"},
-				{"벽"," ","벽"," ","벽"," ","벽"," ","벽","벽"},
-				{"벽"," ","벽"," "," "," ","벽","밑","벽","벽"},
-				{"벽"," ","벽","벽"," ","벽"," ","벽"," ","벽"},
-				{"벽"," "," ","벽"," ","벽"," ","벽"," ","벽"},
-				{"벽"," "," ","벽"," ","벽"," ","벽"," ","벽"},
-				{"벽"," "," ","벽"," ","벽"," ","벽"," ","벽"},
-				{"벽"," "," "," ","나"," "," "," "," ","벽"},
-				{"벽","벽","벽","벽","위","벽","벽","벽","벽","벽"}
+				{2,2,2,2,2,2,2,2,2,2},
+				{2,0,0,0,2,0,0,0,0,2},
+				{2,0,2,0,2,0,2,0,2,2},
+				{2,0,2,0,0,0,2,3,2,2},//3층이 없는상태
+				{2,0,2,2,0,2,0,2,0,2},
+				{2,0,0,2,0,2,0,2,0,2},
+				{2,0,0,2,0,2,0,2,0,2},
+				{2,0,0,2,0,2,0,2,0,2},
+				{2,0,0,0,1,0,0,0,0,2},
+				{2,2,2,2,4,2,2,2,2,2}
 		});
 	
 	secondMap = getMap();
 	}
 	
 	@Override
-	public void dungeonMapMove() 
+	public void dungeonMapMove(MainPlayerCharacter mainChar) 
 	{
 		int temp=0;
 		String move = "";
@@ -53,46 +55,46 @@ public class DungeonSecondMap extends DungeonMap
 		switch(temp)
 		{
 		case 8:			
-			if(secondMap[nowMyHeight-1][nowMyWidth].equals("밑"))
+			if(secondMap[nowMyHeight-1][nowMyWidth]==3)
 			{
 				
 				setFloor(getFloor()+1);
 				break;
 			}			
-			else if(secondMap[nowMyHeight-1][nowMyWidth].equals(" "))
+			else if(secondMap[nowMyHeight-1][nowMyWidth]==0)
 			{
-				secondMap[nowMyHeight][nowMyWidth] = " ";
+				secondMap[nowMyHeight][nowMyWidth] = 0;
 				nowMyHeight = nowMyHeight-1;
-				secondMap[nowMyHeight][nowMyWidth] = "나";
+				secondMap[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
 		case 2:
-			if(secondMap[nowMyHeight+1][nowMyWidth].equals("위"))
+			if(secondMap[nowMyHeight+1][nowMyWidth]==4)
 			{
 				setFloor(-getFloor()+1);
 				break;
 			}	
-			else if(secondMap[nowMyHeight+1][nowMyWidth].equals(" "))
+			else if(secondMap[nowMyHeight+1][nowMyWidth]==0)
 				{
-				secondMap[nowMyHeight][nowMyWidth] = " ";
+				secondMap[nowMyHeight][nowMyWidth] = 0;
 				nowMyHeight = nowMyHeight+1;
-				secondMap[nowMyHeight][nowMyWidth] = "나";
+				secondMap[nowMyHeight][nowMyWidth] = 1;
 				}
 			break;
 		case 4:
-			if(secondMap[nowMyHeight][nowMyWidth-1].equals(" "))
+			if(secondMap[nowMyHeight][nowMyWidth-1]==0)
 			{
-				secondMap[nowMyHeight][nowMyWidth] = " ";
+				secondMap[nowMyHeight][nowMyWidth] = 0;
 				nowMyWidth = nowMyWidth-1;
-				secondMap[nowMyHeight][nowMyWidth] = "나";
+				secondMap[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
 		case 6:
-			if(secondMap[nowMyHeight][nowMyWidth+1].equals(" "))
+			if(secondMap[nowMyHeight][nowMyWidth+1]==0)
 			{
-				secondMap[nowMyHeight][nowMyWidth] = " ";
+				secondMap[nowMyHeight][nowMyWidth] = 0;
 				nowMyWidth = nowMyWidth+1;
-				secondMap[nowMyHeight][nowMyWidth] = "나";
+				secondMap[nowMyHeight][nowMyWidth] = 1;
 			}
 			break;
 		default:
