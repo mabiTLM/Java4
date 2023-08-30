@@ -6,12 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/KGA/eclipse-workspace/bPro/lib/cPro.jar">
+	<classpathentry kind="lib" path="C:/Users/KGA/git/Java4/bPro/lib/cPro.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/KGA/eclipse-workspace/bPro/lib/dPro.jar">
+	<classpathentry kind="lib" path="C:/Users/KGA/git/Java4/bPro/lib/dPro.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
