@@ -2,11 +2,13 @@ package MakeGame_0824.MapBundle.Village;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.MapBundle.Inventory;
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 
 public class VillageMap 
 {
 	public MainPlayerCharacter mainChar;
-	public Inventory i = new Inventory(mainChar);
+	DungeonMap d;
+	public Inventory i = new Inventory(mainChar,d);
 	private String[] map = {"집","마을 광장","던전입구"};
 	
 	private int currentLocation = 0;
@@ -16,7 +18,7 @@ public class VillageMap
 		this.mainChar=mainChar;
 	}
 	
-	public void villageMapMove() // 공통부분 일부만 만들고 상속받아서 오버라이드
+	public void villageMapMove(DungeonMap d) // 공통부분 일부만 만들고 상속받아서 오버라이드
 	{
 		setCurrentLocation(0);
 		printMap();

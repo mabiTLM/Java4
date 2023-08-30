@@ -2,13 +2,25 @@ package MakeGame_0824.MapBundle.Dungeon;
 
 import java.util.Scanner;
 
+import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.Inventory;
+
 public class DungeonMap {
+	
+	MainPlayerCharacter mainChar;
+	Inventory i;
 	
 	private int floor=1;
 	
 	int nowMyWidth;
 	int nowMyHeight;	
 	private String[][] map;
+	
+//	public DungeonMap(){
+//		
+//	}
+	
+
 	
 	public void MapSetting() 
 	{
@@ -17,7 +29,7 @@ public class DungeonMap {
 	
 	public void whereAmI()
 	{
-		for(int i = 0; i < map.length; i++)
+		for(int i = 0; i < map[0].length; i++)
 		{
 			for(int j = 0; j < map.length; j++) 
 			{
@@ -39,6 +51,7 @@ public class DungeonMap {
 		{
 			for(int j = -1; j<2;j++)
 				{
+
 				System.out.print(map[nowMyHeight+i][nowMyWidth+j]);
 				}
 			System.out.println();
@@ -51,7 +64,7 @@ public class DungeonMap {
 	{
 		int temp=0;
 		String move = "";
-		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요?");
+		System.out.print("전8 후2 좌4 우6 어디로 이동 할까요?"); //5. 인벤토리 미구현
 		Scanner scan = new Scanner(System.in);
 		while(true) 
 		{
@@ -115,6 +128,9 @@ public class DungeonMap {
 			map[nowMyHeight][nowMyWidth] = "나";
 			}
 			break;
+//		case 5:
+//			//i.inventoryOpen(mainChar,d);
+//			break;
 		default:
 				System.out.println("8,4,6,2만 입력해주세요");
 				break;

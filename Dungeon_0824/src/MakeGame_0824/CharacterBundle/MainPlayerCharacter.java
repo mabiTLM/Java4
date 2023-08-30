@@ -2,11 +2,15 @@ package MakeGame_0824.CharacterBundle;
 
 import java.util.Scanner;
 
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
+
 
 public class MainPlayerCharacter extends CharacterBase
 {
 	//아이템 정보  임시 변수명 템들 정리할때 같이 수정할것
 
+	DungeonMap dungeonMap;
+	
 	public MainPlayerCharacter()
 	{
 		super("주인공",
@@ -30,7 +34,7 @@ public class MainPlayerCharacter extends CharacterBase
 				); 
 	}
 		
-	public void equip()//장비장착
+	public void equip(DungeonMap dungeonMap)//아이템사용
 	{
 		System.out.println("어떤 아이템을 사용 할까요?");
 		Scanner scan = new Scanner(System.in);
@@ -78,6 +82,12 @@ public class MainPlayerCharacter extends CharacterBase
 					setHp(getHp()+totalItem[i].getHpHeal());
 					setMp(getMp()+totalItem[i].getMpHeal());
 					setSp(getSp()+totalItem[i].getSpHeal());
+					System.out.println(totalItem[i].getItemName()+"을 사용했다.");
+					break;
+				}
+				else if((totalItem[i].getItemType()).equals("이동"))
+				{
+					dungeonMap.setFloor(0);
 					System.out.println(totalItem[i].getItemName()+"을 사용했다.");
 					break;
 				}

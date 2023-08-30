@@ -93,7 +93,7 @@ public class MoveInDungeon
 					}
 					else if(b.getPlayerChoice()==3)
 					{
-						v.i.inventoryOpen(mainChar);
+						v.i.inventoryOpen(mainChar,d);
 					}
 					
 					else if(b.getPlayerChoice()==4)

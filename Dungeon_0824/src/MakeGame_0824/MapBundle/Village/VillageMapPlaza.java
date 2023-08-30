@@ -3,6 +3,7 @@ package MakeGame_0824.MapBundle.Village;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 
 public class VillageMapPlaza extends VillageMap
 
@@ -13,7 +14,7 @@ public class VillageMapPlaza extends VillageMap
 	}
 
 	@Override
-	public void villageMapMove()
+	public void villageMapMove(DungeonMap d)
 	{
 		setCurrentLocation(1);
 		printMap();
@@ -47,7 +48,7 @@ public class VillageMapPlaza extends VillageMap
 		}
 		else if(move.equals("5"))
 		{
-			i.inventoryOpen(mainChar);
+			i.inventoryOpen(mainChar,d);
 		}
 		else
 		{

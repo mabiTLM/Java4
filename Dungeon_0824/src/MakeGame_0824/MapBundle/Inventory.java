@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.CharacterBundle.OwnedItem;
+import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 import MakeGame_0824.StoryBundle.StoryText;
 
 public class Inventory
@@ -11,17 +12,18 @@ public class Inventory
 	Scanner scan= new Scanner(System.in);
 	MainPlayerCharacter mainChar;
 	StoryText storyT;
-	
-	public Inventory(MainPlayerCharacter mainChar)
+	DungeonMap dungeonMap;
+	public Inventory(MainPlayerCharacter mainChar,DungeonMap dungeonMap)
 	{
 		this.mainChar=mainChar;
+		this.dungeonMap=dungeonMap;
 	}	
 	OwnedItem o = new OwnedItem();	
 	
 	
 	
 	
-	public void inventoryOpen(MainPlayerCharacter mainChar)
+	public void inventoryOpen(MainPlayerCharacter mainChar,DungeonMap dungeonMap)
 	{
 		String[] inven =mainChar.getInventory();
 		
@@ -63,7 +65,7 @@ public class Inventory
 			switch(temp)
 			{
 			case 1:
-				mainChar.equip();
+				mainChar.equip(dungeonMap);
 				System.out.println();
 				break;
 			case 2:

@@ -71,7 +71,7 @@ public class MoveInVIllage
 				{
 					break;
 				}
-				v.villageMapMove();
+				v.villageMapMove(d);
 				
 			}//마을 while 끝
 		}
