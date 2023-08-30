@@ -78,7 +78,7 @@ public class Inventory
 	
 	public void buyItem(MainPlayerCharacter mainChar, StoryText storyT)
 	{
-		int storyDummy = 7+storyT.getCurrentDay(); //이부분이 갱신이 안된다
+		int storyDummy = 8+storyT.getCurrentDay();
 		OwnedItem[] own = o.buyItemDatabase();
 		if(storyDummy>=own.length)
 		{

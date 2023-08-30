@@ -14,7 +14,7 @@ public class StoryText
 		this.mainChar=mainChar;
 	}
 	private int currentDay = 0; //경과일에 따른 스토리 변경이 있으므로 여기서 계산합니다.
-	private int dayLimit =20; //끝날때가지 남은시간
+	private int dayLimit = 30; //끝날때가지 남은시간
 	private int time=0; //하루시간 목표치까지 행동하면 날짜가 지난다.
 	private int timeLimit=3;
 	private int encountProbability= 25;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
@@ -22,6 +22,8 @@ public class StoryText
 	private int goodCount = 0;
 	private boolean watchAgain=true; //스토리양이 길어지면 중복방지용으로 만들었으나 볼륨이 아직 부족
 	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능
+	
+	private int endingNumber = -1; //엔딩조건맞췄을 때 변동
 	
 	private String[] repeatStory= 
 		{
@@ -135,7 +137,7 @@ public class StoryText
 	
 	public void repeatStoryEvent()
 	{
-		int temp=(int)(Math.random()*repeatStory.length-1);
+		int temp=(int)(Math.random()*(repeatStory.length+1));
 		
 		if(temp==0)//쓰러진 사람
 		{
@@ -164,8 +166,9 @@ public class StoryText
 		}
 		else if(temp==1)//여신상
 			{
+			System.out.println(repeatStory[temp]);
 			while(true) 
-			{
+			{				
 				String tempChoice=scan.nextLine();
 				if(tempChoice.equals("1"))
 				{
@@ -179,7 +182,7 @@ public class StoryText
 				else if(tempChoice.equals("2"))
 				{
 					mainChar.setMoeny(mainChar.getMoney()+1000);
-					System.out.println("금으로 만들어진 부분을 슬쩍했습니다. +1000골드");
+					System.out.println("금으로 만들어진 부분을 슬쩍했습니다. +10000골드");
 					break;
 				}
 				else

@@ -83,8 +83,8 @@ public abstract class CharacterBase
 			System.out.println(getOwnedItem()[i].getItemDescription());
 		}
 		
-		System.out.println("검숙련도 :"+getProficiency()[0]);
-		System.out.println("지팡이숙련도 :"+getProficiency()[1]);
+		System.out.println("검숙련도 :"+(int)getProficiency()[0]);
+		System.out.println("지팡이숙련도 :"+(int)getProficiency()[1]);
 		System.out.println("============================");
 	}
 	
