@@ -78,7 +78,7 @@ public class Inventory
 	
 	public void buyItem(MainPlayerCharacter mainChar, StoryText storyT)
 	{
-		int storyDummy = 8+storyT.getCurrentDay();
+		int storyDummy = 8+(storyT.getCurrentDay()/3);
 		OwnedItem[] own = o.buyItemDatabase();
 		if(storyDummy>own.length)
 		{
