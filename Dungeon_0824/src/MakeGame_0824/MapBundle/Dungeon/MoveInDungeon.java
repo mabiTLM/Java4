@@ -15,7 +15,7 @@ public class MoveInDungeon
 	Battle b;
 	VillageMap v;
 	Inventory i;
-	EnemyActType enemyActType;
+	EnemyActType enemyActType = new EnemyActType();
 	
 	public MoveInDungeon(MainPlayerCharacter mainChar,DungeonMap d,StoryText s,Battle b,VillageMap v)
 	{
@@ -61,7 +61,7 @@ public class MoveInDungeon
 			}
 			s.timeRemaining();
 			s.endingCheck(mainChar);//엔딩체크가 최우선
-			if(mainChar.getHp()<=0)//죽엇을때 끝내기
+			if(mainChar.getHp()<=0||mainChar.getSp()<=0)//죽엇을때 끝내기
 			{
 				break;
 			}
@@ -133,19 +133,29 @@ public class MoveInDungeon
 					}					
 					s.weaponStory();
 					
+					//b.enemyBattleCalculator();
 					//적 행동단
+					enemyActType.enemyAct(0);
+					if(enemyActType.getEnemyActChoice()==0) 
+					{
+						enemyActType.enemyBattleCalculator(mainChar, b.getErray(), b.getEnemyNumber());
+					}
+					if(enemyActType.getEnemyActChoice()==5) 
+					{
+						System.out.println("적이 도망쳤다");
+						break;
+					}
 					
 					
-					b.enemyBattleCalculator();
 					
-					if(mainChar.getHp()<=0)//죽엇을때 끝내기
+					if(mainChar.getHp()<=0||mainChar.getSp()<=0)//죽엇을때 끝내기
 					{
 						System.out.println("당신은 죽었습니다.");
 						break;
 					}
 					
 				}//전투단 끝
-				if(mainChar.getHp()<=0)//죽엇을때 끝내기
+				if(mainChar.getHp()<=0||mainChar.getSp()<=0)//죽엇을때 끝내기
 				{
 					break;
 				}

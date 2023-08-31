@@ -9,7 +9,6 @@ import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 
 public class Battle
 {
-	
 	OwnedItem[] OwnedItem;
 	OwnedSkill[] OwnedSkill;
 	DungeonMap dungeonMap;
@@ -306,6 +305,16 @@ public class Battle
 	OwnedSkill[] getOwnedSkill()
 	{
 		return OwnedSkill;
+	}
+	
+	public EnemyCharacter[] getErray()
+	{
+		return eArray;
+	}
+	
+	public int getEnemyNumber()
+	{
+		 return enemyNumber;
 	}
 	
 	

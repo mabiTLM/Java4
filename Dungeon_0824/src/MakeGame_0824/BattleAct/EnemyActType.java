@@ -10,9 +10,9 @@ import MakeGame_0824.MapBundle.Dungeon.DungeonMap;
 
 public class EnemyActType //몹행동패턴
 {	
-	OwnedItem[] OwnedItem;
-	OwnedSkill[] OwnedSkill;
-	DungeonMap dungeonMap;
+//	OwnedItem[] OwnedItem;
+//	OwnedSkill[] OwnedSkill;
+//	DungeonMap dungeonMap;
 	private int enemyActChoice=0;
 	private MainPlayerCharacter mainChar;
 //	private EnemyCharacter[] eArray;
@@ -24,8 +24,9 @@ public class EnemyActType //몹행동패턴
 		{
 			setEnemyActChoice(0);
 		}
-		if(enemyActChoice==1)
+		else if(enemyActChoice==1)
 		{
+			int tempChoice = (int)Math.random();
 			setEnemyActChoice(5);
 		}
 	}
