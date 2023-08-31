@@ -29,7 +29,8 @@ public class EnemyCharacter extends CharacterBase
 			int atk,
 			int def,
 			int dropMoney,
-			double dropPercent
+			double dropPercent,
+			int enemyActType
 			)
 	{
 		this.name=name;
@@ -42,6 +43,7 @@ public class EnemyCharacter extends CharacterBase
 		this.def=def;
 		this.dropMoney=dropMoney;
 		this.dropPercent=dropPercent;
+		this.enemyActType=enemyActType;
 	}
 	
 	public EnemyCharacter[] enemyFirstFloor = new EnemyCharacter[7];
@@ -50,7 +52,7 @@ public class EnemyCharacter extends CharacterBase
 	{
 		enemyFirstFloor[0] = new EnemyCharacter(
 				"슬라임",
-				new OwnedSkill[0],
+				new OwnedSkill[] {},
 				new String[]{"슬라임 점액"},
 				5,
 				0,
@@ -58,7 +60,8 @@ public class EnemyCharacter extends CharacterBase
 				4,
 				10,
 				100,
-				30);		
+				30,
+				1);		
 		enemyFirstFloor[1] = new EnemyCharacter(
 				"슬라임",
 				new OwnedSkill[0],
@@ -69,7 +72,8 @@ public class EnemyCharacter extends CharacterBase
 				4,
 				10,
 				100,
-				30);
+				30,
+				1);
 		enemyFirstFloor[2] = new EnemyCharacter(
 				"혼 래빗",
 				new OwnedSkill[0],
@@ -80,7 +84,8 @@ public class EnemyCharacter extends CharacterBase
 				4,
 				0,
 				100,
-				30);
+				30,
+				0);
 		enemyFirstFloor[3] = new EnemyCharacter(
 				"혼 래빗",
 				new OwnedSkill[0],
@@ -91,7 +96,8 @@ public class EnemyCharacter extends CharacterBase
 				4,
 				0,
 				100,
-				30);
+				30,
+				0);
 		enemyFirstFloor[4] = new EnemyCharacter(
 				"황금 슬라임",
 				new OwnedSkill[0],
@@ -102,8 +108,8 @@ public class EnemyCharacter extends CharacterBase
 				10,
 				100,
 				1000,
-				10);
-		
+				10,
+				1);		
 		enemyFirstFloor[5] = new EnemyCharacter(
 				"무장한 고블린",
 				new OwnedSkill[0],
@@ -114,18 +120,20 @@ public class EnemyCharacter extends CharacterBase
 				20,
 				20,
 				1000,
-				30);		
+				30,
+				0);		
 		enemyFirstFloor[6] = new EnemyCharacter(
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
 				500,
-				0,
+				3,
 				0,
 				50,
 				50,
 				10000,
-				50);
+				50,
+				2);
 		return enemyFirstFloor;
 	}
 	
@@ -138,23 +146,25 @@ public class EnemyCharacter extends CharacterBase
 				new OwnedSkill[0],
 				new String[]{"녹용"},
 				1000,
-				0,
+				5,
 				0,
 				50,
 				50,
 				10000,
-				50);
+				50,
+				2);
 		enemySecondFloor[1] = new EnemyCharacter(
 				"미친 뿔사슴",
 				new OwnedSkill[0],
 				new String[]{"녹용"},
 				1000,
-				0,
+				5,
 				0,
 				50,
 				50,
 				10000,
-				50);
+				50,
+				2);
 		enemySecondFloor[2] = new EnemyCharacter(
 				"무장한 고블린",
 				new OwnedSkill[0],
@@ -165,7 +175,8 @@ public class EnemyCharacter extends CharacterBase
 				50,
 				50,
 				5000,
-				30);
+				30,
+				0);
 		enemySecondFloor[3] = new EnemyCharacter(
 				"무장한 고블린",
 				new OwnedSkill[0],
@@ -176,18 +187,20 @@ public class EnemyCharacter extends CharacterBase
 				50,
 				50,
 				5000,
-				30);
+				30,
+				0);
 		enemySecondFloor[4] = new EnemyCharacter(
 				"황금 슬라임",
 				new OwnedSkill[0],
 				new String[]{"황금 슬라임 점액"},
-				30,
+				70,
 				0,
 				0,
 				30,
 				3000,
 				20000,
-				10);
+				10,
+				1);
 //		enemySecondFloor[2] = new EnemyCharacter(
 //				"고블린 주술사",
 //				new OwnedSkill[0],
@@ -317,6 +330,11 @@ public class EnemyCharacter extends CharacterBase
 	public double getDropPercent()
 	{
 		return dropPercent;
+	}
+	
+	public int getEnemyActType()
+	{
+		return enemyActType;
 	}
 
 }

@@ -135,11 +135,7 @@ public class MoveInDungeon
 					
 					//b.enemyBattleCalculator();
 					//적 행동단
-					enemyActType.enemyAct(0);
-					if(enemyActType.getEnemyActChoice()==0) 
-					{
-						enemyActType.enemyBattleCalculator(mainChar, b.getErray(), b.getEnemyNumber());
-					}
+					enemyActType.enemyAct(mainChar, b.getErray(), b.getEnemyNumber(),b.getEnemyBattleType());
 					if(enemyActType.getEnemyActChoice()==5) 
 					{
 						System.out.println("적이 도망쳤다");

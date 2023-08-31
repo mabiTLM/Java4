@@ -181,6 +181,7 @@ public class Battle
 				{
 					mainChar.setHp(mainChar.getHp()+o[useSkillNumber].getHpHeal());
 					System.out.println("내 hp :"+mainChar.getHp());
+					mainChar.setMp(mainChar.getMp()-(int)o[useSkillNumber].getConsumeMp());
 				}
 				else
 				{
@@ -212,7 +213,6 @@ public class Battle
 				}
 			}
 		}
-		
 	}
 	
 	
@@ -315,6 +315,11 @@ public class Battle
 	public int getEnemyNumber()
 	{
 		 return enemyNumber;
+	}
+	
+	public int getEnemyBattleType()
+	{
+		return eArray[enemyNumber].getEnemyActType();
 	}
 	
 	
