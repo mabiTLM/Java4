@@ -13,10 +13,23 @@ public class EnemyActType //몹행동패턴
 	OwnedItem[] OwnedItem;
 	OwnedSkill[] OwnedSkill;
 	DungeonMap dungeonMap;
-	private int enemyActChoice;
-//	private MainPlayerCharacter mainChar;
+	private int enemyActChoice=0;
+	private MainPlayerCharacter mainChar;
 //	private EnemyCharacter[] eArray;
 //	private int enemyNumber = 0;
+	
+	public void enemyAct(int enemyActChoice)//공격타입은 아직 더미
+	{
+		if(enemyActChoice==0)
+		{
+			setEnemyActChoice(0);
+		}
+		if(enemyActChoice==1)
+		{
+			setEnemyActChoice(5);
+		}
+	}
+	
 	
 	public void enemyBattleCalculator(MainPlayerCharacter mainChar,EnemyCharacter[] eArray, int enemyNumber) 
 	{	//평타

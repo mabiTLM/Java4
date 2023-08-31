@@ -62,7 +62,7 @@ public abstract class CharacterBase
 	
 	
 	
-	public void Status() 
+	public void status() 
 	{
 		//System.out.println("이름 :" + getName());
 		System.out.println("============================");

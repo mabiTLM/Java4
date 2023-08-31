@@ -104,4 +104,5 @@ public class MainPlayerCharacter extends CharacterBase
 			}
 		}
 	}
+
 }

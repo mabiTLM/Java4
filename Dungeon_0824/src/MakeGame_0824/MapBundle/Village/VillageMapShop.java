@@ -27,6 +27,7 @@ public class VillageMapShop extends VillageMap
 		System.out.println("3.구매한다");
 		System.out.println("4.판매한다");
 		System.out.println("5.인벤토리");
+		System.out.println("6.스테이터스");
 		
 		String move = scan.nextLine();
 		
@@ -52,6 +53,10 @@ public class VillageMapShop extends VillageMap
 		else if(move.equals("5"))
 		{
 			i.inventoryOpen(mainChar,d);
+		}
+		else if(move.equals("6"))
+		{
+			mainChar.status();
 		}
 		else if(move.equals("집"))
 		{

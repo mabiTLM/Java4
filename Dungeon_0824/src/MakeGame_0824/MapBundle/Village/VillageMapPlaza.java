@@ -26,6 +26,7 @@ public class VillageMapPlaza extends VillageMap
 		System.out.println("3.던전입구로");
 		System.out.println("4.상점으로");
 		System.out.println("5.인벤토리");
+		System.out.println("6.스테이터스");
 		
 		
 		String move = scan.nextLine();
@@ -49,6 +50,10 @@ public class VillageMapPlaza extends VillageMap
 		else if(move.equals("5"))
 		{
 			i.inventoryOpen(mainChar,d);
+		}
+		else if(move.equals("6"))
+		{
+			mainChar.status();
 		}
 		else
 		{

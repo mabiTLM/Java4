@@ -58,7 +58,7 @@ public class VillageMapHouse extends VillageMap
 		}
 		else if(move.equals("5"))
 		{
-			mainChar.Status();
+			mainChar.status();
 		}
 		else if(move.equals("6")|move.equals("튜토리얼"))
 		{

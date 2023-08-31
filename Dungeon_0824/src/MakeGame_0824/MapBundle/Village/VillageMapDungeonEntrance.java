@@ -25,6 +25,7 @@ public class VillageMapDungeonEntrance extends VillageMap
 		System.out.println("2.마을 광장으로");
 		System.out.println("3.인벤토리");
 		System.out.println("4.던전에 들어간다");
+		System.out.println("5.스테이터스");
 		
 		String move = scan.nextLine();
 		
@@ -54,6 +55,10 @@ public class VillageMapDungeonEntrance extends VillageMap
 		else if(move.equals("4"))
 		{
 			setCurrentLocation(100);
+		}
+		else if(move.equals("5"))
+		{
+			mainChar.status();
 		}
 		else
 		{

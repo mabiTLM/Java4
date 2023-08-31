@@ -1,6 +1,7 @@
 package MakeGame_0824.MapBundle.Dungeon;
 
 import MakeGame_0824.BattleAct.Battle;
+import MakeGame_0824.BattleAct.EnemyActType;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
 import MakeGame_0824.MapBundle.Inventory;
 import MakeGame_0824.MapBundle.Village.VillageMap;
@@ -14,6 +15,7 @@ public class MoveInDungeon
 	Battle b;
 	VillageMap v;
 	Inventory i;
+	EnemyActType enemyActType;
 	
 	public MoveInDungeon(MainPlayerCharacter mainChar,DungeonMap d,StoryText s,Battle b,VillageMap v)
 	{
@@ -112,7 +114,7 @@ public class MoveInDungeon
 					
 					else if(b.getPlayerChoice()==4)
 					{
-						mainChar.Status();
+						mainChar.status();
 						continue; //적에게 행동권을 안준다.
 					}
 					
@@ -132,6 +134,8 @@ public class MoveInDungeon
 					s.weaponStory();
 					
 					//적 행동단
+					
+					
 					b.enemyBattleCalculator();
 					
 					if(mainChar.getHp()<=0)//죽엇을때 끝내기
