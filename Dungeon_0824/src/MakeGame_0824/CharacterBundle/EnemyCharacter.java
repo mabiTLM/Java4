@@ -13,6 +13,7 @@ public class EnemyCharacter extends CharacterBase
 	private int def;
 	private int dropMoney;
 	private double dropPercent;
+	private int enemyActType;
 
 	public EnemyCharacter() {
 		super();
@@ -101,7 +102,7 @@ public class EnemyCharacter extends CharacterBase
 				10,
 				100,
 				1000,
-				30);
+				10);
 		
 		enemyFirstFloor[5] = new EnemyCharacter(
 				"무장한 고블린",
@@ -110,8 +111,8 @@ public class EnemyCharacter extends CharacterBase
 				50,
 				0,
 				0,
-				30,
-				30,
+				20,
+				20,
 				1000,
 				30);		
 		enemyFirstFloor[6] = new EnemyCharacter(
@@ -128,7 +129,7 @@ public class EnemyCharacter extends CharacterBase
 		return enemyFirstFloor;
 	}
 	
-	public EnemyCharacter[] enemySecondFloor = new EnemyCharacter[3];
+	public EnemyCharacter[] enemySecondFloor = new EnemyCharacter[5];
 	
 	public EnemyCharacter[] secondEnemyDatabase() //층마다 다를수 있으니까 나눠두자
 	{
@@ -155,18 +156,89 @@ public class EnemyCharacter extends CharacterBase
 				10000,
 				50);
 		enemySecondFloor[2] = new EnemyCharacter(
-				"보팔 래빗",
+				"무장한 고블린",
 				new OwnedSkill[0],
-				new String[]{"행운의 토끼발"},
-				2000,
+				new String[]{"강철 검","철 갑옷"},
+				200,
 				0,
 				0,
-				500,
-				500,
-				100000,
-				50);
+				50,
+				50,
+				5000,
+				30);
+		enemySecondFloor[3] = new EnemyCharacter(
+				"무장한 고블린",
+				new OwnedSkill[0],
+				new String[]{"강철 검","철 갑옷"},
+				200,
+				0,
+				0,
+				50,
+				50,
+				5000,
+				30);
+		enemySecondFloor[4] = new EnemyCharacter(
+				"황금 슬라임",
+				new OwnedSkill[0],
+				new String[]{"황금 슬라임 점액"},
+				30,
+				0,
+				0,
+				30,
+				3000,
+				20000,
+				10);
+//		enemySecondFloor[2] = new EnemyCharacter(
+//				"고블린 주술사",
+//				new OwnedSkill[0],
+//				new String[]{""},
+//				1000,
+//				3,
+//				0,
+//				50,
+//				50,
+//				10000,
+//				50);
 		return enemySecondFloor;
 	}
+	
+//	public EnemyCharacter[] secondEnemyDatabase() 복사용도
+//	{
+//		enemySecondFloor[0] = new EnemyCharacter(
+//				"미친 뿔사슴",
+//				new OwnedSkill[0],
+//				new String[]{"녹용"},
+//				1000,
+//				0,
+//				0,
+//				50,
+//				50,
+//				10000,
+//				50);
+//		enemySecondFloor[1] = new EnemyCharacter(
+//				"미친 뿔사슴",
+//				new OwnedSkill[0],
+//				new String[]{"녹용"},
+//				1000,
+//				0,
+//				0,
+//				50,
+//				50,
+//				10000,
+//				50);
+//		enemySecondFloor[2] = new EnemyCharacter(
+//				"보팔 래빗",
+//				new OwnedSkill[0],
+//				new String[]{"행운의 토끼발"},
+//				2000,
+//				0,
+//				0,
+//				500,
+//				500,
+//				100000,
+//				50);
+//		return enemySecondFloor;
+//	}
 	
 	//set모음
 	public void setName(String name) 

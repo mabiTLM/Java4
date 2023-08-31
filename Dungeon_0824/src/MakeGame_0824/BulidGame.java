@@ -31,6 +31,7 @@ public class BulidGame
 		{
 			
 		villageCombine.combineMoveInVillage(mainChar, d, v, s);
+		
 		//던전입장
 		if(d.getFloor()==1) //층수조절
 			{
@@ -47,7 +48,8 @@ public class BulidGame
 			d= new DungeonSecondMap();
 			d.MapSetting();
 		}
-		if(mainChar.getHp()<=0||mainChar.getSp()<=0)
+		
+		if(mainChar.getHp()<=0||mainChar.getSp()<=0)//이동시 종료할수도있어서 여기서 컷해준다.
 		{
 			break;
 		}

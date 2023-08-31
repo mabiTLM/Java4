@@ -3,13 +3,14 @@ package MakeGame_0824.StoryBundle;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
+import MakeGame_0824.CharacterBundle.OwnedItem;
 import MakeGame_0824.CharacterBundle.OwnedSkill;
 import MakeGame_0824.MapBundle.Inventory;
 
 public class StoryText
 {
 	MainPlayerCharacter mainChar;
-	Inventory i;
+	Inventory inven;
 	Scanner scan = new Scanner(System.in);
 	public StoryText(MainPlayerCharacter mainChar)
 	{
@@ -20,9 +21,11 @@ public class StoryText
 	private int time=0; //하루시간 목표치까지 행동하면 날짜가 지난다.
 	private int timeLimit=3;
 	private int encountProbability= 25;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
+	private int eventEncountProbability = 10;
 	private int evilCount = 0;
 	private int goodCount = 0;
-	private boolean watchAgain=true; //스토리양이 길어지면 중복방지용으로 만들었으나 볼륨이 아직 부족
+	private boolean watchAgainBadEvent=true;//함정결단1
+	private boolean weaponBreakTrap=true;//함정결단1
 	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능
 	
 	private int endingNumber = -1; //엔딩조건맞췄을 때 변동
@@ -30,8 +33,16 @@ public class StoryText
 	private String[] repeatStory= 
 		{
 				"쓰러진 사람을 만났습니다.\n1.도와준다.\n2.물건을 훔친다.",
-				"여신상이 있습니다.\n1.기도한다.\n2.부순다",
-				"던전안에서 상인과 마주쳤습니다.\n상인 : 물건 좀 사고 가라구.\n1.물건을 산다.\n2.물건을 훔친다.\n3.무시하고 간다."
+				"여신상이 있습니다.\n1.기도한다.\n2.부순다.",
+				"던전안에서 상인과 마주쳤습니다.\n상인 : 물건 좀 사고 가라구.\n1.물건을 산다.\n2.물건을 훔친다.\n3.무시하고 간다.",
+				"악마의 석상이 있습니다.\n1.기도한다.\n2.부순다.",
+				"함정에 짐이 걸려서 한쪽을 포기해야합니다.\n 1.무기를 포기한다.\n 2.돈을 포기한다.",
+				"이런 날도 있는 법이지.\n누군가 흘린 돈을 주웠습니다.",
+				"이런 날도 있는 법이지.\n돈을 잃어버렸습니다.",
+				"이런 날도 있는 법이지.\n너무 험하게 다뤘을까요? 무기가 부셔졌습니다.",
+				"이런 날도 있는 법이지.\n보석을 주웠습니다.",
+				"이런 날도 있는 법이지.\n함정에 걸렸습니다.",	
+				"이런 날도 있는 법이지.\n안전해보이는 지역을 발견 했습니다. 잠시 쉬어갑니다."
 		};
 	
 	private String[] endingStory=
@@ -53,7 +64,7 @@ public class StoryText
 		{		
 				"동생 : 콜록 콜록... 오늘부터 던전으로 가는거지?\n도시락 싸놨으니까 들고가",
 				"동생 : 너무 무리하지는 마",
-				"동생 : 미안해 나 때문에..",				
+				"동생 : 미안해 나 때문에..",
 		};
 	
 	private String[] dungeonEntranceStory=
@@ -148,9 +159,10 @@ public class StoryText
 		System.out.printf("예상 남은 날짜 : %d\n",getDayLimit()-getCurrentDay());
 	}
 	
-	public void repeatStoryEvent(Inventory i)
+	public void repeatStoryEvent(Inventory inven)
 	{
 		int temp=(int)(Math.random()*(repeatStory.length+1));
+		
 		if(temp==0)//쓰러진 사람
 			{
 			System.out.println(repeatStory[temp]);
@@ -186,14 +198,14 @@ public class StoryText
 				{
 					setGoodCount(getGoodCount()+1);
 					System.out.println("최대스텟이 5 올라갑니다.");
-					mainChar.setMaxHp(mainChar.getMaxHp());
-					mainChar.setMaxMp(mainChar.getMaxMp());
-					mainChar.setMaxSp(mainChar.getMaxSp());
+					mainChar.setMaxHp(mainChar.getMaxHp()+5);
+					mainChar.setMaxMp(mainChar.getMaxMp()+5);
+					mainChar.setMaxSp(mainChar.getMaxSp()+5);
 					break;
 					}
 				else if(tempChoice.equals("2"))
 				{
-					mainChar.setMoeny(mainChar.getMoney()+1000);
+					mainChar.setMoeny(mainChar.getMoney()+10000);
 					System.out.println("금으로 만들어진 부분을 슬쩍했습니다. +10000골드");
 					break;
 					}
@@ -208,30 +220,184 @@ public class StoryText
 			System.out.println(repeatStory[temp]);
 			while(true)
 			{
+				System.out.println("소지금"+mainChar.getMoney());
 				String tempChoice=scan.nextLine();
 				if(tempChoice.equals("1"))
 				{
-					i.buyItem(mainChar, this);
+					inven.buyItem(mainChar, this);
 					break;
-					}
+					
+				}
 				else if(tempChoice.equals("2"))
 				{
 					setEvilCount(getEvilCount()+1);
 					mainChar.setHp(mainChar.getHp()-100);
 					System.out.println("던전에서 장사를 하는 사람이 약할리가 없지요. 반격당해서 100의 피해를 입었습니다.");
 					break;
-					}
+					
+				}
 				else if(tempChoice.equals("3"))
 				{
 					break;
-					}
+					
+				}
 				else
 				{
 					System.out.println("다시 선택하세요");
+					
+				}
+				
+			}
+		}
+		else if(temp==3)//악마상
+		{
+		System.out.println(repeatStory[temp]);
+		while(true)
+		{
+			String tempChoice=scan.nextLine();
+			if(tempChoice.equals("1"))
+			{
+				System.out.println("적이나 이벤트와 조우할 확률이 올라갑니다.");
+				setEventEncountProbability(getEventEncountProbability()+5);
+				setEncountProbability(getEncountProbability()+5);
+				break;
+				
+			}
+			else if(tempChoice.equals("2"))
+			{
+				System.out.println("적이나 이벤트와 조우할 확률이 내려갑니다.");
+				setEventEncountProbability(getEventEncountProbability()-5);
+				setEncountProbability(getEncountProbability()-5);
+				break;
+				
+			}
+			else
+			{
+				System.out.println("다시 선택하세요");
+				
+			}
+			
+		}
+	}
+		
+		else if(temp==4&&getWatchAgainBadEvent()&&!mainChar.getOwnedItem()[0].getItemName().equals("맨손"))//함정에서의 결단
+		{
+			System.out.println(repeatStory[temp]);
+			while(true)
+			{
+				String tempChoice=scan.nextLine();
+				if(tempChoice.equals("1"))
+				{
+					System.out.println(mainChar.getOwnedItem()[0].getItemName() + "를 잃어버렸습니다.");
+					OwnedItem[] hand = {new OwnedItem("맨손","무기","주먹", 1, 0,"맨손 : 공격력 1")};
+					mainChar.setOwnedItem(hand, 0);
+					this.setWatchAgainBadEvent(false);
+					break;
+					
+				}
+				else if(tempChoice.equals("2"))
+				{
+					System.out.println("돈을 잃어버렸습니다.");
+					mainChar.setMoeny(0);
+					this.setWatchAgainBadEvent(false);
+					break;
+					
+				}
+				else
+				{
+					System.out.println("다시 선택하세요");
+					
+				}
+				
+			}
+		
+		}
+		else if(temp==5)//돈을 주운날
+		{
+			int getMoneyEvent = (int)((Math.random()*20000)+100);
+			System.out.println(repeatStory[temp] + getMoneyEvent+"골드");			
+			mainChar.setMoeny(getMoneyEvent+mainChar.getMoney());		
+		}
+		else if(temp==6)//돈을 잃은날
+		{
+			int loseMoneyEvent = (int)((Math.random()*5000)+100);
+			System.out.println(repeatStory[temp]);
+			mainChar.setMoeny(mainChar.getMoney()-loseMoneyEvent);		
+		}
+		else if(temp==7&&getWeaponBreakTrap()&&!mainChar.getOwnedItem()[0].getItemName().equals("맨손"))//무기가 부셔진날 반복x
+		{
+			System.out.println(repeatStory[temp]);
+			System.out.println(mainChar.getOwnedItem()[0].getItemName() + "가 부셔젔습니다.");
+			OwnedItem[] hand = {new OwnedItem("맨손","무기","주먹", 1, 0,"맨손 : 공격력 1")};
+			mainChar.setOwnedItem(hand, 0);
+			this.setWeaponBreakTrap(false);
+		}
+		
+		else if(temp==8)//보석줍기
+		{
+			int jewel = (int)((Math.random()*100001));
+			String tempJewel = "";
+			
+			if(jewel>=100001)
+			{
+				tempJewel="검은 보석";
+			}
+			else if(jewel>=50001)
+			{
+				tempJewel="노란 보석";
+			}
+			else if(jewel>=10001)
+			{
+				tempJewel="파란 보석";
+			}
+			else
+			{
+				tempJewel="붉은 보석";
+			}
+			
+			System.out.println(repeatStory[temp] + "  "+tempJewel);
+			String[] tempInven = {};
+			if(mainChar.getInventory()[mainChar.getInventory().length-1].isEmpty()==false)//인벤토리 늘리기
+			{
+				tempInven = new String[mainChar.getInventory().length+5];
+				for(int i = 0; i<tempInven.length; i++)
+				{
+					tempInven[i]="";
+				}
+				for(int j = 0; j<mainChar.getInventory().length; j++)
+				{
+					tempInven[j]=mainChar.getInventory()[j];
+				}
+				mainChar.setInventory(tempInven);
+			}
+			tempInven = mainChar.getInventory();
+				for(int i = 0; i<tempInven.length; i++)
+				{
+					if(tempInven[i].isEmpty())
+					{
+						tempInven[i]=tempJewel;
+						mainChar.setInventory(tempInven);
+						break;
 					}
 				}
-			}
-		}	
+		}
+		
+		else if(temp==9)//함정
+		{
+			int tempDamage = (int)((Math.random()*30)+1);
+			System.out.println(repeatStory[temp] + tempDamage + "의 데미지를 입습니다.");
+			mainChar.setHp(mainChar.getHp()-tempDamage);
+		}
+		else if(temp==10)//휴식 쉬어가는기간
+		{
+			int tempHeal = (int)((Math.random()*60)+1);
+			System.out.println(repeatStory[temp] + tempHeal + "회복합니다.");
+			mainChar.setHp(mainChar.getHp()+tempHeal);
+		}
+		
+	}	
+	
+	
 	public void endingCheck(MainPlayerCharacter mainChar)
 	{
 		if((mainChar.getHp()<=0|mainChar.getSp()<=0)&&getEndingCheck())//사망을 최우선으로
@@ -282,9 +448,9 @@ public class StoryText
 	{
 		this.time=time;
 	}
-	public void setWatchAgain(boolean watchAgain)
+	public void setWatchAgainBadEvent(boolean watchAgainBadEvent)
 	{
-		this.watchAgain=watchAgain;
+		this.watchAgainBadEvent=watchAgainBadEvent;
 	}
 	public void setEvilCount(int evilCount)
 	{
@@ -299,6 +465,27 @@ public class StoryText
 		this.endingCheck=endingCheck;
 	}
 	
+	public void setEventEncountProbability(int eventEncountProbability)
+	{
+		if(eventEncountProbability<1)
+		{
+			eventEncountProbability=2;
+		}
+		this.eventEncountProbability=eventEncountProbability;
+	}
+	public void setEncountProbability(int encountProbability)
+	{
+		if(encountProbability<1)
+		{
+			encountProbability=2;
+		}
+		this.encountProbability=encountProbability;
+	}
+	
+	public void setWeaponBreakTrap(boolean weaponBreakTrap)
+	{
+		this.weaponBreakTrap = weaponBreakTrap;
+	}
 	
 	
 	
@@ -314,6 +501,10 @@ public class StoryText
 		return houseStory[num];
 	}
 	
+	public int getEventEncountProbability()
+	{
+		return eventEncountProbability;
+	}
 	
 	public String[] getDungeonEntranceStory()
 	{
@@ -322,6 +513,11 @@ public class StoryText
 	public String getDungeonEntranceStory(int num) //내부겟
 	{
 		return dungeonEntranceStory[num];
+	}
+	
+	public boolean getWeaponBreakTrap()
+	{
+		return weaponBreakTrap;
 	}
 	
 	
@@ -389,5 +585,9 @@ public class StoryText
 	public boolean getEndingCheck()
 	{
 		return endingCheck;
+	}
+	public boolean getWatchAgainBadEvent()
+	{
+		 return watchAgainBadEvent;
 	}
 }

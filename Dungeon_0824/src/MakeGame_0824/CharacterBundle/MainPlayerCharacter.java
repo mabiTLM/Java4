@@ -73,7 +73,7 @@ public class MainPlayerCharacter extends CharacterBase
 				{
 					OwnedItem[] OwnedItem = new OwnedItem[2];
 					OwnedItem[1] = totalItem[i];
-					setInventory(getOwnedItem()[0].getItemName(),tempItemSlot);
+					setInventory(getOwnedItem()[1].getItemName(),tempItemSlot);
 					setOwnedItem(OwnedItem,1);
 					break;
 				}

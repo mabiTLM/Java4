@@ -37,8 +37,7 @@ public class Battle
 			this.eArray = enemyChar.secondEnemyDatabase();
 		}
 		setEnemyNumber((int)(Math.random()*(eArray.length)));
-		System.out.println(eArray.length);
-		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다");
+		System.out.println("적 : "+eArray[enemyNumber].getName()+"(이)가 나타났다"); //2층 오류
 		System.out.println("적hp"+eArray[enemyNumber].getHp());
 	}
 	
@@ -84,8 +83,10 @@ public class Battle
 			tempProficiency=(int)mainChar.getProficiency()[1];
 			mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);
 		}
-		System.out.println("장작한 아이템" + o[0].getItemName());
-		System.out.println("공격 " + (o[0].getWeaponAtk()+tempProficiency));
+		System.out.println();
+		System.out.println("당신은 " + o[0].getItemName() + "으로 공격했다.");
+		System.out.println("최종공격력 " + (o[0].getWeaponAtk()+tempProficiency));
+		System.out.println();
 		tempDamage=o[0].getWeaponAtk()+tempProficiency-eArray[enemyNumber].getDef();		
 		if(tempDamage<0)
 		{
@@ -100,7 +101,8 @@ public class Battle
 	{		
 		int tempDamage = 0;
 		OwnedItem[] o = mainChar.getOwnedItem();
-		System.out.println("적의 공격 " + eArray[enemyNumber].getAtk());
+		System.out.println();
+		System.out.println(eArray[enemyNumber].getName()+"의 공격" + eArray[enemyNumber].getAtk());
 		tempDamage=eArray[enemyNumber].getAtk()-o[1].getWeaponDef();
 		if(tempDamage<0)
 		{
@@ -192,14 +194,16 @@ public class Battle
 			{
 				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
 				{
+					int tempDamage=1;
 					int tempProficiency = 1;
 					if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];
-						mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);	
+						mainChar.setProficiency(mainChar.getProficiency()[1]+0.10, 1);
+						tempDamage=mainChar.getOwnedItem()[0].getWeaponAtk();
 					}
-					System.out.println("공격 " + o[useSkillNumber].getAtk()*tempProficiency);
-					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk()*tempProficiency);
+					System.out.println("공격 " + o[useSkillNumber].getAtk()*tempProficiency*tempDamage);
+					eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()-o[useSkillNumber].getAtk()*tempProficiency*tempDamage);
 					System.out.println("적 hp :"+eArray[enemyNumber].getHp());
 					mainChar.setMp(mainChar.getMp()-(int)o[useSkillNumber].getConsumeMp());
 				}

@@ -80,9 +80,9 @@ public class Inventory
 	{
 		int storyDummy = 8+storyT.getCurrentDay();
 		OwnedItem[] own = o.buyItemDatabase();
-		if(storyDummy>=own.length)
+		if(storyDummy>own.length)
 		{
-			storyDummy=own.length-1;
+			storyDummy=own.length;
 		}
 		
 		System.out.println("좋은 물건이 아주 많아");

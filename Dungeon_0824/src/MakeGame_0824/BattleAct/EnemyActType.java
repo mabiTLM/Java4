@@ -13,6 +13,7 @@ public class EnemyActType //몹행동패턴
 	OwnedItem[] OwnedItem;
 	OwnedSkill[] OwnedSkill;
 	DungeonMap dungeonMap;
+	private int enemyActChoice;
 //	private MainPlayerCharacter mainChar;
 //	private EnemyCharacter[] eArray;
 //	private int enemyNumber = 0;
@@ -35,4 +36,20 @@ public class EnemyActType //몹행동패턴
 	{
 		
 	}
+	
+	public void enemyRunAway()
+	{
+		
+	}
+	
+	public void setEnemyActChoice(int enemyActChoice)
+	{
+		this.enemyActChoice=enemyActChoice;
+	}
+	
+	public int getEnemyActChoice()
+	{
+		return enemyActChoice;
+	}
+	
 }

@@ -14,14 +14,14 @@ public class DungeonFirstMapReverse extends DungeonMap
 		setMap(new int[][]//하나의 던전을 돌려서 사용한다
 		{
 			{2,2,2,2,2,2,2,2,3,2},
-			{2,0,2,2,0,0,0,2,0,2},
+			{2,0,2,2,0,0,0,2,1,2},
 			{2,0,2,2,0,2,0,2,0,2},
 			{2,0,2,2,0,2,0,2,0,2},
 			{2,0,0,0,0,2,0,2,0,2},
 			{2,0,2,0,2,2,0,2,0,2},
 			{2,0,2,0,2,0,0,2,0,2},
 			{2,0,2,0,2,2,0,0,0,2},
-			{2,1,2,0,0,2,2,2,0,2},
+			{2,0,2,0,0,2,2,2,0,2},
 			{2,4,2,2,2,2,2,2,2,2}
 		});
 	
@@ -56,7 +56,7 @@ public class DungeonFirstMapReverse extends DungeonMap
 		case 8:
 			if(firstMap[nowMyHeight-1][nowMyWidth]==3)
 			{
-				setFloor(getFloor()+1);
+				setFloor(-getFloor()+1);
 				break;
 			}			
 			else if(firstMap[nowMyHeight-1][nowMyWidth]==0)
@@ -69,7 +69,7 @@ public class DungeonFirstMapReverse extends DungeonMap
 		case 2:
 			if(firstMap[nowMyHeight+1][nowMyWidth]==4)
 			{
-				setFloor(getFloor()-1);
+				setFloor(-getFloor()-1);
 				break;
 			}	
 			else if(firstMap[nowMyHeight+1][nowMyWidth]==0)

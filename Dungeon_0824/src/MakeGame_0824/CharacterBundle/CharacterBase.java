@@ -172,6 +172,10 @@ public abstract class CharacterBase
 	
 	public void setMoeny(int money)
 	{
+		if(money<0)
+		{
+			money=0;
+		}
 		this.money=money;
 	}
 	

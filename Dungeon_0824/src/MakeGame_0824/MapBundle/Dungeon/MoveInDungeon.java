@@ -24,8 +24,29 @@ public class MoveInDungeon
 		this.v=v;
 	}
 	
+	public void moveFloor()
+	{
+		if(d.getFloor()==1) //층수조절
+			{
+			d= new DungeonFirstMap();
+			d.MapSetting();			
+			}
+		else if(d.getFloor()==-1)
+		{
+			d= new DungeonFirstMapReverse();
+			d.MapSetting();
+			
+		}
+		else if(d.getFloor()==2)
+		{
+			d= new DungeonSecondMap();
+			d.MapSetting();			
+		}
+	}
+	
 	public void moveInDungeon(MainPlayerCharacter mainChar,DungeonMap d, StoryText s,Battle b,VillageMap v,Inventory i)
 	{
+		
 		while(true) 
 		{
 
@@ -57,6 +78,8 @@ public class MoveInDungeon
 				while(true) 
 				{
 					b.battleChoice();//싸움 선택지
+					//플레이어행동				
+					
 					if(b.getPlayerChoice()==1)
 					{
 						b.battleCalculator();
@@ -67,12 +90,6 @@ public class MoveInDungeon
 							b.battelFinish();
 							break;
 							}
-						b.enemyBattleCalculator();
-						if(mainChar.getHp()<=0)
-						{
-							System.out.println("당신은 죽었습니다.");
-							break;
-						}
 					}
 					
 					else if(b.getPlayerChoice()==2)
@@ -85,22 +102,18 @@ public class MoveInDungeon
 						mainChar.setMoeny(mainChar.getMoney()+b.getEnemyPrice());
 						b.battelFinish();
 						break;
-						}							
-						b.enemyBattleCalculator();
-						if(mainChar.getHp()<=0)
-						{
-							System.out.println("당신은 죽었습니다.");
-							break;
 						}
 					}
 					else if(b.getPlayerChoice()==3)
 					{
 						v.i.inventoryOpen(mainChar,d);
+						continue; //적에게 행동권을 안준다.
 					}
 					
 					else if(b.getPlayerChoice()==4)
 					{
 						mainChar.Status();
+						continue; //적에게 행동권을 안준다.
 					}
 					
 					else if(b.getPlayerChoice()==5)
@@ -114,11 +127,18 @@ public class MoveInDungeon
 						else
 						{
 							System.out.println("도망에 실패했다.");
-							b.enemyBattleCalculator();
 						}
-					}
-					
+					}					
 					s.weaponStory();
+					
+					//적 행동단
+					b.enemyBattleCalculator();
+					
+					if(mainChar.getHp()<=0)//죽엇을때 끝내기
+					{
+						System.out.println("당신은 죽었습니다.");
+						break;
+					}
 					
 				}//전투단 끝
 				if(mainChar.getHp()<=0)//죽엇을때 끝내기
@@ -129,7 +149,7 @@ public class MoveInDungeon
 			}
 			
 			int repeatStoryEncount = (int)(Math.random()*100);//스토리
-			if(repeatStoryEncount<10)
+			if(repeatStoryEncount<s.getEventEncountProbability())
 			{
 				s.repeatStoryEvent(i);
 			}
