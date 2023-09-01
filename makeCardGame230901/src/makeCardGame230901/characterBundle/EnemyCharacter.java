@@ -2,12 +2,11 @@ package makeCardGame230901.characterBundle;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
 
-public abstract class CharacterBase 
+public class EnemyCharacter extends CharacterBase 
 {
 	private String name;
 	private TotalItem[] inventory;//가진아이템
-	private TotalCardBase[] cardDeck;//덱, 무기위치
-	private TotalCardBase[] hand;
+	private TotalCardBase[] dropCard;//굳이 몹한테 넣어야될까?
 	private int hp;
 	private int mp;
 	private int maxHp=9999999;
@@ -15,37 +14,11 @@ public abstract class CharacterBase
 	private int atk;
 	private int def;
 	private int money;
-	private int speed;//속도
-	private int avoidanceRate;//회피율 일단 보류
-	private int accuracy;//명중률
+	private int speed;
 	
-	CharacterBase(){}
+	public EnemyCharacter(){}
 	
-	
-	CharacterBase(
-			String name,
-			TotalItem[] inventory,
-			TotalCardBase[] cardDeck,
-			TotalCardBase[] hand,
-			int maxHp,
-			int maxMp,
-			int hp,
-			int mp,
-			int money
-			)
-	{//플레이어블 캐릭터
-		this.name=name;
-		this.inventory=inventory;
-		this.cardDeck=cardDeck;
-		this.hand=hand;
-		this.maxHp=maxHp;
-		this.maxMp=maxMp;
-		this.hp=hp;
-		this.mp=mp;
-		this.money=money;
-	}
-	
-	CharacterBase(
+	EnemyCharacter(
 			String name,
 			int maxHp,
 			int maxMp,
@@ -53,6 +26,7 @@ public abstract class CharacterBase
 			int mp,
 			int atk,
 			int def,
+			int money,
 			int speed
 			)
 	{//적 캐릭터
@@ -63,13 +37,20 @@ public abstract class CharacterBase
 		this.mp=mp;
 		this.atk=atk;
 		this.def=def;
+		this.money=money;
 		this.speed=speed;
 	}
 	
-
+	EnemyCharacter[] stageEnemy = new EnemyCharacter[3];
 	
+	public EnemyCharacter[] firstStageData()
+	{
+		stageEnemy[0] = new EnemyCharacter("슬라임",30,0,30,0,5,0,100,5);
+		stageEnemy[1] = new EnemyCharacter("돌멩이",30,0,30,0,5,0,100,5);
+		stageEnemy[2] = new EnemyCharacter("골렘",30,0,30,0,5,0,100,5);
+		return stageEnemy;
+	}
 	
-	//set 모음
 	
 	public void setMaxHp(int maxHp)
 	{
@@ -97,10 +78,6 @@ public abstract class CharacterBase
 			mp=getMaxMp();
 		}
 		this.mp=mp;
-	}
-	public void setHand(TotalCardBase[] hand)
-	{
-		this.hand=hand;
 	}
 	
 	public void setInventory(TotalItem[] inventory)
@@ -173,15 +150,11 @@ public abstract class CharacterBase
 	
 	public TotalCardBase[] getCardDeck()
 	{
-		return cardDeck;		
+		return dropCard;		
 	}
 	
 	public int getSpeed()
 	{
 		return speed;
-	}
-	public TotalCardBase[] getHand()
-	{
-		return hand;
 	}
 }

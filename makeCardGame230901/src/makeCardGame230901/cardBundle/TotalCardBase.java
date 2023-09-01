@@ -42,7 +42,10 @@ public class TotalCardBase {
 	
 	public CardType getCardType()
 	{
-		return cardType;
-		
+		return cardType;		
+	}
+	
+	public String getCardName() {
+		return cardName;
 	}
 }
