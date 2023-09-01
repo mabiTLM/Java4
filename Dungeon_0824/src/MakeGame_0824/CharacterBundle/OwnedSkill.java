@@ -11,6 +11,13 @@ public class OwnedSkill
 	private int spHeal;	
 	private String skillDescription;
 	
+	public enum skill
+	{
+		psy,
+		magic,
+		heal
+	}
+	
 	public OwnedSkill()
 	{
 		

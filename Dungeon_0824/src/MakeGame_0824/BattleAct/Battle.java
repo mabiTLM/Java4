@@ -195,7 +195,7 @@ public class Battle
 				if(mainChar.getMp()-o[useSkillNumber].getConsumeMp()>=0)
 				{
 					int tempDamage=1;
-					int tempProficiency = 1;
+					int tempProficiency = 0;
 					if(mainChar.getOwnedItem()[0].getWeaponType()=="지팡이") //지팡이 숙련도
 					{
 						tempProficiency=(int)mainChar.getProficiency()[1];

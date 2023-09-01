@@ -30,7 +30,7 @@ public class EnemyActType //몹행동패턴
 			enemyBattleCalculator(mainChar,eArray,enemyNumber);			
 			System.out.println("슬라임이 녹고 있다. 방어력이 올라간다.");
 			eArray[enemyNumber].setDef(eArray[enemyNumber].getDef()+1);
-			if(eArray[enemyNumber].getAtk()-o[1].getWeaponDef()<0||eArray[enemyNumber].getHp()<=2)
+			if(eArray[enemyNumber].getAtk()-o[1].getWeaponDef()<=0||eArray[enemyNumber].getHp()<=2)
 			{
 				setEnemyActChoice(5);			
 			}
@@ -42,9 +42,7 @@ public class EnemyActType //몹행동패턴
 			if(eArray[enemyNumber].getHp()<=100)
 			{
 				System.out.println("뿔사슴이 광포화한 상태입니다.");
-				eArray[enemyNumber].setAtk(eArray[enemyNumber].getAtk()+100);
-				enemyBattleCalculator(mainChar,eArray,enemyNumber);
-				enemyBattleCalculator(mainChar,eArray,enemyNumber);
+				eArray[enemyNumber].setAtk(eArray[enemyNumber].getAtk()+50);
 			}
 			
 			enemyBattleCalculator(mainChar,eArray,enemyNumber);
@@ -55,6 +53,7 @@ public class EnemyActType //몹행동패턴
 				System.out.println("뿔사슴이 회복합니다.");
 				eArray[enemyNumber].setMp(eArray[enemyNumber].getMp()-1);
 				eArray[enemyNumber].setHp(eArray[enemyNumber].getHp()+100);
+				System.out.println("적의 체력 : "+eArray[enemyNumber].getHp());
 				
 			}
 			
