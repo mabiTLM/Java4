@@ -1,6 +1,6 @@
 package makeDetective_0830.characterBundle;
 
-public class CharacterBase implements CharacterInterface
+public abstract class CharacterBase implements CharacterInterface
 {
 	private String name;
 	private String[] inventory;//가진아이템
@@ -120,12 +120,6 @@ public class CharacterBase implements CharacterInterface
 	public int getMoney()
 	{
 		return money;
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
