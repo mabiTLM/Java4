@@ -19,7 +19,7 @@ public class Wrapper {
 		// byte, short, int => -128 ~ 127
 		// byte => 최소값 : -128 / 최대값 : 127
 		// short => -32768 ~ 32767
-		// int => 아몰랑, -21억 ~ 21억
+		// int => 약 -21억 ~ 21억
 		byte temp = 127;
 		System.out.println(++temp);
 		System.out.println(--temp);
