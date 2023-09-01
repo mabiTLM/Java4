@@ -418,7 +418,7 @@ public class StoryText
 			System.out.println(getEndingStory()[3]);
 			setEndingCheck(false);
 		}
-		else if(getGoodCount()>=100&&getEndingCheck())//명성
+		else if(getGoodCount()>=50&&getEndingCheck())//명성
 		{
 			System.out.println(getEndingStory()[4]);
 			setEndingCheck(false);

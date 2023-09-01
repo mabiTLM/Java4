@@ -102,7 +102,7 @@ public class OwnedItem
 			totalItem[i] = new OwnedItem();//null오류 방지는 가능하지만 그만큼 실행이 많이됩니다.
 		}
 		
-		totalItem[0] = new OwnedItem("완치약","이벤트",36500.0,500000,"완치약 : 이 약만 있으면... 가격 500000");
+		totalItem[0] = new OwnedItem("완치약","이벤트",36500.0,400000,"완치약 : 이 약만 있으면... 가격 400000");
 		totalItem[1] = new OwnedItem("연명약","이벤트",30.0,10000,"연명약 : 기간을 30일 늘려준다");		
 		
 		totalItem[2] = new OwnedItem("작은 hp포션","회복",50,0,0,100,"작은 hp포션 : 생명력을 50회복한다");
@@ -150,7 +150,7 @@ public class OwnedItem
 	
 	public OwnedItem[] buyItemDatabase()//상점 아이템목록
 	{	
-		buyItem[0] = new OwnedItem("완치약","이벤트",36500.0,500000,"완치약 : 이 약만 있으면... 가격 500000");
+		buyItem[0] = new OwnedItem("완치약","이벤트",36500.0,400000,"완치약 : 이 약만 있으면... 가격 400000");
 		buyItem[1] = new OwnedItem("연명약","이벤트",30.0,10000,"연명약 : 기간을 30일 늘려준다 가격 10000");
 		buyItem[2] = new OwnedItem("던전탈출로프","이동", 0, 50,"던전탈출로프 : 전투가 끝난 후 던전에서 탈출한다. 마을에선 효과가 없다. 가격 50");//던전이동용
 		

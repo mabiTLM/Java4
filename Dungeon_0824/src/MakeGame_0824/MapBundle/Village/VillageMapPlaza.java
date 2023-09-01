@@ -45,7 +45,7 @@ public class VillageMapPlaza extends VillageMap
 		}
 		else if(move.equals("4")|move.equals("상점"))
 		{
-			setCurrentLocation(3);		
+			setCurrentLocation(3);
 		}
 		else if(move.equals("5"))
 		{
