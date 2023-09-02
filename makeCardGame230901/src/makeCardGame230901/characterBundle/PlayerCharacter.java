@@ -5,6 +5,18 @@ import makeCardGame230901.cardBundle.CardType;
 
 
 public class PlayerCharacter extends CharacterBase {
+	
+	private String name;
+	private TotalItem[] inventory;//가진아이템
+	private TotalCardBase[] cardDeck;//덱, 무기위치
+	private TotalCardBase[] hand;
+	private int hp;
+	private int mp;
+	private int maxHp=9999999;
+	private int maxMp;
+	private int money;
+	private int speed;//속도
+	
 	public PlayerCharacter()
 	{
 		super(
@@ -40,4 +52,9 @@ public class PlayerCharacter extends CharacterBase {
 		tempHand[getHand().length]=drawCard;
 		setHand(tempHand);
 	}
+	
+//	public void setHand(TotalCardBase[] hand)
+//	{
+//		this.hand=hand;
+//	}
 }
