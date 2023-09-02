@@ -56,9 +56,9 @@ public class Battle
 				player.drawToPlayerHand(tempBattleDeck[topOfCard]);
 				topOfCard++;
 				}
-			else if(tempGraveCard!=null)
+			else if(tempGraveCard!=null)//덱을 다쓰면 묘지를 덱으로 넣고 다시 섞는다
 			{
-				tempBattleDeck=tempGraveCard;
+				tempBattleDeck=tempGraveCard;//묘지를 덱에 넣고 묘지는 비워야하니까 깊은복사가 필요 수정
 				cardShuffle();
 				i--;				
 			}
