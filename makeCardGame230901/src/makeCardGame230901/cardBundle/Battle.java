@@ -49,7 +49,7 @@ public class Battle
 			temp=(int)(Math.random()*tempBattleDeck.length);
 			tempSuffleDeck = tempBattleDeck[i];
 			tempBattleDeck[i]=tempBattleDeck[temp];
-			tempBattleDeck[temp] = tempSuffleDeck;			
+			tempBattleDeck[temp] = tempSuffleDeck;
 		}
 		deckSize=tempBattleDeck.length;
 	}
