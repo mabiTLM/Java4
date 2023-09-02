@@ -58,7 +58,9 @@ public class Battle
 				}
 			else if(tempGraveCard!=null)//덱을 다쓰면 묘지를 덱으로 넣고 다시 섞는다
 			{
-				tempBattleDeck=tempGraveCard;//묘지를 덱에 넣고 묘지는 비워야하니까 깊은복사가 필요 수정
+				tempBattleDeck=tempGraveCard;//묘지를 덱에 넣고 묘지를 비운다
+
+tempGraveCard=null;
 				cardShuffle();
 				i--;				
 			}
@@ -84,10 +86,12 @@ public class Battle
 	{
 		System.out.println("몇번 적을 타겟합니까?");
 		target = scan.nextInt();
+
+//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까
 	}
 
 	public void useCard()
-	{
+	{//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 사용한 카드를 묘지로 보낸다
 			System.out.println(currentEnemy[target-1].getName());
 	}
 }
