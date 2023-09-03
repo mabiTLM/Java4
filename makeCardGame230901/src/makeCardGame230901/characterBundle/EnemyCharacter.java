@@ -15,6 +15,7 @@ public class EnemyCharacter extends CharacterBase
 	private int def;
 	private int money;
 	private int speed;
+	private boolean enemyTurn = false;
 	
 	public EnemyCharacter(){}
 	
@@ -45,10 +46,15 @@ public class EnemyCharacter extends CharacterBase
 	
 	public EnemyCharacter[] firstStageData()
 	{
-		stageEnemy[0] = new EnemyCharacter("슬라임",30,0,30,0,5,0,100,5);
-		stageEnemy[1] = new EnemyCharacter("돌멩이",30,0,30,0,5,0,100,5);
-		stageEnemy[2] = new EnemyCharacter("골렘",30,0,30,0,5,0,100,5);
+		stageEnemy[0] = new EnemyCharacter("슬라임",30,0,30,0,5,0,100,10);
+		stageEnemy[1] = new EnemyCharacter("돌멩이",30,0,30,0,5,0,100,10);
+		stageEnemy[2] = new EnemyCharacter("골렘",30,0,30,0,5,0,100,10);
 		return stageEnemy;
+	}
+	
+	
+	public void status() {
+		System.out.println("체력:"+getHp()+" 쉴드:" + getDef());
 	}
 	
 	
@@ -103,11 +109,21 @@ public class EnemyCharacter extends CharacterBase
 		this.speed = speed;
 	}
 	
+	public void setEnemyTurn(boolean enemyTurn)
+	{
+		this.enemyTurn=enemyTurn;
+	}
+	
 	
 	//get 모음
 	public String getName() 
 	{
 		return name;
+	}
+	
+	public boolean getEnemyTurn()
+	{
+		return enemyTurn;
 	}
 	
 	public int getHp() 

@@ -40,6 +40,7 @@ public class PlayerCharacter extends CharacterBase {
 				5,
 				100,
 				5,
+				10,
 				0);
 	}
 	
@@ -53,8 +54,8 @@ public class PlayerCharacter extends CharacterBase {
 		setHand(tempHand);
 	}
 	
-//	public void setHand(TotalCardBase[] hand)
-//	{
-//		this.hand=hand;
-//	}
+	public void status() {
+		System.out.println("내 체력:"+getHp()+" 쉴드:" + getDef());
+	}
+	
 }

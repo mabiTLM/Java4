@@ -31,6 +31,7 @@ public abstract class CharacterBase
 			int maxMp,
 			int hp,
 			int mp,
+			int speed,
 			int money
 			)
 	{//플레이어블 캐릭터
@@ -42,6 +43,7 @@ public abstract class CharacterBase
 		this.maxMp=maxMp;
 		this.hp=hp;
 		this.mp=mp;
+		this.speed=speed;
 		this.money=money;
 	}
 	
@@ -119,6 +121,10 @@ public abstract class CharacterBase
 			money=0;
 		}
 		this.money=money;
+	}
+	public void setDef(int def)
+	{
+		this.def=def;
 	}
 	
 	public void setSpeed(int speed)

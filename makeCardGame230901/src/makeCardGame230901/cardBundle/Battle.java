@@ -102,13 +102,15 @@ public class Battle
 			else {
 				System.out.print((i+1)+currentEnemy[i].getName()+"	");
 			}
+			currentEnemy[i].status();
 		}
 		
 	}
 	
-	public void targetLockOn()
+	public void targetLockOn(BattleCombine battleCombine)//전투가 거의다 타겟정하는대서 이뤄진다.
 	{
 		while(true) {
+			player.status();
 			watchEnemy();
 			watchPlayerHand();
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
@@ -143,17 +145,59 @@ public class Battle
 			else
 			{
 				useCard();
+				
+				//여기서 적 사망 처리해야한다.
+				
+				if(currentEnemy[target-1].getHp()<=0)
+				{
+					EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
+					int tempSortBlank=0;
+					for(int i = 0; i <tempSort.length;i++)
+					{
+						if(i==target-1)
+						{
+							tempSortBlank++;
+						}						
+						tempSort[i]=currentEnemy[i+tempSortBlank];
+					}
+					currentEnemy=tempSort;
+					
+					//적이 죽었을때 행동게이지도 수정해야한다.
+					tempSortBlank=0;
+					int[] tempEnemyTurnGaze = new int[battleCombine.getEnemyTurnGaze().length-1];
+					for(int i = 0; i <tempEnemyTurnGaze.length;i++)
+					{
+						if(i==target-1)
+						{
+							tempSortBlank++;
+						}						
+						tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
+					}
+					battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);					
+				}
+				
+				//모든 몬스터 제거시 실행종료
+				if(currentEnemy.length<1)
+				{
+					System.out.println("전투에서 승리했습니다.");
+					setPlayerTurn(false);
+					break;
+				}
+				
+				
 				if(player.getHand().length<1)
 				{
 					System.out.println("모든 패를 사용하여 턴이 넘어갑니다.");
 					playerTurn=false;
+					target=0;
 					break;
 				}
 			}
 		}
 		//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까
 	}
-	public void useCard()
+	
+	public void useCard()//3개로 나눌수있을것같다.
 	{
 		//사용한 카드를 묘지로 보낸다.
 		TotalCardBase[] tempGraveCard = new TotalCardBase[graveCard.length+1];
@@ -164,10 +208,14 @@ public class Battle
 		tempGraveCard[graveCard.length]=player.getHand()[useCardNumber-1];
 		graveCard=tempGraveCard;
 		
+		
+		playerBattleCalculator();//사용한 카드의 전투계산을 한다.
+		
+		
 		//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
 		TotalCardBase[] tempHandCard = new TotalCardBase[player.getHand().length-1];
 		for(int i = 0; i<player.getHand().length;i++)
-		{			
+		{
 			if(i<useCardNumber-1)
 			{
 				tempHandCard[i]=player.getHand()[i];
@@ -179,6 +227,23 @@ public class Battle
 		}
 		player.setHand(tempHandCard);
 	}
+	
+	
+	public void playerBattleCalculator()
+	{
+		if(player.getHand()[useCardNumber-1].getCardType()==CardType.Defend)
+		{
+			player.setDef(player.getDef()+player.getHand()[useCardNumber-1].getCardValue()); 
+			player.status();
+		}
+		else if(player.getHand()[useCardNumber-1].getCardType()==CardType.Attack)
+		{
+			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-player.getHand()[useCardNumber-1].getCardValue());//목표로한적에게 데미지를 준다.
+			System.out.println("공격");
+		}
+	}
+	
+	
 	
 	//set 모음
 	public void setUseCardNumber(int useCardNumber) 

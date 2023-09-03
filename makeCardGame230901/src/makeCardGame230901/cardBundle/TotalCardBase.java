@@ -4,8 +4,8 @@ public class TotalCardBase {
 	
 	String cardName;
 	CardType cardType;//공방 타입
-	int cardValue;//카드의 수치
-	int cardConsumeMana;
+	private int cardValue;//카드의 수치
+	private int cardConsumeMana;
 	
 	TotalCardBase()
 	{
@@ -40,6 +40,8 @@ public class TotalCardBase {
 		return cardData;
 	}
 	
+	
+	//get모음
 	public CardType getCardType()
 	{
 		return cardType;		
@@ -48,4 +50,11 @@ public class TotalCardBase {
 	public String getCardName() {
 		return cardName;
 	}
+	
+	public int getCardValue()
+	{
+		return cardValue;
+	}
+	
+
 }
