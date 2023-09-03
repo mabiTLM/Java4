@@ -69,7 +69,17 @@ public class BattleCombine
 			{
 				while(battle.currentEnemy[i].getEnemyTurn())//턴이 켜져있을 때
 				{
-					System.out.println("적행동실험");
+					int tempDamage = 0;
+					player.setDef(player.getDef()-battle.currentEnemy[i].getAtk()); //공격만큼 실드제거
+					
+					if(player.getDef()-battle.currentEnemy[i].getAtk()<0)//실드가 음수로가면
+					{
+						tempDamage = (int)Math.abs(player.getDef());//음수간만큼 데미지 올리기
+						player.setDef(0);//0으로바꾸기
+					}
+					
+					player.setHp(player.getHp()-tempDamage);
+					System.out.println(battle.currentEnemy[i].getName()+"의 공격 : " + battle.currentEnemy[i].getAtk());
 					
 					//행동끝난 후
 					enemyTurnGaze[i]= enemyTurnGaze[i]-100;
