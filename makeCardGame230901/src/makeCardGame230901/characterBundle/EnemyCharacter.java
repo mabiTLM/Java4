@@ -46,15 +46,15 @@ public class EnemyCharacter extends CharacterBase
 	
 	public EnemyCharacter[] firstStageData()
 	{
-		stageEnemy[0] = new EnemyCharacter("슬라임",30,0,30,0,5,0,100,10);
-		stageEnemy[1] = new EnemyCharacter("돌멩이",30,0,30,0,5,0,100,10);
-		stageEnemy[2] = new EnemyCharacter("골렘",30,0,30,0,5,0,100,10);
+		stageEnemy[0] = new EnemyCharacter("슬라임",20,0,20,0,5,0,100,10);
+		stageEnemy[1] = new EnemyCharacter("도적",20,0,20,0,5,0,100,30);
+		stageEnemy[2] = new EnemyCharacter("골렘",50,0,100,0,50,50,100,4);
 		return stageEnemy;
 	}
 	
 	
 	public void status() {
-		System.out.println("체력:"+getHp()+" 쉴드:" + getDef());
+		System.out.println("체력 : "+getHp()+" 쉴드 : " + getDef() + " 공격력 : " +getAtk() + " 속도 : " + getSpeed());
 	}
 	
 	

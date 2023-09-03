@@ -251,64 +251,57 @@ public class Battle
 	
 	public void useCard()//3개로 나눌수있을것같다.
 	{
-		//사용한 카드를 묘지로 보낸다.
-		TotalCardBase[] tempGraveCard = new TotalCardBase[graveCard.length+1];
-		for(int i = 0; i<graveCard.length;i++)
-		{			
-			tempGraveCard[i]=graveCard[i];
-		}
-		tempGraveCard[graveCard.length]=player.getHand()[useCardNumber-1];
-		graveCard=tempGraveCard;
-		
-		
-		playerBattleCalculator();//사용한 카드의 전투계산을 한다.
-		
-		
-		//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
-		TotalCardBase[] tempHandCard = new TotalCardBase[player.getHand().length-1];
-		for(int i = 0; i<player.getHand().length;i++)
+		if(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana()<0)//mp가 있을때만 처리를 한다.
 		{
-			if(i<useCardNumber-1)
-			{
-				tempHandCard[i]=player.getHand()[i];
-			}
-			else if(i>useCardNumber-1)
-			{
-				tempHandCard[i-1]=player.getHand()[i];
-			}
+			System.out.println("mp가 부족해서 사용할수없다.");
 		}
-		player.setHand(tempHandCard);
+		else {
+			//사용한 카드를 묘지로 보낸다.
+			TotalCardBase[] tempGraveCard = new TotalCardBase[graveCard.length+1];
+			for(int i = 0; i<graveCard.length;i++)
+			{
+			tempGraveCard[i]=graveCard[i];
+			}
+			tempGraveCard[graveCard.length]=player.getHand()[useCardNumber-1];
+			graveCard=tempGraveCard;
+			playerBattleCalculator();//사용한 카드의 전투계산을 한다.
+			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
+			TotalCardBase[] tempHandCard = new TotalCardBase[player.getHand().length-1];
+			for(int i = 0; i<player.getHand().length;i++)
+			{
+				if(i<useCardNumber-1)
+				{
+					tempHandCard[i]=player.getHand()[i];
+				}
+				else if(i>useCardNumber-1)
+				{
+					tempHandCard[i-1]=player.getHand()[i];
+				}
+			}
+			player.setHand(tempHandCard);
+			
+		}
 	}
 	
 	
 	public void playerBattleCalculator()
 	{
-		if(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana()<0)
+		player.setMp(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana());
+		if(player.getHand()[useCardNumber-1].getCardType()==CardType.Defend)
 		{
-			System.out.println("mp가 부족해서 사용할수없다.");
+			player.setDef(player.getDef()+player.getHand()[useCardNumber-1].getCardValue());
+			player.status();
 		}
-		else
+		else if(player.getHand()[useCardNumber-1].getCardType()==CardType.Attack)
 		{
-			player.setMp(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana());
-			if(player.getHand()[useCardNumber-1].getCardType()==CardType.Defend)
+			int tempDamage=0;
+			currentEnemy[target-1].setDef(currentEnemy[target-1].getDef()-player.getHand()[useCardNumber-1].getCardValue());
+			if(currentEnemy[target-1].getDef()<0)
 			{
-				player.setDef(player.getDef()+player.getHand()[useCardNumber-1].getCardValue());
-				player.status();
-				
+				tempDamage=Math.abs(currentEnemy[target-1].getDef());
+				currentEnemy[target-1].setDef(0);
 			}
-			else if(player.getHand()[useCardNumber-1].getCardType()==CardType.Attack)
-			{
-				int tempDamage=0;
-				currentEnemy[target-1].setDef(currentEnemy[target-1].getDef()-player.getHand()[useCardNumber-1].getCardValue());
-				if(currentEnemy[target-1].getDef()<0)
-				{
-					tempDamage=Math.abs(currentEnemy[target-1].getDef());
-					currentEnemy[target-1].setDef(0);
-					
-				}
-				currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-tempDamage);//목표로한적에게 데미지를 준다.
-				
-			}
+			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-tempDamage);//목표로한적에게 데미지를 준다.
 			
 		}
 		

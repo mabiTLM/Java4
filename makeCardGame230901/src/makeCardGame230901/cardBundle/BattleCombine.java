@@ -84,9 +84,18 @@ public class BattleCombine
 					//행동끝난 후
 					enemyTurnGaze[i]= enemyTurnGaze[i]-100;
 					battle.currentEnemy[i].setEnemyTurn(false);
+					
+				}
+				if(player.getHp()<=0) //사망처리
+				{
+					break;
 				}
 				
-				
+			}
+			if(player.getHp()<=0)//사망처리
+			{
+				System.out.println("당신은 죽었습니다.");
+				break;
 			}
 		}
 		
