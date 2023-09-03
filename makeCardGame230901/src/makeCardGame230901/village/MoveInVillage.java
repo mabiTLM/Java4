@@ -13,8 +13,7 @@ public class MoveInVillage
 	public void MoveVillage(PlayerCharacter player)
 	{
 		System.out.println("1.덱수정");
-		System.out.println("2.상점");
-		System.out.println("3.모험으로");
+		System.out.println("2.모험으로");
 		choice=scan.nextInt();
 		if(choice==1)
 		{
@@ -22,11 +21,14 @@ public class MoveInVillage
 		}
 		else if(choice==2)
 		{
-			System.out.println("미구현");
-		}
-		else if(choice==3)
-		{
-			locationVillage=false;
+			if(player.getCardDeck().length<8)
+			{
+				System.out.println("덱은 8장 이상이어야한다.");
+			}
+			else
+			{
+				locationVillage=false;
+			}
 		}
 		
 	}

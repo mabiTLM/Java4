@@ -15,8 +15,10 @@ public class Build {
 		while(moveInvillage.getLocationVillage()) 
 		{
 			moveInvillage.MoveVillage(player);
+			
 		}
 		battleCombine.battleCombine();
+		
 	}
 
 }

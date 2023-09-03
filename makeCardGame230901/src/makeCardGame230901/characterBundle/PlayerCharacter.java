@@ -21,7 +21,17 @@ public class PlayerCharacter extends CharacterBase {
 	{
 		super(
 				"주인공",
-				new TotalCardBase[] {new TotalCardBase("공격",CardType.Attack,10,1)},
+				new TotalCardBase[] 
+						{
+								new TotalCardBase("공격",CardType.Attack,10,1),
+								new TotalCardBase("공격",CardType.Attack,5,1),
+								new TotalCardBase("공격",CardType.Attack,5,1),
+								new TotalCardBase("연속공격",CardType.Attack,13,2),
+								new TotalCardBase("굳히기",CardType.Defend,15,2),
+								new TotalCardBase("방어",CardType.Defend,5,1),
+								new TotalCardBase("방어",CardType.Defend,5,1),
+								new TotalCardBase("방어",CardType.Defend,5,1),
+						},
 				new TotalCardBase[] //덱
 						{
 						new TotalCardBase("연속공격",CardType.Attack,13,2),

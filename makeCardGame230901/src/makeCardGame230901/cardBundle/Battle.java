@@ -84,7 +84,7 @@ public class Battle
 	
 	public void watchPlayerHand()
 	{
-		for(int i = 0; i < player.getHand().length;i++)
+		for(int i = 0; i < player.getHand().length;i++)//마나
 		{
 			System.out.print("   "+player.getHand()[i].getCardConsumeMana());
 			System.out.print(" 마나========   ");
@@ -93,13 +93,13 @@ public class Battle
 		
 		for(int i = 0; i < player.getHand().length;i++)
 		{
-			if(player.getHand()[i].getCardName().length()==3)
+			if(player.getHand()[i].getCardName().length()==3)//카드이름
 			{
-				System.out.print("   |   "+player.getHand()[i].getCardName()+"   |    ");
+				System.out.print("   |   "+player.getHand()[i].getCardName()+"    |   ");
 			}
 			else if(player.getHand()[i].getCardName().length()==4)
 			{
-				System.out.print("   |   "+player.getHand()[i].getCardName()+"   |  ");
+				System.out.print("   |   "+player.getHand()[i].getCardName()+"  |   ");
 			}
 			else {
 			System.out.print("   |    "+player.getHand()[i].getCardName()+"    |   ");

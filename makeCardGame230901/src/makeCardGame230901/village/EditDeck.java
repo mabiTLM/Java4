@@ -40,9 +40,10 @@ public class EditDeck //덱 수정하기 추가할때 제거할때
 			System.out.print("내 카드 인벤토리 : ");
 			for(int i = 0; i <player.getCardInventory().length;i++)
 			{
-				System.out.print((i+1)+player.getCardInventory()[i].getCardName());
+				System.out.print((i+1)+player.getCardInventory()[i].getCardName()+"  ");
 				
 			}
+			System.out.println();
 			//인벤비었을때 잘라줘야하는곳
 			choice=scan.nextInt();//카드고르고
 			if(choice==0)
@@ -92,9 +93,10 @@ public class EditDeck //덱 수정하기 추가할때 제거할때
 			System.out.print("내 카드 인벤토리 : ");
 			for(int i = 0; i <player.getCardInventory().length;i++)
 			{
-				System.out.print((i+1)+player.getCardInventory()[i].getCardName());
+				System.out.print((i+1)+player.getCardInventory()[i].getCardName()+"  ");
 				
 			}
+			System.out.println();
 			choice=scan.nextInt();//카드고르고
 			if(choice==0)
 			{
