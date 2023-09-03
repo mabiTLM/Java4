@@ -55,6 +55,10 @@ public class TotalCardBase {
 	{
 		return cardValue;
 	}
+	public int getCardConsumeMana()
+	{
+		return cardConsumeMana;
+	}
 	
 
 }

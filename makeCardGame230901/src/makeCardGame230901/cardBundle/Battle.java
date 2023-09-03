@@ -7,8 +7,8 @@ import makeCardGame230901.characterBundle.PlayerCharacter;
 
 public class Battle 
 {
-	PlayerCharacter player = new PlayerCharacter();
-	TotalCardBase[] tempBattleDeck = player.getCardDeck();//플레이어의 덱을 배틀할때만 복사한다.
+	PlayerCharacter player;
+	TotalCardBase[] tempBattleDeck;//플레이어의 덱을 배틀할때만 복사한다.
 	TotalCardBase[] graveCard = new TotalCardBase[0];
 	EnemyCharacter eArray = new EnemyCharacter();
 	EnemyCharacter[] currentEnemy;
@@ -27,6 +27,7 @@ public class Battle
 	
 	public void encounter() //심볼인카운트 쓸거니까 몹종류만 정해주면된다.
 	{
+		this.tempBattleDeck=player.getCardDeck(); //여기서 넣어줘야 현재쓰던덱을 가져온다.
 		int temp =(int)(Math.random()*4+1);//1~4마리
 		
 		currentEnemy = new EnemyCharacter[temp];
@@ -85,7 +86,31 @@ public class Battle
 	{
 		for(int i = 0; i < player.getHand().length;i++)
 		{
-			System.out.print(player.getHand()[i].getCardName());
+			System.out.print("   "+player.getHand()[i].getCardConsumeMana());
+			System.out.print(" 마나========   ");
+		}
+		System.out.println();
+		for(int i = 0; i < player.getHand().length;i++)
+		{
+			System.out.print("   |    "+player.getHand()[i].getCardName()+"    |   ");
+		}
+		System.out.println();
+		for(int i = 0; i < player.getHand().length;i++)
+		{
+			if(player.getHand()[i].getCardValue()<10)
+			{
+				System.out.print("   =========== ");
+			}
+			else
+			{
+				System.out.print("   ========== ");
+			}
+			System.out.print(player.getHand()[i].getCardValue()+"   ");
+		}
+		System.out.println();
+		for(int i = 0; i < player.getHand().length;i++)
+		{
+			System.out.print("        "+(i+1)+"          ");
 		}
 		System.out.println();
 		
@@ -113,6 +138,13 @@ public class Battle
 			player.status();
 			watchEnemy();
 			watchPlayerHand();
+			//모든 몬스터 제거시 실행종료
+			if(currentEnemy.length<1)
+			{
+				System.out.println("전투에서 승리했습니다.");
+				setPlayerTurn(false);
+				break;
+			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
 			target = scan.nextInt();
 			if(target>currentEnemy.length)
@@ -137,10 +169,15 @@ public class Battle
 			watchPlayerHand();
 			System.out.println("몇번 카드를 사용합니까? 0.다른 타겟");
 			useCardNumber=scan.nextInt();
+			
 			if(useCardNumber==0)
 			{
 				target=0;
 				break;				
+			}
+			else if(useCardNumber>player.getHand().length)
+			{
+				System.out.println("카드를 다시 골라주세요");
 			}
 			else
 			{
@@ -173,17 +210,11 @@ public class Battle
 						}						
 						tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
 					}
-					battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);					
-				}
-				
-				//모든 몬스터 제거시 실행종료
-				if(currentEnemy.length<1)
-				{
-					System.out.println("전투에서 승리했습니다.");
-					setPlayerTurn(false);
+					battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);
+					
+					target=0;//적 처치시 다시 타겟설정으로
 					break;
-				}
-				
+				}				
 				
 				if(player.getHand().length<1)
 				{
@@ -238,8 +269,15 @@ public class Battle
 		}
 		else if(player.getHand()[useCardNumber-1].getCardType()==CardType.Attack)
 		{
-			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-player.getHand()[useCardNumber-1].getCardValue());//목표로한적에게 데미지를 준다.
-			System.out.println("공격");
+			int tempDamage=0;
+			currentEnemy[target-1].setDef(currentEnemy[target-1].getDef()-player.getHand()[useCardNumber-1].getCardValue());
+			System.out.println(currentEnemy[target-1].getDef());
+			if(currentEnemy[target-1].getDef()<0)
+			{
+				tempDamage=Math.abs(currentEnemy[target-1].getDef());
+				currentEnemy[target-1].setDef(0);
+			}
+			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-tempDamage);//목표로한적에게 데미지를 준다.
 		}
 	}
 	

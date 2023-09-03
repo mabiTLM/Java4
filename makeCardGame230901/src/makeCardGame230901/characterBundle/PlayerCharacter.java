@@ -7,7 +7,7 @@ import makeCardGame230901.cardBundle.CardType;
 public class PlayerCharacter extends CharacterBase {
 	
 	private String name;
-	private TotalItem[] inventory;//가진아이템
+	private TotalCardBase[] CardInventory;//가진카드들
 	private TotalCardBase[] cardDeck;//덱, 무기위치
 	private TotalCardBase[] hand;
 	private int hp;
@@ -21,7 +21,7 @@ public class PlayerCharacter extends CharacterBase {
 	{
 		super(
 				"주인공",
-				new TotalItem[] {},
+				new TotalCardBase[] {new TotalCardBase("공격",CardType.Attack,10,1)},
 				new TotalCardBase[] //덱
 						{
 						new TotalCardBase("공격",CardType.Attack,10,1),
@@ -56,6 +56,16 @@ public class PlayerCharacter extends CharacterBase {
 	
 	public void status() {
 		System.out.println("내 체력:"+getHp()+" 쉴드:" + getDef());
+	}
+	
+	public void DeckOpen()
+	{
+		System.out.print("현재 내 덱 : ");
+		for(int i = 0; i <getCardDeck().length;i++)
+		{
+			System.out.print((i+1)+getCardDeck()[i].getCardName()+"  ");
+		}
+		System.out.println();
 	}
 	
 }

@@ -113,6 +113,10 @@ public class EnemyCharacter extends CharacterBase
 	{
 		this.enemyTurn=enemyTurn;
 	}
+	public void setDef(int def)
+	{
+		this.def=def;
+	}
 	
 	
 	//get 모음

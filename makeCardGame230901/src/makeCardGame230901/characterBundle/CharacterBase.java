@@ -5,7 +5,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 public abstract class CharacterBase 
 {
 	private String name;
-	private TotalItem[] inventory;//가진아이템
+	private TotalCardBase[] cardInventory;//가진모든카드
 	private TotalCardBase[] cardDeck;//덱, 무기위치
 	private TotalCardBase[] hand;
 	private int hp;
@@ -24,7 +24,7 @@ public abstract class CharacterBase
 	
 	CharacterBase(
 			String name,
-			TotalItem[] inventory,
+			TotalCardBase[] cardInventory,
 			TotalCardBase[] cardDeck,
 			TotalCardBase[] hand,
 			int maxHp,
@@ -36,7 +36,7 @@ public abstract class CharacterBase
 			)
 	{//플레이어블 캐릭터
 		this.name=name;
-		this.inventory=inventory;
+		this.cardInventory=cardInventory;
 		this.cardDeck=cardDeck;
 		this.hand=hand;
 		this.maxHp=maxHp;
@@ -105,13 +105,18 @@ public abstract class CharacterBase
 		this.hand=hand;
 	}
 	
-	public void setInventory(TotalItem[] inventory)
+	public void setCardInventory(TotalCardBase[] cardInventory)
 	{
-		this.inventory=inventory;
+		this.cardInventory=cardInventory;
 	}
-	public void setInventory(TotalItem inventory, int slot)
+	public void setCardInventory(TotalCardBase cardInventory, int slot)
 	{
-		this.inventory[slot]=inventory;
+		this.cardInventory[slot]=cardInventory;
+	}
+	
+	public void setCardDeck(TotalCardBase[] cardDeck)
+	{
+		this.cardDeck=cardDeck;
 	}
 	
 	public void setMoeny(int money)
@@ -167,9 +172,9 @@ public abstract class CharacterBase
 		return def;
 	}
 	
-	public TotalItem[] getInventory()
+	public TotalCardBase[] getCardInventory()
 	{
-		return inventory;
+		return cardInventory;
 	}
 	
 	public int getMoney()
