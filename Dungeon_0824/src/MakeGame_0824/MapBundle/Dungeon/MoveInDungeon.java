@@ -1,5 +1,7 @@
 package MakeGame_0824.MapBundle.Dungeon;
 
+import java.util.Random;
+
 import MakeGame_0824.BattleAct.Battle;
 import MakeGame_0824.BattleAct.EnemyActType;
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
@@ -16,6 +18,8 @@ public class MoveInDungeon
 	VillageMap v;
 	Inventory i;
 	EnemyActType enemyActType = new EnemyActType();
+	int seedNumber =(int)(Math.random()*1000);//확률 균등화를 위해
+	Random random = new Random(seedNumber); 
 	
 	public MoveInDungeon(MainPlayerCharacter mainChar,DungeonMap d,StoryText s,Battle b,VillageMap v)
 	{
@@ -31,7 +35,7 @@ public class MoveInDungeon
 		if(d.getFloor()==1) //층수조절
 			{
 			d= new DungeonFirstMap();
-			d.MapSetting();			
+			d.MapSetting();
 			}
 		else if(d.getFloor()==-1)
 		{
@@ -71,7 +75,7 @@ public class MoveInDungeon
 			d.dungeonMapMove(mainChar);
 			
 			// 여기 밑에서부터 전투
-			int ramdomEncount = (int)(Math.random()*100);//적 조우 확률
+			int ramdomEncount = (int)(random.nextInt(100));//적 조우 확률
 			if(ramdomEncount<s.getEncountProbability())
 			{
 				b.enemyEncount(); //적 조우
@@ -120,7 +124,7 @@ public class MoveInDungeon
 					
 					else if(b.getPlayerChoice()==5)
 					{
-						int temp = (int)(Math.random()*100);
+						int temp = (int)(random.nextInt(100));
 						if(temp<85)//도망칠 확률 
 						{
 							System.out.println("도망쳤다.");
@@ -158,7 +162,7 @@ public class MoveInDungeon
 				s.weaponStory();
 			}
 			
-			int repeatStoryEncount = (int)(Math.random()*100);//스토리
+			int repeatStoryEncount = (int)(random.nextInt(100));//스토리
 			if(repeatStoryEncount<s.getEventEncountProbability())
 			{
 				s.repeatStoryEvent(i);

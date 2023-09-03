@@ -1,5 +1,6 @@
 package MakeGame_0824.StoryBundle;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import MakeGame_0824.CharacterBundle.MainPlayerCharacter;
@@ -21,14 +22,16 @@ public class StoryText
 	private int time=0; //하루시간 목표치까지 행동하면 날짜가 지난다.
 	private int timeLimit=3;
 	private int encountProbability= 25;//몹만날 확률도 스토리 영향받게 하기위해 이곳에 생성
-	private int eventEncountProbability = 10;
+	private int eventEncountProbability = 10; //이벤트 확률
 	private int evilCount = 0;
 	private int goodCount = 0;
 	private boolean watchAgainBadEvent=true;//함정결단1
 	private boolean weaponBreakTrap=true;//함정결단1
-	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능
-	
+	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능	
 	private int endingNumber = -1; //엔딩조건맞췄을 때 변동
+	
+	int seedNumber =(int)(Math.random()*1000);//확률 균등화를 위해
+	Random random = new Random(seedNumber);
 	
 	private String[] repeatStory= 
 		{
@@ -162,7 +165,7 @@ public class StoryText
 	
 	public void repeatStoryEvent(Inventory inven)
 	{
-		int temp=(int)(Math.random()*(repeatStory.length+1));
+		int temp=(int)(random.nextInt(repeatStory.length));
 		
 		if(temp==0)//쓰러진 사람
 			{
@@ -315,13 +318,13 @@ public class StoryText
 		}
 		else if(temp==5)//돈을 주운날
 		{
-			int getMoneyEvent = (int)((Math.random()*20000)+100);
+			int getMoneyEvent = (int)(random.nextInt(19901)+100);
 			System.out.println(repeatStory[temp] + getMoneyEvent+"골드");			
 			mainChar.setMoeny(getMoneyEvent+mainChar.getMoney());		
 		}
 		else if(temp==6)//돈을 잃은날
 		{
-			int loseMoneyEvent = (int)((Math.random()*5000)+100);
+			int loseMoneyEvent = (int)(random.nextInt(4901)+100);
 			System.out.println(repeatStory[temp]);
 			mainChar.setMoeny(mainChar.getMoney()-loseMoneyEvent);		
 		}
@@ -336,7 +339,7 @@ public class StoryText
 		
 		else if(temp==8)//보석줍기
 		{
-			int jewel = (int)((Math.random()*100001));
+			int jewel = (int)((random.nextInt(100001)));
 			String tempJewel = "";
 			
 			if(jewel>=100001)
@@ -385,13 +388,13 @@ public class StoryText
 		
 		else if(temp==9)//함정
 		{
-			int tempDamage = (int)((Math.random()*30)+1);
+			int tempDamage = (int)(random.nextInt(30)+1);
 			System.out.println(repeatStory[temp] + tempDamage + "의 데미지를 입습니다.");
 			mainChar.setHp(mainChar.getHp()-tempDamage);
 		}
 		else if(temp==10)//휴식 쉬어가는기간
 		{
-			int tempHeal = (int)((Math.random()*60)+1);
+			int tempHeal = (int)(random.nextInt(60)+1);
 			System.out.println(repeatStory[temp] + tempHeal + "회복합니다.");
 			mainChar.setHp(mainChar.getHp()+tempHeal);
 		}
