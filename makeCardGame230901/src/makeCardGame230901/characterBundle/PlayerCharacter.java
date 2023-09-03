@@ -24,16 +24,14 @@ public class PlayerCharacter extends CharacterBase {
 				new TotalCardBase[] {new TotalCardBase("공격",CardType.Attack,10,1)},
 				new TotalCardBase[] //덱
 						{
-						new TotalCardBase("공격",CardType.Attack,10,1),
-						new TotalCardBase("공격",CardType.Attack,10,1),
-						new TotalCardBase("공격",CardType.Attack,10,1),
-						new TotalCardBase("공격",CardType.Attack,10,1),
-						new TotalCardBase("공격",CardType.Attack,10,1),
+						new TotalCardBase("연속공격",CardType.Attack,13,2),
+						new TotalCardBase("연속공격",CardType.Attack,13,2),
+						new TotalCardBase("공격",CardType.Attack,5,1),
+						new TotalCardBase("공격",CardType.Attack,5,1),
+						new TotalCardBase("굳히기",CardType.Defend,15,2),
 						new TotalCardBase("방어",CardType.Defend,5,1),
 						new TotalCardBase("방어",CardType.Defend,5,1),
 						new TotalCardBase("방어",CardType.Defend,5,1),
-						new TotalCardBase("방어",CardType.Defend,5,1),
-						new TotalCardBase("방어",CardType.Defend,5,1)
 						},
 				new TotalCardBase[] {},//손패
 				100,
@@ -55,7 +53,7 @@ public class PlayerCharacter extends CharacterBase {
 	}
 	
 	public void status() {
-		System.out.println("내 체력:"+getHp()+" 쉴드:" + getDef());
+		System.out.println("내 체력:"+getHp()+" 쉴드:" + getDef() + " 마나 : " + getMp());
 	}
 	
 	public void DeckOpen()
