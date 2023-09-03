@@ -18,8 +18,7 @@ public class MoveInDungeon
 	VillageMap v;
 	Inventory i;
 	EnemyActType enemyActType = new EnemyActType();
-	int seedNumber =(int)(Math.random()*1000);//확률 균등화를 위해
-	Random random = new Random(seedNumber); 
+	Random random = new Random();
 	
 	public MoveInDungeon(MainPlayerCharacter mainChar,DungeonMap d,StoryText s,Battle b,VillageMap v)
 	{

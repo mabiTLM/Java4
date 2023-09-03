@@ -29,9 +29,7 @@ public class StoryText
 	private boolean weaponBreakTrap=true;//함정결단1
 	private boolean endingCheck=true; //엔딩이후 텍스트 변경도 가능	
 	private int endingNumber = -1; //엔딩조건맞췄을 때 변동
-	
-	int seedNumber =(int)(Math.random()*1000);//확률 균등화를 위해
-	Random random = new Random(seedNumber);
+	Random random = new Random();
 	
 	private String[] repeatStory= 
 		{
