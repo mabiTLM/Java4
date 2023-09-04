@@ -55,6 +55,7 @@ public abstract class CharacterBase
 			int mp,
 			int atk,
 			int def,
+			int money,
 			int speed
 			)
 	{//적 캐릭터

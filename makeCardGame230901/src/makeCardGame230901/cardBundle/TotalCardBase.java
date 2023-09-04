@@ -26,7 +26,7 @@ public class TotalCardBase {
 	}
 	
 	
-	TotalCardBase[] cardData= new TotalCardBase[35];
+	TotalCardBase[] cardData= new TotalCardBase[2];
 	
 	TotalCardBase[] totalCard()
 	{
