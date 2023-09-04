@@ -19,7 +19,7 @@ public class EnemyCharacter extends CharacterBase
 		super();
 	}
 	
-	public EnemyCharacter(
+	public EnemyCharacter( //원래 구상과 많이 달라져서 상속이 아니라 이상하게된부분
 			String name,
 			OwnedSkill[] OwnedSkill, //아직 스킬은 없지만 일단 넣어두자 혹시 사용한다면 적행동클래스를 따로만들어서 행동을 지정할것 
 			String[] dropItem, //드랍 아이템

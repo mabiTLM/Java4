@@ -48,17 +48,17 @@ public abstract class CharacterBase
 		this.money=money;
 	}
 	
-	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
-	{//적 캐릭터
-		this.name=name;
-		this.OwnedSkill=OwnedSkill;
-		this.OwnedItem=OwnedItem;
-		this.hp=hp;
-		this.mp=mp;
-		this.sp=sp;
-		this.atk=atk;
-		this.def=def;
-	}
+//	CharacterBase(String name,OwnedSkill[] OwnedSkill,OwnedItem[] OwnedItem,int hp,int mp,int sp, int atk, int def)
+//	{//적 캐릭터 상속예정이었으나 변경점이 많아서 보류
+//		this.name=name;
+//		this.OwnedSkill=OwnedSkill;
+//		this.OwnedItem=OwnedItem;
+//		this.hp=hp;
+//		this.mp=mp;
+//		this.sp=sp;
+//		this.atk=atk;
+//		this.def=def;
+//	}
 	
 	
 	

@@ -133,7 +133,7 @@ public class OwnedItem
 		
 		totalItem[22] = new OwnedItem("흑요석 검","무기","검", 100, 50000,"흑요석 검 : 무기, 검, 공격력 100, 가격 50000");
 		totalItem[23] = new OwnedItem("떡갈나무 지팡이","무기","지팡이", 10, 50000,"떡갈나무 지팡이 : 무기, 지팡이, 공격력 10, 가격 50000");
-		totalItem[24] = new OwnedItem("미스릴 갑옷","갑옷",300, 50000,"미스릴 갑옷 : 방어구, 방어력300 가격 50000");
+		totalItem[24] = new OwnedItem("미스릴 갑옷","갑옷",50, 50000,"미스릴 갑옷 : 방어구, 방어력50 가격 50000");
 		
 		totalItem[25] = new OwnedItem("hp포션","회복",150,0,0,200,"hp포션 : 생명력을 150회복한다 가격 200");
 		totalItem[26] = new OwnedItem("mp포션","회복",0,3,0,200,"mp포션 : 마나를 3회복한다 가격 200");
@@ -176,7 +176,7 @@ public class OwnedItem
 		
 		buyItem[18] = new OwnedItem("흑요석 검","무기","검", 100, 50000,"흑요석 검 : 무기, 검, 공격력 100, 가격 50000");
 		buyItem[19] = new OwnedItem("떡갈나무 지팡이","무기","지팡이", 10, 50000,"떡갈나무 지팡이 : 무기, 지팡이, 공격력 10, 가격 50000");
-		buyItem[20] = new OwnedItem("미스릴 갑옷","갑옷",50, 50000,"미스릴 갑옷 : 방어구, 방어력300 가격 50000");
+		buyItem[20] = new OwnedItem("미스릴 갑옷","갑옷",50, 50000,"미스릴 갑옷 : 방어구, 방어력50 가격 50000");
 
 		return buyItem;
 	}

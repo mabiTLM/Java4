@@ -39,7 +39,7 @@ public class VillageMapHouse extends VillageMap
 		
 		if(move.equals("1"))
 		{
-			if(storyT.getEndingCheck()) //엔딩이전이라면
+			if(s.getEndingCheck()) //엔딩이전이라면
 			{
 				int temp=(int)(Math.random()*(storyT.getHouseStory().length-2)+1);
 				System.out.println(storyT.getHouseStory(temp));
