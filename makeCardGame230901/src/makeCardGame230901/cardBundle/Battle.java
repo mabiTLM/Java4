@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.village.MoveInVillage;
 
 public class Battle 
 {
@@ -12,6 +13,7 @@ public class Battle
 	TotalCardBase[] graveCard = new TotalCardBase[0];
 	EnemyCharacter eArray = new EnemyCharacter();
 	EnemyCharacter[] currentEnemy;
+	MoveInVillage moveInVillage;
 	Scanner scan = new Scanner(System.in);
 	private	int turnDrawCardNumber=5;
 	private int target;
@@ -27,7 +29,13 @@ public class Battle
 	
 	public void encounter() //심볼인카운트 쓸거니까 몹종류만 정해주면된다.
 	{
-		this.tempBattleDeck=player.getCardDeck(); //여기서 넣어줘야 현재쓰던덱을 가져온다.
+		tempBattleDeck = new TotalCardBase[player.getCardDeck().length];
+		for(int i = 0; i <tempBattleDeck.length;i++)
+		{
+			tempBattleDeck[i]=player.getCardDeck()[i];
+		}//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
+		
+		
 		int temp =(int)(Math.random()*4+1);//1~4마리
 		
 		currentEnemy = new EnemyCharacter[temp];
@@ -152,7 +160,7 @@ public class Battle
 		
 	}
 	
-	public void targetLockOn(BattleCombine battleCombine)//전투가 거의다 타겟정하는대서 이뤄진다.
+	public void targetLockOn(BattleCombine battleCombine, MoveInVillage moveInVillage)//전투가 거의다 타겟정하는대서 이뤄진다.
 	{
 		while(true) {
 			watchEnemy();
@@ -163,6 +171,7 @@ public class Battle
 			{
 				System.out.println("전투에서 승리했습니다.");
 				setPlayerTurn(false);
+				moveInVillage.setLocationVillage(true);
 				break;
 			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
@@ -208,6 +217,8 @@ public class Battle
 				
 				if(currentEnemy[target-1].getHp()<=0)
 				{
+					player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());
+					System.out.println(currentEnemy[target-1].getMoney());
 					EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
 					int tempSortBlank=0;
 					for(int i = 0; i <tempSort.length;i++)
@@ -264,7 +275,9 @@ public class Battle
 			}
 			tempGraveCard[graveCard.length]=player.getHand()[useCardNumber-1];
 			graveCard=tempGraveCard;
+			
 			playerBattleCalculator();//사용한 카드의 전투계산을 한다.
+			
 			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
 			TotalCardBase[] tempHandCard = new TotalCardBase[player.getHand().length-1];
 			for(int i = 0; i<player.getHand().length;i++)

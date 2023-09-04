@@ -5,7 +5,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 public abstract class CharacterBase 
 {
 	private String name;
-	private TotalCardBase[] cardInventory;//가진모든카드
+	private TotalCardBase[] cardInventory;//카드인벤토리
 	private TotalCardBase[] cardDeck;//덱, 무기위치
 	private TotalCardBase[] hand;
 	private int hp;
@@ -66,6 +66,7 @@ public abstract class CharacterBase
 		this.mp=mp;
 		this.atk=atk;
 		this.def=def;
+		this.money=money;
 		this.speed=speed;
 	}
 	

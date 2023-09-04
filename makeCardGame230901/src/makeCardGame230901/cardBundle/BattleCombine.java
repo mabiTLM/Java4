@@ -1,6 +1,7 @@
 package makeCardGame230901.cardBundle;
 
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.village.MoveInVillage;
 
 public class BattleCombine 
 {
@@ -9,12 +10,14 @@ public class BattleCombine
 	private int playerTurnGaze =0;//행동게이지
 	private int[] enemyTurnGaze;
 	
+	
+	
 	public BattleCombine(PlayerCharacter playerCharacter, Battle battle)
 	{
 		this.player=playerCharacter;
 		this.battle=battle;
 	}
-	public void battleCombine()
+	public void battleCombine(MoveInVillage moveInVillage)
 	{
 		//조우시 행동
 		battle.encounter();
@@ -48,7 +51,7 @@ public class BattleCombine
 			}			
 			while(battle.getPlayerTurn()) 
 			{
-				battle.targetLockOn(this);
+				battle.targetLockOn(this,moveInVillage);
 				if(player.getHand().length<1|battle.getPlayerTurn()==false)
 				{
 					playerTurnGaze=playerTurnGaze-100;//행동끝났으면 수치낮추기
@@ -94,7 +97,8 @@ public class BattleCombine
 			}
 			if(player.getHp()<=0)//사망처리
 			{
-				System.out.println("당신은 죽었습니다.");
+				System.out.println("전투에서 졌습니다. 처음으로 돌아갑니다.");
+				moveInVillage.setLocationVillage(true);
 				break;
 			}
 		}
