@@ -1,7 +1,6 @@
-package makeCardGame230901.battleBundle;
+package makeCardGame230901.characterBundle;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
-import makeCardGame230901.characterBundle.PlayerCharacter;
 
 public class PlayerReset {
 	

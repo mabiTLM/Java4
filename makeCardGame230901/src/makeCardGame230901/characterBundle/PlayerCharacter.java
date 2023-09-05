@@ -71,4 +71,10 @@ public class PlayerCharacter extends CharacterBase {
 		cardData.watchCardData(getCardInventory());
 	}
 	
+	public void disCardHand()
+	{
+		TotalCardBase[] discard = new TotalCardBase[0];
+		this.setHand(discard);
+	}
+	
 }

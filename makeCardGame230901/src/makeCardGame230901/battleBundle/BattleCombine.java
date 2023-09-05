@@ -58,6 +58,7 @@ public class BattleCombine
 			}
 			if(battle.currentEnemy.length<1)
 			{
+				//배틀보상넣자
 				break;
 			}
 			

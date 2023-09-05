@@ -2,8 +2,8 @@ package makeCardGame230901;
 
 import makeCardGame230901.battleBundle.Battle;
 import makeCardGame230901.battleBundle.BattleCombine;
-import makeCardGame230901.battleBundle.PlayerReset;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.characterBundle.PlayerReset;
 import makeCardGame230901.mapBundle.MoveInDungeon;
 import makeCardGame230901.village.MoveInVillage;
 

@@ -32,6 +32,7 @@ public class Battle
 		this.player=player;
 	}
 	
+	
 	public void encounter() //어떤 적을 만날지 정해주자
 	{
 		tempBattleDeck = new TotalCardBase[player.getCardDeck().length];
@@ -64,7 +65,6 @@ public class Battle
 		}
 	}
 	
-	
 
 	public void cardShuffle()//셔플과 사용은 배틀에서 하는게 맞는거같다 싸움도중에 임시로 덱이 변동되어도 마을가면 돌아와야하니까
 	{
@@ -79,6 +79,7 @@ public class Battle
 		}
 		deckSize=tempBattleDeck.length;
 	}
+	
 	
 	// 카드를뽑고 사용한 카드를 묘지로 보낸다. 덱을 전부 소모하면 묘지의 카드를 섞어서 다시 덱을 만든다.
 	public void cardDraw() //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
@@ -106,6 +107,7 @@ public class Battle
 		}		
 		
 	}
+	
 	
 	public void watchPlayerHand()
 	{
@@ -139,7 +141,6 @@ public class Battle
 		System.out.println();
 		
 		
-		
 		for(int i = 0; i < player.getHand().length;i++)
 		{
 			if(player.getHand()[i].getCardValue()<10)
@@ -161,6 +162,7 @@ public class Battle
 		
 	}
 	
+	
 	public void watchEnemy()
 	{
 		for(int i = 0; i <currentEnemy.length;i++)
@@ -177,6 +179,7 @@ public class Battle
 		
 	}
 	
+	
 	public void targetLockOn(BattleCombine battleCombine, MoveInVillage moveInVillage)//전투가 거의다 타겟정하는대서 이뤄진다.
 	{
 		while(true) {
@@ -188,6 +191,7 @@ public class Battle
 			{
 				System.out.println("전투에서 승리했습니다.");
 				setPlayerTurn(false);
+				battleFinish();
 				break;
 			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
@@ -234,7 +238,7 @@ public class Battle
 				if(currentEnemy[target-1].getHp()<=0)
 				{
 					player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
-					System.out.println(currentEnemy[target-1].getMoney());
+					System.out.println("적을 처치하여"+currentEnemy[target-1].getMoney()+"골드를 얻었습니다.");
 					
 					EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
 					int tempSortBlank=0;
@@ -277,6 +281,7 @@ public class Battle
 		//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까
 	}
 	
+	
 	public void useCard()
 	{
 		if(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana()<0)//mp가 있을때만 처리를 한다.
@@ -317,6 +322,11 @@ public class Battle
 			
 		}
 		
+	}
+	
+	public void battleFinish()
+	{
+		System.out.println("전투 승리 보상을 획득합니다.");
 	}
 	
 	
