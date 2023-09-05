@@ -7,6 +7,8 @@ public class TotalCardBase {
 	private int cardValue;//카드의 수치
 	private int cardConsumeMana;
 	private int cardPrice;
+	private String range = "통상";
+	private boolean enforce=false;
 	
 	public TotalCardBase()
 	{
@@ -74,6 +76,11 @@ public class TotalCardBase {
 		}
 	}
 	
+	public void setEnforce(boolean enforce)
+	{
+		this.enforce=enforce;
+	}
+	
 	//get모음
 	public CardType getCardType()
 	{
@@ -95,6 +102,13 @@ public class TotalCardBase {
 	public int getCardPrice()
 	{
 		return cardPrice;
+	}
+	public String getRange() {
+		return range;
+	}
+	public boolean getEnforce()
+	{
+		return enforce;
 	}
 	
 
