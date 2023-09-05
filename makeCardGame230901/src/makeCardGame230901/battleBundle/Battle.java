@@ -1,7 +1,6 @@
 package makeCardGame230901.battleBundle;
 
 import java.util.Scanner;
-
 import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
@@ -11,17 +10,16 @@ import makeCardGame230901.village.MoveInVillage;
 
 public class Battle 
 {
-	PlayerCharacter player;
-	TotalCardBase[] tempBattleDeck;//플레이어의 덱을 배틀할때만 복사한다.
-	TotalCardBase[] graveCard = new TotalCardBase[0];
-	EnemyCharacter eArray = new EnemyCharacter();
-	EnemyCharacter[] currentEnemy;
-	MoveInVillage moveInVillage;
+	private PlayerCharacter player;
+	protected TotalCardBase[] tempBattleDeck = new TotalCardBase[0];//플레이어의 덱을 배틀할때만 복사한다.
+	private TotalCardBase[] graveCard = new TotalCardBase[0];
+	private EnemyCharacter eArray = new EnemyCharacter();
+	protected EnemyCharacter[] currentEnemy;
+	private MoveInVillage moveInVillage;
 	SortCard sortCard = new SortCard();
 	Scanner scan = new Scanner(System.in);
 	private	int turnDrawCardNumber=5;
 	private int target;
-	private int deckSize;
 	private int topOfCard=0;
 	private int useCardNumber=0;
 	private boolean playerTurn = false;
@@ -35,11 +33,10 @@ public class Battle
 	
 	public void encounter() //어떤 적을 만날지 정해주자
 	{
-		tempBattleDeck = new TotalCardBase[player.getCardDeck().length];
-		for(int i = 0; i <tempBattleDeck.length;i++)
-		{
-			tempBattleDeck[i]=player.getCardDeck()[i];
-		}//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
+		resetTempBattleDeck(player.getCardDeck());
+		//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
+		graveCard = new TotalCardBase[0];
+		player.disCardHand();
 		
 		if(monsterType==MONSTERTYPE.NORMAL)
 		{
@@ -77,7 +74,6 @@ public class Battle
 			tempBattleDeck[i]=tempBattleDeck[temp];
 			tempBattleDeck[temp] = tempSuffleDeck;
 		}
-		deckSize=tempBattleDeck.length;
 	}
 	
 	
@@ -86,22 +82,25 @@ public class Battle
 	{
 		player.setMp(player.getMaxMp());//턴시작시 마나회복
 		for(int i = 0; i <turnDrawCardNumber;i++) {
-			if(topOfCard<deckSize)//덱이 남아있을 때
-				{
+			if(topOfCard<tempBattleDeck.length)//덱이 남아있을 때
+			{
 				player.drawToPlayerHand(tempBattleDeck[topOfCard]);
 				topOfCard++;
-				}
+			}
 			else if(graveCard.length>0)//덱을 다쓰면 묘지를 덱으로 넣고 다시 섞는다.
 			{
 				tempBattleDeck=graveCard;
 				graveCard=new TotalCardBase[0];//묘지를 비운다.
 				topOfCard=0;//뽑는곳을 맨위로 올린다
-				cardShuffle();				
+				cardShuffle();
 				i--;
+			}
+			else {
+				break;
 			}
 			
 		}
-		if(topOfCard==deckSize)
+		if(topOfCard==tempBattleDeck.length)
 		{
 			System.out.println("덱을 전부소모했습니다.");
 		}		
@@ -267,7 +266,7 @@ public class Battle
 					
 					target=0;//적 처치시 다시 타겟설정으로
 					break;
-				}				
+				}
 				
 				if(player.getHand().length<1)
 				{
@@ -329,16 +328,27 @@ public class Battle
 		System.out.println("전투 승리 보상을 획득합니다.");
 	}
 	
+	public void resetTempBattleDeck(TotalCardBase[] battleDeck)
+	{
+		TotalCardBase[] temp = new TotalCardBase[battleDeck.length];
+		
+		for(int i = 0; i <battleDeck.length;i++)
+		{
+			temp[i]=battleDeck[i];
+		}
+		
+		this.tempBattleDeck=temp;
+		topOfCard=0;//위에서 뽑는 형식이라 이것도 초기화시켜줘야한다.
+	}
 	
 	
 	//set 모음
+	
+	
+	
 	public void setUseCardNumber(int useCardNumber) 
 	{
 		this.useCardNumber=useCardNumber;
-	}
-	public void setDeckSize(int deckSize)
-	{
-		this.deckSize=deckSize;
 	}
 	public void setPlayerTurn(boolean playerTurn)
 	{
@@ -362,4 +372,8 @@ public class Battle
 		return playerTurn;
 	}
 	
+	public TotalCardBase[] getTempBattleDeck()
+	{
+		return tempBattleDeck;
+	}
 }

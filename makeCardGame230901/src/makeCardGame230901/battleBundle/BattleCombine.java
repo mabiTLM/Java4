@@ -5,8 +5,8 @@ import makeCardGame230901.village.MoveInVillage;
 
 public class BattleCombine 
 {
-	PlayerCharacter player;
-	Battle battle;
+	private PlayerCharacter player;
+	private Battle battle;
 	private int playerTurnGaze =0;//행동게이지
 	private int[] enemyTurnGaze;
 	
@@ -21,7 +21,7 @@ public class BattleCombine
 		battle.encounter();
 		battle.cardShuffle();
 		//속도계산
-		enemyTurnGaze= new int[battle.currentEnemy.length];//적숫자가 랜덤이라서 여기서 생성, 적이죽었을때는??
+		enemyTurnGaze= new int[battle.currentEnemy.length];//적숫자가 랜덤이라서 여기서 생성
 	
 		while(true) {
 			//행동게이지 개념
@@ -45,7 +45,13 @@ public class BattleCombine
 			
 			if(battle.getPlayerTurn()) 
 			{
-				battle.cardDraw();
+				this.battle.cardDraw();
+				for(int i = 0; i<battle.getTempBattleDeck().length;i++)
+				{
+					System.out.println(battle.getTempBattleDeck()[i].getCardName());
+				}
+				
+				
 			}			
 			while(battle.getPlayerTurn()) 
 			{

@@ -35,10 +35,10 @@ public class PlayerCharacter extends CharacterBase {
 							cardData.totalCard()[1],
 						},
 				new TotalCardBase[] {},//손패
-				100,
-				5,
-				100,
-				5,
+				10000,
+				500,
+				10000,
+				500,
 				10,
 				0);
 	}

@@ -8,12 +8,12 @@ import makeCardGame230901.mapBundle.MoveInDungeon;
 import makeCardGame230901.village.MoveInVillage;
 
 public class Build {
-	PlayerCharacter player = new PlayerCharacter();
-	Battle battle = new Battle(player);
-	BattleCombine battleCombine = new BattleCombine(player,battle);
-	MoveInVillage moveInvillage = new MoveInVillage();
-	PlayerReset resetData = new PlayerReset();
-	MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage);
+	private PlayerCharacter player = new PlayerCharacter();
+	private Battle battle = new Battle(player);
+	private BattleCombine battleCombine = new BattleCombine(player,battle);
+	private MoveInVillage moveInvillage = new MoveInVillage();
+	private PlayerReset resetData = new PlayerReset();
+	private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage);
 	void build()
 	{
 		while(moveInvillage.getLocationVillage())
