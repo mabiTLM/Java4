@@ -23,6 +23,10 @@ public class Battle
 	private boolean playerTurn = false;
 	MONSTERTYPE monsterType;
 	
+	public Battle()
+	{
+	}
+	
 	public Battle(PlayerCharacter player)
 	{
 		this.player=player;
@@ -102,61 +106,6 @@ public class Battle
 		}		
 	}
 	
-	
-	public void watchPlayerHand()
-	{
-		for(int i = 0; i < player.getHand().length;i++)//마나
-		{
-			System.out.print("   "+player.getHand()[i].getCardConsumeMana());
-			System.out.print(" 마나========   ");
-		}
-		System.out.println();
-		
-		for(int i = 0; i < player.getHand().length;i++)
-		{
-			if(player.getHand()[i].getCardName().length()==3)//카드이름
-			{
-				System.out.print("   |   "+player.getHand()[i].getCardName()+"    |   ");
-			}
-			else if(player.getHand()[i].getCardName().length()==4)
-			{
-				System.out.print("   |   "+player.getHand()[i].getCardName()+"  |   ");
-			}
-			else {
-			System.out.print("   |    "+player.getHand()[i].getCardName()+"    |   ");
-			}
-		}
-		System.out.println();
-		
-		for(int i = 0; i < player.getHand().length;i++)
-		{
-			System.out.print("   |  "+player.getHand()[i].getCardType()+"   |   ");			
-		}
-		System.out.println();
-		
-		
-		for(int i = 0; i < player.getHand().length;i++)
-		{
-			if(player.getHand()[i].getCardValue()<10)
-			{
-				System.out.print("   =========== ");
-			}
-			else
-			{
-				System.out.print("   ========== ");
-			}
-			System.out.print(player.getHand()[i].getCardValue()+"   ");
-		}
-		System.out.println();
-		for(int i = 0; i < player.getHand().length;i++)
-		{
-			System.out.print("        "+(i+1)+"          ");
-		}
-		System.out.println();
-		
-	}
-	
-	
 	public void watchEnemy()
 	{
 		for(int i = 0; i <currentEnemy.length;i++)
@@ -178,7 +127,7 @@ public class Battle
 	{
 		while(true) {
 			watchEnemy();
-			watchPlayerHand();
+			sortCard.watchCard(player.getHand());
 			player.status();
 			//모든 몬스터 제거시 실행종료
 			if(currentEnemy.length<1)
@@ -209,7 +158,7 @@ public class Battle
 		
 		while(playerTurn) {
 			watchEnemy();
-			watchPlayerHand();
+			sortCard.watchCard(player.getHand());
 			player.status();
 			System.out.println("몇번 카드를 사용합니까? 0.다른 타겟");
 			useCardNumber=scan.nextInt();

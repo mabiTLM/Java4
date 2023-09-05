@@ -13,7 +13,7 @@ public class Build {
 	private BattleCombine battleCombine = new BattleCombine(player,battle);
 	private MoveInVillage moveInvillage = new MoveInVillage();
 	private PlayerReset resetData = new PlayerReset();
-	private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage);
+	private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage,player);
 	void build()
 	{
 		while(moveInvillage.getLocationVillage())
@@ -37,7 +37,7 @@ public class Build {
 				battle = new Battle(player);
 				battleCombine = new BattleCombine(player,battle);
 				moveInvillage = new MoveInVillage();
-				moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage);
+				moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage,player);
 				player.setMoeny(tempMoney);//돈은 직전껄로 덱과 인벤은 마을출발전껄로
 				resetData.getResetData(player);//나머진 리셋데이터 저장한걸로
 			}

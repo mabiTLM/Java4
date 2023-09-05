@@ -4,17 +4,22 @@ import java.util.Scanner;
 
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.battleBundle.MONSTERTYPE;
+import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
 public class StageBase 
 {
+	EventInDungeon eventInDungeon;
 	BattleCombine battleCombine;
 	MoveInVillage moveInvillage;
+	PlayerCharacter player;
 	
-	StageBase(BattleCombine battleCombine,	MoveInVillage moveInvillage)
+	StageBase(BattleCombine battleCombine,	MoveInVillage moveInvillage,PlayerCharacter player)
 	{
 		this.battleCombine=battleCombine;
 		this.moveInvillage=moveInvillage;
+		this.player=player;
+		this.eventInDungeon= new EventInDungeon(player);
 	}
 	
 	private int height=14;
@@ -65,7 +70,7 @@ public class StageBase
 		}
 		else if(firstMap[height][width]==3)//이벤
 		{
-			
+			eventInDungeon.event();
 		}
 		else if(firstMap[height][width]==4)//불
 		{

@@ -3,12 +3,13 @@ package makeCardGame230901.mapBundle;
 import java.util.Random;
 
 import makeCardGame230901.battleBundle.BattleCombine;
+import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
 public class FirstFloor extends StageBase
 {
-	FirstFloor(BattleCombine battleCombine, MoveInVillage moveInvillage) {
-		super(battleCombine, moveInvillage);
+	FirstFloor(BattleCombine battleCombine, MoveInVillage moveInvillage, PlayerCharacter player) {
+		super(battleCombine, moveInvillage, player);
 		// TODO Auto-generated constructor stub
 	}
 

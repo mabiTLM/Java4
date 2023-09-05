@@ -29,8 +29,7 @@ public class TotalCardBase {
 	}
 	
 	
-	TotalCardBase[] cardData= new TotalCardBase[6];
-	
+	TotalCardBase[] cardData= new TotalCardBase[10];	
 	public TotalCardBase[] totalCard()//판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
 	{
 		cardData[0] = new TotalCardBase("공격",CardType.Attack,7,1,10);
@@ -39,6 +38,11 @@ public class TotalCardBase {
 		cardData[3] = new TotalCardBase("굳히기",CardType.Defend,15,2,50);
 		cardData[4] = new TotalCardBase("참격",CardType.Attack,10,1,100);
 		cardData[5] = new TotalCardBase("굳건",CardType.Defend,10,1,100);
+		cardData[6] = new TotalCardBase("속공",CardType.Attack,10,0,50);
+		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,3,50);
+		cardData[8] = new TotalCardBase("불굴",CardType.Defend,10,0,100);
+		cardData[9] = new TotalCardBase("빛의수호",CardType.Defend,50,3,100);
+		
 		return cardData;
 	}
 	
@@ -53,6 +57,15 @@ public class TotalCardBase {
 		return shopData;
 	}
 	
+	TotalCardBase[] eventCardData = new TotalCardBase[4];
+	public TotalCardBase[] eventCard()
+	{
+		eventCardData[0] = totalCard()[6];
+		eventCardData[1] = totalCard()[7];
+		eventCardData[2] = totalCard()[8];
+		eventCardData[3] = totalCard()[9];
+		return eventCardData;
+	}
 	public void watchCardData(TotalCardBase[] cardSet)
 	{
 		for(int i = 0; i <cardSet.length;i++)

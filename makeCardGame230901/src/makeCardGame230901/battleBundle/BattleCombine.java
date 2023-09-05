@@ -45,13 +45,7 @@ public class BattleCombine
 			
 			if(battle.getPlayerTurn()) 
 			{
-				this.battle.cardDraw();
-				for(int i = 0; i<battle.getTempBattleDeck().length;i++)
-				{
-					System.out.println(battle.getTempBattleDeck()[i].getCardName());
-				}
-				
-				
+				this.battle.cardDraw();				
 			}			
 			while(battle.getPlayerTurn()) 
 			{
