@@ -72,6 +72,24 @@ public class TotalCardBase {
 		return temp;
 	}
 	
+	public TotalCardBase[] sortRemoveCard(TotalCardBase[] playerDeck, int slot)
+	{
+		TotalCardBase[]	temp = new TotalCardBase[playerDeck.length-1];
+		for(int i = 0; i<playerDeck.length;i++)
+		{
+			if(i<slot-1)
+			{
+				temp[i]=playerDeck[i];
+			}
+			else if(i>slot-1)
+			{
+				playerDeck[i-1]=playerDeck[i];
+			}
+		}
+		return temp;
+	}
+	
+	
 	
 	//get모음
 	public CardType getCardType()

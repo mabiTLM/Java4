@@ -9,6 +9,7 @@ import makeCardGame230901.village.MoveInVillage;
 public class Battle 
 {
 	PlayerCharacter player;
+	TotalCardBase sortCard = new TotalCardBase();
 	TotalCardBase[] tempBattleDeck;//플레이어의 덱을 배틀할때만 복사한다.
 	TotalCardBase[] graveCard = new TotalCardBase[0];
 	EnemyCharacter eArray = new EnemyCharacter();
@@ -217,8 +218,9 @@ public class Battle
 				
 				if(currentEnemy[target-1].getHp()<=0)
 				{
-					player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());
+					player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
 					System.out.println(currentEnemy[target-1].getMoney());
+					
 					EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
 					int tempSortBlank=0;
 					for(int i = 0; i <tempSort.length;i++)
@@ -268,30 +270,12 @@ public class Battle
 		}
 		else {
 			//사용한 카드를 묘지로 보낸다.
-			TotalCardBase[] tempGraveCard = new TotalCardBase[graveCard.length+1];
-			for(int i = 0; i<graveCard.length;i++)
-			{
-			tempGraveCard[i]=graveCard[i];
-			}
-			tempGraveCard[graveCard.length]=player.getHand()[useCardNumber-1];
-			graveCard=tempGraveCard;
-			
+			graveCard=sortCard.sortAddCard(graveCard, player.getHand(), useCardNumber);
+						
 			playerBattleCalculator();//사용한 카드의 전투계산을 한다.
 			
-			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
-			TotalCardBase[] tempHandCard = new TotalCardBase[player.getHand().length-1];
-			for(int i = 0; i<player.getHand().length;i++)
-			{
-				if(i<useCardNumber-1)
-				{
-					tempHandCard[i]=player.getHand()[i];
-				}
-				else if(i>useCardNumber-1)
-				{
-					tempHandCard[i-1]=player.getHand()[i];
-				}
-			}
-			player.setHand(tempHandCard);
+			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.			
+			player.setHand(sortCard.sortRemoveCard(player.getHand(), useCardNumber));
 			
 		}
 	}
