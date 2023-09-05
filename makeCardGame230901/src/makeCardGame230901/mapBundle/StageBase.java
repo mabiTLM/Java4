@@ -84,14 +84,18 @@ public class StageBase
 	
 	public boolean canMove(int choice)
 	{
-		boolean temp = true;
-		if(width-1<0&&choice==1) 
+		boolean temp = false;
+		if(width-1>=0&&choice==1) 
 		{
-			temp=false;
+			temp=true;
 		}
-		else if(width+1>6&&choice==3) 
+		else if(width+1<=6&&choice==3) 
 		{
-			temp=false;
+			temp=true;
+		}
+		else if(choice==2) 
+		{
+			temp=true;
 		}
 		return temp;
 	}
