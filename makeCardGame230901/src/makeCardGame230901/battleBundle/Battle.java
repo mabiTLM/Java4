@@ -1,7 +1,10 @@
-package makeCardGame230901.cardBundle;
+package makeCardGame230901.battleBundle;
 
 import java.util.Scanner;
 
+import makeCardGame230901.cardBundle.CardType;
+import makeCardGame230901.cardBundle.TotalCardBase;
+import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
@@ -14,7 +17,7 @@ public class Battle
 	EnemyCharacter eArray = new EnemyCharacter();
 	EnemyCharacter[] currentEnemy;
 	MoveInVillage moveInVillage;
-	TotalCardBase sortCard = new TotalCardBase();
+	SortCard sortCard = new SortCard();
 	Scanner scan = new Scanner(System.in);
 	private	int turnDrawCardNumber=5;
 	private int target;
@@ -22,13 +25,14 @@ public class Battle
 	private int topOfCard=0;
 	private int useCardNumber=0;
 	private boolean playerTurn = false;
+	MONSTERTYPE monsterType;
 	
 	public Battle(PlayerCharacter player)
 	{
 		this.player=player;
 	}
 	
-	public void encounter() //심볼인카운트 쓸거니까 몹종류만 정해주면된다.
+	public void encounter() //어떤 적을 만날지 정해주자
 	{
 		tempBattleDeck = new TotalCardBase[player.getCardDeck().length];
 		for(int i = 0; i <tempBattleDeck.length;i++)
@@ -36,15 +40,27 @@ public class Battle
 			tempBattleDeck[i]=player.getCardDeck()[i];
 		}//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
 		
-		
-		int temp =(int)(Math.random()*4+1);//1~4마리
-		
-		currentEnemy = new EnemyCharacter[temp];
-		System.out.println("적이 " + temp + "마리 출현했다.");
-		for(int i = 0; i <currentEnemy.length;i++)
+		if(monsterType==MONSTERTYPE.NORMAL)
 		{
-			int enemyNumberTemp = (int)(Math.random()*eArray.firstStageData().length);
-			currentEnemy[i]=eArray.firstStageData()[enemyNumberTemp];
+			int temp =(int)(Math.random()*4+1);//1~4마리
+			currentEnemy = new EnemyCharacter[temp];
+			System.out.println("적이 " + temp + "마리 출현했다.");
+			for(int i = 0; i <currentEnemy.length;i++)
+			{
+				int enemyNumberTemp = (int)(Math.random()*eArray.firstStageData().length);
+				currentEnemy[i]=eArray.firstStageData()[enemyNumberTemp];
+			}
+		}
+		else if(monsterType==MONSTERTYPE.ELITE)
+		{
+			int temp =(int)(Math.random()*2+1);//1~4마리
+			currentEnemy = new EnemyCharacter[temp];
+			System.out.println("엘리트적이 " + temp + "마리 출현했다.");
+			for(int i = 0; i <currentEnemy.length;i++)
+			{
+				int enemyNumberTemp = (int)(Math.random()*eArray.firstStageEliteData().length);
+				currentEnemy[i]=eArray.firstStageEliteData()[enemyNumberTemp];
+			}
 		}
 	}
 	
@@ -172,7 +188,6 @@ public class Battle
 			{
 				System.out.println("전투에서 승리했습니다.");
 				setPlayerTurn(false);
-				moveInVillage.setLocationVillage(true);
 				break;
 			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
@@ -262,7 +277,7 @@ public class Battle
 		//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까
 	}
 	
-	public void useCard()//3개로 나눌수있을것같다.
+	public void useCard()
 	{
 		if(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana()<0)//mp가 있을때만 처리를 한다.
 		{
@@ -318,6 +333,11 @@ public class Battle
 	public void setPlayerTurn(boolean playerTurn)
 	{
 		this.playerTurn=playerTurn;
+	}
+	
+	public void setMonsterType(MONSTERTYPE monsterType)
+	{
+		this.monsterType=monsterType;
 	}
 	
 	

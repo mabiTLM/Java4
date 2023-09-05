@@ -19,6 +19,7 @@ public abstract class CharacterBase
 	private int avoidanceRate;//회피율 일단 보류
 	private int accuracy;//명중률
 	
+	
 	CharacterBase(){}
 	
 	

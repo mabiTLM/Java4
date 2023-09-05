@@ -4,7 +4,7 @@ public class EnemyCharacter extends CharacterBase
 {
 
 	private boolean enemyTurn = false;
-	
+	EnemyCharacter[] stageEnemy;
 	public EnemyCharacter(){
 	}
 	
@@ -23,13 +23,20 @@ public class EnemyCharacter extends CharacterBase
 		super(name,maxHp,maxMp,hp,mp,atk,def,money,speed);
 	}
 	
-	EnemyCharacter[] stageEnemy = new EnemyCharacter[3];
+	
 	
 	public EnemyCharacter[] firstStageData()
 	{
+		stageEnemy = new EnemyCharacter[2];
 		stageEnemy[0] = new EnemyCharacter("슬라임",20,0,20,0,5,0,100,10);
 		stageEnemy[1] = new EnemyCharacter("도적",20,0,20,0,5,0,100,30);
-		stageEnemy[2] = new EnemyCharacter("골렘",50,0,100,0,50,50,100,4);
+		return stageEnemy;
+	}
+	
+	public EnemyCharacter[] firstStageEliteData()
+	{
+		stageEnemy = new EnemyCharacter[1];
+		stageEnemy[0] = new EnemyCharacter("골렘",50,0,100,0,50,50,100,4);
 		return stageEnemy;
 	}
 	

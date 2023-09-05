@@ -3,11 +3,13 @@ package makeCardGame230901.village;
 import java.util.Scanner;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
+import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 
 public class CardShop 
 {	
 	TotalCardBase totalCardBase = new TotalCardBase();
+	SortCard sortCard= new SortCard();
 	Scanner scan = new Scanner(System.in);
 	
 	public void watchCardData(TotalCardBase[] cardSet)
@@ -41,7 +43,7 @@ public class CardShop
 			}
 			else if(Integer.valueOf(choice)>0)
 			{
-				player.setCardInventory(totalCardBase.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), Integer.valueOf(choice)));
+				player.setCardInventory(sortCard.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), Integer.valueOf(choice)));
 			}
 		}
 	}

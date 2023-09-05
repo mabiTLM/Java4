@@ -1,5 +1,62 @@
 package makeCardGame230901.mapBundle;
 
-public class FirstFloor {
+import java.util.Random;
 
+import makeCardGame230901.battleBundle.BattleCombine;
+import makeCardGame230901.village.MoveInVillage;
+
+public class FirstFloor extends StageBase
+{
+	FirstFloor(BattleCombine battleCombine, MoveInVillage moveInvillage) {
+		super(battleCombine, moveInvillage);
+		// TODO Auto-generated constructor stub
+	}
+
+	Random random = new Random();
+	
+	public void makeFirstMap()
+	{		
+		for(int i = 0; i < 15;i++)
+		{
+			for(int j =0; j<7; j++)
+			{
+				int roomPercent= random.nextInt(100);
+				int roomType=0;
+				if(roomPercent>=92)//강한몹
+				{
+					roomType=1;
+				}
+				else if(roomPercent>=39)//일반몹1
+				{
+					roomType=2;
+				}
+				else if(roomPercent>=17)//이벤트
+				{
+					roomType=3;
+				}
+				else if(roomPercent>=5)//불
+				{
+					roomType=4;
+				}
+				else if(roomPercent>=0)//상점
+				{
+					roomType=5;
+				}
+				
+				firstMap[i][j]=roomType;
+			}
+		}
+	}
+	
+//	public static void main(String[] args)//맵생성 도우미
+//	{
+//		FirstFloor FirstFloor= new FirstFloor();
+//		FirstFloor.makeFirstMap();
+//		
+//		while(true) {
+//			FirstFloor.watchMap();
+//			FirstFloor.movePlayer();
+//		
+//		}
+//	}
 }

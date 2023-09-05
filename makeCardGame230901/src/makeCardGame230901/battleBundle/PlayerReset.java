@@ -1,4 +1,4 @@
-package makeCardGame230901;
+package makeCardGame230901.battleBundle;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -11,7 +11,7 @@ public class PlayerReset {
 	int tempMaxHp;
 	int tempMaxMp;
 	
-	void setResetData(PlayerCharacter player)
+	public void setResetData(PlayerCharacter player)
 	{
 		this.tempPlayerinven=player.getCardInventory();
 		this.tempDeck=player.getCardDeck();
@@ -19,7 +19,7 @@ public class PlayerReset {
 		this.tempMaxMp=player.getMaxMp();
 	}
 	
-	void getResetData(PlayerCharacter player)
+	public void getResetData(PlayerCharacter player)
 	{
 		player.setCardInventory(tempPlayerinven);
 		player.setCardDeck(tempDeck);

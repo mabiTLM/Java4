@@ -57,39 +57,9 @@ public class TotalCardBase {
 	{
 		for(int i = 0; i <cardSet.length;i++)
 		{
-			System.out.println((i+1)+"."+cardSet[i].getCardName()+" : "+cardSet[i].getCardType()+"타입카드 수치 : "+cardSet[i].getCardValue()+" 마나 : "+cardSet[i].getCardConsumeMana());
+			System.out.println((i+1)+"."+cardSet[i].getCardName()+" : "+cardSet[i].getCardType()+"타입 수치 : "+cardSet[i].getCardValue()+" 마나 : "+cardSet[i].getCardConsumeMana());
 		}
 	}
-	
-	public TotalCardBase[] sortAddCard(TotalCardBase[] playerDeck, TotalCardBase[] addCard, int slot)
-	{
-		TotalCardBase[]	temp = new TotalCardBase[playerDeck.length+1];
-		for(int i = 0; i < playerDeck.length;i++)
-		{
-			temp[i]=playerDeck[i];
-		}
-		temp[playerDeck.length]=addCard[slot-1];
-		return temp;
-	}
-	
-	public TotalCardBase[] sortRemoveCard(TotalCardBase[] playerDeck, int slot)
-	{
-		TotalCardBase[]	temp = new TotalCardBase[playerDeck.length-1];
-		for(int i = 0; i<playerDeck.length;i++)
-		{
-			if(i<slot-1)
-			{
-				temp[i]=playerDeck[i];
-			}
-			else if(i>slot-1)
-			{
-				temp[i-1]=playerDeck[i];
-			}
-		}
-		return temp;
-	}
-	
-	
 	
 	//get모음
 	public CardType getCardType()
