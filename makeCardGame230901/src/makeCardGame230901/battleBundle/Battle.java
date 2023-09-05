@@ -15,12 +15,10 @@ public class Battle
 	private TotalCardBase[] graveCard = new TotalCardBase[0];
 	private EnemyCharacter eArray = new EnemyCharacter();
 	protected EnemyCharacter[] currentEnemy;
-	private MoveInVillage moveInVillage;
 	SortCard sortCard = new SortCard();
 	Scanner scan = new Scanner(System.in);
 	private	int turnDrawCardNumber=5;
 	private int target;
-	private int topOfCard=0;
 	private int useCardNumber=0;
 	private boolean playerTurn = false;
 	MONSTERTYPE monsterType;
@@ -81,30 +79,27 @@ public class Battle
 	public void cardDraw() //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
 	{
 		player.setMp(player.getMaxMp());//턴시작시 마나회복
+		
 		for(int i = 0; i <turnDrawCardNumber;i++) {
-			if(topOfCard<tempBattleDeck.length)//덱이 남아있을 때
+			
+			if(tempBattleDeck.length>0)//덱이 남아있으면
 			{
-				player.drawToPlayerHand(tempBattleDeck[topOfCard]);
-				topOfCard++;
+				player.setHand(sortCard.sortAddCard(player.getHand(), tempBattleDeck, 1));//핸드에 넣고
+				tempBattleDeck=sortCard.sortRemoveCard(tempBattleDeck, 1);//덱은 하나 줄이고
 			}
-			else if(graveCard.length>0)//덱을 다쓰면 묘지를 덱으로 넣고 다시 섞는다.
+			else if(graveCard.length>0)
 			{
 				tempBattleDeck=graveCard;
-				graveCard=new TotalCardBase[0];//묘지를 비운다.
-				topOfCard=0;//뽑는곳을 맨위로 올린다
+				graveCard=new TotalCardBase[0];
 				cardShuffle();
 				i--;
 			}
 			else {
+				System.out.println("덱을 전부소모했습니다.");
 				break;
 			}
 			
-		}
-		if(topOfCard==tempBattleDeck.length)
-		{
-			System.out.println("덱을 전부소모했습니다.");
 		}		
-		
 	}
 	
 	
@@ -338,7 +333,6 @@ public class Battle
 		}
 		
 		this.tempBattleDeck=temp;
-		topOfCard=0;//위에서 뽑는 형식이라 이것도 초기화시켜줘야한다.
 	}
 	
 	
