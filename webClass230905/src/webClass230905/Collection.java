@@ -98,8 +98,7 @@ public class Collection {
 		//ArrayList<String>MyList1 = new ArrayList<>();
 		//큰 차이는 나지 않지만 유연성이 약간 다르다. List가 인터페이스라서 더 유연하고 일반적인 방법이다.
 		
+		
 	}
 
 }
-
-
