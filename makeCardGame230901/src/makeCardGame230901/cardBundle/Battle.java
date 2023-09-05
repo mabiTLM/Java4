@@ -9,12 +9,12 @@ import makeCardGame230901.village.MoveInVillage;
 public class Battle 
 {
 	PlayerCharacter player;
-	TotalCardBase sortCard = new TotalCardBase();
 	TotalCardBase[] tempBattleDeck;//플레이어의 덱을 배틀할때만 복사한다.
 	TotalCardBase[] graveCard = new TotalCardBase[0];
 	EnemyCharacter eArray = new EnemyCharacter();
 	EnemyCharacter[] currentEnemy;
 	MoveInVillage moveInVillage;
+	TotalCardBase sortCard = new TotalCardBase();
 	Scanner scan = new Scanner(System.in);
 	private	int turnDrawCardNumber=5;
 	private int target;
@@ -204,7 +204,7 @@ public class Battle
 			if(useCardNumber==0)
 			{
 				target=0;
-				break;				
+				break;
 			}
 			else if(useCardNumber>player.getHand().length)
 			{

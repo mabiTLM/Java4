@@ -12,6 +12,7 @@ public class Build {
 	MoveInVillage moveInvillage = new MoveInVillage();
 	PlayerReset resetData = new PlayerReset();
 	
+	
 	void build()
 	{
 		while(moveInvillage.getLocationVillage())

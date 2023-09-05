@@ -83,7 +83,7 @@ public class TotalCardBase {
 			}
 			else if(i>slot-1)
 			{
-				playerDeck[i-1]=playerDeck[i];
+				temp[i-1]=playerDeck[i];
 			}
 		}
 		return temp;
