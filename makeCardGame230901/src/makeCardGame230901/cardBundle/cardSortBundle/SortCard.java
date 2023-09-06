@@ -67,7 +67,7 @@ public class SortCard {
 		}
 		System.out.println();
 		
-		for(int i = 0; i < playerHand.length;i++)
+		for(int i = 0; i < playerHand.length;i++)//타입
 		{
 			System.out.print("   |  "+playerHand[i].getCardType()+"   |   ");			
 		}

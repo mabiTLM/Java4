@@ -41,9 +41,21 @@ public class CardShop
 				System.out.println();
 				System.out.println();
 			}
-			else if(Integer.valueOf(choice)>0)
+			else if(Integer.valueOf(choice)>0&&Integer.valueOf(choice)<totalCardBase.shopSellCard().length+1)
 			{
-				player.setCardInventory(sortCard.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), Integer.valueOf(choice)));
+				int cardNumber = Integer.valueOf(choice);
+				int result = player.getMoney()-totalCardBase.shopSellCard()[cardNumber-1].getCardPrice();
+				if(result>=0)
+				{
+					player.setMoeny(result);
+				}
+				else {
+				player.setCardInventory(sortCard.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), cardNumber));
+				}
+			}
+			else
+			{
+				System.out.println("다시골라줘");
 			}
 		}
 	}

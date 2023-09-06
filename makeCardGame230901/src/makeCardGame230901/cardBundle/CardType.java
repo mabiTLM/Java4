@@ -3,6 +3,6 @@ package makeCardGame230901.cardBundle;
 public enum CardType {
 	Attack,
 	Defend,
-	Heal,
-	Buff
+	_HEAL_,
+	_BUFF_, 
 }

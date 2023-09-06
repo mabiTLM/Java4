@@ -47,7 +47,7 @@ public class TotalCardBase {
 	}
 	
 	
-	TotalCardBase[] cardData= new TotalCardBase[11];
+	TotalCardBase[] cardData= new TotalCardBase[12];
 	public TotalCardBase[] totalCard()//판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
 	{
 		cardData[0] = new TotalCardBase("공격",CardType.Attack,7,1,10);
@@ -57,15 +57,16 @@ public class TotalCardBase {
 		cardData[4] = new TotalCardBase("참격",CardType.Attack,10,1,100);
 		cardData[5] = new TotalCardBase("굳건",CardType.Defend,20,1,100);
 		cardData[6] = new TotalCardBase("속공",CardType.Attack,10,0,50);
-		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,3,50);
+		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,2,50);
 		cardData[8] = new TotalCardBase("불굴",CardType.Defend,10,0,100);
 		cardData[9] = new TotalCardBase("빛의수호",CardType.Defend,80,3,100);
-		cardData[10] = new TotalCardBase("실드차지",CardType.Attack,0,1,100,"실드차지");
+		cardData[10] = new TotalCardBase("실드차지",CardType.Attack,0,1,1000,"실드차지");
+		cardData[11] = new TotalCardBase("힐링",CardType._HEAL_,10,1,100);
 		
 		return cardData;
 	}
 	
-	TotalCardBase[] shopData= new TotalCardBase[5];
+	TotalCardBase[] shopData= new TotalCardBase[6];
 	public TotalCardBase[] shopSellCard()
 	{
 		
@@ -74,6 +75,7 @@ public class TotalCardBase {
 		shopData[2] = totalCard()[2];
 		shopData[3] = totalCard()[3];
 		shopData[4] = totalCard()[10];
+		shopData[5] = totalCard()[11];
 		return shopData;
 	}
 	

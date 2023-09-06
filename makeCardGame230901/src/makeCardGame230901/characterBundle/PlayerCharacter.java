@@ -5,6 +5,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 
 public class PlayerCharacter extends CharacterBase {
 	private	int drawCardNumber=5;
+	private boolean bossWin = false;
 	
 	static TotalCardBase cardData = new TotalCardBase();
 	
@@ -77,13 +78,24 @@ public class PlayerCharacter extends CharacterBase {
 		this.setHand(discard);
 	}
 	
+	//set모음
+	public void setBossWin(boolean bossWin)
+	{
+		this.bossWin=bossWin;
+	}
+	
 	public void setDrawCardNumber(int drawCardNumber)
 	{
 		this.drawCardNumber=drawCardNumber;
 	}
+	
+	//get 모음
 	public int getDrawCardNumber()
 	{
 		return drawCardNumber;
 	}
-	
+	public boolean getBossWin()
+	{
+		return bossWin;
+	}
 }

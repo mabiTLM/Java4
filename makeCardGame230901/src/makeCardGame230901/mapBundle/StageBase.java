@@ -58,7 +58,13 @@ public class StageBase
 	public void symbolEncount()
 	{
 		MONSTERTYPE mT;
-		if(firstMap[height][width]==1)//엘리트
+		if(height<0)
+		{
+			System.out.println("보스출현!");
+			battleCombine.getBattle().setMonsterType(MONSTERTYPE.BOSS);
+			battleCombine.battleCombine(moveInvillage);
+		}
+		else if(firstMap[height][width]==1)//엘리트
 		{
 			battleCombine.getBattle().setMonsterType(MONSTERTYPE.ELITE);
 			battleCombine.battleCombine(moveInvillage);

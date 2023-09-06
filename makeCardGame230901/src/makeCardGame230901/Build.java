@@ -16,21 +16,21 @@ public class Build {
 	private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine,moveInvillage,player);
 	void build()
 	{
-		while(moveInvillage.getLocationVillage())
+		while(moveInvillage.getLocationVillage()&&!player.getBossWin())
 		{
-			while(moveInvillage.getLocationVillage()) //마을에서 초기덱을 강화할수있게, 마을에 위치해있는가를 판단
+			while(moveInvillage.getLocationVillage()&&!player.getBossWin()) //마을에서 초기덱을 강화할수있게, 마을에 위치해있는가를 판단
 			{
 				moveInvillage.MoveVillage(player);
 				//던전에 가기전에 덱, 인벤토리 복사, 스텟최대치 복사
 				resetData.setResetData(player);
 			}
 			
-			while(!moveInvillage.getLocationVillage()) // 마을에 있지 않을때
+			while(!moveInvillage.getLocationVillage()&&!player.getBossWin()) // 마을에 있지 않을때
 			{
 				moveInDungeon.dungeonEntrance();
 			}
 			
-			if(moveInvillage.getLocationVillage())//마을로 나와질경우 초기화
+			if(moveInvillage.getLocationVillage()&&!player.getBossWin())//마을로 나와질경우 초기화 보스이기면 초기화안함
 			{
 				int tempMoney=player.getMoney();
 				player = new PlayerCharacter();

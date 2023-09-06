@@ -65,7 +65,10 @@ public class Battle
 		}
 		else if(monsterType==MONSTERTYPE.BOSS)
 		{
-			//보스전 미구현
+			currentEnemy = new EnemyCharacter[1];
+			int enemyNumberTemp = (int)(Math.random()*eArray.firstStageBossData().length);
+			currentEnemy[0]=eArray.firstStageBossData()[enemyNumberTemp];
+			System.out.println("[보스]"+eArray.firstStageBossData()[enemyNumberTemp].getName()+"가 출현했다.");
 		}
 	}
 
@@ -128,7 +131,7 @@ public class Battle
 			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
 			target = scan.nextInt();
-			if(target>currentEnemy.length)
+			if(target>currentEnemy.length||target<0)
 			{
 				System.out.println("다시 타겟해주세요");
 			}
@@ -140,9 +143,7 @@ public class Battle
 			else
 			{
 				break;
-				
-			}		
-			
+			}
 		}
 		
 		while(playerTurn) {
@@ -157,7 +158,7 @@ public class Battle
 				target=0;
 				break;
 			}
-			else if(useCardNumber>player.getHand().length)
+			else if(useCardNumber>player.getHand().length||useCardNumber<0)
 			{
 				System.out.println("카드를 다시 골라주세요");
 			}
@@ -218,7 +219,11 @@ public class Battle
 				currentEnemy[target-1].setDef(0);
 			}
 			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-tempDamage);//목표로한적에게 데미지를 준다.
-			
+		}
+		else if(player.getHand()[useCardNumber-1].getCardType()==CardType._HEAL_)
+		{
+			player.setHp(player.getHp()+player.getHand()[useCardNumber-1].getCardValue());
+			player.status();
 		}
 		
 	}
@@ -232,14 +237,20 @@ public class Battle
 		graveCard = new TotalCardBase[0];
 		player.disCardHand();
 		setPlayerTurn(false);
-		System.out.println("전투 승리 보상을 획득합니다.");
 		if(monsterType==MONSTERTYPE.NORMAL) {
+			System.out.println("전투 승리 보상을 획득합니다.");
 			eventInDungeon.cardAddEvent();
 		}
 		else if(monsterType==MONSTERTYPE.ELITE) {
+			System.out.println("엘리트 승리 보상을 획득합니다.");
 			eventInDungeon.cardAddEvent();
 			eventInDungeon.cardAddEvent();
 			eventInDungeon.cardAddEvent();
+		}
+		else if(monsterType==MONSTERTYPE.BOSS)
+		{
+			System.out.println("보스한테 승리했습니다.");
+			System.out.println("게임 클리어!");			
 		}
 	}
 	
