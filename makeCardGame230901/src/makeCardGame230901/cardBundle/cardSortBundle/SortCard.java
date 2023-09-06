@@ -1,6 +1,7 @@
 package makeCardGame230901.cardBundle.cardSortBundle;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
+import makeCardGame230901.characterBundle.PlayerCharacter;
 
 public class SortCard {
 	
@@ -41,7 +42,7 @@ public class SortCard {
 	/**
 	 * 넣은 덱을 카드로써보여줍니다.
 	**/	
-	public void watchCard(TotalCardBase[] playerHand)
+	public void watchCard(TotalCardBase[] playerHand,PlayerCharacter player)
 	{
 		for(int i = 0; i < playerHand.length;i++)//마나
 		{
@@ -73,8 +74,9 @@ public class SortCard {
 		System.out.println();
 		
 		
-		for(int i = 0; i < playerHand.length;i++)
+		for(int i = 0; i < playerHand.length;i++) //카드 수치
 		{
+			notNomalCard(playerHand[i], player);
 			if(playerHand[i].getCardValue()<10)
 			{
 				System.out.print("   =========== ");
@@ -91,7 +93,6 @@ public class SortCard {
 			System.out.print("        "+(i+1)+"          ");
 		}
 		System.out.println();
-		
 	}
 	
 	/**
@@ -147,4 +148,15 @@ public class SortCard {
 		deck[number-1].setCardConsumeMana(deck[number-1].getCardConsumeMana()-1);
 	}
 	
+	/**
+	 *특수한 형태의 카드들의 값을 바꿔줍니다 
+	 **/
+	public void notNomalCard(TotalCardBase deck, PlayerCharacter player)
+	{
+		if(deck.getRange().equals("실드차지"))
+		{
+			deck.setCardValue(player.getDef());
+		}
+		
+	}
 }

@@ -65,7 +65,7 @@ public class TotalCardBase {
 		return cardData;
 	}
 	
-	TotalCardBase[] shopData= new TotalCardBase[4];
+	TotalCardBase[] shopData= new TotalCardBase[5];
 	public TotalCardBase[] shopSellCard()
 	{
 		
@@ -73,6 +73,7 @@ public class TotalCardBase {
 		shopData[1] = totalCard()[1];
 		shopData[2] = totalCard()[2];
 		shopData[3] = totalCard()[3];
+		shopData[4] = totalCard()[10];
 		return shopData;
 	}
 	

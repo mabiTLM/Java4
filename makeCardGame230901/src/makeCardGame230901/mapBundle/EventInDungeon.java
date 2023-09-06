@@ -80,7 +80,7 @@ public class EventInDungeon
 		}
 		while(true)
 		{
-			sortCard.watchCard(tempEventCard);
+			sortCard.watchCard(tempEventCard,player);
 			System.out.println("몇번째 카드를 가지나요? 0.고르지 않는다.");
 			int temp=scan.nextInt();
 			scan.nextLine();

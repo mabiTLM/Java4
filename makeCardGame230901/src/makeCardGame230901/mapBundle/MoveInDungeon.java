@@ -22,7 +22,6 @@ public class MoveInDungeon
 	public void dungeonEntrance()
 	{
 		FirstFloor floor = new FirstFloor(battleCombine,moveInvillage,player);
-		System.out.println("지금은 1층밖에 없다.");
 		floor.makeFirstMap();
 		while(!moveInvillage.getLocationVillage()) //언제나갈지 생각하자
 		{

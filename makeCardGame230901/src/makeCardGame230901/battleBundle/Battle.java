@@ -117,7 +117,7 @@ public class Battle
 	{
 		while(true) {
 			watchEnemy();
-			sortCard.watchCard(player.getHand());
+			sortCard.watchCard(player.getHand(),player);
 			player.status();
 			//모든 몬스터 제거시 실행종료
 			if(currentEnemy.length<1)
@@ -134,7 +134,7 @@ public class Battle
 			}
 			else if(target==0)
 			{
-				playerTurn=false;
+				playerTurnOff();
 				break;
 			}
 			else
@@ -147,7 +147,7 @@ public class Battle
 		
 		while(playerTurn) {
 			watchEnemy();
-			sortCard.watchCard(player.getHand());
+			sortCard.watchCard(player.getHand(),player);
 			player.status();
 			System.out.println("몇번 카드를 사용합니까? 0.다른 타겟");
 			useCardNumber=scan.nextInt();
@@ -163,22 +163,16 @@ public class Battle
 			}
 			else
 			{
-				useCard();
-				
-				//여기서 적 사망 처리해야한다.
-				
+				useCard();				
 				if(currentEnemy[target-1].getHp()<=0)
 				{
-					monsterDie(battleCombine);					
-					target=0;//적 처치시 다시 타겟설정으로
+					monsterDie(battleCombine);
 					break;
 				}
 				
 				if(player.getHand().length<1)
 				{
-					System.out.println("모든 패를 사용하여 턴이 넘어갑니다.");
-					playerTurn=false;
-					target=0;
+					playerTurnOff();
 					break;
 				}
 			}
@@ -239,7 +233,14 @@ public class Battle
 		player.disCardHand();
 		setPlayerTurn(false);
 		System.out.println("전투 승리 보상을 획득합니다.");
-		eventInDungeon.cardAddEvent();
+		if(monsterType==MONSTERTYPE.NORMAL) {
+			eventInDungeon.cardAddEvent();
+		}
+		else if(monsterType==MONSTERTYPE.ELITE) {
+			eventInDungeon.cardAddEvent();
+			eventInDungeon.cardAddEvent();
+			eventInDungeon.cardAddEvent();
+		}
 	}
 	
 	public void resetTempBattleDeck(TotalCardBase[] battleDeck)
@@ -291,7 +292,7 @@ public class Battle
 			tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
 		}
 		battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);
-		
+		target=0;
 	}
 	
 	
