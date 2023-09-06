@@ -47,7 +47,7 @@ public class BattleCombine
 			
 			if(battle.getPlayerTurn()) 
 			{
-				this.battle.cardDraw();				
+				battle.cardDraw(player.getDrawCardNumber());				
 			}			
 			while(battle.getPlayerTurn()) 
 			{
@@ -58,9 +58,8 @@ public class BattleCombine
 					break;
 				}
 			}
-			if(battle.currentEnemy.length<1)
+			if(battle.currentEnemy.length<1) //전투 승리
 			{
-				//배틀보상넣자
 				break;
 			}
 			

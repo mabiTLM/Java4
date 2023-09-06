@@ -6,6 +6,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.mapBundle.EventInDungeon;
 import makeCardGame230901.village.MoveInVillage;
 
 public class Battle 
@@ -15,9 +16,9 @@ public class Battle
 	private TotalCardBase[] graveCard = new TotalCardBase[0];
 	private EnemyCharacter eArray = new EnemyCharacter();
 	protected EnemyCharacter[] currentEnemy;
+	EventInDungeon eventInDungeon;
 	SortCard sortCard = new SortCard();
 	Scanner scan = new Scanner(System.in);
-	private	int turnDrawCardNumber=5;
 	private int target;
 	private int useCardNumber=0;
 	private boolean playerTurn = false;
@@ -30,6 +31,7 @@ public class Battle
 	public Battle(PlayerCharacter player)
 	{
 		this.player=player;
+		eventInDungeon = new EventInDungeon(player);
 	}
 	
 	
@@ -37,8 +39,6 @@ public class Battle
 	{
 		resetTempBattleDeck(player.getCardDeck());
 		//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
-		graveCard = new TotalCardBase[0];
-		player.disCardHand();
 		tempBattleDeck=sortCard.suffleDeck(tempBattleDeck);
 		
 		if(monsterType==MONSTERTYPE.NORMAL)
@@ -63,14 +63,18 @@ public class Battle
 				currentEnemy[i]=eArray.firstStageEliteData()[enemyNumberTemp];
 			}
 		}
+		else if(monsterType==MONSTERTYPE.BOSS)
+		{
+			//보스전 미구현
+		}
 	}
 
 	// 카드를뽑고 사용한 카드를 묘지로 보낸다. 덱을 전부 소모하면 묘지의 카드를 섞어서 다시 덱을 만든다.
-	public void cardDraw() //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
+	public void cardDraw(int drawNumber) //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
 	{
 		player.setMp(player.getMaxMp());//턴시작시 마나회복
 		
-		for(int i = 0; i <turnDrawCardNumber;i++) {
+		for(int i = 0; i <drawNumber;i++) {
 			
 			if(tempBattleDeck.length>0)//덱이 남아있으면
 			{
@@ -165,34 +169,7 @@ public class Battle
 				
 				if(currentEnemy[target-1].getHp()<=0)
 				{
-					player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
-					System.out.println("적을 처치하여"+currentEnemy[target-1].getMoney()+"골드를 얻었습니다.");
-					
-					EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
-					int tempSortBlank=0;
-					for(int i = 0; i <tempSort.length;i++)
-					{
-						if(i==target-1)
-						{
-							tempSortBlank++;
-						}						
-						tempSort[i]=currentEnemy[i+tempSortBlank];
-					}
-					currentEnemy=tempSort;
-					
-					//적이 죽었을때 행동게이지도 수정해야한다.
-					tempSortBlank=0;
-					int[] tempEnemyTurnGaze = new int[battleCombine.getEnemyTurnGaze().length-1];
-					for(int i = 0; i <tempEnemyTurnGaze.length;i++)
-					{
-						if(i==target-1)
-						{
-							tempSortBlank++;
-						}						
-						tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
-					}
-					battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);
-					
+					monsterDie(battleCombine);					
 					target=0;//적 처치시 다시 타겟설정으로
 					break;
 				}
@@ -252,10 +229,17 @@ public class Battle
 		
 	}
 	
+	
+	/**
+	 *전투가 끝났을 때 손패를 버리고 묘지를 비워준다. 처음에 얻는 카드를 고정시킬수있게 시작단이 아닌 끝나는 곳에 넣는다. 
+	 **/
 	public void battleFinish()
 	{
+		graveCard = new TotalCardBase[0];
+		player.disCardHand();
 		setPlayerTurn(false);
 		System.out.println("전투 승리 보상을 획득합니다.");
+		eventInDungeon.cardAddEvent();
 	}
 	
 	public void resetTempBattleDeck(TotalCardBase[] battleDeck)
@@ -268,6 +252,46 @@ public class Battle
 		}
 		
 		this.tempBattleDeck=temp;
+	}
+	
+	public void playerTurnOff()//턴이 끝났을 때 행동처리
+	{
+		playerTurn=false;//턴끄고
+		graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());//손을 묘지로 보내고
+		player.disCardHand();
+		target=0;
+	}
+	
+	public void monsterDie(BattleCombine battleCombine)
+	{
+		player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
+		System.out.println("적을 처치하여"+currentEnemy[target-1].getMoney()+"골드를 얻었습니다.");
+		
+		EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length-1];
+		int tempSortBlank=0;
+		for(int i = 0; i <tempSort.length;i++)
+		{
+			if(i==target-1)
+			{
+				tempSortBlank++;
+			}						
+			tempSort[i]=currentEnemy[i+tempSortBlank];
+		}
+		currentEnemy=tempSort;
+		
+		//적이 죽었을때 행동게이지도 수정해야한다.
+		tempSortBlank=0;
+		int[] tempEnemyTurnGaze = new int[battleCombine.getEnemyTurnGaze().length-1];
+		for(int i = 0; i <tempEnemyTurnGaze.length;i++)
+		{
+			if(i==target-1)
+			{
+				tempSortBlank++;
+			}						
+			tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
+		}
+		battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);
+		
 	}
 	
 	

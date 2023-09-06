@@ -97,10 +97,6 @@ public abstract class CharacterBase
 	
 	public void setMp(int mp)
 	{
-		if(mp>getMaxMp())
-		{
-			mp=getMaxMp();
-		}
 		this.mp=mp;
 	}
 	public void setHand(TotalCardBase[] hand)

@@ -1,10 +1,10 @@
 package makeCardGame230901.characterBundle;
 
 import makeCardGame230901.cardBundle.TotalCardBase;
-import makeCardGame230901.cardBundle.CardType;
 
 
 public class PlayerCharacter extends CharacterBase {
+	private	int drawCardNumber=5;
 	
 	static TotalCardBase cardData = new TotalCardBase();
 	
@@ -75,6 +75,15 @@ public class PlayerCharacter extends CharacterBase {
 	{
 		TotalCardBase[] discard = new TotalCardBase[0];
 		this.setHand(discard);
+	}
+	
+	public void setDrawCardNumber(int drawCardNumber)
+	{
+		this.drawCardNumber=drawCardNumber;
+	}
+	public int getDrawCardNumber()
+	{
+		return drawCardNumber;
 	}
 	
 }

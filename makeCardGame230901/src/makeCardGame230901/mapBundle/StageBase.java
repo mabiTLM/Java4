@@ -66,7 +66,7 @@ public class StageBase
 		else if(firstMap[height][width]==2)//일반
 		{
 			battleCombine.getBattle().setMonsterType(MONSTERTYPE.NORMAL);
-			battleCombine.battleCombine(moveInvillage);			
+			battleCombine.battleCombine(moveInvillage);
 		}
 		else if(firstMap[height][width]==3)//이벤
 		{

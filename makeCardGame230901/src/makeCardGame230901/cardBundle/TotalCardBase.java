@@ -29,21 +29,38 @@ public class TotalCardBase {
 		this.cardConsumeMana=cardConsumeMana;
 		this.cardPrice=cardPrice;
 	}
+	public TotalCardBase(
+			String cardName,
+			CardType cardType,
+			int cardValue,
+			int cardConsumeMana,
+			int cardPrice,
+			String range
+			)
+	{
+		this.cardName=cardName;
+		this.cardType=cardType;
+		this.cardValue=cardValue;
+		this.cardConsumeMana=cardConsumeMana;
+		this.cardPrice=cardPrice;
+		this.range=range;
+	}
 	
 	
-	TotalCardBase[] cardData= new TotalCardBase[10];	
+	TotalCardBase[] cardData= new TotalCardBase[11];
 	public TotalCardBase[] totalCard()//판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
 	{
 		cardData[0] = new TotalCardBase("공격",CardType.Attack,7,1,10);
-		cardData[1] = new TotalCardBase("방어",CardType.Defend,5,1,10);
+		cardData[1] = new TotalCardBase("방어",CardType.Defend,10,1,10);
 		cardData[2] = new TotalCardBase("연속공격",CardType.Attack,15,2,50);
-		cardData[3] = new TotalCardBase("굳히기",CardType.Defend,15,2,50);
+		cardData[3] = new TotalCardBase("굳히기",CardType.Defend,20,2,50);
 		cardData[4] = new TotalCardBase("참격",CardType.Attack,10,1,100);
-		cardData[5] = new TotalCardBase("굳건",CardType.Defend,10,1,100);
+		cardData[5] = new TotalCardBase("굳건",CardType.Defend,20,1,100);
 		cardData[6] = new TotalCardBase("속공",CardType.Attack,10,0,50);
 		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,3,50);
 		cardData[8] = new TotalCardBase("불굴",CardType.Defend,10,0,100);
-		cardData[9] = new TotalCardBase("빛의수호",CardType.Defend,50,3,100);
+		cardData[9] = new TotalCardBase("빛의수호",CardType.Defend,80,3,100);
+		cardData[10] = new TotalCardBase("실드차지",CardType.Attack,0,1,100,"실드차지");
 		
 		return cardData;
 	}
@@ -79,6 +96,14 @@ public class TotalCardBase {
 	public void setEnforce(boolean enforce)
 	{
 		this.enforce=enforce;
+	}
+	public void setCardValue(int cardValue)
+	{
+		this.cardValue=cardValue;
+	}
+	public void setCardConsumeMana(int cardConsumeMana)
+	{
+		this.cardConsumeMana=cardConsumeMana;
 	}
 	
 	//get모음

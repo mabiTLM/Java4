@@ -114,7 +114,7 @@ public class SortCard {
 	/**
 	 *넣은 두덱을 합쳐줍니다
 	 **/	
-	public TotalCardBase[] DeckPlusDeck(TotalCardBase[] Deck1,TotalCardBase[] Deck2)
+	public TotalCardBase[] deckPlusDeck(TotalCardBase[] Deck1,TotalCardBase[] Deck2)
 	{
 		TotalCardBase[] combineResultDeck= new TotalCardBase[Deck1.length+Deck2.length];
 		
@@ -129,4 +129,22 @@ public class SortCard {
 		
 		return combineResultDeck;
 	}
+	
+	/**
+	 *앞에 덱의 number번째 카드의 수치를 1.5배 강화시킨다
+	 **/
+	public void enhanceCardPower(TotalCardBase[] deck, int number)
+	{
+		System.out.println(deck[number-1].getCardName()+"가 1.5배 강화됐습니다.");
+		deck[number-1].setEnforce(true);
+		deck[number-1].setCardValue((int)(deck[number-1].getCardValue()*1.5));
+	}
+	
+	public void enhanceCardMana(TotalCardBase[] deck, int number)
+	{
+		System.out.println(deck[number-1].getCardName()+"의 마나소비가 감소합니다.");
+		deck[number-1].setEnforce(true);
+		deck[number-1].setCardConsumeMana(deck[number-1].getCardConsumeMana()-1);
+	}
+	
 }

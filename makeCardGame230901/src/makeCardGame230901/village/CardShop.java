@@ -25,7 +25,7 @@ public class CardShop
 		while(true) 
 		{
 			//상점 카드목록을 보여준다
-			watchCardData(totalCardBase.shopSellCard());			
+			watchCardData(totalCardBase.shopSellCard());
 			
 			System.out.println("어느 카드를 살래? 0.돌아가기 ,00.덱과 인벤확인");
 			String choice = scan.nextLine();
