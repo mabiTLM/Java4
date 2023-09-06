@@ -39,6 +39,7 @@ public class Battle
 		//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
 		graveCard = new TotalCardBase[0];
 		player.disCardHand();
+		tempBattleDeck=sortCard.suffleDeck(tempBattleDeck);
 		
 		if(monsterType==MONSTERTYPE.NORMAL)
 		{
@@ -63,22 +64,7 @@ public class Battle
 			}
 		}
 	}
-	
 
-	public void cardShuffle()//셔플과 사용은 배틀에서 하는게 맞는거같다 싸움도중에 임시로 덱이 변동되어도 마을가면 돌아와야하니까
-	{
-		int temp;
-		TotalCardBase tempSuffleDeck;
-		for(int i = 0; i < tempBattleDeck.length;i++)
-		{
-			temp=(int)(Math.random()*tempBattleDeck.length);
-			tempSuffleDeck = tempBattleDeck[i];
-			tempBattleDeck[i]=tempBattleDeck[temp];
-			tempBattleDeck[temp] = tempSuffleDeck;
-		}
-	}
-	
-	
 	// 카드를뽑고 사용한 카드를 묘지로 보낸다. 덱을 전부 소모하면 묘지의 카드를 섞어서 다시 덱을 만든다.
 	public void cardDraw() //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
 	{
@@ -95,7 +81,7 @@ public class Battle
 			{
 				tempBattleDeck=graveCard;
 				graveCard=new TotalCardBase[0];
-				cardShuffle();
+				tempBattleDeck=sortCard.suffleDeck(tempBattleDeck);
 				i--;
 			}
 			else {
@@ -133,7 +119,6 @@ public class Battle
 			if(currentEnemy.length<1)
 			{
 				System.out.println("전투에서 승리했습니다.");
-				setPlayerTurn(false);
 				battleFinish();
 				break;
 			}
@@ -269,6 +254,7 @@ public class Battle
 	
 	public void battleFinish()
 	{
+		setPlayerTurn(false);
 		System.out.println("전투 승리 보상을 획득합니다.");
 	}
 	
@@ -301,6 +287,10 @@ public class Battle
 	public void setMonsterType(MONSTERTYPE monsterType)
 	{
 		this.monsterType=monsterType;
+	}
+	public void setTempBattleDeck(TotalCardBase[] tempBattleDeck)
+	{
+		this.tempBattleDeck=tempBattleDeck;
 	}
 	
 	

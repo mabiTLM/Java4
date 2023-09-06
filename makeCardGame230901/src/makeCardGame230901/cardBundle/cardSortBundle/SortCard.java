@@ -4,6 +4,9 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 
 public class SortCard {
 	
+	/**
+	 * 1번덱 끝에 2번덱의 slot-1번째 카드를 추가합니다.
+	**/	
 	public TotalCardBase[] sortAddCard(TotalCardBase[] playerDeck, TotalCardBase[] addCard, int slot)
 	{
 		TotalCardBase[]	temp = new TotalCardBase[playerDeck.length+1];
@@ -15,6 +18,9 @@ public class SortCard {
 		return temp;
 	}
 	
+	/**
+	 * 넣은 덱의 slot-1번째카드를 제거합니다.
+	**/	
 	public TotalCardBase[] sortRemoveCard(TotalCardBase[] playerDeck, int slot)
 	{
 		TotalCardBase[]	temp = new TotalCardBase[playerDeck.length-1];
@@ -32,6 +38,9 @@ public class SortCard {
 		return temp;
 	}
 	
+	/**
+	 * 넣은 덱을 카드로써보여줍니다.
+	**/	
 	public void watchCard(TotalCardBase[] playerHand)
 	{
 		for(int i = 0; i < playerHand.length;i++)//마나
@@ -84,5 +93,40 @@ public class SortCard {
 		System.out.println();
 		
 	}
-
+	
+	/**
+	 * 넣은 덱을 셔플해서 내보내줍니다.
+	**/
+	public TotalCardBase[] suffleDeck(TotalCardBase[] wantShuffleDeck)
+	{
+		int temp;
+		TotalCardBase tempSuffleDeck;
+		for(int i = 0; i < wantShuffleDeck.length;i++)
+		{
+			temp=(int)(Math.random()*wantShuffleDeck.length);
+			tempSuffleDeck = wantShuffleDeck[i];
+			wantShuffleDeck[i]=wantShuffleDeck[temp];
+			wantShuffleDeck[temp] = tempSuffleDeck;
+		}
+		return wantShuffleDeck;
+	}
+	
+	/**
+	 *넣은 두덱을 합쳐줍니다
+	 **/	
+	public TotalCardBase[] DeckPlusDeck(TotalCardBase[] Deck1,TotalCardBase[] Deck2)
+	{
+		TotalCardBase[] combineResultDeck= new TotalCardBase[Deck1.length+Deck2.length];
+		
+		for(int i=0; i <Deck1.length; i++)
+		{
+			combineResultDeck[i]=Deck1[i];
+		}
+		for(int i=Deck1.length; i < Deck1.length+Deck2.length;i++)
+		{
+			combineResultDeck[i]=Deck2[i-Deck1.length];
+		}
+		
+		return combineResultDeck;
+	}
 }

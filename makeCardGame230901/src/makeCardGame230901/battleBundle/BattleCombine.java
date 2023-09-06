@@ -1,5 +1,6 @@
 package makeCardGame230901.battleBundle;
 
+import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
@@ -7,6 +8,7 @@ public class BattleCombine
 {
 	private PlayerCharacter player;
 	private Battle battle;
+	private SortCard sortCard = new SortCard();
 	private int playerTurnGaze =0;//행동게이지
 	private int[] enemyTurnGaze;
 	
@@ -19,7 +21,7 @@ public class BattleCombine
 	{
 		//조우시 행동
 		battle.encounter();
-		battle.cardShuffle();
+		
 		//속도계산
 		enemyTurnGaze= new int[battle.currentEnemy.length];//적숫자가 랜덤이라서 여기서 생성
 	
