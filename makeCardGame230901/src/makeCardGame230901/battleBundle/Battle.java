@@ -23,11 +23,7 @@ public class Battle
 	private int useCardNumber=0;
 	private boolean playerTurn = false;
 	MONSTERTYPE monsterType;
-	
-	public Battle()
-	{
-	}
-	
+		
 	public Battle(PlayerCharacter player)
 	{
 		this.player=player;
@@ -72,11 +68,11 @@ public class Battle
 		}
 	}
 
-	// 카드를뽑고 사용한 카드를 묘지로 보낸다. 덱을 전부 소모하면 묘지의 카드를 섞어서 다시 덱을 만든다.
-	public void cardDraw(int drawNumber) //카드를 뽑고 뽑은 카드를 현재 손패로 가져온다. 드로우매수만큼for문
+	/**
+	 *카드를뽑는다. 덱을 전부 소모하면 묘지의 카드를 섞어서 다시 덱을 만든다.
+	 **/
+	public void cardDraw(int drawNumber)
 	{
-		player.setMp(player.getMaxMp());//턴시작시 마나회복
-		
 		for(int i = 0; i <drawNumber;i++) {
 			
 			if(tempBattleDeck.length>0)//덱이 남아있으면
@@ -105,10 +101,10 @@ public class Battle
 		{
 			if(i==target-1)
 			{
-				System.out.print("["+(i+1)+currentEnemy[i].getName()+"]	");
+				System.out.print("["+(i+1)+currentEnemy[i].getName()+"]    ");
 			}
 			else {
-				System.out.print((i+1)+currentEnemy[i].getName()+"	");
+				System.out.print((i+1)+currentEnemy[i].getName()+"    ");
 			}
 			currentEnemy[i].status();
 		}
@@ -181,7 +177,9 @@ public class Battle
 		//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까
 	}
 	
-	
+	/**
+	 *카드를 사용했을 때 처리해야하는 일들
+	 **/
 	public void useCard()
 	{
 		if(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana()<0)//mp가 있을때만 처리를 한다.
@@ -195,12 +193,13 @@ public class Battle
 			playerBattleCalculator();//사용한 카드의 전투계산을 한다.
 			
 			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.			
-			player.setHand(sortCard.sortRemoveCard(player.getHand(), useCardNumber));
-			
+			player.setHand(sortCard.sortRemoveCard(player.getHand(), useCardNumber));			
 		}
 	}
 	
-	
+	/**
+	 *사용한 카드에 맞는 계산식을 넣어주자
+	 **/	
 	public void playerBattleCalculator()
 	{
 		player.setMp(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana());
@@ -266,7 +265,20 @@ public class Battle
 		this.tempBattleDeck=temp;
 	}
 	
-	public void playerTurnOff()//턴이 끝났을 때 행동처리
+	/**
+	 *플레이어 턴 시작할때 처리해야되는 것들을 처리한다. 버프나 지속치유등
+	 **/
+	public void playerTurnStart()
+	{
+		cardDraw(player.getDrawCardNumber());
+		player.setMp(player.getMaxMp());//턴시작시 마나회복
+	}
+	
+	
+	/**
+	 *턴이 끝났을 때 행동처리, 출혈등이나 스턴등의 효과를 구현할때도 다시 사용해야한다.
+	 **/
+	public void playerTurnOff()
 	{
 		playerTurn=false;//턴끄고
 		graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());//손을 묘지로 보내고
@@ -274,6 +286,9 @@ public class Battle
 		target=0;
 	}
 	
+	/**
+	 *몬스터가 죽는 경우에 넣어주자
+	 **/
 	public void monsterDie(BattleCombine battleCombine)
 	{
 		player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
@@ -344,5 +359,9 @@ public class Battle
 	public TotalCardBase[] getTempBattleDeck()
 	{
 		return tempBattleDeck;
+	}
+	public EnemyCharacter[] getCurrentEnemy()
+	{
+		return currentEnemy;
 	}
 }

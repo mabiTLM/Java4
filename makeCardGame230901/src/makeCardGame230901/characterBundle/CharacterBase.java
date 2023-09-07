@@ -18,6 +18,8 @@ public abstract class CharacterBase
 	private int speed;//속도
 	private int avoidanceRate;//회피율 일단 보류
 	private int accuracy;//명중률
+	private int aiPattern;
+	private int enemyRepeat=0;
 	
 	
 	CharacterBase(){}
@@ -57,7 +59,8 @@ public abstract class CharacterBase
 			int atk,
 			int def,
 			int money,
-			int speed
+			int speed,
+			int aiPattern
 			)
 	{//적 캐릭터
 		this.name=name;
@@ -69,6 +72,7 @@ public abstract class CharacterBase
 		this.def=def;
 		this.money=money;
 		this.speed=speed;
+		this.aiPattern=aiPattern;
 	}
 	
 
@@ -135,6 +139,14 @@ public abstract class CharacterBase
 	{
 		this.speed = speed;
 	}
+	public void setAtk(int atk)
+	{
+		this.atk=atk;
+	}
+	public void setEnemyRepeat(int enemyRepeat)
+	{
+		this.enemyRepeat=enemyRepeat;
+	}
 	
 	
 	//get 모음
@@ -193,5 +205,13 @@ public abstract class CharacterBase
 	public TotalCardBase[] getHand()
 	{
 		return hand;
+	}
+	public int getAiPattern()
+	{
+		return aiPattern;
+	}
+	public int getEnenmyRepeat()
+	{
+		return enemyRepeat;
 	}
 }

@@ -1,14 +1,14 @@
 package makeCardGame230901.battleBundle;
 
-import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
+import makeCardGame230901.battleBundle.enemyActBunble.EnemyActAi;
 
 public class BattleCombine 
 {
 	private PlayerCharacter player;
 	private Battle battle;
-	private SortCard sortCard = new SortCard();
+	private EnemyActAi enemyActAi;
 	private int playerTurnGaze =0;//행동게이지
 	private int[] enemyTurnGaze;
 	
@@ -16,6 +16,7 @@ public class BattleCombine
 	{
 		this.player=playerCharacter;
 		this.battle=battle;
+		enemyActAi = new EnemyActAi(playerCharacter,battle);
 	}
 	public void battleCombine(MoveInVillage moveInVillage)
 	{
@@ -47,7 +48,7 @@ public class BattleCombine
 			
 			if(battle.getPlayerTurn()) 
 			{
-				battle.cardDraw(player.getDrawCardNumber());				
+				battle.playerTurnStart();			
 			}			
 			while(battle.getPlayerTurn()) 
 			{
@@ -72,17 +73,7 @@ public class BattleCombine
 			{
 				while(battle.currentEnemy[i].getEnemyTurn())//턴이 켜져있을 때
 				{
-					int tempDamage = 0;
-					player.setDef(player.getDef()-battle.currentEnemy[i].getAtk()); //공격만큼 실드제거
-					
-					if(player.getDef()-battle.currentEnemy[i].getAtk()<0)//실드가 음수로가면
-					{
-						tempDamage = (int)Math.abs(player.getDef());//음수간만큼 데미지 올리기
-						player.setDef(0);//0으로바꾸기
-					}
-					
-					player.setHp(player.getHp()-tempDamage);
-					System.out.println(battle.currentEnemy[i].getName()+"의 공격 : " + battle.currentEnemy[i].getAtk());
+					enemyActAi.totalAi(i);
 					
 					//행동끝난 후
 					enemyTurnGaze[i]= enemyTurnGaze[i]-100;
