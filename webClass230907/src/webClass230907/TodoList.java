@@ -13,11 +13,11 @@ public class TodoList
 	public static void main(String[] args)
 	{
 		ListUp list = new ListUp();
+		Scanner scan = new Scanner(System.in);
 		while(true) {
 			try
 			{
-				int choice;
-				Scanner scan = new Scanner(System.in);
+				int choice;				
 				System.out.println("1. 메모하기");
 				System.out.println("2. 메모보기");
 				choice=scan.nextInt();
@@ -31,6 +31,7 @@ public class TodoList
 			}
 			catch(Exception e)
 			{
+				scan.nextLine();
 				System.out.println("우선도는 숫자만 입력해주세요.");
 			}
 		}
