@@ -35,8 +35,8 @@ public class EnemyBattleAct
 	protected void defUp(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		actEnemy.setDef(actEnemy.getDef()+50);
-		System.out.println(actEnemy.getName()+"가 방어력을 50 얻었다.");
+		actEnemy.setDef(actEnemy.getDef()+actEnemy.getEffectValue());
+		System.out.println(actEnemy.getName()+"가 실드를 충전했다.");
 	}
 	
 	protected void speedUp(int actMonsterNumber)
@@ -47,8 +47,8 @@ public class EnemyBattleAct
 	protected void atkUp(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		actEnemy.setAtk(actEnemy.getAtk()+5);
-		System.out.println(actEnemy.getName()+"의 공격력이 5 올랐다.");
+		actEnemy.setAtk(actEnemy.getAtk()+actEnemy.getEffectValue());
+		System.out.println(actEnemy.getName()+"의 공격력이 올랐다.");
 	}
 	
 	protected void healing(int actMonsterNumber)
@@ -56,7 +56,7 @@ public class EnemyBattleAct
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
 		for(int i = 0; i <battle.getCurrentEnemy().length;i++)
 		{
-			battle.getCurrentEnemy()[i].setHp(battle.getCurrentEnemy()[i].getHp()+30);
+			battle.getCurrentEnemy()[i].setHp(battle.getCurrentEnemy()[i].getHp()+actEnemy.getEffectValue());
 		}
 		System.out.println(actEnemy.getName()+"가 힐을 사용했다.");
 	}

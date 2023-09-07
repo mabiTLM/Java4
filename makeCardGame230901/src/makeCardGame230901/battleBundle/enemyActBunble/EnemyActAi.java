@@ -24,7 +24,7 @@ public class EnemyActAi extends EnemyBattleAct {
 		}
 		else if(ai==1)
 		{
-			onlyAttack(actMonsterNumber);
+			theifAi(actMonsterNumber);
 		}
 		else if(ai==2)
 		{
@@ -47,9 +47,27 @@ public class EnemyActAi extends EnemyBattleAct {
 	private void golemAi(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		if(actEnemy.getEnenmyRepeat()%3==0)
+		if(actEnemy.getEnenmyRepeat()%2==0)
 		{
-			
+			defUp(actMonsterNumber);
+		}
+		else
+		{
+			plainAttack(actMonsterNumber);
+		}
+	}
+	
+	
+	private void theifAi(int actMonsterNumber)
+	{
+		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
+		if(actEnemy.getEnenmyRepeat()%3==2)
+		{
+			plainAttack(actMonsterNumber);
+		}
+		else
+		{
+			atkUp(actMonsterNumber);			
 		}
 	}
 

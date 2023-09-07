@@ -13,7 +13,7 @@ public class StageBase
 	BattleCombine battleCombine;
 	MoveInVillage moveInvillage;
 	PlayerCharacter player;
-	
+	Scanner scan = new Scanner(System.in);
 	StageBase(BattleCombine battleCombine,	MoveInVillage moveInvillage,PlayerCharacter player)
 	{
 		this.battleCombine=battleCombine;
@@ -27,31 +27,43 @@ public class StageBase
 	protected int firstMap[][] = new int[15][7];
 	
 	public void movePlayer()
-	{
-		System.out.println("어디로 이동할까요? 1,2,3");
-		Scanner scan = new Scanner(System.in);
-		int choice = scan.nextInt();
-		if(canMove(choice)) 
+	{		
+		while(true)
 		{
-			if(choice==1)
+			try
 			{
-				height--;
-				width--;
-			}
-			else if(choice==2)
+				System.out.println("어디로 이동할까요? 1,2,3");
+				
+				int choice = scan.nextInt();
+				scan.nextLine();
+				if(canMove(choice))
+				{
+					if(choice==1)
+					{
+						height--;
+						width--;
+					}
+					else if(choice==2)
+					{
+						height--;
+					}
+					else if(choice==3)
+					{
+						height--;
+						width++;
+					}
+					symbolEncount();
+				}
+				else
+				{
+					System.out.println("맵밖으론 못나가");
+				}
+				break;
+				}
+			catch(Exception e)
 			{
-				height--;
+				scan.nextLine();
 			}
-			else if(choice==3)
-			{
-				height--;
-				width++;
-			}
-			symbolEncount();
-		}
-		else
-		{
-			System.out.println("맵밖으론 못나가");
 		}
 	}
 	
@@ -80,7 +92,7 @@ public class StageBase
 		}
 		else if(firstMap[height][width]==4)//불
 		{
-			
+			eventInDungeon.campfire();
 		}
 		else if(firstMap[height][width]==5)//상점
 		{

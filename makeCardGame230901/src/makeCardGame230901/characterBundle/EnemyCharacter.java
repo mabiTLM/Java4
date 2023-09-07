@@ -4,11 +4,28 @@ public class EnemyCharacter extends CharacterBase
 {
 
 	private boolean enemyTurn = false;
+	private int effectValue = 0;
+	MONSTEREFFECT monstereffect;
+	
 	EnemyCharacter[] stageEnemy;
 	public EnemyCharacter(){
 	}
 	
-	EnemyCharacter(
+	EnemyCharacter(//mp가 없는 적
+			String name,
+			int maxHp,
+			int hp,
+			int atk,
+			int def,
+			int money,
+			int speed,
+			int aiPattern
+			)
+	{
+		super(name,maxHp,0,hp,0,atk,def,money,speed,aiPattern);
+	}
+	
+	EnemyCharacter(//mp가 있는 적
 			String name,
 			int maxHp,
 			int maxMp,
@@ -24,22 +41,39 @@ public class EnemyCharacter extends CharacterBase
 		super(name,maxHp,maxMp,hp,mp,atk,def,money,speed,aiPattern);
 	}
 	
+	EnemyCharacter(//부가효과가 있는 타입
+			String name,
+			int maxHp,
+			int hp,
+			int atk,
+			int def,
+			int money,
+			int speed,
+			int aiPattern,
+			MONSTEREFFECT monstereffect,
+			int effectValue
+			)
+	{
+		super(name,maxHp,0,hp,0,atk,def,money,speed,aiPattern);
+		this.effectValue=effectValue;
+	}
+	
 	
 	
 	public EnemyCharacter[] firstStageData()
 	{
 		stageEnemy = new EnemyCharacter[3];
-		stageEnemy[0] = new EnemyCharacter("슬라임",20,0,20,0,5,0,100,5,0);
-		stageEnemy[1] = new EnemyCharacter("도적",20,0,20,0,5,0,100,11,1);
-		stageEnemy[2] = new EnemyCharacter("작은 골렘",50,0,50,0,20,20,100,4,2);
+		stageEnemy[0] = new EnemyCharacter("슬라임",20,20,5,0,100,5,0);
+		stageEnemy[1] = new EnemyCharacter("도적",20,20,5,0,100,11,1,MONSTEREFFECT.ATTACKUP,3);
+		stageEnemy[2] = new EnemyCharacter("작은 골렘",50,50,20,20,100,4,2,MONSTEREFFECT.SHIELD,20);
 		return stageEnemy;
 	}
 	
 	public EnemyCharacter[] firstStageEliteData()
 	{
 		stageEnemy = new EnemyCharacter[2];
-		stageEnemy[0] = new EnemyCharacter("골렘",100,0,100,0,100,100,1000,4,2);
-		stageEnemy[1] = new EnemyCharacter("상급 닌자",50,0,50,0,10,0,1000,20,1);
+		stageEnemy[0] = new EnemyCharacter("골렘",100,100,100,50,1000,4,2,MONSTEREFFECT.SHIELD,50);
+		stageEnemy[1] = new EnemyCharacter("상급 닌자",50,50,10,0,1000,20,1,MONSTEREFFECT.ATTACKUP,5);
 		return stageEnemy;
 	}
 	public EnemyCharacter[] firstStageBossData()
@@ -62,6 +96,10 @@ public class EnemyCharacter extends CharacterBase
 	public boolean getEnemyTurn()
 	{
 		return enemyTurn;
+	}
+	public int getEffectValue()
+	{
+		return effectValue;
 	}
 
 }

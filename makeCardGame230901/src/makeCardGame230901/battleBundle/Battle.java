@@ -115,6 +115,7 @@ public class Battle
 	public void targetLockOn(BattleCombine battleCombine, MoveInVillage moveInVillage)//전투가 거의다 타겟정하는대서 이뤄진다.
 	{
 		while(true) {
+			try {
 			watchEnemy();
 			sortCard.watchCard(player.getHand(),player);
 			player.status();
@@ -127,6 +128,7 @@ public class Battle
 			}
 			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
 			target = scan.nextInt();
+			scan.nextLine();
 			if(target>currentEnemy.length||target<0)
 			{
 				System.out.println("다시 타겟해주세요");
@@ -140,15 +142,21 @@ public class Battle
 			{
 				break;
 			}
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+			}
 		}
 		
 		while(playerTurn) {
+			try {
 			watchEnemy();
 			sortCard.watchCard(player.getHand(),player);
 			player.status();
 			System.out.println("몇번 카드를 사용합니까? 0.다른 타겟");
 			useCardNumber=scan.nextInt();
-			
+			scan.nextLine();
 			if(useCardNumber==0)
 			{
 				target=0;
@@ -172,6 +180,11 @@ public class Battle
 					playerTurnOff();
 					break;
 				}
+			}
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
 			}
 		}
 		//타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까

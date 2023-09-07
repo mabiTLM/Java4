@@ -141,6 +141,9 @@ public class SortCard {
 		deck[number-1].setCardValue((int)(deck[number-1].getCardValue()*1.5));
 	}
 	
+	/**
+	 *앞에 덱의 number번째 카드의 마나 소비를 1감소시킨다.
+	 **/	
 	public void enhanceCardMana(TotalCardBase[] deck, int number)
 	{
 		System.out.println(deck[number-1].getCardName()+"의 마나소비가 감소합니다.");
@@ -157,6 +160,5 @@ public class SortCard {
 		{
 			deck.setCardValue(player.getDef());
 		}
-		
 	}
 }
