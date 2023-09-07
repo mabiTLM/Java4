@@ -2,10 +2,8 @@ package webClass230907;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class TodoList 
@@ -41,7 +39,7 @@ public class TodoList
 
 class ListUp//제목과 내용 적기
 {
-	ArrayList temp;
+	ArrayList temp;//밑줄나오지만 밑에서 값넣어주니까 지우면 안된다.
 	ListUp myAdress = this;
 	Map<Integer, ArrayList<String>> priorityAndTitle = new HashMap<>();
 	Map<String, String> titleAndDetail = new HashMap<>();	
