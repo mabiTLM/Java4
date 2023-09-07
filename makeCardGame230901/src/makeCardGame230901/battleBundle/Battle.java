@@ -165,13 +165,13 @@ public class Battle
 			else
 			{
 				useCard();				
-				if(currentEnemy[target-1].getHp()<=0)
+				if(currentEnemy[target-1].getHp()<=0)//적의 체력이 0이하면 적을 죽인다
 				{
 					monsterDie(battleCombine);
 					break;
 				}
 				
-				if(player.getHand().length<1)
+				if(player.getHand().length<1)//손을 전부소모하면 패를 넘긴다
 				{
 					playerTurnOff();
 					break;
