@@ -7,7 +7,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 public class PlayerCharacter extends CharacterBase {
 	private	int drawCardNumber=5;
 	private boolean bossWin = false;
-	TotalCardBase cardData= new TotalCardBase();
+	static TotalCardBase cardData= new TotalCardBase();
 	
 	
 	public PlayerCharacter()
@@ -17,25 +17,25 @@ public class PlayerCharacter extends CharacterBase {
 				"주인공",
 				new TotalCardBase[] //인벤
 						{
-							new TotalCardBase("공격",CardType.Attack,7,1,10),
-							new TotalCardBase("공격",CardType.Attack,7,1,10),
-							new TotalCardBase("공격",CardType.Attack,7,1,10),
-							new TotalCardBase("연속공격",CardType.Attack,15,2,50),
-							new TotalCardBase("굳히기",CardType.Defend,20,2,50),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
+							cardData.totalCard()[0],
+							cardData.totalCard()[0],
+							cardData.totalCard()[0],
+							cardData.totalCard()[2],
+							cardData.totalCard()[3],
+							cardData.totalCard()[1],
+							cardData.totalCard()[1],
+							cardData.totalCard()[1],
 						},
 				new TotalCardBase[] //덱
 						{
-							new TotalCardBase("연속공격",CardType.Attack,15,2,50),
-							new TotalCardBase("연속공격",CardType.Attack,15,2,50),
-							new TotalCardBase("공격",CardType.Attack,7,1,10),
-							new TotalCardBase("공격",CardType.Attack,7,1,10),
-							new TotalCardBase("굳히기",CardType.Defend,20,2,50),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
-							new TotalCardBase("방어",CardType.Defend,10,1,10),
+							cardData.totalCard()[2],
+							cardData.totalCard()[2],
+							cardData.totalCard()[0],
+							cardData.totalCard()[0],
+							cardData.totalCard()[3],
+							cardData.totalCard()[1],
+							cardData.totalCard()[1],
+							cardData.totalCard()[1],
 						},
 				new TotalCardBase[] {},//손패
 				150,

@@ -53,8 +53,8 @@ public class EventInDungeon
 	public void cardEnhancedEvent()
 	{
 		while(true) {
-			int randomCard = random.nextInt(player.getCardDeck().length);
-			if(player.getCardDeck()[randomCard].getEnforce()==false)
+			int randomCard = random.nextInt(player.getCardDeck().length)+1;
+			if(player.getCardDeck()[randomCard-1].getEnforce()==false)
 			{
 				int temp = random.nextInt(2);
 				if(temp==0)

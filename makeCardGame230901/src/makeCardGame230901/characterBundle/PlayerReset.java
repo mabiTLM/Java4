@@ -18,6 +18,11 @@ public class PlayerReset {
 		this.tempDeck=sortCard.deepCopyDeck(player.getCardDeck());
 		this.tempMaxHp=player.getMaxHp();
 		this.tempMaxMp=player.getMaxMp();
+		if(tempDeck[0]==player.getCardDeck()[0])
+		{
+			System.out.println("이게 달라야되는데?");
+		}
+
 	}
 	
 	public void getResetData(PlayerCharacter player)

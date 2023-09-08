@@ -163,15 +163,25 @@ public class SortCard {
 	}
 	
 	/**
-	 *덱을 깊은 복사한다
+	 *덱을 깊은 복사한다. 단순히 덱주소를 다시만드는게 아니라 내부요소를 다시 넣어야 주소가 다시 입력된다.
 	 **/
 	public TotalCardBase[] deepCopyDeck(TotalCardBase[] battleDeck)
 	{
 		TotalCardBase[] temp = new TotalCardBase[battleDeck.length];
 		
+		TotalCardBase deepTemp;
+		
 		for(int i = 0; i <battleDeck.length;i++)
 		{
-			temp[i]=battleDeck[i];
+			if(battleDeck[i].getEffect().equals("통상"))
+			{
+				deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice());
+			}
+			else
+			{
+				deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice(),battleDeck[i].getEffect());
+			}
+			temp[i]=deepTemp;
 		}
 		
 		return temp;
