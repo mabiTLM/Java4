@@ -12,9 +12,12 @@ public class ModuleTest {
 		StreamModule<List> test = new StreamModule();
 		List<ArrayList> arr = new ArrayList();
 		List<String> str = new ArrayList();
+		List test2 = new ArrayList();
 		str.add("이건되나?");
 		str.add("형태가 어떤거지");
 		arr.add((ArrayList) str);
+		
+		test2.add("이건되겠지");
 		
 		for(ArrayList output : arr)
 		{
