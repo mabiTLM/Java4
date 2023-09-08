@@ -27,69 +27,6 @@ public class EventInDungeon
 		this.player=player;
 	}
 	
-	public void campfire()
-	{
-		while(true) {
-			try {
-				System.out.println("1.카드강화");
-				System.out.println("2.카드제거");
-				System.out.println("3.아무것도 안한다");
-				int choice = scan.nextInt();
-				scan.nextLine();
-				if(choice==1)
-				{
-					player.DeckOpen();
-					System.out.println("몇번째 카드를 강화하나요?");
-					int cardChoice = scan.nextInt();
-					scan.nextLine();
-					if(player.getCardDeck()[cardChoice].getEnforce()==false)
-					{
-						System.out.println("어떤 강화를 하나요? 1.파워강화 2.마나소비감소");
-						choice = scan.nextInt();
-						scan.nextLine();
-						if(choice==1)
-						{
-							sortCard.enhanceCardPower(player.getCardDeck(), cardChoice);
-							break;
-						}
-						else if(choice==2) {
-							sortCard.enhanceCardMana(player.getCardDeck(), cardChoice);
-							break;
-						}
-						else
-						{
-							System.out.println("다시 선택해주세요.");
-						}
-						
-					}
-					else
-					{
-						System.out.println("해당카드는 이미 강화됐습니다.");
-					}
-										
-				}
-				else if(choice==2)
-				{
-					player.DeckOpen();
-					System.out.println("몇번째 카드를 제거하나요?");
-					int cardChoice = scan.nextInt();
-					scan.nextLine();
-					player.setCardDeck(sortCard.sortRemoveCard(player.getCardDeck(), cardChoice));
-					break;
-				}
-				else if(choice==3)
-				{
-					break;
-				}
-				}
-			catch(Exception e)
-			{
-				System.out.println("다시 입력해주세요.");
-				scan.nextLine();
-			}
-		}
-	}
-	
 	
 	public void event()
 	{
@@ -237,4 +174,74 @@ public class EventInDungeon
 			}
 		}
 	}	
+	
+	public void campfire()
+	{
+		while(true) {
+			try {
+				System.out.println("1.카드강화");
+				System.out.println("2.카드제거");
+				System.out.println("3.휴식한다");
+				int choice = scan.nextInt();
+				scan.nextLine();
+				if(choice==1)
+				{
+					player.DeckOpen();
+					System.out.println("몇번째 카드를 강화하나요?");
+					int cardChoice = scan.nextInt();
+					scan.nextLine();
+					if(player.getCardDeck()[cardChoice-1].getEnforce()==false)
+					{
+						System.out.println("어떤 강화를 하나요? 1.파워강화 2.마나소비감소");
+						choice = scan.nextInt();
+						scan.nextLine();
+						if(choice==1)
+						{
+							sortCard.enhanceCardPower(player.getCardDeck(), cardChoice);
+							break;
+						}
+						else if(choice==2) {
+							sortCard.enhanceCardMana(player.getCardDeck(), cardChoice);
+							break;
+						}
+						else
+						{
+							System.out.println("다시 선택해주세요.");
+						}
+						
+					}
+					else
+					{
+						System.out.println("해당카드는 이미 강화됐습니다.");
+					}
+										
+				}
+				else if(choice==2)
+				{
+					player.DeckOpen();
+					System.out.println("몇번째 카드를 제거하나요?");
+					int cardChoice = scan.nextInt();
+					scan.nextLine();
+					player.setCardDeck(sortCard.sortRemoveCard(player.getCardDeck(), cardChoice));
+					break;
+				}
+				else if(choice==3)
+				{
+					player.setHp(player.getMaxHp());
+					System.out.println("완전히 회복했다.");
+					break;
+				}
+				}
+			catch(Exception e)
+			{
+				System.out.println("다시 입력해주세요.");
+				scan.nextLine();
+			}
+		}
+	}
+	
+	public void dungeonShop()
+	{
+		System.out.println("구매한 카드는 이번 모험에서만 사용가능하니 주의하라구");
+	}
 }

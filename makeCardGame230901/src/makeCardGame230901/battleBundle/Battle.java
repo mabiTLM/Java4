@@ -33,7 +33,7 @@ public class Battle
 	
 	public void encounter() //어떤 적을 만날지 정해주자
 	{
-		resetTempBattleDeck(player.getCardDeck());
+		tempBattleDeck=sortCard.deepCopyDeck(player.getCardDeck());
 		//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
 		tempBattleDeck=sortCard.suffleDeck(tempBattleDeck);
 		
@@ -266,18 +266,6 @@ public class Battle
 		}
 	}
 	
-	public void resetTempBattleDeck(TotalCardBase[] battleDeck)
-	{
-		TotalCardBase[] temp = new TotalCardBase[battleDeck.length];
-		
-		for(int i = 0; i <battleDeck.length;i++)
-		{
-			temp[i]=battleDeck[i];
-		}
-		
-		this.tempBattleDeck=temp;
-	}
-	
 	/**
 	 *플레이어 턴 시작할때 처리해야되는 것들을 처리한다. 버프나 지속치유등
 	 **/
@@ -336,8 +324,6 @@ public class Battle
 	
 	
 	//set 모음
-	
-	
 	
 	public void setUseCardNumber(int useCardNumber) 
 	{

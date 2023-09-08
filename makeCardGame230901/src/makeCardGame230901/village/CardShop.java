@@ -48,9 +48,10 @@ public class CardShop
 				if(result>=0)
 				{
 					player.setMoeny(result);
+					player.setCardInventory(sortCard.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), cardNumber));
 				}
 				else {
-				player.setCardInventory(sortCard.sortAddCard(player.getCardInventory(), totalCardBase.shopSellCard(), cardNumber));
+					System.out.println("돈이 부족합니다.");
 				}
 			}
 			else

@@ -156,9 +156,24 @@ public class SortCard {
 	 **/
 	public void notNomalCard(TotalCardBase deck, PlayerCharacter player)
 	{
-		if(deck.getRange().equals("실드차지"))
+		if(deck.getEffect().equals("실드차지"))
 		{
 			deck.setCardValue(player.getDef());
 		}
+	}
+	
+	/**
+	 *덱을 깊은 복사한다
+	 **/
+	public TotalCardBase[] deepCopyDeck(TotalCardBase[] battleDeck)
+	{
+		TotalCardBase[] temp = new TotalCardBase[battleDeck.length];
+		
+		for(int i = 0; i <battleDeck.length;i++)
+		{
+			temp[i]=battleDeck[i];
+		}
+		
+		return temp;
 	}
 }

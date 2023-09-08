@@ -7,7 +7,7 @@ public class TotalCardBase {
 	private int cardValue;//카드의 수치
 	private int cardConsumeMana;
 	private int cardPrice;
-	private String range = "통상";
+	private String effect = "통상";
 	private boolean enforce=false;
 	
 	public TotalCardBase()
@@ -35,7 +35,7 @@ public class TotalCardBase {
 			int cardValue,
 			int cardConsumeMana,
 			int cardPrice,
-			String range
+			String effect
 			)
 	{
 		this.cardName=cardName;
@@ -43,7 +43,7 @@ public class TotalCardBase {
 		this.cardValue=cardValue;
 		this.cardConsumeMana=cardConsumeMana;
 		this.cardPrice=cardPrice;
-		this.range=range;
+		this.effect=effect;
 	}
 	
 	
@@ -131,8 +131,8 @@ public class TotalCardBase {
 	{
 		return cardPrice;
 	}
-	public String getRange() {
-		return range;
+	public String getEffect() {
+		return effect;
 	}
 	public boolean getEnforce()
 	{

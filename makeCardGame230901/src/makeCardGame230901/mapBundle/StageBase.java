@@ -14,6 +14,14 @@ public class StageBase
 	MoveInVillage moveInvillage;
 	PlayerCharacter player;
 	Scanner scan = new Scanner(System.in);
+	
+	protected int mapHeight=21;
+	protected int mapWidth=7;
+	protected int firstMap[][] = new int[mapHeight][mapWidth];
+	
+	private int height=mapHeight-1;
+	private int width=3;	
+	
 	StageBase(BattleCombine battleCombine,	MoveInVillage moveInvillage,PlayerCharacter player)
 	{
 		this.battleCombine=battleCombine;
@@ -21,11 +29,7 @@ public class StageBase
 		this.player=player;
 		this.eventInDungeon= new EventInDungeon(player);
 	}
-	
-	private int height=14;
-	private int width=3;
-	protected int firstMap[][] = new int[15][7];
-	
+		
 	public void movePlayer()
 	{		
 		while(true)
@@ -150,7 +154,11 @@ public class StageBase
 				{
 					mapPrintTemp="상_점";
 				}
-				System.out.print(mapPrintTemp + " ");
+				else if(firstMap[i][j]==0)//빈공간
+				{
+					mapPrintTemp="    ";
+				}
+				System.out.print(mapPrintTemp + "  ");
 			}
 			System.out.println();
 			System.out.println();

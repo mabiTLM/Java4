@@ -17,12 +17,16 @@ public class FirstFloor extends StageBase
 	
 	public void makeFirstMap()
 	{		
-		for(int i = 0; i < 15;i++)
+		for(int i = 0; i < mapHeight;i++)
 		{
-			for(int j =0; j<7; j++)
+			for(int j =0; j<mapWidth; j++)
 			{
 				int roomPercent= random.nextInt(100);
 				int roomType=0;
+				if(i==mapHeight-1)
+				{
+					continue;
+				}
 				if(roomPercent>=92)//강한몹
 				{
 					roomType=1;
