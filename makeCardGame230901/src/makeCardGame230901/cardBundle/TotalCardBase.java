@@ -79,22 +79,54 @@ public class TotalCardBase {
 		return shopData;
 	}
 	
-	TotalCardBase[] eventCardData = new TotalCardBase[4];
-	public TotalCardBase[] eventCard()
+	TotalCardBase[] winMosterCardData = new TotalCardBase[4];
+	public TotalCardBase[] winMosterCard()
 	{
-		eventCardData[0] = totalCard()[6];
-		eventCardData[1] = totalCard()[7];
-		eventCardData[2] = totalCard()[8];
-		eventCardData[3] = totalCard()[9];
-		return eventCardData;
+		winMosterCardData[0] = totalCard()[6];
+		winMosterCardData[1] = totalCard()[7];
+		winMosterCardData[2] = totalCard()[8];
+		winMosterCardData[3] = totalCard()[9];
+		return winMosterCardData;
 	}
+	
+	TotalCardBase[] dungeonShopCardData = new TotalCardBase[4];
+	public TotalCardBase[] dungeonShopCard()
+	{
+		dungeonShopCardData[0] = totalCard()[6];
+		dungeonShopCardData[1] = totalCard()[7];
+		dungeonShopCardData[2] = totalCard()[8];
+		dungeonShopCardData[3] = totalCard()[9];
+		return dungeonShopCardData;
+	}
+	
+	
 	public void watchCardData(TotalCardBase[] cardSet)
 	{
 		for(int i = 0; i <cardSet.length;i++)
 		{
-			System.out.println((i+1)+"."+cardSet[i].getCardName()+" : "+cardSet[i].getCardType()+"타입 수치 : "+cardSet[i].getCardValue()+" 마나 : "+cardSet[i].getCardConsumeMana());
+			System.out.println(
+					(i+1)+"."+cardSet[i].getCardName()+" : "
+					+cardSet[i].getCardType()+"타입"
+					+" /수치 : "+cardSet[i].getCardValue()
+					+" /마나 : "+cardSet[i].getCardConsumeMana()
+					+" /종류 : "+cardSet[i].getEffect()
+					+" /강화 : "+cardSet[i].isEnforce()
+					);
 		}
 	}
+	
+	public String isEnforce()
+	{
+		if(enforce)
+		{
+			return "강화됨";
+		}
+		else
+		{
+			return "강화가능";
+		}
+	}
+	
 	
 	public void setEnforce(boolean enforce)
 	{

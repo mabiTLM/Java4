@@ -15,6 +15,7 @@ public class SortCard {
 		{
 			temp[i]=playerDeck[i];
 		}
+		addCard = deepCopyDeck(addCard); //새걸만들어서 넣어야지 안그러면 강화등 자료가 공유된다.
 		temp[playerDeck.length]=addCard[slot-1];
 		return temp;
 	}
@@ -76,7 +77,7 @@ public class SortCard {
 		
 		for(int i = 0; i < playerHand.length;i++) //카드 수치
 		{
-			notNomalCard(playerHand[i], player);
+			notNomalCardExpress(playerHand[i], player);
 			if(playerHand[i].getCardValue()<10)
 			{
 				System.out.print("   =========== ");
@@ -154,7 +155,7 @@ public class SortCard {
 	/**
 	 *특수한 형태의 카드들의 값을 바꿔줍니다 
 	 **/
-	public void notNomalCard(TotalCardBase deck, PlayerCharacter player)
+	public void notNomalCardExpress(TotalCardBase deck, PlayerCharacter player)
 	{
 		if(deck.getEffect().equals("실드차지"))
 		{
@@ -173,14 +174,7 @@ public class SortCard {
 		
 		for(int i = 0; i <battleDeck.length;i++)
 		{
-			if(battleDeck[i].getEffect().equals("통상"))
-			{
-				deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice());
-			}
-			else
-			{
-				deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice(),battleDeck[i].getEffect());
-			}
+			deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice(),battleDeck[i].getEffect());
 			temp[i]=deepTemp;
 		}
 		

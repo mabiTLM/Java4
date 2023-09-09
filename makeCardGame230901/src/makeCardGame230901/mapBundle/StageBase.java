@@ -5,6 +5,7 @@ import java.util.Scanner;
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.battleBundle.MONSTERTYPE;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.village.CardShop;
 import makeCardGame230901.village.MoveInVillage;
 
 public class StageBase 
@@ -100,7 +101,7 @@ public class StageBase
 		}
 		else if(firstMap[height][width]==5)//상점
 		{
-
+			eventInDungeon.dungeonShop();
 		}
 	}
 	

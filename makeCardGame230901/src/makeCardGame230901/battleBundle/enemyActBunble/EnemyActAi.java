@@ -17,8 +17,13 @@ public class EnemyActAi extends EnemyBattleAct {
 	public void totalAi(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
+		actEnemy.setEnemyRepeat(actEnemy.getEnenmyRepeat()+1);
 		int ai = actEnemy.getAiPattern();		
-		if(ai==0)
+		if(actEnemy.getHp()<=0)
+		{
+			battle.monsterDie();
+		}		
+		else if(ai==0)
 		{
 			onlyAttack(actMonsterNumber);
 		}
@@ -33,9 +38,7 @@ public class EnemyActAi extends EnemyBattleAct {
 		else if(ai==3)
 		{
 			onlyAttack(actMonsterNumber);
-		}
-		
-		actEnemy.setEnemyRepeat(actEnemy.getEnenmyRepeat()+1);
+		}		
 	}
 	
 	

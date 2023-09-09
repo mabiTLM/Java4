@@ -6,20 +6,26 @@ import java.util.Scanner;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.village.CardShop;
 
 public class EventInDungeon
 {
 	private PlayerCharacter player;
-	private TotalCardBase eventCard = new TotalCardBase();
+	private TotalCardBase cardData = new TotalCardBase();
 	private SortCard sortCard = new SortCard();
+	private TotalCardBase[] getCardEvent = cardData.winMosterCard();
+	private TotalCardBase[] cardShopInDungeon = cardData.dungeonShopCard();
+	CardShop cardShop = new CardShop();
 	Scanner scan = new Scanner(System.in);
+	
 	
 	Random random = new Random();
 	String[] story = {
 			"랜덤카드 파워강화",
 			"이벤트 카드를 얻습니다."	,
 			"선택 : 현재와 미래",
-			"재빠른 선택"
+			"재빠른 선택",
+			"돈놓고 돈먹기"
 	};
 	
 	public EventInDungeon(PlayerCharacter player)
@@ -46,12 +52,15 @@ public class EventInDungeon
 		case 3:
 			speedOrDraw();
 			break;
+		case 4:
+			gambleEvent();
+			break;
 		}
 	}
 	
 	
 	public void cardEnhancedEvent()
-	{
+	{		
 		while(true) {
 			int randomCard = random.nextInt(player.getCardDeck().length)+1;
 			if(player.getCardDeck()[randomCard-1].getEnforce()==false)
@@ -76,8 +85,8 @@ public class EventInDungeon
 		
 		for(int i = 0; i <3; i++)
 		{
-			int tempRandomEventNumber=random.nextInt(eventCard.eventCard().length);
-			tempEventCard[i] = eventCard.eventCard()[tempRandomEventNumber];
+			int tempRandomEventNumber=random.nextInt(getCardEvent.length);
+			tempEventCard[i] = getCardEvent[tempRandomEventNumber];
 		}
 		while(true)
 		{
@@ -173,7 +182,39 @@ public class EventInDungeon
 				scan.nextLine();
 			}
 		}
-	}	
+	}
+	
+	
+	public void gambleEvent()
+	{
+		while(true)
+		{
+			try {
+				System.out.println("1.도박한다(45%확률로 돈 두배, 55%확률로 돈절반) 2.그만둔다.");
+				int choice = scan.nextInt();
+				scan.nextLine();
+				if(choice==1)
+				{
+					int percent = random.nextInt(100);
+					int result = percent>44 ? player.getMoney()*2: player.getMoney()/2;
+					player.setMoeny(result);
+					System.out.println("돈이 " + player.getMoney()+"가 되었다");
+					break;
+				}
+				else if(choice==2)
+				{
+					System.out.println("도박은 하지않습니다.");
+					break;
+				}
+				}
+			catch(Exception e)
+			{
+				scan.nextLine();
+				System.out.println();
+			}
+		}		
+	}
+	
 	
 	public void campfire()
 	{
@@ -242,6 +283,48 @@ public class EventInDungeon
 	
 	public void dungeonShop()
 	{
-		System.out.println("구매한 카드는 이번 모험에서만 사용가능하니 주의하라구");
+		TotalCardBase[] currentShopCard = new TotalCardBase[6]; //랜덤으로 6장
+		
+		for(int i = 0; i<currentShopCard.length; i++)
+		{
+			int temp = random.nextInt(cardShopInDungeon.length);
+			currentShopCard[i] = cardShopInDungeon[temp];
+		}
+		
+		while(true) 
+		{
+			try
+			{
+			System.out.println("구매한 카드는 이번 모험에서만 사용가능하니 주의하라구");			
+			cardShop.watchCardDataDetail(currentShopCard);
+			System.out.println("몇번 카드를 살래? 0.그만둔다.");
+			int choice = scan.nextInt();
+			
+			if(choice == 0)
+			{
+				break;
+			}
+			else if(choice>0&&choice-1<currentShopCard.length)
+			{
+				int tempResult = player.getMoney()-currentShopCard[choice-1].getCardPrice();
+				if(tempResult>=0)
+				{
+					player.setMoeny(tempResult);
+					sortCard.sortAddCard(player.getCardDeck(), currentShopCard, choice);
+				}
+				else
+				{
+					System.out.println("돈이 부족해");
+				}
+			}		
+			
+			}
+			catch(Exception e)
+			{
+				scan.nextLine();
+				System.out.println("잘못된 입력이야");
+			}
+		
+		}
 	}
 }

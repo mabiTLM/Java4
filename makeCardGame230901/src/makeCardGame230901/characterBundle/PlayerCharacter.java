@@ -43,7 +43,7 @@ public class PlayerCharacter extends CharacterBase {
 				150,
 				5,
 				10,
-				0);
+				100000);
 	}
 	
 	public void drawToPlayerHand(TotalCardBase drawCard) {

@@ -120,7 +120,7 @@ public class Battle
 			sortCard.watchCard(player.getHand(),player);
 			player.status();
 			//모든 몬스터 제거시 실행종료
-			if(currentEnemy.length<1)
+			if(playerWin())
 			{
 				System.out.println("전투에서 승리했습니다.");
 				battleFinish();
@@ -171,7 +171,7 @@ public class Battle
 				useCard();				
 				if(currentEnemy[target-1].getHp()<=0)//적의 체력이 0이하면 적을 죽인다
 				{
-					monsterDie(battleCombine);
+					monsterDie();
 					break;
 				}
 				
@@ -236,8 +236,7 @@ public class Battle
 		{
 			player.setHp(player.getHp()+player.getHand()[useCardNumber-1].getCardValue());
 			player.status();
-		}
-		
+		}		
 	}
 	
 	
@@ -290,7 +289,7 @@ public class Battle
 	/**
 	 *몬스터가 죽는 경우에 넣어주자
 	 **/
-	public void monsterDie(BattleCombine battleCombine)
+	public void monsterDie()
 	{
 		player.setMoeny(player.getMoney()+currentEnemy[target-1].getMoney());//돈얻고
 		System.out.println("적을 처치하여"+currentEnemy[target-1].getMoney()+"골드를 얻었습니다.");
@@ -306,20 +305,12 @@ public class Battle
 			tempSort[i]=currentEnemy[i+tempSortBlank];
 		}
 		currentEnemy=tempSort;
-		
-		//적이 죽었을때 행동게이지도 수정해야한다.
-		tempSortBlank=0;
-		int[] tempEnemyTurnGaze = new int[battleCombine.getEnemyTurnGaze().length-1];
-		for(int i = 0; i <tempEnemyTurnGaze.length;i++)
-		{
-			if(i==target-1)
-			{
-				tempSortBlank++;
-			}						
-			tempEnemyTurnGaze[i]=battleCombine.getEnemyTurnGaze()[i+tempSortBlank];
-		}
-		battleCombine.setEnemyTurnGaze(tempEnemyTurnGaze);
 		target=0;
+	}
+	
+	public boolean playerWin()
+	{
+		return currentEnemy.length<1;
 	}
 	
 	

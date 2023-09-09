@@ -5,6 +5,7 @@ public class EnemyCharacter extends CharacterBase
 
 	private boolean enemyTurn = false;
 	private int effectValue = 0;
+	
 	MONSTEREFFECT monstereffect;
 	
 	EnemyCharacter[] stageEnemy;

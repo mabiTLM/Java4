@@ -12,7 +12,7 @@ public class CardShop
 	SortCard sortCard= new SortCard();
 	Scanner scan = new Scanner(System.in);
 	
-	public void watchCardData(TotalCardBase[] cardSet)
+	public void watchCardDataDetail(TotalCardBase[] cardSet)
 	{
 		for(int i = 0; i <cardSet.length;i++)
 		{
@@ -25,7 +25,7 @@ public class CardShop
 		while(true) 
 		{
 			//상점 카드목록을 보여준다
-			watchCardData(totalCardBase.shopSellCard());
+			watchCardDataDetail(totalCardBase.shopSellCard());
 			
 			System.out.println("어느 카드를 살래? 0.돌아가기 ,00.덱과 인벤확인");
 			String choice = scan.nextLine();
@@ -35,11 +35,13 @@ public class CardShop
 			}
 			else if(choice.equals("00"))
 			{
+				System.out.println();
 				player.DeckOpen();
+				System.out.println();
 				player.InventoryOpen();
 				System.out.println();
 				System.out.println();
-				System.out.println();
+
 			}
 			else if(Integer.valueOf(choice)>0&&Integer.valueOf(choice)<totalCardBase.shopSellCard().length+1)
 			{

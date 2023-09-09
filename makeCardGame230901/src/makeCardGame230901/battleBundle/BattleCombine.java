@@ -1,5 +1,6 @@
 package makeCardGame230901.battleBundle;
 
+import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 import makeCardGame230901.battleBundle.enemyActBunble.EnemyActAi;
@@ -9,9 +10,8 @@ public class BattleCombine
 	private PlayerCharacter player;
 	private Battle battle;
 	private EnemyActAi enemyActAi;
+	EnemyCharacter currentEnemy;
 	private int playerTurnGaze =0;//행동게이지
-	private int[] enemyTurnGaze;
-	
 	public BattleCombine(PlayerCharacter playerCharacter, Battle battle)
 	{
 		this.player=playerCharacter;
@@ -24,26 +24,29 @@ public class BattleCombine
 		battle.encounter();
 		
 		//속도계산
-		enemyTurnGaze= new int[battle.currentEnemy.length];//적숫자가 랜덤이라서 여기서 생성
 	
 		while(true) {
+			
+			
 			//행동게이지 개념
 			playerTurnGaze = playerTurnGaze+player.getSpeed();//속도만큼 행동게이지증가
-			for(int i = 0; i <enemyTurnGaze.length;i++)
+			if(playerTurnGaze>=100)//행동게이지 100이상일때 행동
 			{
-				enemyTurnGaze[i]=enemyTurnGaze[i]+battle.currentEnemy[i].getSpeed();//적 행동게이지 증가
-				if(enemyTurnGaze[i]>100&&enemyTurnGaze[i]>playerTurnGaze)//행동게이지가 차고 적이 높을경우 상대턴부터 받는다.
+				battle.setPlayerTurn(true);
+			}
+			for(int i = 0; i <battle.currentEnemy.length;i++)
+			{
+				currentEnemy=battle.currentEnemy[i];
+				currentEnemy.setTurnGaze(currentEnemy.getTurnGaze()+currentEnemy.getSpeed());//적 행동게이지 증가
+				
+				if(currentEnemy.getTurnGaze()>=100&&currentEnemy.getTurnGaze()>playerTurnGaze)//행동게이지가 차고 적이 높을경우 상대턴부터 받는다.
 				{
 					battle.currentEnemy[i].setEnemyTurn(true);
 					battle.setPlayerTurn(false);
 				}
-				if(playerTurnGaze>=100&&playerTurnGaze>=enemyTurnGaze[i])//행동게이지 100이상이고 적보다 높을때만
-				{
-					battle.setPlayerTurn(true);
-				}
+				
 			}
-			//여기까지 행동게이지 처리
-			
+			//여기까지 행동게이지 처리			
 			
 			
 			if(battle.getPlayerTurn()) 
@@ -59,7 +62,7 @@ public class BattleCombine
 					break;
 				}
 			}
-			if(battle.currentEnemy.length<1) //전투 승리
+			if(battle.playerWin()) //전투 승리
 			{
 				break;
 			}
@@ -73,18 +76,14 @@ public class BattleCombine
 			{
 				while(battle.currentEnemy[i].getEnemyTurn())//턴이 켜져있을 때
 				{
-					enemyActAi.totalAi(i);
-					
-					//행동끝난 후
-					enemyTurnGaze[i]= enemyTurnGaze[i]-100;
-					battle.currentEnemy[i].setEnemyTurn(false);
-					
+					battle.currentEnemy[i].setTurnGaze(battle.currentEnemy[i].getTurnGaze()-100);
+					battle.currentEnemy[i].setEnemyTurn(false);					
+					enemyActAi.totalAi(i);					
 				}
 				if(player.getHp()<=0) //사망처리
 				{
 					break;
 				}
-				
 			}
 			if(player.getHp()<=0)//사망처리
 			{
@@ -92,21 +91,19 @@ public class BattleCombine
 				moveInVillage.setLocationVillage(true);
 				break;
 			}
+			if(battle.playerWin()) //전투 승리
+			{
+				break;
+			}
 		}
 		
 	}
 	
 	//set모음
-	public void setEnemyTurnGaze(int[] enemyTurnGaze)
-	{
-		this.enemyTurnGaze=enemyTurnGaze;
-	}
+
 	
 	//get모음
-	public int[] getEnemyTurnGaze()
-	{
-		return enemyTurnGaze;
-	}
+
 	
 	public Battle getBattle()
 	{

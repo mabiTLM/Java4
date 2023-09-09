@@ -20,6 +20,7 @@ public abstract class CharacterBase
 	private int accuracy;//명중률
 	private int aiPattern;
 	private int enemyRepeat=0;
+	private int turnGaze=0; 
 	
 	
 	CharacterBase(){}
@@ -148,6 +149,11 @@ public abstract class CharacterBase
 		this.enemyRepeat=enemyRepeat;
 	}
 	
+	public void setTurnGaze(int turnGaze)
+	{
+		this.turnGaze=turnGaze;
+	}
+	
 	
 	//get 모음
 	public String getName() 
@@ -213,5 +219,9 @@ public abstract class CharacterBase
 	public int getEnenmyRepeat()
 	{
 		return enemyRepeat;
+	}
+	public int getTurnGaze()
+	{
+		return turnGaze;
 	}
 }
