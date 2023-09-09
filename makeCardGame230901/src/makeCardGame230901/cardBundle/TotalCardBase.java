@@ -8,6 +8,7 @@ public class TotalCardBase {
 	private int cardConsumeMana;
 	private int cardPrice;
 	private String effect = "통상";
+	private int effectValue = 0;
 	private boolean enforce=false;
 	
 	public TotalCardBase()
@@ -35,7 +36,8 @@ public class TotalCardBase {
 			int cardValue,
 			int cardConsumeMana,
 			int cardPrice,
-			String effect
+			String effect,
+			int effectValue
 			)
 	{
 		this.cardName=cardName;
@@ -44,29 +46,32 @@ public class TotalCardBase {
 		this.cardConsumeMana=cardConsumeMana;
 		this.cardPrice=cardPrice;
 		this.effect=effect;
+		this.effectValue=effectValue;
 	}
 	
 	
-	TotalCardBase[] cardData= new TotalCardBase[12];
+	TotalCardBase[] cardData= new TotalCardBase[15];
 	public TotalCardBase[] totalCard()//판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
 	{
 		cardData[0] = new TotalCardBase("공격",CardType.Attack,7,1,10);
 		cardData[1] = new TotalCardBase("방어",CardType.Defend,10,1,10);
-		cardData[2] = new TotalCardBase("연속공격",CardType.Attack,15,2,50);
+		cardData[2] = new TotalCardBase("2연참",CardType.Attack,14,2,50);
 		cardData[3] = new TotalCardBase("굳히기",CardType.Defend,20,2,50);
 		cardData[4] = new TotalCardBase("참격",CardType.Attack,10,1,100);
-		cardData[5] = new TotalCardBase("굳건",CardType.Defend,20,1,100);
-		cardData[6] = new TotalCardBase("속공",CardType.Attack,10,0,50);
-		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,2,50);
-		cardData[8] = new TotalCardBase("불굴",CardType.Defend,10,0,100);
+		cardData[5] = new TotalCardBase("굳건",CardType.Defend,15,1,100);
+		cardData[6] = new TotalCardBase("속공",CardType.Attack,10,0,100);
+		cardData[7] = new TotalCardBase("상처찢기",CardType.Attack,30,2,100);
+		cardData[8] = new TotalCardBase("불굴",CardType.Defend,15,0,100);
 		cardData[9] = new TotalCardBase("빛의수호",CardType.Defend,80,3,100);
-		cardData[10] = new TotalCardBase("실드차지",CardType.Attack,0,1,1000,"실드차지");
-		cardData[11] = new TotalCardBase("힐링",CardType._HEAL_,10,1,100);
-		
+		cardData[10] = new TotalCardBase("실드차지",CardType.Attack,0,1,100,"실드차지",1);
+		cardData[11] = new TotalCardBase("힐링",CardType._HEAL_,10,1,10);
+		cardData[12] = new TotalCardBase("신속",CardType.Attack,10,1,100,"드로우",1);
+		cardData[13] = new TotalCardBase("스매시",CardType.Attack,20,2,100,"방패깨기",0);
+		cardData[14] = new TotalCardBase("재정비",CardType.Defend,10,0,100,"드로우",1);
 		return cardData;
 	}
 	
-	TotalCardBase[] shopData= new TotalCardBase[6];
+	TotalCardBase[] shopData= new TotalCardBase[7];
 	public TotalCardBase[] shopSellCard()
 	{
 		
@@ -74,28 +79,33 @@ public class TotalCardBase {
 		shopData[1] = totalCard()[1];
 		shopData[2] = totalCard()[2];
 		shopData[3] = totalCard()[3];
-		shopData[4] = totalCard()[10];
-		shopData[5] = totalCard()[11];
+		shopData[4] = totalCard()[4];
+		shopData[5] = totalCard()[5];
+		shopData[6] = totalCard()[11]; 
 		return shopData;
 	}
 	
-	TotalCardBase[] winMosterCardData = new TotalCardBase[4];
+	TotalCardBase[] winMosterCardData = new TotalCardBase[5];
 	public TotalCardBase[] winMosterCard()
 	{
 		winMosterCardData[0] = totalCard()[6];
 		winMosterCardData[1] = totalCard()[7];
 		winMosterCardData[2] = totalCard()[8];
 		winMosterCardData[3] = totalCard()[9];
+		winMosterCardData[4] = totalCard()[10];
 		return winMosterCardData;
 	}
 	
-	TotalCardBase[] dungeonShopCardData = new TotalCardBase[4];
+	TotalCardBase[] dungeonShopCardData = new TotalCardBase[7];
 	public TotalCardBase[] dungeonShopCard()
 	{
 		dungeonShopCardData[0] = totalCard()[6];
 		dungeonShopCardData[1] = totalCard()[7];
 		dungeonShopCardData[2] = totalCard()[8];
 		dungeonShopCardData[3] = totalCard()[9];
+		dungeonShopCardData[4] = totalCard()[12];
+		dungeonShopCardData[5] = totalCard()[13];
+		dungeonShopCardData[6] = totalCard()[14];
 		return dungeonShopCardData;
 	}
 	
@@ -169,6 +179,10 @@ public class TotalCardBase {
 	public boolean getEnforce()
 	{
 		return enforce;
+	}
+	public int getEffectValue()
+	{
+		return effectValue;
 	}
 	
 

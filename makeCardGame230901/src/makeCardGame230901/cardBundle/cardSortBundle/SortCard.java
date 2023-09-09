@@ -174,7 +174,7 @@ public class SortCard {
 		
 		for(int i = 0; i <battleDeck.length;i++)
 		{
-			deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice(),battleDeck[i].getEffect());
+			deepTemp = new TotalCardBase(battleDeck[i].getCardName(), battleDeck[i].getCardType(), battleDeck[i].getCardValue(), battleDeck[i].getCardConsumeMana(), battleDeck[i].getCardPrice(),battleDeck[i].getEffect(),battleDeck[i].getEffectValue());
 			temp[i]=deepTemp;
 		}
 		

@@ -23,7 +23,7 @@ public class MoveInDungeon
 	{
 		FirstFloor floor = new FirstFloor(battleCombine,moveInvillage,player);
 		floor.makeFirstMap();
-		while(!moveInvillage.getLocationVillage()) //언제나갈지 생각하자
+		while(player.getNowFloor()==1) //언제나갈지 생각하자
 		{
 			floor.watchMap();
 			floor.movePlayer();

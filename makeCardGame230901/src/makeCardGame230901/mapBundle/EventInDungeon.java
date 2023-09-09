@@ -311,6 +311,7 @@ public class EventInDungeon
 				{
 					player.setMoeny(tempResult);
 					sortCard.sortAddCard(player.getCardDeck(), currentShopCard, choice);
+					System.out.println(currentShopCard[choice-1] + "을 구매했다.");
 				}
 				else
 				{

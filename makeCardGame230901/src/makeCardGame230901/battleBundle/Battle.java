@@ -215,16 +215,19 @@ public class Battle
 	 **/	
 	public void playerBattleCalculator()
 	{
-		player.setMp(player.getMp()-player.getHand()[useCardNumber-1].getCardConsumeMana());
-		if(player.getHand()[useCardNumber-1].getCardType()==CardType.Defend)
+		TotalCardBase currentUseCard = player.getHand()[useCardNumber-1];
+		
+		cardEffectCalculator(currentUseCard);		
+		player.setMp(player.getMp()-currentUseCard.getCardConsumeMana());
+		if(currentUseCard.getCardType()==CardType.Defend)
 		{
-			player.setDef(player.getDef()+player.getHand()[useCardNumber-1].getCardValue());
+			player.setDef(player.getDef()+currentUseCard.getCardValue());
 			player.status();
 		}
-		else if(player.getHand()[useCardNumber-1].getCardType()==CardType.Attack)
+		else if(currentUseCard.getCardType()==CardType.Attack)
 		{
 			int tempDamage=0;
-			currentEnemy[target-1].setDef(currentEnemy[target-1].getDef()-player.getHand()[useCardNumber-1].getCardValue());
+			currentEnemy[target-1].setDef(currentEnemy[target-1].getDef()-currentUseCard.getCardValue());
 			if(currentEnemy[target-1].getDef()<0)
 			{
 				tempDamage=Math.abs(currentEnemy[target-1].getDef());
@@ -232,12 +235,30 @@ public class Battle
 			}
 			currentEnemy[target-1].setHp(currentEnemy[target-1].getHp()-tempDamage);//목표로한적에게 데미지를 준다.
 		}
-		else if(player.getHand()[useCardNumber-1].getCardType()==CardType._HEAL_)
+		else if(currentUseCard.getCardType()==CardType._HEAL_)
 		{
-			player.setHp(player.getHp()+player.getHand()[useCardNumber-1].getCardValue());
+			player.setHp(player.getHp()+currentUseCard.getCardValue());
 			player.status();
-		}		
+		}
+		
 	}
+	
+	private void cardEffectCalculator(TotalCardBase currentCard)
+	{
+		String name = currentCard.getEffect();
+		int value = currentCard.getEffectValue();
+		
+		if(name.equals("드로우"))
+		{
+			this.cardDraw(value);
+		}
+		else if(name.equals("방패깨기"))
+		{
+			currentEnemy[target-1].setDef(0);
+		}
+		
+	}
+	
 	
 	
 	/**
@@ -247,6 +268,7 @@ public class Battle
 	{
 		graveCard = new TotalCardBase[0];
 		player.disCardHand();
+		player.setDef(0);
 		setPlayerTurn(false);
 		if(monsterType==MONSTERTYPE.NORMAL) {
 			System.out.println("전투 승리 보상을 획득합니다.");
@@ -261,7 +283,8 @@ public class Battle
 		else if(monsterType==MONSTERTYPE.BOSS)
 		{
 			System.out.println("보스한테 승리했습니다.");
-			System.out.println("게임 클리어!");			
+			System.out.println("다음 층으로 넘어갑니다.");
+			player.setNowFloor(player.getNowFloor()+1);
 		}
 	}
 	
