@@ -1,14 +1,13 @@
 package makeCardGame230901.battleBundle.enemyActBunble;
 
 import makeCardGame230901.battleBundle.Battle;
-import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 
 public class EnemyActAi extends EnemyBattleAct {
 	EnemyCharacter actEnemy;
 	public EnemyActAi(PlayerCharacter player, Battle battle) {
 		super(player, battle);
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -25,7 +24,7 @@ public class EnemyActAi extends EnemyBattleAct {
 		}		
 		else if(ai==0)
 		{
-			onlyAttack(actMonsterNumber);
+			slimeAi(actMonsterNumber);
 		}
 		else if(ai==1)
 		{
@@ -37,14 +36,20 @@ public class EnemyActAi extends EnemyBattleAct {
 		}
 		else if(ai==3)
 		{
-			onlyAttack(actMonsterNumber);
+			bossAi(actMonsterNumber);
 		}		
 	}
 	
 	
-	private void onlyAttack(int actMonsterNumber)
+	private void slimeAi(int actMonsterNumber)
 	{
-		plainAttack(actMonsterNumber);
+		if(actEnemy.getEnenmyRepeat()%2==0)
+		{
+			badSlimeCardAdd(actMonsterNumber);
+		}
+		else {
+			plainAttack(actMonsterNumber);
+		}		
 	}
 	
 	private void golemAi(int actMonsterNumber)
@@ -58,8 +63,7 @@ public class EnemyActAi extends EnemyBattleAct {
 		{
 			plainAttack(actMonsterNumber);
 		}
-	}
-	
+	}	
 	
 	private void theifAi(int actMonsterNumber)
 	{
@@ -71,6 +75,27 @@ public class EnemyActAi extends EnemyBattleAct {
 		else
 		{
 			atkUp(actMonsterNumber);			
+		}
+	}
+	
+	private void bossAi(int actMonsterNumber)
+	{
+		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
+		if(actEnemy.getEnenmyRepeat()%4==0)
+		{
+			fearCardStun(actMonsterNumber);
+		}
+		else if(actEnemy.getEnenmyRepeat()%4==1)
+		{
+			plainAttack(actMonsterNumber);
+		}
+		else if(actEnemy.getEnenmyRepeat()%4==2)
+		{
+			readyReflect(actMonsterNumber);
+		}
+		else if(actEnemy.getEnenmyRepeat()%4==3)
+		{
+			reflectAttack(actMonsterNumber);
 		}
 	}
 

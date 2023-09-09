@@ -16,7 +16,13 @@ public class CardShop
 	{
 		for(int i = 0; i <cardSet.length;i++)
 		{
-			System.out.println((i+1)+"."+cardSet[i].getCardName()+" : "+cardSet[i].getCardType()+"타입카드 수치 : "+cardSet[i].getCardValue()+" 마나 : "+cardSet[i].getCardConsumeMana()+" 가격 : " + cardSet[i].getCardPrice());
+			System.out.println(
+					(i+1)+"."+cardSet[i].getCardName()+" : "
+					+cardSet[i].getCardType()+"타입카드"
+					+ " 수치 : "+cardSet[i].getCardValue()
+					+" 마나 : "+cardSet[i].getCardConsumeMana()
+					+" 효과 : "+cardSet[i].getEffect()+cardSet[i].getEffectValue()
+					+" 가격 : " + cardSet[i].getCardPrice());
 		}
 	}
 	

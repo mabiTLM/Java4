@@ -4,17 +4,18 @@ import java.util.Scanner;
 import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
-import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
+import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
+import makeCardGame230901.characterBundle.enemyBundle.SecondFloorEnemy;
 import makeCardGame230901.mapBundle.EventInDungeon;
-import makeCardGame230901.village.MoveInVillage;
 
 public class Battle 
 {
 	private PlayerCharacter player;
 	protected TotalCardBase[] tempBattleDeck = new TotalCardBase[0];//플레이어의 덱을 배틀할때만 복사한다.
 	private TotalCardBase[] graveCard = new TotalCardBase[0];
-	private EnemyCharacter eArray = new EnemyCharacter();
+	private EnemyCharacter eArray;
 	protected EnemyCharacter[] currentEnemy;
 	EventInDungeon eventInDungeon;
 	SortCard sortCard = new SortCard();
@@ -30,13 +31,24 @@ public class Battle
 		eventInDungeon = new EventInDungeon(player);
 	}
 	
-	
 	public void encounter() //어떤 적을 만날지 정해주자
 	{
 		tempBattleDeck=sortCard.deepCopyDeck(player.getCardDeck());
 		//현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
 		tempBattleDeck=sortCard.suffleDeck(tempBattleDeck);
-		
+		if(player.getNowFloor()==1) 
+		{
+			eArray = new FirstFloorEnemy();
+		}
+		else if(player.getNowFloor()==2) 
+		{
+			eArray = new SecondFloorEnemy();
+		}
+		encountFloor();
+	}
+	
+	private void encountFloor()
+	{
 		if(monsterType==MONSTERTYPE.NORMAL)
 		{
 			int temp =(int)(Math.random()*4+1);//1~4마리
@@ -44,8 +56,8 @@ public class Battle
 			System.out.println("적이 " + temp + "마리 출현했다.");
 			for(int i = 0; i <currentEnemy.length;i++)
 			{
-				int enemyNumberTemp = (int)(Math.random()*eArray.firstStageData().length);
-				currentEnemy[i]=eArray.firstStageData()[enemyNumberTemp];
+				int enemyNumberTemp = (int)(Math.random()*eArray.stageData().length);
+				currentEnemy[i]=eArray.stageData()[enemyNumberTemp];
 			}
 		}
 		else if(monsterType==MONSTERTYPE.ELITE)
@@ -55,16 +67,16 @@ public class Battle
 			System.out.println("엘리트적이 " + temp + "마리 출현했다.");
 			for(int i = 0; i <currentEnemy.length;i++)
 			{
-				int enemyNumberTemp = (int)(Math.random()*eArray.firstStageEliteData().length);
-				currentEnemy[i]=eArray.firstStageEliteData()[enemyNumberTemp];
+				int enemyNumberTemp = (int)(Math.random()*eArray.stageEliteData().length);
+				currentEnemy[i]=eArray.stageEliteData()[enemyNumberTemp];
 			}
 		}
 		else if(monsterType==MONSTERTYPE.BOSS)
 		{
 			currentEnemy = new EnemyCharacter[1];
-			int enemyNumberTemp = (int)(Math.random()*eArray.firstStageBossData().length);
-			currentEnemy[0]=eArray.firstStageBossData()[enemyNumberTemp];
-			System.out.println("[보스]"+eArray.firstStageBossData()[enemyNumberTemp].getName()+"가 출현했다.");
+			int enemyNumberTemp = (int)(Math.random()*eArray.stageBossData().length);
+			currentEnemy[0]=eArray.stageBossData()[enemyNumberTemp];
+			System.out.println("[보스]"+eArray.stageBossData()[enemyNumberTemp].getName()+"가 출현했다.");
 		}
 	}
 
@@ -112,44 +124,46 @@ public class Battle
 	}
 	
 	
-	public void targetLockOn(BattleCombine battleCombine, MoveInVillage moveInVillage)//전투가 거의다 타겟정하는대서 이뤄진다.
+	public void targetLockOn(BattleCombine battleCombine)//전투가 거의다 타겟정하는대서 이뤄진다.
 	{
-		while(true) {
+		while(true) 
+		{
 			try {
-			watchEnemy();
-			sortCard.watchCard(player.getHand(),player);
-			player.status();
-			//모든 몬스터 제거시 실행종료
-			if(playerWin())
-			{
-				System.out.println("전투에서 승리했습니다.");
-				battleFinish();
-				break;
-			}
-			System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
-			target = scan.nextInt();
-			scan.nextLine();
-			if(target>currentEnemy.length||target<0)
-			{
-				System.out.println("다시 타겟해주세요");
-			}
-			else if(target==0)
-			{
-				playerTurnOff();
-				break;
-			}
-			else
-			{
-				break;
-			}
-			}
+				if(playerWin())
+				{
+					System.out.println("전투에서 승리했습니다.");
+					battleFinish();
+					break;
+				}
+				watchEnemy();
+				sortCard.watchCard(player.getHand(),player);
+				player.status();
+				//모든 몬스터 제거시 실행종료				
+				System.out.println("몇번 적을 타겟합니까? 0.턴 넘기기");
+				target = scan.nextInt();
+				scan.nextLine();
+				if(target>currentEnemy.length||target<0)
+				{
+					System.out.println("다시 타겟해주세요");
+				}
+				else if(target==0)
+				{
+					playerTurnOff();
+					break;
+				}
+				else
+				{
+					break;
+				}
+				}
 			catch(Exception e)
 			{
 				scan.nextLine();
 			}
 		}
 		
-		while(playerTurn) {
+		while(playerTurn) 
+		{
 			try {
 			watchEnemy();
 			sortCard.watchCard(player.getHand(),player);
@@ -201,8 +215,10 @@ public class Battle
 		}
 		else {
 			//사용한 카드를 묘지로 보낸다.
-			graveCard=sortCard.sortAddCard(graveCard, player.getHand(), useCardNumber);
-						
+			if(!player.getHand()[useCardNumber-1].getEffect().equals("휘발성"))
+			{
+				graveCard=sortCard.sortAddCard(graveCard, player.getHand(), useCardNumber);
+			}
 			playerBattleCalculator();//사용한 카드의 전투계산을 한다.
 			
 			//넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.			
@@ -266,10 +282,8 @@ public class Battle
 	 **/
 	public void battleFinish()
 	{
-		graveCard = new TotalCardBase[0];
-		player.disCardHand();
+		playerTurnOff();
 		player.setDef(0);
-		setPlayerTurn(false);
 		if(monsterType==MONSTERTYPE.NORMAL) {
 			System.out.println("전투 승리 보상을 획득합니다.");
 			eventInDungeon.cardAddEvent();
@@ -293,8 +307,18 @@ public class Battle
 	 **/
 	public void playerTurnStart()
 	{
-		cardDraw(player.getDrawCardNumber());
-		player.setMp(player.getMaxMp());//턴시작시 마나회복
+		if(player.getStunTurn()>0)
+		{
+			System.out.println("기절 상태라 움직일 수 없다.");
+			playerTurnOff();
+			player.setStunTurn(player.getStunTurn()-1);
+		}
+		else
+		{
+			player.setDivineForce(player.getDivineForce()-1);
+			cardDraw(player.getDrawCardNumber());
+			player.setMp(player.getMaxMp());//턴시작시 마나회복
+		}
 	}
 	
 	
@@ -305,7 +329,7 @@ public class Battle
 	{
 		playerTurn=false;//턴끄고
 		graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());//손을 묘지로 보내고
-		player.disCardHand();
+		player.disCardHand();		
 		target=0;
 	}
 	

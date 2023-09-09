@@ -20,10 +20,12 @@ public abstract class CharacterBase
 	private int accuracy;//명중률
 	private int aiPattern;
 	private int enemyRepeat=0;
-	private int turnGaze=0; 
+	private int turnGaze=0;
+	private int stunTurn = 0;
+	private int divineForce = 0;
 	
 	
-	CharacterBase(){}
+	protected CharacterBase(){}
 	
 	
 	CharacterBase(
@@ -51,7 +53,7 @@ public abstract class CharacterBase
 		this.money=money;
 	}
 	
-	CharacterBase(
+	protected CharacterBase(
 			String name,
 			int maxHp,
 			int maxMp,
@@ -97,7 +99,10 @@ public abstract class CharacterBase
 		{
 			hp=getMaxHp();
 		}
-		this.hp=hp;
+		if(divineForce==0)
+		{
+			this.hp=hp;
+		}
 	}
 	
 	public void setMp(int mp)
@@ -152,6 +157,22 @@ public abstract class CharacterBase
 	public void setTurnGaze(int turnGaze)
 	{
 		this.turnGaze=turnGaze;
+	}
+	public void setStunTurn(int stunTurn)
+	{
+		if(stunTurn<0)
+		{
+			stunTurn=0;
+		}
+		this.stunTurn=stunTurn;
+	}
+	public void setDivineForce(int divineForce)
+	{
+		if(divineForce<0)
+		{
+			divineForce=0;
+		}
+		this.divineForce=divineForce;
 	}
 	
 	
@@ -223,5 +244,13 @@ public abstract class CharacterBase
 	public int getTurnGaze()
 	{
 		return turnGaze;
+	}
+	public int getStunTurn()
+	{
+		return stunTurn;
+	}
+	public int getDivineForce()
+	{
+		return divineForce;
 	}
 }

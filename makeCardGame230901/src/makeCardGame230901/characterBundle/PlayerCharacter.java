@@ -1,6 +1,5 @@
 package makeCardGame230901.characterBundle;
 
-import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
 
 
@@ -38,12 +37,12 @@ public class PlayerCharacter extends CharacterBase {
 							cardData.totalCard()[1],
 						},
 				new TotalCardBase[] {},//손패
-				150,
+				100,
 				5,
-				150,
+				100,
 				5,
 				10,
-				100000);
+				0);
 	}
 	
 	public void drawToPlayerHand(TotalCardBase drawCard) {

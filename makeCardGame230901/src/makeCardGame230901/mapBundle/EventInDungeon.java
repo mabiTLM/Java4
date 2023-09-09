@@ -3,6 +3,7 @@ package makeCardGame230901.mapBundle;
 import java.util.Random;
 import java.util.Scanner;
 
+import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -13,7 +14,7 @@ public class EventInDungeon
 	private PlayerCharacter player;
 	private TotalCardBase cardData = new TotalCardBase();
 	private SortCard sortCard = new SortCard();
-	private TotalCardBase[] getCardEvent = cardData.winMosterCard();
+	private TotalCardBase[] getCardEvent = cardData.winMosterCard();//랜덤이벤트에는 안좋은 카드들도 나오게
 	private TotalCardBase[] cardShopInDungeon = cardData.dungeonShopCard();
 	CardShop cardShop = new CardShop();
 	Scanner scan = new Scanner(System.in);
@@ -25,7 +26,8 @@ public class EventInDungeon
 			"이벤트 카드를 얻습니다."	,
 			"선택 : 현재와 미래",
 			"재빠른 선택",
-			"돈놓고 돈먹기"
+			"돈놓고 돈먹기",
+			"함정"
 	};
 	
 	public EventInDungeon(PlayerCharacter player)
@@ -55,7 +57,11 @@ public class EventInDungeon
 		case 4:
 			gambleEvent();
 			break;
+		case 5:
+			trapEvent();
+			break;
 		}
+		scan.nextLine();
 	}
 	
 	
@@ -190,7 +196,7 @@ public class EventInDungeon
 		while(true)
 		{
 			try {
-				System.out.println("1.도박한다(45%확률로 돈 두배, 55%확률로 돈절반) 2.그만둔다.");
+				System.out.println("1.도박한다(45%확률로 돈 두배, 55%확률로 돈절반)\n2.그만둔다.");
 				int choice = scan.nextInt();
 				scan.nextLine();
 				if(choice==1)
@@ -213,6 +219,34 @@ public class EventInDungeon
 				System.out.println();
 			}
 		}		
+	}
+	
+	public void trapEvent()
+	{
+		while(true) {
+			try {
+				System.out.println("함정에 빠졌습니다.\n1.드로우를 하나 줄인다.\n2.덱에 부상을 두개 집어넣는다.");
+				
+				int choice = scan.nextInt();
+				if(choice==1)
+				{
+					player.setDrawCardNumber(player.getDrawCardNumber()-1);
+					break;
+				}
+				else if(choice==2)
+				{
+					TotalCardBase[] bad = {new TotalCardBase("부상",CardType.Defend,0,0,0)};
+					player.setCardDeck(sortCard.sortAddCard(player.getCardDeck(), bad, 1));
+					player.setCardDeck(sortCard.sortAddCard(player.getCardDeck(), bad, 1));
+					break;
+				}
+				
+				
+			}
+			catch(Exception e) {
+				scan.nextLine();
+			}
+		}
 	}
 	
 	
@@ -310,8 +344,9 @@ public class EventInDungeon
 				if(tempResult>=0)
 				{
 					player.setMoeny(tempResult);
-					sortCard.sortAddCard(player.getCardDeck(), currentShopCard, choice);
-					System.out.println(currentShopCard[choice-1] + "을 구매했다.");
+					player.setCardDeck(sortCard.sortAddCard(player.getCardDeck(), currentShopCard, choice));
+					System.out.println(currentShopCard[choice-1].getCardName() + "을 구매했다.");
+					currentShopCard = sortCard.sortRemoveCard(currentShopCard, choice);
 				}
 				else
 				{

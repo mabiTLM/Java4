@@ -1,7 +1,7 @@
 package makeCardGame230901.battleBundle;
 
-import makeCardGame230901.characterBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.PlayerCharacter;
+import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 import makeCardGame230901.village.MoveInVillage;
 import makeCardGame230901.battleBundle.enemyActBunble.EnemyActAi;
 
@@ -26,8 +26,6 @@ public class BattleCombine
 		//속도계산
 	
 		while(true) {
-			
-			
 			//행동게이지 개념
 			playerTurnGaze = playerTurnGaze+player.getSpeed();//속도만큼 행동게이지증가
 			if(playerTurnGaze>=100)//행동게이지 100이상일때 행동
@@ -55,8 +53,8 @@ public class BattleCombine
 			}			
 			while(battle.getPlayerTurn()) 
 			{
-				battle.targetLockOn(this,moveInVillage);
-				if(player.getHand().length<1|battle.getPlayerTurn()==false)
+				battle.targetLockOn(this);
+				if(battle.getPlayerTurn()==false)
 				{
 					playerTurnGaze=playerTurnGaze-100;//행동끝났으면 수치낮추기
 					break;
@@ -89,6 +87,7 @@ public class BattleCombine
 			{
 				System.out.println("전투에서 졌습니다. 처음으로 돌아갑니다.");
 				moveInVillage.setLocationVillage(true);
+				player.setNowFloor(0);
 				break;
 			}
 			if(battle.playerWin()) //전투 승리
@@ -103,8 +102,6 @@ public class BattleCombine
 
 	
 	//get모음
-
-	
 	public Battle getBattle()
 	{
 		return battle;

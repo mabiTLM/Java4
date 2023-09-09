@@ -23,11 +23,27 @@ public class MoveInDungeon
 	{
 		FirstFloor floor = new FirstFloor(battleCombine,moveInvillage,player);
 		floor.makeFirstMap();
-		while(player.getNowFloor()==1) //언제나갈지 생각하자
+		while(player.getNowFloor()==1)
 		{
 			floor.watchMap();
 			floor.movePlayer();
 		}
+		
+		//일단은 1,2층 모양이 같으니까 굳이 안바꿔도된다.
+		floor = new FirstFloor(battleCombine,moveInvillage,player);
+		floor.makeFirstMap();
+		while(player.getNowFloor()==2)
+		{
+			floor.watchMap();
+			floor.movePlayer();
+		}		
+		
+		if(player.getNowFloor()!=0)//0이 아닌상태로 끝까지 왔을때
+		{
+			System.out.println("게임을 클리어했습니다. 반복플레이가 가능하기에 마을로 돌아갑니다.");
+			moveInvillage.setLocationVillage(true);
+		}
+		
 	}
 	
 }
