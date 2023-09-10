@@ -136,6 +136,11 @@ public class Battle
 					battleFinish();
 					break;
 				}
+				if(player.getHand().length<1)//손을 전부소모하면 패를 넘긴다
+				{
+					playerTurnOff();
+					break;
+				}
 				watchEnemy();
 				sortCard.watchCard(player.getHand(),player);
 				player.status();
@@ -285,6 +290,7 @@ public class Battle
 	{
 		playerTurnOff();
 		player.setDef(0);
+		graveCard = new TotalCardBase[0];
 		if(monsterType==MONSTERTYPE.NORMAL) {
 			System.out.println("전투 승리 보상을 획득합니다.");
 			eventInDungeon.cardAddEvent(cardData.winMosterCard());

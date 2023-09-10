@@ -27,7 +27,7 @@ public class SecondFloorEnemy extends EnemyCharacter {
 	public EnemyCharacter[] stageBossData()
 	{
 		stageEnemy = new EnemyCharacter[1];
-		stageEnemy[0] = new EnemyCharacter("글라스기브넨",1000,0,1000,0,100,1000,100,10,3);
+		stageEnemy[0] = new EnemyCharacter("글라스기브넨",1000,0,1000,0,100,1000,10000,10,3);
 		return stageEnemy;
 	}
 }
