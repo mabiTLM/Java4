@@ -15,7 +15,7 @@ public class EnemyCharacter extends CharacterBase
 	public EnemyCharacter(){
 	}
 	
-	EnemyCharacter(//mp가 없는 적
+	public EnemyCharacter(//mp가 없는 적
 			String name,
 			int maxHp,
 			int hp,

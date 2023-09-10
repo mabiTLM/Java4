@@ -15,6 +15,7 @@ public class Battle
 	private PlayerCharacter player;
 	protected TotalCardBase[] tempBattleDeck = new TotalCardBase[0];//플레이어의 덱을 배틀할때만 복사한다.
 	private TotalCardBase[] graveCard = new TotalCardBase[0];
+	private TotalCardBase cardData = new TotalCardBase();
 	private EnemyCharacter eArray;
 	protected EnemyCharacter[] currentEnemy;
 	EventInDungeon eventInDungeon;
@@ -286,13 +287,13 @@ public class Battle
 		player.setDef(0);
 		if(monsterType==MONSTERTYPE.NORMAL) {
 			System.out.println("전투 승리 보상을 획득합니다.");
-			eventInDungeon.cardAddEvent();
+			eventInDungeon.cardAddEvent(cardData.winMosterCard());
 		}
 		else if(monsterType==MONSTERTYPE.ELITE) {
 			System.out.println("엘리트 승리 보상을 획득합니다.");
-			eventInDungeon.cardAddEvent();
-			eventInDungeon.cardAddEvent();
-			eventInDungeon.cardAddEvent();
+			eventInDungeon.cardAddEvent(cardData.winMosterCard());
+			eventInDungeon.cardAddEvent(cardData.winMosterCard());
+			eventInDungeon.cardAddEvent(cardData.winMosterCard());
 		}
 		else if(monsterType==MONSTERTYPE.BOSS)
 		{
@@ -379,6 +380,10 @@ public class Battle
 	public void setTempBattleDeck(TotalCardBase[] tempBattleDeck)
 	{
 		this.tempBattleDeck=tempBattleDeck;
+	}
+	public void setCurrentEnemy(EnemyCharacter[] currentEnemy)
+	{
+		this.currentEnemy=currentEnemy;
 	}
 	
 	

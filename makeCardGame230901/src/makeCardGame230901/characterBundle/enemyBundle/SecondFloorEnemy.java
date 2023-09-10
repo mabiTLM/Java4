@@ -16,9 +16,10 @@ public class SecondFloorEnemy extends EnemyCharacter {
 	@Override
 	public EnemyCharacter[] stageEliteData()
 	{
-		stageEnemy = new EnemyCharacter[2];
+		stageEnemy = new EnemyCharacter[3];
 		stageEnemy[0] = new EnemyCharacter("골렘",100,100,100,50,1000,8,2,MONSTEREFFECT.SHIELD,100);
 		stageEnemy[1] = new EnemyCharacter("상급 닌자",50,50,10,0,1000,30,1,MONSTEREFFECT.ATTACKUP,5);
+		stageEnemy[2] = new EnemyCharacter("킹 슬라임",50,50,10,20,1000,10,4,MONSTEREFFECT.USESKILL,0);
 		return stageEnemy;
 	}
 	

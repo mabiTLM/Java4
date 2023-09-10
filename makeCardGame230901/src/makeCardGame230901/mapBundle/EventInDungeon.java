@@ -14,7 +14,6 @@ public class EventInDungeon
 	private PlayerCharacter player;
 	private TotalCardBase cardData = new TotalCardBase();
 	private SortCard sortCard = new SortCard();
-	private TotalCardBase[] getCardEvent = cardData.winMosterCard();//랜덤이벤트에는 안좋은 카드들도 나오게
 	private TotalCardBase[] cardShopInDungeon = cardData.dungeonShopCard();
 	CardShop cardShop = new CardShop();
 	Scanner scan = new Scanner(System.in);
@@ -46,7 +45,7 @@ public class EventInDungeon
 			cardEnhancedEvent();
 			break;
 		case 1:
-			cardAddEvent();
+			cardAddEvent(cardData.totalCard());
 			break;
 		case 2:
 			getMoneyOrHealth();
@@ -85,7 +84,7 @@ public class EventInDungeon
 	}
 
 
-	public void cardAddEvent()
+	public void cardAddEvent(TotalCardBase[] getCardEvent)
 	{
 		TotalCardBase[] tempEventCard = new TotalCardBase[3];
 		

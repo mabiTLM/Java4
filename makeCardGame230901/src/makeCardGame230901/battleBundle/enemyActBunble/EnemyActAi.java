@@ -11,7 +11,7 @@ public class EnemyActAi extends EnemyBattleAct {
 	}
 	
 	/**
-	 *0.슬라임 1.도적 2.골렘 3.보스 
+	 *0.일반슬라임 1.도적 2.골렘 3.보스 4.강화슬라임 
 	 **/	
 	public void totalAi(int actMonsterNumber)
 	{
@@ -37,14 +37,30 @@ public class EnemyActAi extends EnemyBattleAct {
 		else if(ai==3)
 		{
 			bossAi(actMonsterNumber);
-		}		
+		}
+		else if(ai==4)
+		{
+			divideSlimeAi(actMonsterNumber);
+		}
 	}
 	
 	
 	private void slimeAi(int actMonsterNumber)
 	{
-		if(actEnemy.getEnenmyRepeat()%2==0)
+		if(actEnemy.getEnenmyRepeat()%2==1)
 		{
+			badSlimeCardAdd(actMonsterNumber);
+		}
+		else {
+			plainAttack(actMonsterNumber);
+		}		
+	}
+	
+	private void divideSlimeAi(int actMonsterNumber)
+	{
+		if(actEnemy.getEnenmyRepeat()%2==1)
+		{
+			summonMonster(new EnemyCharacter("분열된 슬라임",actEnemy.getHp(),actEnemy.getHp(),actEnemy.getAtk(),actEnemy.getDef(),0,actEnemy.getSpeed(),4));
 			badSlimeCardAdd(actMonsterNumber);
 		}
 		else {
@@ -55,7 +71,7 @@ public class EnemyActAi extends EnemyBattleAct {
 	private void golemAi(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		if(actEnemy.getEnenmyRepeat()%2==0)
+		if(actEnemy.getEnenmyRepeat()%2==1)
 		{
 			defUp(actMonsterNumber);
 		}
@@ -68,7 +84,7 @@ public class EnemyActAi extends EnemyBattleAct {
 	private void theifAi(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		if(actEnemy.getEnenmyRepeat()%3==2)
+		if(actEnemy.getEnenmyRepeat()%3==0)
 		{
 			plainAttack(actMonsterNumber);
 		}
@@ -81,19 +97,19 @@ public class EnemyActAi extends EnemyBattleAct {
 	private void bossAi(int actMonsterNumber)
 	{
 		actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-		if(actEnemy.getEnenmyRepeat()%4==0)
+		if(actEnemy.getEnenmyRepeat()%4==1)
 		{
 			fearCardStun(actMonsterNumber);
 		}
-		else if(actEnemy.getEnenmyRepeat()%4==1)
+		else if(actEnemy.getEnenmyRepeat()%4==2)
 		{
 			plainAttack(actMonsterNumber);
 		}
-		else if(actEnemy.getEnenmyRepeat()%4==2)
+		else if(actEnemy.getEnenmyRepeat()%4==3)
 		{
 			readyReflect(actMonsterNumber);
 		}
-		else if(actEnemy.getEnenmyRepeat()%4==3)
+		else if(actEnemy.getEnenmyRepeat()%4==0)
 		{
 			reflectAttack(actMonsterNumber);
 		}

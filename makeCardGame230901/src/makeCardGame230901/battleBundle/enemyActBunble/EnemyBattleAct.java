@@ -94,4 +94,19 @@ public class EnemyBattleAct
 		System.out.println("적의 반격");
 		player.setHp(player.getHp()-(reflect-actEnemy.getHp())); 
 	}
+	
+	protected void summonMonster(EnemyCharacter summon)
+	{
+		EnemyCharacter[] nowEnemy = battle.getCurrentEnemy();
+		EnemyCharacter[] tempCurrentEnemy = new EnemyCharacter[nowEnemy.length+1];
+		
+		for(int i = 0; i<nowEnemy.length; i++)
+		{
+			tempCurrentEnemy[i]=nowEnemy[i];
+		}
+		tempCurrentEnemy[nowEnemy.length] = summon;
+		
+		battle.setCurrentEnemy(tempCurrentEnemy);
+		System.out.println(summon.getName() + "을 소환했다.");
+	}
 }
