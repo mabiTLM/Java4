@@ -19,7 +19,7 @@ public class Build implements Serializable {
   private MoveInVillage moveInvillage = new MoveInVillage();
   private PlayerReset resetData = new PlayerReset();
   private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine, moveInvillage, player);
-  Save saveData = new Save();
+  SettingMenu settingMenu = new SettingMenu();
 
   void build() {
     while (moveInvillage.getLocationVillage()) {
@@ -27,16 +27,16 @@ public class Build implements Serializable {
       {
         moveInvillage.MoveVillage(player);
         // 던전에 가기전에 덱, 인벤토리 복사, 스텟최대치 복사
-        if (player.getSave()) {
-          saveData.save(player, this);
+        if (player.getOpenMenu()) {
+          settingMenu.printSettingMenu(player, this);
         }
       }
       resetData.setResetData(player);
       while (!moveInvillage.getLocationVillage()) // 마을에 있지 않을때
       {
         moveInDungeon.dungeonEntrance();
-        if (player.getSave()) {
-          saveData.save(player, this);
+        if (player.getOpenMenu()) {
+          settingMenu.printSettingMenu(player, this);
         }
       }
 

@@ -10,7 +10,7 @@ public class PlayerCharacter extends CharacterBase {
   private static final long serialVersionUID = -1264577156287833465L;
   private int drawCardNumber = 5;
   private int nowFloor = 1;
-  private boolean save = false;
+  private boolean openMenu = false;
   static TotalCardBase cardData = new TotalCardBase();
 
 
@@ -66,8 +66,8 @@ public class PlayerCharacter extends CharacterBase {
     this.drawCardNumber = drawCardNumber;
   }
 
-  public void setSave(boolean save) {
-    this.save = save;
+  public void setOpenMenu(boolean openMenu) {
+    this.openMenu = openMenu;
   }
 
   // get 모음
@@ -79,7 +79,7 @@ public class PlayerCharacter extends CharacterBase {
     return nowFloor;
   }
 
-  public boolean getSave() {
-    return save;
+  public boolean getOpenMenu() {
+    return openMenu;
   }
 }

@@ -2,6 +2,7 @@ package makeCardGame230901.mapBundle;
 
 import java.io.Serializable;
 import java.util.Scanner;
+import makeCardGame230901.SettingMenu;
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.battleBundle.MONSTERTYPE;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -16,6 +17,7 @@ public class StageBase implements Serializable {
   BattleCombine battleCombine;
   MoveInVillage moveInvillage;
   PlayerCharacter player;
+  SettingMenu settingMenu = new SettingMenu();
 
   protected int mapHeight = 21;
   protected int mapWidth = 7;
@@ -35,11 +37,15 @@ public class StageBase implements Serializable {
     Scanner scan = new Scanner(System.in);
     while (true) {
       try {
-        System.out.println("어디로 이동할까요? 1,2,3");
+        System.out.println("어디로 이동할까요? 1,2,3 0.메뉴열기");
 
         int choice = scan.nextInt();
         scan.nextLine();
-        if (canMove(choice)) {
+        if (choice == 0) {
+
+        }
+
+        else if (canMove(choice)) {
           if (choice == 1) {
             height--;
             width--;

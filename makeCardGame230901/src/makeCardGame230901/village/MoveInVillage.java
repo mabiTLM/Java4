@@ -23,7 +23,7 @@ public class MoveInVillage implements Serializable {
         System.out.println("1.덱수정");
         System.out.println("2.모험으로");
         System.out.println("3.상점으로");
-        System.out.println("4.저장하기");
+        System.out.println("4.메뉴열기");
         choice = scan.nextInt();
         scan.nextLine();
         if (choice == 1) {
@@ -37,7 +37,7 @@ public class MoveInVillage implements Serializable {
         } else if (choice == 3) {
           cardShop.buyItem(player);
         } else if (choice == 4) {
-          player.setSave(true);
+          player.setOpenMenu(true);
         }
         break;
       } catch (Exception e) {

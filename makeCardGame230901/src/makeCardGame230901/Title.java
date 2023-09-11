@@ -1,11 +1,15 @@
 package makeCardGame230901;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Title {
+public class Title implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 543632777029542776L;
   Build b;
+  SettingMenu settingMenu = new SettingMenu();
 
   void title() {
     Scanner scan = new Scanner(System.in);
@@ -20,7 +24,7 @@ public class Title {
           b.build();
 
         } else if (choice == 2) {// 불러온 b를 b에 집어넣어야한다.
-          load();
+          settingMenu.load(b);
         }
 
       } catch (Exception e) {
@@ -30,23 +34,22 @@ public class Title {
     }
   }
 
-  void load() {
-    Scanner scan = new Scanner(System.in);
-    try {
-      System.out.println("몇번 데이터를 불러옵니까?");
-      int choice = scan.nextInt();
-      scan.nextLine();
-      String path =
-          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + choice + ".db";
-      FileInputStream fis = new FileInputStream(path);
-      ObjectInputStream ois = new ObjectInputStream(fis);
-
-      this.b = (Build) ois.readObject();// 이줄에서 막힌다
-      b.build();
-      System.out.println("sjadjrak??");
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+  // void load() {
+  // Scanner scan = new Scanner(System.in);
+  // try {
+  // System.out.println("몇번 데이터를 불러옵니까?");
+  // int choice = scan.nextInt();
+  // scan.nextLine();
+  // String path =
+  // "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + choice + ".db";
+  // FileInputStream fis = new FileInputStream(path);
+  // ObjectInputStream ois = new ObjectInputStream(fis);
+  //
+  // this.b = (Build) ois.readObject();
+  // b.build();
+  //
+  // } catch (Exception e) {
+  // e.printStackTrace();
+  // }
+  // }
 }

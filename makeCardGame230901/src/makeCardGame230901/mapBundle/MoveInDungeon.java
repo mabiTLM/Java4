@@ -21,8 +21,6 @@ public class MoveInDungeon implements Serializable {
     this.player = player;
   }
 
-
-
   public void dungeonEntrance() {
     FirstFloor floor = new FirstFloor(battleCombine, moveInvillage, player);
     floor.makeFirstMap();
