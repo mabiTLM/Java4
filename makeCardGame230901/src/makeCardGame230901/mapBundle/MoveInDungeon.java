@@ -13,6 +13,7 @@ public class MoveInDungeon implements Serializable {
   BattleCombine battleCombine;
   MoveInVillage moveInvillage;
   PlayerCharacter player;
+  FirstFloor floor;
 
   public MoveInDungeon(BattleCombine battleCombine, MoveInVillage moveInvillage,
       PlayerCharacter player) {
@@ -22,27 +23,32 @@ public class MoveInDungeon implements Serializable {
   }
 
   public void dungeonEntrance() {
-    FirstFloor floor = new FirstFloor(battleCombine, moveInvillage, player);
-    floor.makeFirstMap();
-    while (player.getNowFloor() == 1) {
+
+    if (player.getPlayerIntoDungeon()) {
+      floor = new FirstFloor(battleCombine, moveInvillage, player);
+      floor.makeFirstMap();
+      player.setPlayerIntoDungeon(false);
+    }
+    while (player.getNowFloor() == 1 && !player.getOpenMenu()) {
       floor.watchMap();
       floor.movePlayer();
     }
 
     // 일단은 1,2층 모양이 같으니까 굳이 안바꿔도된다.
-    floor = new FirstFloor(battleCombine, moveInvillage, player);
-    floor.makeFirstMap();
-    while (player.getNowFloor() == 2) {
+    if (player.getPlayerIntoDungeon()) {
+      floor = new FirstFloor(battleCombine, moveInvillage, player);
+      floor.makeFirstMap();
+      player.setPlayerIntoDungeon(false);
+    }
+    while (player.getNowFloor() == 2 && !player.getOpenMenu()) {
       floor.watchMap();
       floor.movePlayer();
     }
 
-    if (player.getNowFloor() != 0)// 0이 아닌상태로 끝까지 왔을때
+    if (player.getNowFloor() != 0 && !player.getOpenMenu())// 0이 아닌상태로 끝까지 왔을때
     {
       System.out.println("게임을 클리어했습니다. 반복플레이가 가능하기에 마을로 돌아갑니다.");
       moveInvillage.setLocationVillage(true);
     }
-
   }
-
 }

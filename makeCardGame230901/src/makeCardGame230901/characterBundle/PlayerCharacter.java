@@ -12,6 +12,7 @@ public class PlayerCharacter extends CharacterBase {
   private int nowFloor = 1;
   private boolean openMenu = false;
   static TotalCardBase cardData = new TotalCardBase();
+  private boolean playerIntoDungeon = true;
 
 
   public PlayerCharacter() {
@@ -70,6 +71,10 @@ public class PlayerCharacter extends CharacterBase {
     this.openMenu = openMenu;
   }
 
+  public void setPlayerIntoDungeon(boolean playerIntoDungeon) {
+    this.playerIntoDungeon = playerIntoDungeon;
+  }
+
   // get 모음
   public int getDrawCardNumber() {
     return drawCardNumber;
@@ -81,5 +86,9 @@ public class PlayerCharacter extends CharacterBase {
 
   public boolean getOpenMenu() {
     return openMenu;
+  }
+
+  public boolean getPlayerIntoDungeon() {
+    return playerIntoDungeon;
   }
 }

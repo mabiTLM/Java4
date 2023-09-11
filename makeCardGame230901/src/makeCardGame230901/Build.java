@@ -22,7 +22,7 @@ public class Build implements Serializable {
   SettingMenu settingMenu = new SettingMenu();
 
   void build() {
-    while (moveInvillage.getLocationVillage()) {
+    while (true) {
       while (moveInvillage.getLocationVillage()) // 마을에서 초기덱을 강화할수있게, 마을에 위치해있는가를 판단
       {
         moveInvillage.MoveVillage(player);

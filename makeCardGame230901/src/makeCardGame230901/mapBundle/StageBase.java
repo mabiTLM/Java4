@@ -42,7 +42,7 @@ public class StageBase implements Serializable {
         int choice = scan.nextInt();
         scan.nextLine();
         if (choice == 0) {
-
+          player.setOpenMenu(true);
         }
 
         else if (canMove(choice)) {

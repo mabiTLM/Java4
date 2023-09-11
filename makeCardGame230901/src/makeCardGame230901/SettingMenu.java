@@ -53,7 +53,8 @@ public class SettingMenu implements Serializable {
       int saveNumber = scan.nextInt();
       scan.nextLine();
       String path =
-          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + saveNumber + ".db";
+          SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/", "save/")
+              + saveNumber + ".db";
       FileOutputStream fos = new FileOutputStream(path);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       oos.writeObject(build);
@@ -72,7 +73,8 @@ public class SettingMenu implements Serializable {
       int choice = scan.nextInt();
       scan.nextLine();
       String path =
-          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + choice + ".db";
+          SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/", "save/")
+              + choice + ".db";
       FileInputStream fis = new FileInputStream(path);
       ObjectInputStream ois = new ObjectInputStream(fis);
 
