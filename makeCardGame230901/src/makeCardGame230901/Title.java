@@ -22,7 +22,7 @@ public class Title {
           System.out.println("몇번 데이터를 불러옵니까?");
           choice = scan.nextInt();
           scan.nextLine();
-          b = load(choice);
+          load(choice);
         }
         b.build();
         break;
@@ -34,17 +34,15 @@ public class Title {
     }
   }
 
-  Build load(int saveNumber) {
+  void load(int saveNumber) {
     try {
       String path =
           "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + saveNumber + ".db";
       FileInputStream fis = new FileInputStream(path);
       ObjectInputStream ois = new ObjectInputStream(fis);
-
-      return (Build) ois.readObject();
+      b = (Build) ois.readObject();
     } catch (Exception e) {
-      e.printStackTrace();
+      e.getStackTrace();
     }
-    return null;
   }
 }
