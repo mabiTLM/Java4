@@ -6,6 +6,11 @@ import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
 public class FirstFloor extends StageBase {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -4972267835659690844L;
+
   FirstFloor(BattleCombine battleCombine, MoveInVillage moveInvillage, PlayerCharacter player) {
     super(battleCombine, moveInvillage, player);
     // TODO Auto-generated constructor stub

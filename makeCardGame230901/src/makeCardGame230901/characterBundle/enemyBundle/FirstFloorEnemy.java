@@ -4,6 +4,11 @@ import makeCardGame230901.characterBundle.MONSTEREFFECT;
 
 public class FirstFloorEnemy extends EnemyCharacter {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -2797017739291614558L;
+
   @Override
   public EnemyCharacter[] stageData() {
     stageEnemy = new EnemyCharacter[3];

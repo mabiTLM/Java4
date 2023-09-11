@@ -3,6 +3,11 @@ package makeCardGame230901.characterBundle.enemyBundle;
 import makeCardGame230901.characterBundle.MONSTEREFFECT;
 
 public class SecondFloorEnemy extends EnemyCharacter {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 7523908207150910853L;
+
   @Override
   public EnemyCharacter[] stageData() {
     stageEnemy = new EnemyCharacter[3];

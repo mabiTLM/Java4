@@ -8,8 +8,8 @@ public class Title {
   Build b;
 
   void title() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
-      Scanner scan = new Scanner(System.in);
       try {
         System.out.println("1.새로운 시작");
         System.out.println("2.불러오기");
@@ -17,15 +17,11 @@ public class Title {
         scan.nextLine();
         if (choice == 1) {
           b = new Build();
+          b.build();
 
         } else if (choice == 2) {// 불러온 b를 b에 집어넣어야한다.
-          System.out.println("몇번 데이터를 불러옵니까?");
-          choice = scan.nextInt();
-          scan.nextLine();
-          load(choice);
+          load();
         }
-        b.build();
-        break;
 
       } catch (Exception e) {
         scan.nextLine();
@@ -34,15 +30,23 @@ public class Title {
     }
   }
 
-  void load(int saveNumber) {
+  void load() {
+    Scanner scan = new Scanner(System.in);
     try {
+      System.out.println("몇번 데이터를 불러옵니까?");
+      int choice = scan.nextInt();
+      scan.nextLine();
       String path =
-          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + saveNumber + ".db";
+          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + choice + ".db";
       FileInputStream fis = new FileInputStream(path);
       ObjectInputStream ois = new ObjectInputStream(fis);
-      b = (Build) ois.readObject();
+
+      this.b = (Build) ois.readObject();// 이줄에서 막힌다
+      b.build();
+      System.out.println("sjadjrak??");
+
     } catch (Exception e) {
-      e.getStackTrace();
+      e.printStackTrace();
     }
   }
 }

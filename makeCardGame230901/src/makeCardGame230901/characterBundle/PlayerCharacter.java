@@ -4,8 +4,13 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 
 
 public class PlayerCharacter extends CharacterBase {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -1264577156287833465L;
   private int drawCardNumber = 5;
   private int nowFloor = 1;
+  private boolean save = false;
   static TotalCardBase cardData = new TotalCardBase();
 
 
@@ -61,6 +66,10 @@ public class PlayerCharacter extends CharacterBase {
     this.drawCardNumber = drawCardNumber;
   }
 
+  public void setSave(boolean save) {
+    this.save = save;
+  }
+
   // get 모음
   public int getDrawCardNumber() {
     return drawCardNumber;
@@ -68,5 +77,9 @@ public class PlayerCharacter extends CharacterBase {
 
   public int getNowFloor() {
     return nowFloor;
+  }
+
+  public boolean getSave() {
+    return save;
   }
 }

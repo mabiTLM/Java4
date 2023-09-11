@@ -1,16 +1,21 @@
 package makeCardGame230901.village;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 
-public class EditDeck // 덱 수정하기 추가할때 제거할때
+public class EditDeck implements Serializable // 덱 수정하기 추가할때 제거할때
 {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -5268548532628917832L;
   private int choice = 0;
-  Scanner scan = new Scanner(System.in);
   SortCard sortCard = new SortCard();
 
   void edit(PlayerCharacter player) {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         player.DeckOpen();
@@ -35,6 +40,7 @@ public class EditDeck // 덱 수정하기 추가할때 제거할때
 
   void addCard(PlayerCharacter player)// 덱목록과 소지카드목록을 보여주고 넣는다.
   {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         player.DeckOpen();
@@ -66,6 +72,7 @@ public class EditDeck // 덱 수정하기 추가할때 제거할때
   }
 
   void reduceCard(PlayerCharacter player) {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         player.DeckOpen();

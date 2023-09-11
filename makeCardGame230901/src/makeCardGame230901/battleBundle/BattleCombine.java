@@ -1,11 +1,16 @@
 package makeCardGame230901.battleBundle;
 
+import java.io.Serializable;
 import makeCardGame230901.battleBundle.enemyActBunble.EnemyActAi;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
-public class BattleCombine {
+public class BattleCombine implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 5511722642112669026L;
   private PlayerCharacter player;
   private Battle battle;
   private EnemyActAi enemyActAi;
@@ -35,12 +40,8 @@ public class BattleCombine {
         currentEnemy = battle.currentEnemy[i];
         currentEnemy.setTurnGaze(currentEnemy.getTurnGaze() + currentEnemy.getSpeed());// 적 행동게이지 증가
 
-        if (currentEnemy.getTurnGaze() >= 100 && currentEnemy.getTurnGaze() > playerTurnGaze)// 행동게이지가
-                                                                                             // 차고
-                                                                                             // 적이
-                                                                                             // 높을경우
-                                                                                             // 상대턴부터
-                                                                                             // 받는다.
+        if (currentEnemy.getTurnGaze() >= 100 && currentEnemy.getTurnGaze() > playerTurnGaze)
+        // 행동게이지가 차고 적이 높을경우 상대턴부터 받는다.
         {
           battle.currentEnemy[i].setEnemyTurn(true);
           battle.setPlayerTurn(false);

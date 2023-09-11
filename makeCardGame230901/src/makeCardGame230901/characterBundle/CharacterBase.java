@@ -1,8 +1,13 @@
 package makeCardGame230901.characterBundle;
 
+import java.io.Serializable;
 import makeCardGame230901.cardBundle.TotalCardBase;
 
-public abstract class CharacterBase {
+public abstract class CharacterBase implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 307361853506761620L;
   private String name;
   private TotalCardBase[] cardInventory;// 카드인벤토리
   private TotalCardBase[] cardDeck;// 덱, 무기위치

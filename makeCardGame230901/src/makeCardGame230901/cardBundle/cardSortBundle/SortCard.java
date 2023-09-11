@@ -1,9 +1,15 @@
 package makeCardGame230901.cardBundle.cardSortBundle;
 
+import java.io.Serializable;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 
-public class SortCard {
+public class SortCard implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -7039410359593662512L;
 
   /**
    * 1번덱 끝에 2번덱의 slot-1번째 카드를 추가합니다.

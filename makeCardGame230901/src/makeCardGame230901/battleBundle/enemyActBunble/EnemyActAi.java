@@ -1,10 +1,15 @@
 package makeCardGame230901.battleBundle.enemyActBunble;
 
+import java.io.Serializable;
 import makeCardGame230901.battleBundle.Battle;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 
-public class EnemyActAi extends EnemyBattleAct {
+public class EnemyActAi extends EnemyBattleAct implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 2409473060879313486L;
   EnemyCharacter actEnemy;
 
   public EnemyActAi(PlayerCharacter player, Battle battle) {

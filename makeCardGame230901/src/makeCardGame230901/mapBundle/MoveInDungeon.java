@@ -1,10 +1,15 @@
 package makeCardGame230901.mapBundle;
 
+import java.io.Serializable;
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
-public class MoveInDungeon {
+public class MoveInDungeon implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 8715667971740467462L;
   BattleCombine battleCombine;
   MoveInVillage moveInvillage;
   PlayerCharacter player;

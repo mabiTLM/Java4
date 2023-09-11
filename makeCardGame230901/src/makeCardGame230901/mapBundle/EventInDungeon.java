@@ -1,5 +1,6 @@
 package makeCardGame230901.mapBundle;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 import makeCardGame230901.cardBundle.CardType;
@@ -8,15 +9,16 @@ import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.CardShop;
 
-public class EventInDungeon {
+public class EventInDungeon implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -6527701237830116094L;
   private PlayerCharacter player;
   private TotalCardBase cardData = new TotalCardBase();
   private SortCard sortCard = new SortCard();
   private TotalCardBase[] cardShopInDungeon = cardData.dungeonShopCard();
   CardShop cardShop = new CardShop();
-  Scanner scan = new Scanner(System.in);
-
-
   Random random = new Random();
   String[] story = {"랜덤카드 파워강화", "이벤트 카드를 얻습니다.", "선택 : 현재와 미래", "재빠른 선택", "돈놓고 돈먹기", "함정"};
 
@@ -26,6 +28,7 @@ public class EventInDungeon {
 
 
   public void event() {
+    Scanner scan = new Scanner(System.in);
     int temp = random.nextInt(story.length);
     System.out.println(story[temp]);
     switch (temp) {
@@ -70,6 +73,7 @@ public class EventInDungeon {
 
   public void cardAddEvent(TotalCardBase[] getCardEvent) {
     TotalCardBase[] tempEventCard = new TotalCardBase[3];
+    Scanner scan = new Scanner(System.in);
 
     for (int i = 0; i < 3; i++) {
       int tempRandomEventNumber = random.nextInt(getCardEvent.length);
@@ -99,6 +103,7 @@ public class EventInDungeon {
 
 
   public void getMoneyOrHealth() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("1.현재를 생각한다.  hp최대치50 증가, 이번 모험에서 MP 1증가");
@@ -125,6 +130,7 @@ public class EventInDungeon {
 
 
   public void speedOrDraw() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("1.속도가 중요하다. 속도 5증가");
@@ -149,6 +155,7 @@ public class EventInDungeon {
 
 
   public void gambleEvent() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("1.도박한다(45%확률로 돈 두배, 55%확률로 돈절반)\n2.그만둔다.");
@@ -172,6 +179,7 @@ public class EventInDungeon {
   }
 
   public void trapEvent() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("함정에 빠졌습니다.\n1.드로우를 하나 줄인다.\n2.덱에 부상을 두개 집어넣는다.");
@@ -197,6 +205,7 @@ public class EventInDungeon {
 
 
   public void campfire() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("1.카드강화");
@@ -247,6 +256,7 @@ public class EventInDungeon {
   }
 
   public void dungeonShop() {
+    Scanner scan = new Scanner(System.in);
     TotalCardBase[] currentShopCard = new TotalCardBase[6]; // 랜덤으로 6장
 
     for (int i = 0; i < currentShopCard.length; i++) {

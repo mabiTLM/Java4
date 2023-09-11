@@ -1,10 +1,15 @@
 package makeCardGame230901.characterBundle;
 
+import java.io.Serializable;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 
-public class PlayerReset {
+public class PlayerReset implements Serializable {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 8749993498957871748L;
   TotalCardBase[] tempPlayerinven;
   TotalCardBase[] tempDeck;
   SortCard sortCard = new SortCard();

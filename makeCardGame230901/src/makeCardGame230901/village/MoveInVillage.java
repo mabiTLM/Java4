@@ -1,16 +1,21 @@
 package makeCardGame230901.village;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 
-public class MoveInVillage {
+public class MoveInVillage implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 3651758746650752453L;
   private boolean locationVillage = true;
   int choice = 0;
   EditDeck editDeck = new EditDeck();
   CardShop cardShop = new CardShop();
-  Scanner scan = new Scanner(System.in);
 
   public void MoveVillage(PlayerCharacter player) {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         player.setHp(player.getMaxHp());// 마을에선 풀피로
@@ -18,6 +23,7 @@ public class MoveInVillage {
         System.out.println("1.덱수정");
         System.out.println("2.모험으로");
         System.out.println("3.상점으로");
+        System.out.println("4.저장하기");
         choice = scan.nextInt();
         scan.nextLine();
         if (choice == 1) {
@@ -30,6 +36,8 @@ public class MoveInVillage {
           }
         } else if (choice == 3) {
           cardShop.buyItem(player);
+        } else if (choice == 4) {
+          player.setSave(true);
         }
         break;
       } catch (Exception e) {

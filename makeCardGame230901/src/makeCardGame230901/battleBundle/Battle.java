@@ -1,5 +1,6 @@
 package makeCardGame230901.battleBundle;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
@@ -10,7 +11,11 @@ import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
 import makeCardGame230901.characterBundle.enemyBundle.SecondFloorEnemy;
 import makeCardGame230901.mapBundle.EventInDungeon;
 
-public class Battle {
+public class Battle implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -7710195546048780728L;
   private PlayerCharacter player;
   protected TotalCardBase[] tempBattleDeck = new TotalCardBase[0];// 플레이어의 덱을 배틀할때만 복사한다.
   private TotalCardBase[] graveCard = new TotalCardBase[0];
@@ -19,7 +24,6 @@ public class Battle {
   protected EnemyCharacter[] currentEnemy;
   EventInDungeon eventInDungeon;
   SortCard sortCard = new SortCard();
-  Scanner scan = new Scanner(System.in);
   private int target;
   private int useCardNumber = 0;
   private boolean playerTurn = false;
@@ -107,6 +111,7 @@ public class Battle {
   public void targetLockOn(BattleCombine battleCombine)// 전투가 거의다 타겟정하는대서 이뤄진다.
   {
     while (true) {
+      Scanner scan = new Scanner(System.in);
       try {
         if (playerWin()) {
           System.out.println("전투에서 승리했습니다.");
@@ -140,6 +145,7 @@ public class Battle {
     }
 
     while (playerTurn) {
+      Scanner scan = new Scanner(System.in);
       try {
         watchEnemy();
         sortCard.watchCard(player.getHand(), player);

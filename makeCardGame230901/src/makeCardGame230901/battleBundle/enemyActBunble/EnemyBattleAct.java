@@ -1,5 +1,6 @@
 package makeCardGame230901.battleBundle.enemyActBunble;
 
+import java.io.Serializable;
 import makeCardGame230901.battleBundle.Battle;
 import makeCardGame230901.cardBundle.CardType;
 import makeCardGame230901.cardBundle.TotalCardBase;
@@ -7,7 +8,11 @@ import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 
-public class EnemyBattleAct {
+public class EnemyBattleAct implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 469177645896702798L;
   PlayerCharacter player;
   private EnemyCharacter actEnemy;
   protected Battle battle;

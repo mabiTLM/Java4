@@ -1,7 +1,5 @@
 package makeCardGame230901;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import makeCardGame230901.battleBundle.Battle;
 import makeCardGame230901.battleBundle.BattleCombine;
@@ -21,6 +19,7 @@ public class Build implements Serializable {
   private MoveInVillage moveInvillage = new MoveInVillage();
   private PlayerReset resetData = new PlayerReset();
   private MoveInDungeon moveInDungeon = new MoveInDungeon(battleCombine, moveInvillage, player);
+  Save saveData = new Save();
 
   void build() {
     while (moveInvillage.getLocationVillage()) {
@@ -28,12 +27,17 @@ public class Build implements Serializable {
       {
         moveInvillage.MoveVillage(player);
         // 던전에 가기전에 덱, 인벤토리 복사, 스텟최대치 복사
-        resetData.setResetData(player);
+        if (player.getSave()) {
+          saveData.save(player, this);
+        }
       }
-
+      resetData.setResetData(player);
       while (!moveInvillage.getLocationVillage()) // 마을에 있지 않을때
       {
         moveInDungeon.dungeonEntrance();
+        if (player.getSave()) {
+          saveData.save(player, this);
+        }
       }
 
       if (moveInvillage.getLocationVillage())// 마을로 나와질경우 초기화
@@ -47,21 +51,6 @@ public class Build implements Serializable {
         player.setMoeny(tempMoney);// 돈은 직전껄로
         resetData.getResetData(player);// 나머진 리셋데이터 저장한걸로
       }
-    }
-  }
-
-  void save(int saveNumber) {
-    try {
-      String path =
-          "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + saveNumber + ".db";
-      FileOutputStream fos = new FileOutputStream(path);
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(this);
-      oos.flush();
-      oos.close();
-      fos.close();
-    } catch (Exception e) {
-      e.printStackTrace();
     }
   }
 }

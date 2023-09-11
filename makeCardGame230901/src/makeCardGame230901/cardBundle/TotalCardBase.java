@@ -1,7 +1,13 @@
 package makeCardGame230901.cardBundle;
 
-public class TotalCardBase {
+import java.io.Serializable;
 
+public class TotalCardBase implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 762256255537946830L;
   String cardName;
   CardType cardType;// 공방 타입
   private int cardValue;// 카드의 수치

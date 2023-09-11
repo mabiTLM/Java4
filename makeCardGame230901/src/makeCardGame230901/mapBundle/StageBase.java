@@ -1,17 +1,21 @@
 package makeCardGame230901.mapBundle;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.battleBundle.MONSTERTYPE;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
-public class StageBase {
+public class StageBase implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1542812992788523986L;
   EventInDungeon eventInDungeon;
   BattleCombine battleCombine;
   MoveInVillage moveInvillage;
   PlayerCharacter player;
-  Scanner scan = new Scanner(System.in);
 
   protected int mapHeight = 21;
   protected int mapWidth = 7;
@@ -28,6 +32,7 @@ public class StageBase {
   }
 
   public void movePlayer() {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       try {
         System.out.println("어디로 이동할까요? 1,2,3");

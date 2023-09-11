@@ -1,14 +1,18 @@
 package makeCardGame230901.village;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 
-public class CardShop {
+public class CardShop implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -7335692219932781123L;
   TotalCardBase totalCardBase = new TotalCardBase();
   SortCard sortCard = new SortCard();
-  Scanner scan = new Scanner(System.in);
 
   public void watchCardDataDetail(TotalCardBase[] cardSet) {
     for (int i = 0; i < cardSet.length; i++) {
@@ -20,6 +24,7 @@ public class CardShop {
   }
 
   void buyItem(PlayerCharacter player) {
+    Scanner scan = new Scanner(System.in);
     while (true) {
       // 상점 카드목록을 보여준다
       watchCardDataDetail(totalCardBase.shopSellCard());
