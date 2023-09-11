@@ -61,7 +61,7 @@ public class Build implements Serializable {
       oos.close();
       fos.close();
     } catch (Exception e) {
-      e.getStackTrace();
+      e.printStackTrace();
     }
   }
 }

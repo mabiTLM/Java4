@@ -135,7 +135,7 @@ public class Battle {
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
 
@@ -168,7 +168,7 @@ public class Battle {
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
     // 타겟하고 카드사용이 안에들어가야한다 타겟을 바꿀수도있으니까

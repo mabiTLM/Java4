@@ -51,7 +51,7 @@ public class StageBase {
         break;
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }

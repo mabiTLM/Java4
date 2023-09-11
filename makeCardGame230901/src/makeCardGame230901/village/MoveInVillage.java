@@ -34,7 +34,7 @@ public class MoveInVillage {
         break;
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
 

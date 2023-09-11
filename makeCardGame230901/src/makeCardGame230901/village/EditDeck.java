@@ -28,7 +28,7 @@ public class EditDeck // 덱 수정하기 추가할때 제거할때
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -59,7 +59,7 @@ public class EditDeck // 덱 수정하기 추가할때 제거할때
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
 
@@ -88,7 +88,7 @@ public class EditDeck // 덱 수정하기 추가할때 제거할때
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
 

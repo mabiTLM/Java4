@@ -91,7 +91,7 @@ public class EventInDungeon {
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
 
@@ -118,7 +118,7 @@ public class EventInDungeon {
         break;
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -142,7 +142,7 @@ public class EventInDungeon {
         break;
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -166,7 +166,7 @@ public class EventInDungeon {
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -190,7 +190,7 @@ public class EventInDungeon {
 
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -241,7 +241,7 @@ public class EventInDungeon {
         }
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -277,7 +277,7 @@ public class EventInDungeon {
 
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
 
     }

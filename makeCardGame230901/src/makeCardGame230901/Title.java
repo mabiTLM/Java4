@@ -29,7 +29,7 @@ public class Title {
 
       } catch (Exception e) {
         scan.nextLine();
-        e.getStackTrace();
+        e.printStackTrace();
       }
     }
   }
@@ -43,7 +43,7 @@ public class Title {
 
       return (Build) ois.readObject();
     } catch (Exception e) {
-      e.getStackTrace();
+      e.printStackTrace();
     }
     return null;
   }
