@@ -292,7 +292,7 @@ public class Battle implements Serializable {
   }
 
   /**
-   * 몬스터가 죽는 경우에 넣어주자
+   * anyMosterDead()를 사용한 후 넣어주자
    **/
   public void monsterDie() {
     for (int i = 0; i < currentEnemy.length; i++) {
@@ -314,6 +314,9 @@ public class Battle implements Serializable {
     target = 0;
   }
 
+  /**
+   * 몬스터가 죽는 경우의 수를 늘리기 위해 boolean으로 밖으로 뺏다. 체크한후 monsterDie()를 넣어주자
+   **/
   private boolean anyMosterDead() {
     boolean isMonsterDead = false;
     for (int i = 0; i < currentEnemy.length; i++) {
