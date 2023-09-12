@@ -52,9 +52,8 @@ public class SettingMenu implements Serializable {
       System.out.println("몇번칸에 저장하나요?");
       int saveNumber = scan.nextInt();
       scan.nextLine();
-      String path =
-          SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/", "save/")
-              + saveNumber + ".db";
+      String path = SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/",
+          "save/savedata") + saveNumber + ".db";
       FileOutputStream fos = new FileOutputStream(path);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       oos.writeObject(build);
@@ -72,9 +71,8 @@ public class SettingMenu implements Serializable {
       System.out.println("몇번 데이터를 불러옵니까?");
       int choice = scan.nextInt();
       scan.nextLine();
-      String path =
-          SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/", "save/")
-              + choice + ".db";
+      String path = SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/",
+          "save/savedata") + choice + ".db";
       FileInputStream fis = new FileInputStream(path);
       ObjectInputStream ois = new ObjectInputStream(fis);
 
