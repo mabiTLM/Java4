@@ -160,7 +160,7 @@ public class Battle implements Serializable {
           System.out.println("카드를 다시 골라주세요");
         } else {
           useCard();
-          if (currentEnemy[target - 1].getHp() <= 0)// 적의 체력이 0이하면 적을 죽인다
+          if (anyMosterDead())// 적의 체력이 0이하면 적을 죽인다
           {
             monsterDie();
             break;
@@ -261,6 +261,7 @@ public class Battle implements Serializable {
       System.out.println("보스한테 승리했습니다.");
       System.out.println("다음 층으로 넘어갑니다.");
       player.setNowFloor(player.getNowFloor() + 1);
+      player.setPlayerIntoDungeon(true);
     }
   }
 
@@ -294,20 +295,36 @@ public class Battle implements Serializable {
    * 몬스터가 죽는 경우에 넣어주자
    **/
   public void monsterDie() {
-    player.setMoeny(player.getMoney() + currentEnemy[target - 1].getMoney());// 돈얻고
-    System.out.println("적을 처치하여" + currentEnemy[target - 1].getMoney() + "골드를 얻었습니다.");
-
-    EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length - 1];
-    int tempSortBlank = 0;
-    for (int i = 0; i < tempSort.length; i++) {
-      if (i == target - 1) {
-        tempSortBlank++;
+    for (int i = 0; i < currentEnemy.length; i++) {
+      if (currentEnemy[i].getHp() <= 0) {
+        player.setMoeny(player.getMoney() + currentEnemy[i].getMoney());// 돈얻고
+        System.out.println("적을 처치하여" + currentEnemy[i].getMoney() + "골드를 얻었습니다.");
+        EnemyCharacter[] tempSort = new EnemyCharacter[currentEnemy.length - 1];
+        int tempSortBlank = 0;
+        for (int j = 0; j < tempSort.length; j++) {
+          if (j == i) {
+            tempSortBlank++;
+          }
+          tempSort[j] = currentEnemy[j + tempSortBlank];
+        }
+        currentEnemy = tempSort;
+        i--;
       }
-      tempSort[i] = currentEnemy[i + tempSortBlank];
     }
-    currentEnemy = tempSort;
     target = 0;
   }
+
+  private boolean anyMosterDead() {
+    boolean isMonsterDead = false;
+    for (int i = 0; i < currentEnemy.length; i++) {
+      if (currentEnemy[i].getHp() <= 0) {
+        isMonsterDead = true;
+      }
+    }
+    return isMonsterDead;
+  }
+
+
 
   public boolean playerWin() {
     return currentEnemy.length < 1;

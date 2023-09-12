@@ -23,9 +23,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
     actEnemy.setEnemyRepeat(actEnemy.getEnenmyRepeat() + 1);
     int ai = actEnemy.getAiPattern();
-    if (actEnemy.getHp() <= 0) {
-      battle.monsterDie();
-    } else if (ai == 0) {
+    if (ai == 0) {
       slimeAi(actMonsterNumber);
     } else if (ai == 1) {
       theifAi(actMonsterNumber);
