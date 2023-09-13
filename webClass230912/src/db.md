@@ -12,12 +12,12 @@
     - 보온 창고
 ## 종류
   - noSQL
-    - 크게 정해진 규격이 없다.
-    - MongoDB, Redis
+   - 크게 정해진 규격이 없다.
+   - MongoDB, Redis
   - SQL, RDBMS
-    - 쓰려면 규칙에 맞춰야 한다.
-    - 제대로 쓰려면 좀 어렵다.
-    - Oracle, mySQL
+    -쓰려면 규칙에 맞춰야 한다.
+    -제대로 쓰려면 좀 어렵다.
+    -Oracle, mySQL
     
 ## SQL
   - Language << DB랑 대화한다.
@@ -26,16 +26,51 @@
 ### 명령어
 ex :변수 선언 int a;
   - 구조 생성 create
-    - 구조 삭제 drop
-    - 구조 수정(테이블) alter
-    - 테이블 명 수정 rename
-    -  
   
-  - 데이터 삽입 insert
+  create table test(
+  id number(10,0),
+  name varchar2(10),
+  score number(10,5)
+  );
+  
+  create table test2(
+  id number(10,0) CONSTRAINT pk_id PRIMARY KEY,
+  name varchar2(10) NOT NULL, 
+  score number(10,5) DEFAULT 0,
+  address varchar2(20)
+  );
+  
+  create table test3(
+  id number(10,0),
+  name varchar2(10), 
+  score number(10,5),
+  address varchar2(20),
+  created_at Date default sysdate
+  );
+  모든 서버는 시간이있으니까 default로 뽑아낸다
+  
+  //NAME 과 SCORE은 CONSTRAINT여긴 이름을 넣어도되고 안넣어도된다
+''''''  
+        - CONSTRAINT : 제약 조건
+  
+   - 구조 삭제 drop
+   - 구조 수정(테이블) alter
+   - 테이블 명 수정 rename
+   -  
+  
+  - 데이터 삽입 insert 
+    -insert into 테이블명 (컬럼명, 컬럼명, ...) values (값,값,...);
   - 데이터 수정 update
+    -update 테이블명 set 컬럼명 = 값, 컬럼명 = 값, ... where 조건;
   - 데이터 삭제 delete
-  - 데이터 선택 select  
-  
+    -delete from 테이블명 where 조건;
+  - 데이터 선택 select 
+    -select 컬럼명, 컬럼명, ... from 테이블명;
+    -select * from all_tables;
+      -치지말것
+    -select * from user_tables;
+
+### 유저 조작어
   - 권한 부여 grant
   - 권한 삭제 revoke  
   
@@ -58,6 +93,20 @@ ex :변수 선언 int a;
   #### 기타
     - Date => 날짜
     - Timestamp => 시간(기간)
+    
+### Option
+   #### NOT NULL => (NULLABLE)
+   #### DEFAULT : 기본값
+   #### UNIQUE : 중복체크
+     - 보통 NOT NULL이랑 같이 쓴다.
+   #### PRIMARY KEY : 기본키
+     - 테이블의 유일한 컬럼
+     - NOT NULL + UNIQUE
+     - 관계를 맺을 때 쓴다.
+     - id
+   #### FOREIGN KEY : 외래키
+     - 관계 맺을 때
+     - 관계에 대해서 이름 (ex : 교수와 학생)
   
 테이블을 생성할거다 => create
 이름, 타입, 데이터의 길이
