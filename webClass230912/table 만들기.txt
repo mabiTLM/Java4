@@ -1,0 +1,76 @@
+학생 테이블 생성
+
+=============================
+
+create table student(
+student_id number(2,0),
+student_name varchar2(3),
+student_userid varchar2(15),
+student_password varchar2(10),
+student_age number(2,0),
+student_gitaddress varchar2(100)
+);
+
+insert into student values(1,'김동선','KDS','qwer',29,'https://github.com/KDS01');
+
+insert into student values(2,'이민규','qq752','1234',23,'https://github.com/LEEMINGYU28/Java4.git');
+
+insert into student values(3, '권원준', 'oooonx', 'may', 22,'https://github.com/KWWWJ/just1.git');
+
+insert into student values(4,'박정완','pjw','qwer',27,'https://github.com/pjw222/HomeWork2');
+
+insert into student values(5,'한상윤','hsy', 'qwer1234',37,'https://github.com/Natseol' );
+
+insert into student values(6,'임현규','TLM','486',27,'https://github.com/mabiTLM/Java4');
+
+insert into student values(7,'김남균','knk','1234',27, 'https://github.com/LiamKim-0218/HomeWork2' );
+
+insert into student values(8,'임주한','LJH','3232',32, 'https://github.com/Juhan008/java-D' );
+
+commit;
+
+=============================
+
+생성 완료 
+
+이름순 : select * from student order by student_name;
+
+나이순 : select * from student order by student_age;
+
+김씨만 : select * from student where student_name like '김%'; 
+
+sql에서 사용할경우 
+
+정렬칸에서 이름 나이 고르기 
+
+필터칸에 student_name like '김%'
+
+=============================
+
+취미테이블 생성
+
+=============================
+
+create table hobby(
+hobby_id number(3,0),
+hobby_name varchar2(20),
+hobby_description varchar2(1000),
+hobby_created_at Date default sysdate,
+hobby_usetime number(10,10),
+hobby_place varchar2(100)
+); 
+
+insert into hobby (hobby_id, hobby_name, hobby_description, hobby_usetime,hobby_place)
+values(1,'마비노기','rpg게임',1,'집');
+insert into hobby (hobby_id, hobby_name, hobby_description, hobby_usetime,hobby_place)
+values(2,'언락','보드게임',1,'보드게임카페');
+insert into hobby (hobby_id, hobby_name, hobby_description, hobby_usetime,hobby_place)
+values(3,'유희왕','카드게임',0.1,'집'); 
+
+commit; 
+
+update hobby set hobby_name='보드게임', hobby_usetime=4 where hobby_id=2; 
+
+commit;
+
+=============================
