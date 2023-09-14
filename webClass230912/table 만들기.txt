@@ -45,7 +45,7 @@ sql에서 사용할경우
 =============================
 
 create table hobby(
-id number(3,0) constraint pk_hobby primary key,
+id number(10,0) constraint pk_hobby primary key,
 name varchar2(20) not null,
 description varchar2(1000) not null,
 created_at Date default sysdate,
