@@ -17,7 +17,6 @@ public class EnemyBattleAct implements Serializable {
   private EnemyCharacter actEnemy;
   protected Battle battle;
   private SortCard sortCard = new SortCard();
-  private int reflect;
 
   public EnemyBattleAct(PlayerCharacter player, Battle battle) {
     this.player = player;
@@ -83,12 +82,12 @@ public class EnemyBattleAct implements Serializable {
 
   protected void readyReflect(int actMonsterNumber) {
     System.out.println("적이 반격을 준비하고있다.");
-    reflect = actEnemy.getHp();
+    actEnemy.setReflect(actEnemy.getHp());
   }
 
   protected void reflectAttack(int actMonsterNumber) {
     System.out.println("적의 반격");
-    player.setHp(player.getHp() - (reflect - actEnemy.getHp()));
+    player.setHp(player.getHp() - (actEnemy.getReflect() - actEnemy.getHp()));
   }
 
   protected void summonMonster(EnemyCharacter summon) {

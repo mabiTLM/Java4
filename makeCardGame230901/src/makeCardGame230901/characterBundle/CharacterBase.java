@@ -27,7 +27,7 @@ public abstract class CharacterBase implements Serializable {
   private int turnGaze = 0;
   private int stunTurn = 0;
   private int divineForce = 0;
-
+  private int reflect;
 
   protected CharacterBase() {}
 
@@ -143,6 +143,10 @@ public abstract class CharacterBase implements Serializable {
     this.divineForce = divineForce;
   }
 
+  public void setReflect(int reflect) {
+    this.reflect = reflect;
+  }
+
 
   // get 모음
   public String getName() {
@@ -211,5 +215,9 @@ public abstract class CharacterBase implements Serializable {
 
   public int getDivineForce() {
     return divineForce;
+  }
+
+  public int getReflect() {
+    return reflect;
   }
 }

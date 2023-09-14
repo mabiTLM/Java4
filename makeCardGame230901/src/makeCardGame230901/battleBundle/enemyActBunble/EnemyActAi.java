@@ -30,7 +30,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     } else if (ai == 2) {
       golemAi(actMonsterNumber);
     } else if (ai == 3) {
-      bossAi(actMonsterNumber);
+      gurasugibunenAi(actMonsterNumber);
     } else if (ai == 4) {
       divideSlimeAi(actMonsterNumber);
     }
@@ -73,7 +73,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     }
   }
 
-  private void bossAi(int actMonsterNumber) {
+  private void gurasugibunenAi(int actMonsterNumber) {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
     if (actEnemy.getEnenmyRepeat() % 4 == 1) {
       fearCardStun(actMonsterNumber);
