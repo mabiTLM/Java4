@@ -102,4 +102,15 @@ public class EnemyBattleAct implements Serializable {
     battle.setCurrentEnemy(tempCurrentEnemy);
     System.out.println(summon.getName() + "을 소환했다.");
   }
+
+  protected void randomCard() {// 덱을 무작위 카드로 바꿔버린다.
+    TotalCardBase tempRandomCard = new TotalCardBase();
+    TotalCardBase[] tempRandomDeck = new TotalCardBase[8];
+    for (int i = 0; i < 8; i++) {
+      int temp = (int) (Math.random() * 9);
+      tempRandomDeck[i] = tempRandomCard.totalCard()[temp];
+    }
+
+    battle.setTempBattleDeck(tempRandomDeck);
+  }
 }

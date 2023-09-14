@@ -12,6 +12,7 @@ public class EnemyCharacter extends CharacterBase {
   private boolean enemyTurn = false;
   private int effectValue = 0;
 
+
   MONSTEREFFECT monstereffect;
 
   EnemyCharacter[] stageEnemy;
@@ -22,6 +23,22 @@ public class EnemyCharacter extends CharacterBase {
       String name, int maxHp, int hp, int atk, int def, int money, int speed, int aiPattern) {
     super(name, maxHp, 0, hp, 0, atk, def, money, speed, aiPattern);
   }
+
+  EnemyCharacter(// mp가 없고 초기 턴게이지가 높은적
+      String name, int maxHp, int hp, int atk, int def, int money, int speed, int aiPattern,
+      int turnGaze) {
+    super(name, maxHp, 0, hp, 0, atk, def, money, speed, aiPattern);
+    this.setTurnGaze(turnGaze);
+  }
+
+  public EnemyCharacter(// mp가 있고 초기게이지가 높고 minHp가있는적
+      String name, int maxHp, int maxMp, int hp, int mp, int atk, int def, int money, int speed,
+      int aiPattern, int turnGaze, int minHp) {
+    super(name, maxHp, maxMp, hp, mp, atk, def, money, speed, aiPattern);
+    setTurnGaze(turnGaze);
+    setMinHp(minHp);
+  }
+
 
   EnemyCharacter(// mp가 있는 적
       String name, int maxHp, int maxMp, int hp, int mp, int atk, int def, int money, int speed,
@@ -58,12 +75,20 @@ public class EnemyCharacter extends CharacterBase {
     this.enemyTurn = enemyTurn;
   }
 
+  public void setMinHp(int minHp) {
+    this.minHp = minHp;
+  }
+
   public boolean getEnemyTurn() {
     return enemyTurn;
   }
 
   public int getEffectValue() {
     return effectValue;
+  }
+
+  public int getMinHp() {
+    return minHp;
   }
 
 }

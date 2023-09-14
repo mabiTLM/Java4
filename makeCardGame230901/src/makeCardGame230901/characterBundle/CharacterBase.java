@@ -20,14 +20,13 @@ public abstract class CharacterBase implements Serializable {
   private int def;
   private int money;
   private int speed;// 속도
-  private int avoidanceRate;// 회피율 일단 보류
-  private int accuracy;// 명중률
   private int aiPattern;
   private int enemyRepeat = 0;
   private int turnGaze = 0;
   private int stunTurn = 0;
   private int divineForce = 0;
-  private int reflect;
+  private int reflect = 0;
+  private int minHp = 0;
 
   protected CharacterBase() {}
 
@@ -77,8 +76,13 @@ public abstract class CharacterBase implements Serializable {
     if (hp > getMaxHp()) {
       hp = getMaxHp();
     }
+    if (hp < minHp) {
+      hp = minHp;
+    }
     if (divineForce == 0) {
       this.hp = hp;
+    } else {
+      System.out.println("무적상태라 데미지가 들어가지 않는다.");
     }
   }
 
@@ -147,6 +151,10 @@ public abstract class CharacterBase implements Serializable {
     this.reflect = reflect;
   }
 
+  public void setMinHp(int minHp) {
+    this.minHp = minHp;
+  }
+
 
   // get 모음
   public String getName() {
@@ -175,6 +183,10 @@ public abstract class CharacterBase implements Serializable {
 
   public int getDef() {
     return def;
+  }
+
+  public int getMinHp() {
+    return minHp;
   }
 
   public TotalCardBase[] getCardInventory() {

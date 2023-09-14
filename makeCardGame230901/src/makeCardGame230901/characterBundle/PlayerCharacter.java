@@ -10,6 +10,7 @@ public class PlayerCharacter extends CharacterBase {
   private static final long serialVersionUID = -1264577156287833465L;
   private int drawCardNumber = 5;
   private int nowFloor = 1;
+  private int currentTurnUseCard = 0; // 턴 카드 사용횟수에 따른 카드 추가 준비용
   private boolean openMenu = false;
   static TotalCardBase cardData = new TotalCardBase();
   private boolean playerIntoDungeon = true;
@@ -75,6 +76,10 @@ public class PlayerCharacter extends CharacterBase {
     this.playerIntoDungeon = playerIntoDungeon;
   }
 
+  public void setCurrentTurnUseCard(int currentTurnUseCard) {
+    this.currentTurnUseCard = currentTurnUseCard;
+  }
+
   // get 모음
   public int getDrawCardNumber() {
     return drawCardNumber;
@@ -90,5 +95,9 @@ public class PlayerCharacter extends CharacterBase {
 
   public boolean getPlayerIntoDungeon() {
     return playerIntoDungeon;
+  }
+
+  public int getCurrentTurnUseCard() {
+    return currentTurnUseCard;
   }
 }

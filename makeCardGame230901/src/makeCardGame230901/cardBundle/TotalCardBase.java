@@ -42,7 +42,7 @@ public class TotalCardBase implements Serializable {
   }
 
 
-  TotalCardBase[] cardData = new TotalCardBase[16];
+  TotalCardBase[] cardData = new TotalCardBase[18];
 
   public TotalCardBase[] totalCard()// 판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
   {
@@ -53,7 +53,7 @@ public class TotalCardBase implements Serializable {
     cardData[4] = new TotalCardBase("참격", CardType.Attack, 10, 1, 100);
     cardData[5] = new TotalCardBase("굳건", CardType.Defend, 15, 1, 100);
     cardData[6] = new TotalCardBase("속공", CardType.Attack, 10, 0, 100);
-    cardData[7] = new TotalCardBase("상처찢기", CardType.Attack, 30, 2, 100);
+    cardData[7] = new TotalCardBase("상처찢기", CardType.Attack, 40, 2, 100, "마무리", 1);
     cardData[8] = new TotalCardBase("불굴", CardType.Defend, 15, 0, 100);
     cardData[9] = new TotalCardBase("빛의수호", CardType.Defend, 80, 3, 100);
     cardData[10] = new TotalCardBase("실드차지", CardType.Attack, 0, 1, 200, "실드차지", 1);
@@ -62,6 +62,8 @@ public class TotalCardBase implements Serializable {
     cardData[13] = new TotalCardBase("스매시", CardType.Attack, 20, 2, 200, "방패깨기", 0);
     cardData[14] = new TotalCardBase("재정비", CardType.Defend, 10, 0, 200, "드로우", 1);
     cardData[15] = new TotalCardBase("환영베기", CardType.Attack, 25, 0, 200, "휘발성", 0);
+    cardData[16] = new TotalCardBase("형상변화", CardType.Attack, 0, 5, 20000, "형상변화", 0);
+    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 0, 5, 20000, "형상변화", 0);
     return cardData;
   }
 
@@ -92,6 +94,16 @@ public class TotalCardBase implements Serializable {
     winMosterCardData[7] = totalCard()[14];
     winMosterCardData[8] = totalCard()[15];
     return winMosterCardData;
+  }
+
+  TotalCardBase[] winFirstBossData = new TotalCardBase[2];
+
+  public TotalCardBase[] winFirstBossCard() // 첫번째보스처치 전용카드
+  {
+    winFirstBossData[0] = totalCard()[16];
+    winFirstBossData[1] = totalCard()[17];
+
+    return winFirstBossData;
   }
 
   TotalCardBase[] dungeonShopCardData = new TotalCardBase[5];
@@ -135,6 +147,10 @@ public class TotalCardBase implements Serializable {
 
   public void setCardConsumeMana(int cardConsumeMana) {
     this.cardConsumeMana = cardConsumeMana;
+  }
+
+  public void setCardType(CardType cardType) {
+    this.cardType = cardType;
   }
 
   // get모음

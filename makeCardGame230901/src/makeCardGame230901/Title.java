@@ -20,6 +20,8 @@ public class Title implements Serializable {
         int choice = scan.nextInt();
         scan.nextLine();
         if (choice == 1) {
+          System.out.println("잠깐 세상좀 구하고 올게");
+          scan.nextLine();
           b = new Build();
           b.build();
 
@@ -33,23 +35,4 @@ public class Title implements Serializable {
       }
     }
   }
-
-  // void load() {
-  // Scanner scan = new Scanner(System.in);
-  // try {
-  // System.out.println("몇번 데이터를 불러옵니까?");
-  // int choice = scan.nextInt();
-  // scan.nextLine();
-  // String path =
-  // "C:\\Users\\KGA\\git\\Java4\\makeCardGame230901\\save\\savedata" + choice + ".db";
-  // FileInputStream fis = new FileInputStream(path);
-  // ObjectInputStream ois = new ObjectInputStream(fis);
-  //
-  // this.b = (Build) ois.readObject();
-  // b.build();
-  //
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // }
-  // }
 }

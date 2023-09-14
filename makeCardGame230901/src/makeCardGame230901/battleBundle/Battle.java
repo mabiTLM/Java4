@@ -66,9 +66,8 @@ public class Battle implements Serializable {
       }
     } else if (monsterType == MONSTERTYPE.BOSS) {
       currentEnemy = new EnemyCharacter[1];
-      int enemyNumberTemp = (int) (Math.random() * eArray.stageBossData().length);
-      currentEnemy[0] = eArray.stageBossData()[enemyNumberTemp];
-      System.out.println("[보스]" + eArray.stageBossData()[enemyNumberTemp].getName() + "가 출현했다.");
+      currentEnemy[0] = eArray.stageBossData()[0];
+      System.out.println("[보스]" + eArray.stageBossData()[0].getName() + "가 출현했다.");
     }
   }
 
@@ -190,13 +189,15 @@ public class Battle implements Serializable {
       System.out.println("mp가 부족해서 사용할수없다.");
     } else {
       // 사용한 카드를 묘지로 보낸다.
-      if (!player.getHand()[useCardNumber - 1].getEffect().equals("휘발성")) {
+      if (!player.getHand()[useCardNumber - 1].getEffect().equals("휘발성")
+          && !player.getHand()[useCardNumber - 1].getEffect().equals("형상변화")) {
         graveCard = sortCard.sortAddCard(graveCard, player.getHand(), useCardNumber);
       }
       playerBattleCalculator();// 사용한 카드의 전투계산을 한다.
 
       // 넣은 카드번호의 카드를 사용 카드를 패에서 제거한후 패를 재정렬한다.
       player.setHand(sortCard.sortRemoveCard(player.getHand(), useCardNumber));
+      player.setCurrentTurnUseCard(player.getCurrentTurnUseCard() + 1);
     }
   }
 
@@ -234,8 +235,26 @@ public class Battle implements Serializable {
 
     if (name.equals("드로우")) {
       this.cardDraw(value);
-    } else if (name.equals("방패깨기")) {
+    } else if (name.equals("방패깨기")) {// 실드제거
       currentEnemy[target - 1].setDef(0);
+    } else if (name.equals("마무리")) {// 잃은체력비례 추가데미지
+      currentEnemy[target - 1].setHp(currentEnemy[target - 1].getHp()
+          - (currentEnemy[target - 1].getMaxHp() - currentEnemy[target - 1].getHp()) * value);
+    } else if (name.equals("형상변화")) {// 특수버프카드
+      if (currentCard.getCardType() == CardType.Attack) {
+        for (int i = 0; i < tempBattleDeck.length; i++) {
+          tempBattleDeck[i].setCardType(CardType.Attack);
+          tempBattleDeck[i].setCardConsumeMana(tempBattleDeck[i].getCardConsumeMana() - 2);
+        }
+
+      } else if (currentCard.getCardType() == CardType.Defend) {
+        for (int i = 0; i < tempBattleDeck.length; i++) {
+          tempBattleDeck[i].setCardType(CardType.Defend);
+        }
+        sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
+        sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
+
+      }
     }
 
   }
@@ -246,6 +265,7 @@ public class Battle implements Serializable {
    * 전투가 끝났을 때 손패를 버리고 묘지를 비워준다. 처음에 얻는 카드를 고정시킬수있게 시작단이 아닌 끝나는 곳에 넣는다.
    **/
   public void battleFinish() {
+    Scanner scan = new Scanner(System.in);
     playerTurnOff();
     player.setDef(0);
     graveCard = new TotalCardBase[0];
@@ -259,6 +279,24 @@ public class Battle implements Serializable {
       eventInDungeon.cardAddEvent(cardData.winMosterCard());
     } else if (monsterType == MONSTERTYPE.BOSS) {
       System.out.println("보스한테 승리했습니다.");
+      if (player.getNowFloor() == 1) {
+        while (true) {
+          try {
+            System.out.println("보스 보상을 선택해주세요. 0.선택하지 않는다.");
+            int choice = scan.nextInt();
+            scan.nextLine();
+            if (choice == 0) {
+              break;
+            }
+            sortCard.watchCard(cardData.winFirstBossCard(), player);
+            sortCard.sortAddCard(player.getCardDeck(), cardData.winFirstBossCard(), choice);
+            break;
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+      }
+
       System.out.println("다음 층으로 넘어갑니다.");
       player.setNowFloor(player.getNowFloor() + 1);
       player.setPlayerIntoDungeon(true);
@@ -269,15 +307,17 @@ public class Battle implements Serializable {
    * 플레이어 턴 시작할때 처리해야되는 것들을 처리한다. 버프나 지속치유등
    **/
   public void playerTurnStart() {
+    Scanner scan = new Scanner(System.in);
     if (player.getStunTurn() > 0) {
       System.out.println("기절 상태라 움직일 수 없다.");
       playerTurnOff();
       player.setStunTurn(player.getStunTurn() - 1);
+      scan.nextLine();
     } else {
-      player.setDivineForce(player.getDivineForce() - 1);
       cardDraw(player.getDrawCardNumber());
       player.setMp(player.getMaxMp());// 턴시작시 마나회복
     }
+    player.setDivineForce(player.getDivineForce() - 1);
   }
 
 
@@ -289,6 +329,7 @@ public class Battle implements Serializable {
     graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());// 손을 묘지로 보내고
     player.disCardHand();
     target = 0;
+    player.setCurrentTurnUseCard(0);
   }
 
   /**
