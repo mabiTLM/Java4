@@ -11,12 +11,12 @@ age number(3,0) not null,
 gitaddress varchar2(100) not null
 );
 
-insert into student values(1,'김동선','KDS','qwer',29,'https://github.com/KDS01');
-insert into student values(2,'이민규','qq752','1234',23,'https://github.com/LEEMINGYU28/Java4.git');
-insert into student values(3,'권원준','oooonx','may',22,'https://github.com/KWWWJ/just1.git');
-insert into student values(4,'박정완','pjw','qwer',27,'https://github.com/pjw222/HomeWork2');
-insert into student values(5,'한상윤','hsy', 'qwer1234',37,'https://github.com/Natseol' );
-insert into student values(6,'임현규','TLM','486',27,'https://github.com/mabiTLM/Java4');
+insert into student values(1,'김동선','KDS','qwer',29, 'https://github.com/KDS01' );
+insert into student values(2,'이민규','qq752','1234',23, 'https://github.com/LEEMINGYU28/Java4.git' );
+insert into student values(3,'권원준','oooonx','may',22, 'https://github.com/KWWWJ/just1.git' );
+insert into student values(4,'박정완','pjw','qwer',27, 'https://github.com/pjw222/HomeWork2' );
+insert into student values(5,'한상윤','hsy', 'qwer1234',37, 'https://github.com/Natseol' );
+insert into student values(6,'임현규','TLM','486',27, 'https://github.com/mabiTLM/Java4' );
 insert into student values(7,'김남균','knk','1234',27, 'https://github.com/LiamKim-0218/HomeWork2' );
 insert into student values(8,'임주한','LJH','3232',32, 'https://github.com/Juhan008/java-D' );
 
