@@ -63,7 +63,7 @@ public class TotalCardBase implements Serializable {
     cardData[14] = new TotalCardBase("재정비", CardType.Defend, 10, 0, 200, "드로우", 1);
     cardData[15] = new TotalCardBase("환영베기", CardType.Attack, 25, 0, 200, "휘발성", 0);
     cardData[16] = new TotalCardBase("형상변화", CardType.Attack, 50, 5, 20000, "형상변화", 0);
-    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 100, 5, 20000, "형상변화", 0);
+    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 100, 3, 20000, "형상변화", 0);
     return cardData;
   }
 

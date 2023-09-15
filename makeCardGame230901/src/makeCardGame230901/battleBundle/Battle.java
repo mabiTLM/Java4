@@ -302,13 +302,14 @@ public class Battle implements Serializable {
         while (true) {
           try {
             System.out.println("보스 보상을 선택해주세요. 0.선택하지 않는다.");
+            sortCard.watchCard(cardData.winFirstBossCard(), player);
             int choice = scan.nextInt();
             scan.nextLine();
             if (choice == 0) {
               break;
             }
-            sortCard.watchCard(cardData.winFirstBossCard(), player);
-            sortCard.sortAddCard(player.getCardDeck(), cardData.winFirstBossCard(), choice);
+            player.setCardDeck(
+                sortCard.sortAddCard(player.getCardDeck(), cardData.winFirstBossCard(), choice));
             break;
           } catch (Exception e) {
             e.printStackTrace();
