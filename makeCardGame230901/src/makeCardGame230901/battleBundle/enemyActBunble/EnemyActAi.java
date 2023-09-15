@@ -116,7 +116,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
       player.setDrawCardNumber(temp);
       temp = player.getMaxMp();
       EnemyCharacter[] nextForm =
-          {new EnemyCharacter("모르데카이 2형태", 250, 0, 150, 0, 50, 100, 0, 10, 7, 90, 1)};
+          {new EnemyCharacter("모르데카이 2형태", 250, 0, 150, 0, 30, 100, 0, 10, 7, 90, 1)};
       battle.setCurrentEnemy(nextForm);
     }
 
@@ -140,7 +140,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
             .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() - 2);
       }
       EnemyCharacter[] nextForm =
-          {new EnemyCharacter("모르데카이 3형태", 550, 0, 300, 0, 80, 200, 0, 10, 7, 90, 0)};
+          {new EnemyCharacter("모르데카이 3형태", 550, 0, 300, 0, 50, 200, 200000, 10, 7, 90, 0)};
       battle.setCurrentEnemy(nextForm);
     }
 

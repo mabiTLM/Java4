@@ -183,14 +183,12 @@ public class Battle implements Serializable {
    * 카드를 사용했을 때 처리해야하는 일들
    **/
   public void useCard() {
-    if (player.getMp() - player.getHand()[useCardNumber - 1].getCardConsumeMana() < 0)// mp가 있을때만
-                                                                                      // 처리를 한다.
-    {
+    // mp가 있을때만 처리를 한다.
+    if (player.getMp() - player.getHand()[useCardNumber - 1].getCardConsumeMana() < 0) {
       System.out.println("mp가 부족해서 사용할수없다.");
     } else {
       // 사용한 카드를 묘지로 보낸다.
-      if (!player.getHand()[useCardNumber - 1].getEffect().equals("휘발성")
-          && !player.getHand()[useCardNumber - 1].getEffect().equals("형상변화")) {
+      if (!player.getHand()[useCardNumber - 1].getVolatility()) {
         graveCard = sortCard.sortAddCard(graveCard, player.getHand(), useCardNumber);
       }
       playerBattleCalculator();// 사용한 카드의 전투계산을 한다.
@@ -220,8 +218,8 @@ public class Battle implements Serializable {
         tempDamage = Math.abs(currentEnemy[target - 1].getDef());
         currentEnemy[target - 1].setDef(0);
       }
-      currentEnemy[target - 1].setHp(currentEnemy[target - 1].getHp() - tempDamage);// 목표로한적에게 데미지를
-                                                                                    // 준다.
+      currentEnemy[target - 1].setHp(currentEnemy[target - 1].getHp() - tempDamage);
+      // 목표로한적에게 데미지를 준다.
     } else if (currentUseCard.getCardType() == CardType._HEAL_) {
       player.setHp(player.getHp() + currentUseCard.getCardValue());
       player.status();
@@ -249,7 +247,6 @@ public class Battle implements Serializable {
     else if (name.equals("형상변화")) {// 특수버프카드
       // 모든카드 변경을위해 묘지와 덱을 합치고 핸드를 따로바꿔준다
       tempBattleDeck = sortCard.deckPlusDeck(tempBattleDeck, graveCard);
-
       if (currentCard.getCardType() == CardType.Attack) {
         for (int i = 0; i < player.getHand().length; i++) {
           player.getHand()[i].setCardType(CardType.Attack);
@@ -259,13 +256,10 @@ public class Battle implements Serializable {
           tempBattleDeck[i].setCardType(CardType.Attack);
           tempBattleDeck[i].setCardConsumeMana(tempBattleDeck[i].getCardConsumeMana() - 2);
         }
-
       } else if (currentCard.getCardType() == CardType.Defend) {
-
         for (int i = 0; i < player.getHand().length; i++) {
           player.getHand()[i].setCardType(CardType.Defend);
         }
-
         for (int i = 0; i < tempBattleDeck.length; i++) {
           tempBattleDeck[i].setCardType(CardType.Defend);
         }
@@ -274,10 +268,16 @@ public class Battle implements Serializable {
       }
     }
 
-
+    else if (name.equals("꽃잎")) {
+      TotalCardBase[] flower =
+          {new TotalCardBase("빨간꽃잎", CardType.Attack, 5, 0, 1000, "드로우", 1, true),
+              new TotalCardBase("파란꽃잎", CardType.Defend, 5, 0, 1000, "드로우", 1, true)};
+      for (int i = 0; i < value; i++) {
+        player.setHand(sortCard.deckPlusDeck(player.getHand(), flower));
+      }
+    }
 
   }
-
 
 
   /**
@@ -337,6 +337,7 @@ public class Battle implements Serializable {
       cardDraw(player.getDrawCardNumber());
       player.setMp(player.getMaxMp());// 턴시작시 마나회복
     }
+    player.setCurrentTurnUseCard(0);
     player.setDivineForce(player.getDivineForce() - 1);
   }
 
@@ -349,7 +350,6 @@ public class Battle implements Serializable {
     graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());// 손을 묘지로 보내고
     player.disCardHand();
     target = 0;
-    player.setCurrentTurnUseCard(0);
   }
 
   /**

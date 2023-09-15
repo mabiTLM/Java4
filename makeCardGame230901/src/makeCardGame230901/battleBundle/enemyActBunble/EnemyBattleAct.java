@@ -28,12 +28,11 @@ public class EnemyBattleAct implements Serializable {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
     player.setDef(player.getDef() - actEnemy.getAtk()); // 공격만큼 실드제거
 
-    if (player.getDef() - actEnemy.getAtk() < 0)// 실드가 음수로가면
+    if (player.getDef() < 0)// 실드가 음수로가면
     {
-      tempDamage = (int) Math.abs(player.getDef());// 음수간만큼 데미지 올리기
+      tempDamage = (int) Math.abs(player.getDef() - actEnemy.getAtk());// 음수간만큼 데미지 올리기
       player.setDef(0);// 0으로바꾸기
     }
-
     player.setHp(player.getHp() - tempDamage);
     System.out.println(actEnemy.getName() + "의 공격 : " + actEnemy.getAtk());
   }
@@ -72,7 +71,7 @@ public class EnemyBattleAct implements Serializable {
 
   protected void fearCardStun(int actMonsterNumber) {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-    TotalCardBase[] bad = {new TotalCardBase("공포", CardType.Defend, 0, 1, 0, "휘발성", 0)};
+    TotalCardBase[] bad = {new TotalCardBase("공포", CardType.Defend, 0, 1, 0, true)};
     battle.setTempBattleDeck(sortCard.sortAddCard(battle.getTempBattleDeck(), bad, 1));
     battle.setTempBattleDeck(sortCard.sortAddCard(battle.getTempBattleDeck(), bad, 1));
     System.out.println(actEnemy.getName() + "의 위협하는 포효");

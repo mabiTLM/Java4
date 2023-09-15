@@ -16,6 +16,7 @@ public class TotalCardBase implements Serializable {
   private String effect = "통상";
   private int effectValue = 0;
   private boolean enforce = false;
+  private boolean volatility = false;
 
   public TotalCardBase() {
 
@@ -31,6 +32,17 @@ public class TotalCardBase implements Serializable {
   }
 
   public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+      int cardPrice, boolean volatility) {
+    this.cardName = cardName;
+    this.cardType = cardType;
+    this.cardValue = cardValue;
+    this.cardConsumeMana = cardConsumeMana;
+    this.cardPrice = cardPrice;
+    this.volatility = volatility;
+  }
+
+
+  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
       int cardPrice, String effect, int effectValue) {
     this.cardName = cardName;
     this.cardType = cardType;
@@ -41,8 +53,20 @@ public class TotalCardBase implements Serializable {
     this.effectValue = effectValue;
   }
 
+  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+      int cardPrice, String effect, int effectValue, boolean volatility) {
+    this.cardName = cardName;
+    this.cardType = cardType;
+    this.cardValue = cardValue;
+    this.cardConsumeMana = cardConsumeMana;
+    this.cardPrice = cardPrice;
+    this.effect = effect;
+    this.effectValue = effectValue;
+    this.volatility = volatility;
+  }
 
-  TotalCardBase[] cardData = new TotalCardBase[18];
+
+  TotalCardBase[] cardData = new TotalCardBase[22];
 
   public TotalCardBase[] totalCard()// 판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
   {
@@ -52,18 +76,22 @@ public class TotalCardBase implements Serializable {
     cardData[3] = new TotalCardBase("굳히기", CardType.Defend, 20, 2, 50);
     cardData[4] = new TotalCardBase("참격", CardType.Attack, 10, 1, 100);
     cardData[5] = new TotalCardBase("굳건", CardType.Defend, 15, 1, 100);
-    cardData[6] = new TotalCardBase("속공", CardType.Attack, 10, 0, 100);
+    cardData[6] = new TotalCardBase("속공", CardType.Attack, 10, 0, 100, "드로우", 1);
     cardData[7] = new TotalCardBase("상처찢기", CardType.Attack, 40, 2, 100, "마무리", 1);
     cardData[8] = new TotalCardBase("불굴", CardType.Defend, 15, 0, 100);
     cardData[9] = new TotalCardBase("빛의수호", CardType.Defend, 80, 3, 100);
     cardData[10] = new TotalCardBase("실드차지", CardType.Attack, 0, 1, 200, "실드차지", 1);
     cardData[11] = new TotalCardBase("힐링", CardType._HEAL_, 10, 1, 10);
-    cardData[12] = new TotalCardBase("신속", CardType.Attack, 10, 1, 200, "드로우", 1);
+    cardData[12] = new TotalCardBase("신속", CardType.Attack, 10, 1, 200, "드로우", 2);
     cardData[13] = new TotalCardBase("스매시", CardType.Attack, 20, 2, 200, "방패깨기", 0);
     cardData[14] = new TotalCardBase("재정비", CardType.Defend, 10, 0, 200, "드로우", 1);
-    cardData[15] = new TotalCardBase("환영베기", CardType.Attack, 25, 0, 200, "휘발성", 0);
-    cardData[16] = new TotalCardBase("형상변화", CardType.Attack, 50, 5, 20000, "형상변화", 0);
-    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 100, 3, 20000, "형상변화", 0);
+    cardData[15] = new TotalCardBase("환영베기", CardType.Attack, 25, 0, 200, "드로우", 1, true);
+    cardData[16] = new TotalCardBase("형상변화", CardType.Attack, 50, 5, 20000, "형상변화", 0, true);
+    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 100, 3, 20000, "형상변화", 0, true);
+    cardData[18] = new TotalCardBase("백화요란", CardType.Attack, 0, 2, 1000, "꽃잎", 5);
+    cardData[19] = new TotalCardBase("꽃봉오리", CardType.Attack, 0, 1, 1000, "꽃잎", 2);
+    cardData[20] = new TotalCardBase("씨앗", CardType.Attack, 0, 0, 1000, "꽃잎", 1);
+    cardData[21] = new TotalCardBase("만개", CardType.Attack, 0, 0, 1000, "만개", 1);
     return cardData;
   }
 
@@ -80,7 +108,7 @@ public class TotalCardBase implements Serializable {
     return shopData;
   }
 
-  TotalCardBase[] winMosterCardData = new TotalCardBase[9];
+  TotalCardBase[] winMosterCardData = new TotalCardBase[13];
 
   public TotalCardBase[] winMosterCard() // 고배율 카드들 넣자
   {
@@ -93,6 +121,10 @@ public class TotalCardBase implements Serializable {
     winMosterCardData[6] = totalCard()[13];
     winMosterCardData[7] = totalCard()[14];
     winMosterCardData[8] = totalCard()[15];
+    winMosterCardData[9] = totalCard()[18];
+    winMosterCardData[10] = totalCard()[19];
+    winMosterCardData[11] = totalCard()[20];
+    winMosterCardData[12] = totalCard()[21];
     return winMosterCardData;
   }
 
@@ -106,7 +138,7 @@ public class TotalCardBase implements Serializable {
     return winFirstBossData;
   }
 
-  TotalCardBase[] dungeonShopCardData = new TotalCardBase[5];
+  TotalCardBase[] dungeonShopCardData = new TotalCardBase[9];
 
   public TotalCardBase[] dungeonShopCard()// 특수효과 카드들
   {
@@ -115,16 +147,20 @@ public class TotalCardBase implements Serializable {
     dungeonShopCardData[2] = totalCard()[14];
     dungeonShopCardData[3] = totalCard()[10];
     dungeonShopCardData[4] = totalCard()[15];
+    dungeonShopCardData[5] = totalCard()[19];
+    dungeonShopCardData[6] = totalCard()[20];
+    dungeonShopCardData[7] = totalCard()[21];
+    dungeonShopCardData[8] = totalCard()[18];
     return dungeonShopCardData;
   }
 
 
   public void watchCardData(TotalCardBase[] cardSet) {
     for (int i = 0; i < cardSet.length; i++) {
-      System.out.println(
-          (i + 1) + "." + cardSet[i].getCardName() + " : " + cardSet[i].getCardType() + "타입"
-              + " /수치 : " + cardSet[i].getCardValue() + " /마나 : " + cardSet[i].getCardConsumeMana()
-              + " /종류 : " + cardSet[i].getEffect() + " /강화 : " + cardSet[i].isEnforce());
+      System.out.println((i + 1) + "." + cardSet[i].getCardName() + " : " + cardSet[i].getCardType()
+          + "타입" + " /수치 : " + cardSet[i].getCardValue() + " /마나 : "
+          + cardSet[i].getCardConsumeMana() + " /종류 : " + cardSet[i].getEffect() + " /강화 : "
+          + cardSet[i].isEnforce() + " /휘발성 : " + cardSet[i].getVolatility());
     }
   }
 
@@ -184,6 +220,10 @@ public class TotalCardBase implements Serializable {
 
   public int getEffectValue() {
     return effectValue;
+  }
+
+  public boolean getVolatility() {
+    return volatility;
   }
 
 

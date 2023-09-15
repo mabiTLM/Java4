@@ -142,6 +142,8 @@ public class SortCard implements Serializable {
   public void notNomalCardExpress(TotalCardBase deck, PlayerCharacter player) {
     if (deck.getEffect().equals("실드차지")) {
       deck.setCardValue(player.getDef());
+    } else if (deck.getEffect().equals("만개")) {
+      deck.setCardValue(player.getCurrentTurnUseCard() * 20);
     }
   }
 

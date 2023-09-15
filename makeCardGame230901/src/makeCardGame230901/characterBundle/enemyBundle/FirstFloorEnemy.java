@@ -12,10 +12,10 @@ public class FirstFloorEnemy extends EnemyCharacter {
   @Override
   public EnemyCharacter[] stageData() {
     stageEnemy = new EnemyCharacter[3];
-    stageEnemy[0] = new EnemyCharacter("슬라임", 20, 20, 5, 0, 100, 5, 0);
+    stageEnemy[0] = new EnemyCharacter("슬라임", 20, 20, 10, 0, 100, 5, 0);
     stageEnemy[1] = new EnemyCharacter("도적", 20, 20, 5, 0, 100, 11, 1, MONSTEREFFECT.ATTACKUP, 3);
     stageEnemy[2] =
-        new EnemyCharacter("작은 골렘", 50, 50, 20, 20, 100, 4, 2, MONSTEREFFECT.SHIELD, 20);
+        new EnemyCharacter("작은 골렘", 50, 50, 40, 20, 100, 4, 2, MONSTEREFFECT.SHIELD, 20);
     return stageEnemy;
   }
 
@@ -32,7 +32,7 @@ public class FirstFloorEnemy extends EnemyCharacter {
   @Override
   public EnemyCharacter[] stageBossData() {
     stageEnemy = new EnemyCharacter[1];
-    stageEnemy[0] = new EnemyCharacter("글라스기브넨", 500, 0, 500, 0, 50, 1000, 10000, 10, 3);
+    stageEnemy[0] = new EnemyCharacter("글라스기브넨", 500, 0, 500, 0, 80, 1000, 10000, 10, 3);
     return stageEnemy;
   }
 }
