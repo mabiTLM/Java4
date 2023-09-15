@@ -75,10 +75,6 @@ public class EnemyCharacter extends CharacterBase {
     this.enemyTurn = enemyTurn;
   }
 
-  public void setMinHp(int minHp) {
-    this.minHp = minHp;
-  }
-
   public boolean getEnemyTurn() {
     return enemyTurn;
   }
@@ -86,9 +82,4 @@ public class EnemyCharacter extends CharacterBase {
   public int getEffectValue() {
     return effectValue;
   }
-
-  public int getMinHp() {
-    return minHp;
-  }
-
 }

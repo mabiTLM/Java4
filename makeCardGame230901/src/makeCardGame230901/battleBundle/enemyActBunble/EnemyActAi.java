@@ -1,7 +1,9 @@
 package makeCardGame230901.battleBundle.enemyActBunble;
 
 import java.io.Serializable;
+import java.util.Scanner;
 import makeCardGame230901.battleBundle.Battle;
+import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 
@@ -11,7 +13,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
    */
   private static final long serialVersionUID = 2409473060879313486L;
   EnemyCharacter actEnemy;
-
+  SortCard sortCard = new SortCard();
   int temp;
 
   public EnemyActAi(PlayerCharacter player, Battle battle) {
@@ -38,9 +40,11 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     } else if (ai == 5) {
       quizAi(actMonsterNumber);
     } else if (ai == 6) {
-      secondBossFirstForm(actMonsterNumber);
+      mordecaiFirstForm(actMonsterNumber);
     } else if (ai == 7) {
-      secondBossSecondForm(actMonsterNumber);
+      mordecaiSecondForm(actMonsterNumber);
+    } else if (ai == 8) {
+      mordecaiThirdForm(actMonsterNumber);
     }
   }
 
@@ -104,18 +108,21 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     }
   }
 
-  private void secondBossFirstForm(int actMonsterNumber) {
+  private void mordecaiFirstForm(int actMonsterNumber) {
+    Scanner scan = new Scanner(System.in);
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
 
     if (actEnemy.getHp() == actEnemy.getMinHp()) {
       player.setDrawCardNumber(temp);
+      temp = player.getMaxMp();
       EnemyCharacter[] nextForm =
-          {new EnemyCharacter("모르데카이 2형태", 100, 0, 100, 0, 20, 100, 0, 10, 7, 90, 0)};
+          {new EnemyCharacter("모르데카이 2형태", 250, 0, 150, 0, 50, 100, 0, 10, 7, 90, 1)};
       battle.setCurrentEnemy(nextForm);
     }
 
-    if (actEnemy.getEnenmyRepeat() == 1) {
+    else if (actEnemy.getEnenmyRepeat() == 1) {
       System.out.println("정정당당한 1:1승부를");
+      scan.nextLine();
       temp = player.getDrawCardNumber();
       player.setDrawCardNumber(1);
     } else {
@@ -123,11 +130,52 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
     }
   }
 
-  private void secondBossSecondForm(int actMonsterNumber) {
-    if (actEnemy.getEnenmyRepeat() == 1) {
-      System.out.println("쉽게 얻는 힘은 쉽게 잃는법");
-
+  private void mordecaiSecondForm(int actMonsterNumber) {
+    Scanner scan = new Scanner(System.in);
+    if (actEnemy.getHp() == actEnemy.getMinHp()) {
+      battle.setTempBattleDeck(
+          sortCard.deckPlusDeck(battle.getTempBattleDeck(), battle.getGraveCard()));
+      for (int i = 0; i < battle.getTempBattleDeck().length; i++) {
+        battle.getTempBattleDeck()[i]
+            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() - 2);
+      }
+      EnemyCharacter[] nextForm =
+          {new EnemyCharacter("모르데카이 3형태", 550, 0, 300, 0, 80, 200, 0, 10, 7, 90, 0)};
+      battle.setCurrentEnemy(nextForm);
     }
+
+    else if (actEnemy.getEnenmyRepeat() == 1) {
+      System.out.println("마력의 흐름이 불안정해졌다.");
+      scan.nextLine();
+      battle.setTempBattleDeck(
+          sortCard.deckPlusDeck(battle.getTempBattleDeck(), battle.getGraveCard()));
+      for (int i = 0; i < battle.getTempBattleDeck().length; i++) {
+        battle.getTempBattleDeck()[i]
+            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() + 2);
+      }
+    } else {
+      plainAttack(actMonsterNumber);
+    }
+  }
+
+
+  public void mordecaiThirdForm(int actMonsterNumber) {
+    Scanner scan = new Scanner(System.in);
+    if (actEnemy.getEnenmyRepeat() == 1) {
+      System.out.println("덱이 잠식당하고있다.");
+      scan.nextLine();
+    }
+
+    battle.setTempBattleDeck(
+        sortCard.deckPlusDeck(battle.getTempBattleDeck(), battle.getGraveCard()));
+
+    if (battle.getTempBattleDeck().length <= 0) {
+      this.plainAttack(actMonsterNumber);
+    } else {
+      battle.setTempBattleDeck(sortCard.sortRemoveCard(battle.getTempBattleDeck(), 1));
+      this.plainAttack(actMonsterNumber);
+    }
+
   }
 
 }

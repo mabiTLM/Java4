@@ -235,27 +235,46 @@ public class Battle implements Serializable {
 
     if (name.equals("드로우")) {
       this.cardDraw(value);
-    } else if (name.equals("방패깨기")) {// 실드제거
+    }
+
+    else if (name.equals("방패깨기")) {// 실드제거
       currentEnemy[target - 1].setDef(0);
-    } else if (name.equals("마무리")) {// 잃은체력비례 추가데미지
+    }
+
+    else if (name.equals("마무리")) {// 잃은체력비례 추가데미지
       currentEnemy[target - 1].setHp(currentEnemy[target - 1].getHp()
           - (currentEnemy[target - 1].getMaxHp() - currentEnemy[target - 1].getHp()) * value);
-    } else if (name.equals("형상변화")) {// 특수버프카드
+    }
+
+    else if (name.equals("형상변화")) {// 특수버프카드
+      // 모든카드 변경을위해 묘지와 덱을 합치고 핸드를 따로바꿔준다
+      tempBattleDeck = sortCard.deckPlusDeck(tempBattleDeck, graveCard);
+
       if (currentCard.getCardType() == CardType.Attack) {
+        for (int i = 0; i < player.getHand().length; i++) {
+          player.getHand()[i].setCardType(CardType.Attack);
+          player.getHand()[i].setCardConsumeMana(player.getHand()[i].getCardConsumeMana() - 2);
+        }
         for (int i = 0; i < tempBattleDeck.length; i++) {
           tempBattleDeck[i].setCardType(CardType.Attack);
           tempBattleDeck[i].setCardConsumeMana(tempBattleDeck[i].getCardConsumeMana() - 2);
         }
 
       } else if (currentCard.getCardType() == CardType.Defend) {
+
+        for (int i = 0; i < player.getHand().length; i++) {
+          player.getHand()[i].setCardType(CardType.Defend);
+        }
+
         for (int i = 0; i < tempBattleDeck.length; i++) {
           tempBattleDeck[i].setCardType(CardType.Defend);
         }
         sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
         sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
-
       }
     }
+
+
 
   }
 
@@ -413,5 +432,9 @@ public class Battle implements Serializable {
 
   public EnemyCharacter[] getCurrentEnemy() {
     return currentEnemy;
+  }
+
+  public TotalCardBase[] getGraveCard() {
+    return graveCard;
   }
 }
