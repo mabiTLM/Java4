@@ -143,7 +143,7 @@ public class SortCard implements Serializable {
     if (deck.getEffect().equals("실드차지")) {
       deck.setCardValue(player.getDef());
     } else if (deck.getEffect().equals("만개")) {
-      deck.setCardValue(player.getCurrentTurnUseCard() * 20);
+      deck.setCardValue(player.getCurrentTurnUseCard() * 10);
     }
   }
 

@@ -2,7 +2,7 @@ package makeCardGame230901.battleBundle.enemyActBunble;
 
 import java.io.Serializable;
 import makeCardGame230901.battleBundle.Battle;
-import makeCardGame230901.cardBundle.CardType;
+import makeCardGame230901.cardBundle.CARDTYPE;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -30,7 +30,7 @@ public class EnemyBattleAct implements Serializable {
 
     if (player.getDef() < 0)// 실드가 음수로가면
     {
-      tempDamage = (int) Math.abs(player.getDef() - actEnemy.getAtk());// 음수간만큼 데미지 올리기
+      tempDamage = (int) Math.abs(player.getDef());// 음수간만큼 데미지 올리기
       player.setDef(0);// 0으로바꾸기
     }
     player.setHp(player.getHp() - tempDamage);
@@ -64,14 +64,14 @@ public class EnemyBattleAct implements Serializable {
 
   protected void badSlimeCardAdd(int actMonsterNumber) {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-    TotalCardBase[] bad = {new TotalCardBase("점액", CardType.Defend, 0, 0, 0)};
+    TotalCardBase[] bad = {new TotalCardBase("점액", CARDTYPE.Defend, 0, 0, 0)};
     battle.setTempBattleDeck(sortCard.sortAddCard(battle.getTempBattleDeck(), bad, 1));
     System.out.println(actEnemy.getName() + "가 덱에 불순물을 집어넣었다.");
   }
 
   protected void fearCardStun(int actMonsterNumber) {
     actEnemy = battle.getCurrentEnemy()[actMonsterNumber];
-    TotalCardBase[] bad = {new TotalCardBase("공포", CardType.Defend, 0, 1, 0, true)};
+    TotalCardBase[] bad = {new TotalCardBase("공포", CARDTYPE.Defend, 0, 1, 0, true)};
     battle.setTempBattleDeck(sortCard.sortAddCard(battle.getTempBattleDeck(), bad, 1));
     battle.setTempBattleDeck(sortCard.sortAddCard(battle.getTempBattleDeck(), bad, 1));
     System.out.println(actEnemy.getName() + "의 위협하는 포효");

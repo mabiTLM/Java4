@@ -2,7 +2,7 @@ package makeCardGame230901.battleBundle;
 
 import java.io.Serializable;
 import java.util.Scanner;
-import makeCardGame230901.cardBundle.CardType;
+import makeCardGame230901.cardBundle.CARDTYPE;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -207,10 +207,10 @@ public class Battle implements Serializable {
 
     cardEffectCalculator(currentUseCard);
     player.setMp(player.getMp() - currentUseCard.getCardConsumeMana());
-    if (currentUseCard.getCardType() == CardType.Defend) {
+    if (currentUseCard.getCardType() == CARDTYPE.Defend) {
       player.setDef(player.getDef() + currentUseCard.getCardValue());
       player.status();
-    } else if (currentUseCard.getCardType() == CardType.Attack) {
+    } else if (currentUseCard.getCardType() == CARDTYPE.Attack) {
       int tempDamage = 0;
       currentEnemy[target - 1]
           .setDef(currentEnemy[target - 1].getDef() - currentUseCard.getCardValue());
@@ -220,7 +220,7 @@ public class Battle implements Serializable {
       }
       currentEnemy[target - 1].setHp(currentEnemy[target - 1].getHp() - tempDamage);
       // 목표로한적에게 데미지를 준다.
-    } else if (currentUseCard.getCardType() == CardType._HEAL_) {
+    } else if (currentUseCard.getCardType() == CARDTYPE._HEAL_) {
       player.setHp(player.getHp() + currentUseCard.getCardValue());
       player.status();
     }
@@ -247,21 +247,21 @@ public class Battle implements Serializable {
     else if (name.equals("형상변화")) {// 특수버프카드
       // 모든카드 변경을위해 묘지와 덱을 합치고 핸드를 따로바꿔준다
       tempBattleDeck = sortCard.deckPlusDeck(tempBattleDeck, graveCard);
-      if (currentCard.getCardType() == CardType.Attack) {
+      if (currentCard.getCardType() == CARDTYPE.Attack) {
         for (int i = 0; i < player.getHand().length; i++) {
-          player.getHand()[i].setCardType(CardType.Attack);
+          player.getHand()[i].setCardType(CARDTYPE.Attack);
           player.getHand()[i].setCardConsumeMana(player.getHand()[i].getCardConsumeMana() - 2);
         }
         for (int i = 0; i < tempBattleDeck.length; i++) {
-          tempBattleDeck[i].setCardType(CardType.Attack);
+          tempBattleDeck[i].setCardType(CARDTYPE.Attack);
           tempBattleDeck[i].setCardConsumeMana(tempBattleDeck[i].getCardConsumeMana() - 2);
         }
-      } else if (currentCard.getCardType() == CardType.Defend) {
+      } else if (currentCard.getCardType() == CARDTYPE.Defend) {
         for (int i = 0; i < player.getHand().length; i++) {
-          player.getHand()[i].setCardType(CardType.Defend);
+          player.getHand()[i].setCardType(CARDTYPE.Defend);
         }
         for (int i = 0; i < tempBattleDeck.length; i++) {
-          tempBattleDeck[i].setCardType(CardType.Defend);
+          tempBattleDeck[i].setCardType(CARDTYPE.Defend);
         }
         sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
         sortCard.sortAddCard(tempBattleDeck, cardData.totalCard(), 11);
@@ -270,8 +270,8 @@ public class Battle implements Serializable {
 
     else if (name.equals("꽃잎")) {
       TotalCardBase[] flower =
-          {new TotalCardBase("빨간꽃잎", CardType.Attack, 5, 0, 1000, "드로우", 1, true),
-              new TotalCardBase("파란꽃잎", CardType.Defend, 5, 0, 1000, "드로우", 1, true)};
+          {new TotalCardBase("빨간꽃잎", CARDTYPE.Attack, 5, 0, 1000, "드로우", 1, true),
+              new TotalCardBase("파란꽃잎", CARDTYPE.Defend, 5, 0, 1000, "드로우", 1, true)};
       for (int i = 0; i < value; i++) {
         player.setHand(sortCard.deckPlusDeck(player.getHand(), flower));
       }
@@ -346,6 +346,13 @@ public class Battle implements Serializable {
    * 턴이 끝났을 때 행동처리, 출혈등이나 스턴등의 효과를 구현할때도 다시 사용해야한다.
    **/
   public void playerTurnOff() {
+    Scanner scan = new Scanner(System.in);
+
+    if (currentEnemy.length > 0) {
+      System.out.println("턴을 종료합니다.");
+    }
+
+    scan.nextLine();
     playerTurn = false;// 턴끄고
     graveCard = sortCard.deckPlusDeck(graveCard, player.getHand());// 손을 묘지로 보내고
     player.disCardHand();

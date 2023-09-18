@@ -137,7 +137,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
           sortCard.deckPlusDeck(battle.getTempBattleDeck(), battle.getGraveCard()));
       for (int i = 0; i < battle.getTempBattleDeck().length; i++) {
         battle.getTempBattleDeck()[i]
-            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() - 2);
+            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() - 1);
       }
       EnemyCharacter[] nextForm =
           {new EnemyCharacter("모르데카이 3형태", 550, 0, 300, 0, 50, 200, 200000, 10, 7, 90, 0)};
@@ -151,7 +151,7 @@ public class EnemyActAi extends EnemyBattleAct implements Serializable {
           sortCard.deckPlusDeck(battle.getTempBattleDeck(), battle.getGraveCard()));
       for (int i = 0; i < battle.getTempBattleDeck().length; i++) {
         battle.getTempBattleDeck()[i]
-            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() + 2);
+            .setCardConsumeMana(battle.getTempBattleDeck()[i].getCardConsumeMana() + 1);
       }
     } else {
       plainAttack(actMonsterNumber);

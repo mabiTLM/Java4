@@ -5,6 +5,7 @@ import java.util.Scanner;
 import makeCardGame230901.SettingMenu;
 import makeCardGame230901.battleBundle.BattleCombine;
 import makeCardGame230901.battleBundle.MONSTERTYPE;
+import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
@@ -18,8 +19,9 @@ public class StageBase implements Serializable {
   MoveInVillage moveInvillage;
   PlayerCharacter player;
   SettingMenu settingMenu = new SettingMenu();
+  TotalCardBase watchCardInDungeon = new TotalCardBase();
 
-  protected int mapHeight = 21;
+  protected int mapHeight = 14;
   protected int mapWidth = 7;
   protected int firstMap[][] = new int[mapHeight][mapWidth];
 
@@ -37,12 +39,15 @@ public class StageBase implements Serializable {
     Scanner scan = new Scanner(System.in);
     while (true) {
       try {
-        System.out.println("어디로 이동할까요? 1,2,3 0.메뉴열기");
+        System.out.println("어디로 이동할까요? 1,2,3 0.메뉴열기 5.덱 확인");
 
         int choice = scan.nextInt();
         scan.nextLine();
         if (choice == 0) {
           player.setOpenMenu(true);
+        } else if (choice == 5) {
+          watchCardInDungeon.watchCardData(player.getCardDeck());
+          scan.nextLine();
         }
 
         else if (canMove(choice)) {

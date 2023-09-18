@@ -3,7 +3,7 @@ package makeCardGame230901.mapBundle;
 import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
-import makeCardGame230901.cardBundle.CardType;
+import makeCardGame230901.cardBundle.CARDTYPE;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
@@ -189,7 +189,7 @@ public class EventInDungeon implements Serializable {
           player.setDrawCardNumber(player.getDrawCardNumber() - 1);
           break;
         } else if (choice == 2) {
-          TotalCardBase[] bad = {new TotalCardBase("부상", CardType.Defend, 0, 0, 0)};
+          TotalCardBase[] bad = {new TotalCardBase("부상", CARDTYPE.Defend, 0, 0, 0)};
           player.setCardDeck(sortCard.sortAddCard(player.getCardDeck(), bad, 1));
           player.setCardDeck(sortCard.sortAddCard(player.getCardDeck(), bad, 1));
           break;
@@ -266,6 +266,7 @@ public class EventInDungeon implements Serializable {
 
     while (true) {
       try {
+        System.out.println("소지금 : " + player.getMoney());
         System.out.println("구매한 카드는 이번 모험에서만 사용가능하니 주의하라구");
         cardShop.watchCardDataDetail(currentShopCard);
         System.out.println("몇번 카드를 살래? 0.그만둔다.");

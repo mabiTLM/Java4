@@ -9,7 +9,7 @@ public class TotalCardBase implements Serializable {
    */
   private static final long serialVersionUID = 762256255537946830L;
   String cardName;
-  CardType cardType;// 공방 타입
+  CARDTYPE cardType;// 공방 타입
   private int cardValue;// 카드의 수치
   private int cardConsumeMana;
   private int cardPrice;
@@ -22,7 +22,10 @@ public class TotalCardBase implements Serializable {
 
   }
 
-  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+  /**
+   * 가장 기본적인 카드
+   **/
+  public TotalCardBase(String cardName, CARDTYPE cardType, int cardValue, int cardConsumeMana,
       int cardPrice) {
     this.cardName = cardName;
     this.cardType = cardType;
@@ -31,7 +34,10 @@ public class TotalCardBase implements Serializable {
     this.cardPrice = cardPrice;
   }
 
-  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+  /**
+   * 휘발성 카드
+   **/
+  public TotalCardBase(String cardName, CARDTYPE cardType, int cardValue, int cardConsumeMana,
       int cardPrice, boolean volatility) {
     this.cardName = cardName;
     this.cardType = cardType;
@@ -41,8 +47,23 @@ public class TotalCardBase implements Serializable {
     this.volatility = volatility;
   }
 
+  /**
+   * 고정 효과 카드
+   **/
+  public TotalCardBase(String cardName, CARDTYPE cardType, int cardValue, int cardConsumeMana,
+      int cardPrice, String effect) {
+    this.cardName = cardName;
+    this.cardType = cardType;
+    this.cardValue = cardValue;
+    this.cardConsumeMana = cardConsumeMana;
+    this.cardPrice = cardPrice;
+    this.effect = effect;
+  }
 
-  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+  /**
+   * 유동 효과 카드
+   **/
+  public TotalCardBase(String cardName, CARDTYPE cardType, int cardValue, int cardConsumeMana,
       int cardPrice, String effect, int effectValue) {
     this.cardName = cardName;
     this.cardType = cardType;
@@ -53,7 +74,10 @@ public class TotalCardBase implements Serializable {
     this.effectValue = effectValue;
   }
 
-  public TotalCardBase(String cardName, CardType cardType, int cardValue, int cardConsumeMana,
+  /**
+   * 유동 효과 휘발성 카드
+   **/
+  public TotalCardBase(String cardName, CARDTYPE cardType, int cardValue, int cardConsumeMana,
       int cardPrice, String effect, int effectValue, boolean volatility) {
     this.cardName = cardName;
     this.cardType = cardType;
@@ -70,32 +94,32 @@ public class TotalCardBase implements Serializable {
 
   public TotalCardBase[] totalCard()// 판매하지않는카드나 임시사용카드등 휘발성카드들을 위해서 따로 만들어둔다.
   {
-    cardData[0] = new TotalCardBase("공격", CardType.Attack, 7, 1, 10);
-    cardData[1] = new TotalCardBase("방어", CardType.Defend, 10, 1, 10);
-    cardData[2] = new TotalCardBase("2연참", CardType.Attack, 14, 2, 50);
-    cardData[3] = new TotalCardBase("굳히기", CardType.Defend, 20, 2, 50);
-    cardData[4] = new TotalCardBase("참격", CardType.Attack, 10, 1, 100);
-    cardData[5] = new TotalCardBase("굳건", CardType.Defend, 15, 1, 100);
-    cardData[6] = new TotalCardBase("속공", CardType.Attack, 10, 0, 100, "드로우", 1);
-    cardData[7] = new TotalCardBase("상처찢기", CardType.Attack, 40, 2, 100, "마무리", 1);
-    cardData[8] = new TotalCardBase("불굴", CardType.Defend, 15, 0, 100);
-    cardData[9] = new TotalCardBase("빛의수호", CardType.Defend, 80, 3, 100);
-    cardData[10] = new TotalCardBase("실드차지", CardType.Attack, 0, 1, 200, "실드차지", 1);
-    cardData[11] = new TotalCardBase("힐링", CardType._HEAL_, 10, 1, 10);
-    cardData[12] = new TotalCardBase("신속", CardType.Attack, 10, 1, 200, "드로우", 2);
-    cardData[13] = new TotalCardBase("스매시", CardType.Attack, 20, 2, 200, "방패깨기", 0);
-    cardData[14] = new TotalCardBase("재정비", CardType.Defend, 10, 0, 200, "드로우", 1);
-    cardData[15] = new TotalCardBase("환영베기", CardType.Attack, 25, 0, 200, "드로우", 1, true);
-    cardData[16] = new TotalCardBase("형상변화", CardType.Attack, 50, 5, 20000, "형상변화", 0, true);
-    cardData[17] = new TotalCardBase("형상변화", CardType.Defend, 100, 3, 20000, "형상변화", 0, true);
-    cardData[18] = new TotalCardBase("백화요란", CardType.Attack, 0, 2, 1000, "꽃잎", 5);
-    cardData[19] = new TotalCardBase("꽃봉오리", CardType.Attack, 0, 1, 1000, "꽃잎", 2);
-    cardData[20] = new TotalCardBase("씨앗", CardType.Attack, 0, 0, 1000, "꽃잎", 1);
-    cardData[21] = new TotalCardBase("만개", CardType.Attack, 0, 0, 1000, "만개", 1);
+    cardData[0] = new TotalCardBase("공격", CARDTYPE.Attack, 7, 1, 10);
+    cardData[1] = new TotalCardBase("방어", CARDTYPE.Defend, 10, 1, 10);
+    cardData[2] = new TotalCardBase("2연참", CARDTYPE.Attack, 14, 2, 50);
+    cardData[3] = new TotalCardBase("굳히기", CARDTYPE.Defend, 20, 2, 50);
+    cardData[4] = new TotalCardBase("참격", CARDTYPE.Attack, 12, 1, 100);
+    cardData[5] = new TotalCardBase("굳건", CARDTYPE.Defend, 15, 1, 100);
+    cardData[6] = new TotalCardBase("속공", CARDTYPE.Attack, 10, 1, 10000, "드로우", 1);
+    cardData[7] = new TotalCardBase("상처찢기", CARDTYPE.Attack, 40, 2, 5000, "마무리", 1);
+    cardData[8] = new TotalCardBase("불굴", CARDTYPE.Defend, 15, 0, 5000);
+    cardData[9] = new TotalCardBase("빛의수호", CARDTYPE.Defend, 80, 3, 10000);
+    cardData[10] = new TotalCardBase("실드차지", CARDTYPE.Attack, 0, 1, 20000, "실드차지", 1);
+    cardData[11] = new TotalCardBase("힐링", CARDTYPE._HEAL_, 10, 1, 10);
+    cardData[12] = new TotalCardBase("신속", CARDTYPE.Attack, 20, 2, 10000, "드로우", 3);
+    cardData[13] = new TotalCardBase("스매시", CARDTYPE.Attack, 20, 2, 20000, "방패깨기");
+    cardData[14] = new TotalCardBase("재정비", CARDTYPE.Defend, 10, 1, 20000, "드로우", 1);
+    cardData[15] = new TotalCardBase("환영베기", CARDTYPE.Attack, 25, 0, 10000, "드로우", 1, true);
+    cardData[16] = new TotalCardBase("형상변화", CARDTYPE.Attack, 50, 5, 20000, "형상변화", 0, true);
+    cardData[17] = new TotalCardBase("형상변화", CARDTYPE.Defend, 100, 3, 20000, "형상변화", 0, true);
+    cardData[18] = new TotalCardBase("백화요란", CARDTYPE._HEAL_, 15, 3, 10000, "꽃잎", 5);
+    cardData[19] = new TotalCardBase("꽃봉오리", CARDTYPE._HEAL_, 10, 2, 10000, "꽃잎", 2);
+    cardData[20] = new TotalCardBase("씨앗", CARDTYPE._HEAL_, 5, 1, 10000, "꽃잎", 1);
+    cardData[21] = new TotalCardBase("만개", CARDTYPE.Attack, 0, 0, 20000, "만개");
     return cardData;
   }
 
-  TotalCardBase[] shopData = new TotalCardBase[7];
+  TotalCardBase[] shopData = new TotalCardBase[20];
 
   public TotalCardBase[] shopSellCard() {
     shopData[0] = totalCard()[0];
@@ -104,7 +128,20 @@ public class TotalCardBase implements Serializable {
     shopData[3] = totalCard()[3];
     shopData[4] = totalCard()[4];
     shopData[5] = totalCard()[5];
-    shopData[6] = totalCard()[11];
+    shopData[6] = totalCard()[6];
+    shopData[7] = totalCard()[7];
+    shopData[8] = totalCard()[8];
+    shopData[9] = totalCard()[9];
+    shopData[10] = totalCard()[10];
+    shopData[11] = totalCard()[11];
+    shopData[12] = totalCard()[12];
+    shopData[13] = totalCard()[13];
+    shopData[14] = totalCard()[14];
+    shopData[15] = totalCard()[15];
+    shopData[16] = totalCard()[18];
+    shopData[17] = totalCard()[19];
+    shopData[18] = totalCard()[20];
+    shopData[19] = totalCard()[21];
     return shopData;
   }
 
@@ -151,20 +188,54 @@ public class TotalCardBase implements Serializable {
     dungeonShopCardData[6] = totalCard()[20];
     dungeonShopCardData[7] = totalCard()[21];
     dungeonShopCardData[8] = totalCard()[18];
+
+    for (int i = 0; i < dungeonShopCardData.length; i++) {
+      dungeonShopCardData[i].setCardPrice(dungeonShopCardData[i].getCardPrice() / 10);
+    }
     return dungeonShopCardData;
   }
 
-
+  /**
+   * 가격을 표시하지 않는 카드 상세
+   **/
   public void watchCardData(TotalCardBase[] cardSet) {
     for (int i = 0; i < cardSet.length; i++) {
-      System.out.println((i + 1) + "." + cardSet[i].getCardName() + " : " + cardSet[i].getCardType()
-          + "타입" + " /수치 : " + cardSet[i].getCardValue() + " /마나 : "
-          + cardSet[i].getCardConsumeMana() + " /종류 : " + cardSet[i].getEffect() + " /강화 : "
-          + cardSet[i].isEnforce() + " /휘발성 : " + cardSet[i].getVolatility());
+      System.out
+          .print((i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue());
+
+      if (cardSet[i].getCardType() == CARDTYPE.Attack) {
+        System.out.print("공격력");
+      }
+
+      else if (cardSet[i].getCardType() == CARDTYPE.Defend) {
+        System.out.print("방어도");
+      }
+
+      else if (cardSet[i].getCardType() == CARDTYPE._HEAL_) {
+        System.out.print("회복");
+      }
+
+
+      System.out.print(" /소비마나 : " + cardSet[i].getCardConsumeMana());
+
+      if (!cardSet[i].getEffect().equals("통상")) {
+
+        if (cardSet[i].getEffectValue() == 0) {
+          System.out.print(" /효과 : " + cardSet[i].getEffect());
+        } else {
+          System.out.print(" /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect());
+        }
+      }
+      if (cardSet[i].getVolatility()) {
+        System.out.print(" 휘발성");
+      }
+      System.out.println(" /강화 : " + cardSet[i].isEnforce());
+
     }
+
   }
 
-  public String isEnforce() {
+  private String isEnforce() {
     if (enforce) {
       return "강화됨";
     } else {
@@ -185,12 +256,16 @@ public class TotalCardBase implements Serializable {
     this.cardConsumeMana = cardConsumeMana;
   }
 
-  public void setCardType(CardType cardType) {
+  public void setCardType(CARDTYPE cardType) {
     this.cardType = cardType;
   }
 
+  private void setCardPrice(int cardPrice) {
+    this.cardPrice = cardPrice;
+  }
+
   // get모음
-  public CardType getCardType() {
+  public CARDTYPE getCardType() {
     return cardType;
   }
 

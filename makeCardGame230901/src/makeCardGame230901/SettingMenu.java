@@ -1,5 +1,6 @@
 package makeCardGame230901;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -52,9 +53,13 @@ public class SettingMenu implements Serializable {
       System.out.println("몇번칸에 저장하나요?");
       int saveNumber = scan.nextInt();
       scan.nextLine();
-      String path = SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/",
-          "save/savedata") + saveNumber + ".db";
-      FileOutputStream fos = new FileOutputStream(path);
+      String path =
+          SettingMenu.class.getResource("").getPath().replace("bin/makeCardGame230901/", "save");
+      File file = new File(path);
+      if (!file.exists()) {
+        file.mkdir();
+      }
+      FileOutputStream fos = new FileOutputStream(path + "/savedata" + saveNumber + ".db");
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       oos.writeObject(build);
       oos.flush();
