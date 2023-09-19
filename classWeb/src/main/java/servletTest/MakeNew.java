@@ -6,41 +6,33 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import makeCardGame230901.cardBundle.TotalCardBase;
 
-/**
- * Servlet implementation class MakeNew
- */
+
 @WebServlet("/MakeNew")
 public class MakeNew extends HttpServlet {
-
   /**
    * 
    */
   private static final long serialVersionUID = 6370713015178192768L;
 
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
   public MakeNew() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
-  /**
-   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-   */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // TODO Auto-generated method stub
-    response.getWriter().append("Served at: ").append(request.getContextPath());
+    response.setCharacterEncoding("UTF-8");
+    response.getWriter().append("<html>").append("<head>")
+        .append("<meta charset='UTF-8'/>" + "<title>게임</title>");
+    TotalCardBase card = new TotalCardBase();
+    response.getWriter().append(card.watchCardData(card.totalCard()).replace("\n", "<br>"));
+    System.out.println("확인용");
+    response.getWriter().append("</head><html>");
   }
 
-  /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-   */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // TODO Auto-generated method stub
     doGet(request, response);
   }
 

@@ -18,8 +18,6 @@ public class CreateServ extends HttpServlet {
    */
   private static final long serialVersionUID = 665207091866922583L;
 
-  // private static final long serialVersionUID = 1L;
-
   /**
    * @see HttpServlet#HttpServlet()
    */
@@ -36,6 +34,8 @@ public class CreateServ extends HttpServlet {
     // TODO Auto-generated method stub
 
     // response.sendRedirect("./first");
+
+    response.setCharacterEncoding("UTF-8");
 
     response.getWriter().append("<html>").append("<head>")
         .append("<meta charset='UTF-8'/>" + "<title>테스트중</title>" + "</head><html>")

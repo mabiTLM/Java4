@@ -198,40 +198,41 @@ public class TotalCardBase implements Serializable {
   /**
    * 가격을 표시하지 않는 카드 상세
    **/
-  public void watchCardData(TotalCardBase[] cardSet) {
+  public String watchCardData(TotalCardBase[] cardSet) {
+    String result = "";
     for (int i = 0; i < cardSet.length; i++) {
-      System.out
-          .print((i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue());
+
+      result += (i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue();
 
       if (cardSet[i].getCardType() == CARDTYPE.Attack) {
-        System.out.print("공격력");
+        result += "공격력";
       }
 
       else if (cardSet[i].getCardType() == CARDTYPE.Defend) {
-        System.out.print("방어도");
+        result += "방어도";
       }
 
       else if (cardSet[i].getCardType() == CARDTYPE._HEAL_) {
-        System.out.print("회복");
+        result += "회복";
       }
 
 
-      System.out.print(" /소비마나 : " + cardSet[i].getCardConsumeMana());
+      result += " /소비마나 : " + cardSet[i].getCardConsumeMana();
 
       if (!cardSet[i].getEffect().equals("통상")) {
 
         if (cardSet[i].getEffectValue() == 0) {
-          System.out.print(" /효과 : " + cardSet[i].getEffect());
+          result += " /효과 : " + cardSet[i].getEffect();
         } else {
-          System.out.print(" /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect());
+          result += " /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect();
         }
       }
       if (cardSet[i].getVolatility()) {
-        System.out.print(" 휘발성");
+        result += " 휘발성";
       }
-      System.out.println(" /강화 : " + cardSet[i].isEnforce());
-
+      result += " /강화 : " + cardSet[i].isEnforce() + "\n";
     }
+    return result;
 
   }
 
