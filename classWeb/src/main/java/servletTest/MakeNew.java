@@ -27,8 +27,12 @@ public class MakeNew extends HttpServlet {
         .append("<meta charset='UTF-8'/>" + "<title>게임</title>");
     TotalCardBase card = new TotalCardBase();
     response.getWriter().append(card.watchCardData(card.totalCard()).replace("\n", "<br>"));
-    System.out.println("확인용");
+    response.getWriter().append("<input type=\"text\">");
     response.getWriter().append("</head><html>");
+  }
+
+  public void a() {
+    System.out.println("실험");
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
