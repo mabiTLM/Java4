@@ -195,46 +195,88 @@ public class TotalCardBase implements Serializable {
     return dungeonShopCardData;
   }
 
+  // /**
+  //  * 가격을 표시하지 않는 카드 상세 서버표기용 리턴준거
+  //  **/
+  // public String watchCardData(TotalCardBase[] cardSet) {
+  //   String result = "";
+  //   for (int i = 0; i < cardSet.length; i++) {
+
+  //     result += (i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue();
+
+  //     if (cardSet[i].getCardType() == CARDTYPE.Attack) {
+  //       result += "공격력";
+  //     }
+
+  //     else if (cardSet[i].getCardType() == CARDTYPE.Defend) {
+  //       result += "방어도";
+  //     }
+
+  //     else if (cardSet[i].getCardType() == CARDTYPE._HEAL_) {
+  //       result += "회복";
+  //     }
+
+
+  //     result += " /소비마나 : " + cardSet[i].getCardConsumeMana();
+
+  //     if (!cardSet[i].getEffect().equals("통상")) {
+
+  //       if (cardSet[i].getEffectValue() == 0) {
+  //         result += " /효과 : " + cardSet[i].getEffect();
+  //       } else {
+  //         result += " /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect();
+  //       }
+  //     }
+  //     if (cardSet[i].getVolatility()) {
+  //       result += " 휘발성";
+  //     }
+  //     result += " /강화 : " + cardSet[i].isEnforce() + "\n";
+  //   }
+  //   return result;
+
+  // }
+
   /**
    * 가격을 표시하지 않는 카드 상세
    **/
-  public String watchCardData(TotalCardBase[] cardSet) {
-    String result = "";
+  public void watchCardData(TotalCardBase[] cardSet) {
     for (int i = 0; i < cardSet.length; i++) {
 
-      result += (i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue();
+      System.out.print((i + 1) + ". " + cardSet[i].getCardName() + " : " + cardSet[i].getCardValue());
 
       if (cardSet[i].getCardType() == CARDTYPE.Attack) {
-        result += "공격력";
+        System.out.print("공격력");
       }
 
       else if (cardSet[i].getCardType() == CARDTYPE.Defend) {
-        result += "방어도";
+        System.out.print("방어도");
       }
 
       else if (cardSet[i].getCardType() == CARDTYPE._HEAL_) {
-        result += "회복";
+        System.out.print("회복");
       }
 
 
-      result += " /소비마나 : " + cardSet[i].getCardConsumeMana();
+      System.out.print(" /소비마나 : " + cardSet[i].getCardConsumeMana());
 
       if (!cardSet[i].getEffect().equals("통상")) {
 
         if (cardSet[i].getEffectValue() == 0) {
-          result += " /효과 : " + cardSet[i].getEffect();
+          System.out.print(" /효과 : " + cardSet[i].getEffect());
         } else {
-          result += " /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect();
+          System.out.print(" /효과 : " + cardSet[i].getEffectValue() + cardSet[i].getEffect());
         }
       }
       if (cardSet[i].getVolatility()) {
-        result += " 휘발성";
+        System.out.print(" 휘발성");
       }
-      result += " /강화 : " + cardSet[i].isEnforce() + "\n";
+      System.out.print(" /강화 : " + cardSet[i].isEnforce() + "\n");
     }
-    return result;
 
   }
+
+
+
 
   private String isEnforce() {
     if (enforce) {
