@@ -200,7 +200,7 @@ class FindArray {
   static int[] FindCommonItems(int[] arr1, int[] arr2, int[] arr3) {
 
     int[] resultArr1Arr2 = {};
-    int[] resultArr2Arr3 = {};
+    int[] resultArr1Arr3 = {};
 
     int[] result = {};
 
@@ -210,20 +210,18 @@ class FindArray {
           resultArr1Arr2 = add(resultArr1Arr2, arr2[j]);
         }
       }
-    }
 
-    for (int i = 0; i < arr3.length; i++) {
-      for (int j = 0; j < arr2.length; j++) {
-        if (arr2[j] == arr3[i]) {
-          resultArr2Arr3 = add(resultArr2Arr3, arr2[j]);
+      for (int j = 0; j < arr3.length; j++) {
+        if (arr1[i] == arr3[j]) {
+          resultArr1Arr3 = add(resultArr1Arr3, arr3[j]);
         }
       }
     }
 
     for (int i = 0; i < resultArr1Arr2.length; i++) {
-      for (int j = 0; j < resultArr2Arr3.length; j++) {
-        if (resultArr2Arr3[j] == resultArr1Arr2[i]) {
-          result = add(result, resultArr2Arr3[j]);
+      for (int j = 0; j < resultArr1Arr3.length; j++) {
+        if (resultArr1Arr3[j] == resultArr1Arr2[i]) {
+          result = add(result, resultArr1Arr3[j]);
         }
       }
     }
