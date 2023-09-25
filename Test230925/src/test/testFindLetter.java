@@ -196,6 +196,7 @@ class Calculate {
  * k개의 정렬된 배열에서 공통항목을 찾는 Solution을 완성하라.단, 중복은 허용하지 않는다.
  **/
 class FindArray {
+
   static int[] FindCommonItems(int[] arr1, int[] arr2, int[] arr3) {
 
     int[] resultArr1Arr2 = {};
@@ -266,7 +267,8 @@ class UpdownGame {
   void updownGame() {
     Scanner scan = new Scanner(System.in);
     int choice = 0;
-    while (true) {
+    boolean gameOn = true;
+    while (gameOn) {
       int answer = (int) (Math.random() * 1000);
       int canCollect = 10;
 
@@ -296,21 +298,25 @@ class UpdownGame {
         }
       } // 내부while
 
-      System.out.println("1.재시작 2.종료");
-      try {
-        choice = scan.nextInt();
-
-        if (choice == 1) {
-          continue;
-        } else if (choice == 2) {
-          break;
+      while (true) {
+        System.out.println("1.재시작 2.종료");
+        try {
+          choice = scan.nextInt();
+          scan.nextLine();
+          if (choice == 1) {
+            break;
+          } else if (choice == 2) {
+            gameOn = false;
+            break;
+          } else {
+            System.out.println("다시 입력해주세요");
+          }
+        } catch (Exception e) {
+          scan.nextLine();
+          System.out.println("숫자만 입력해주세요");
+          e.printStackTrace();
         }
-      } catch (Exception e) {
-        scan.nextLine();
-        System.out.println("숫자만 입력해주세요");
-        e.printStackTrace();
       }
-
     } // 재시작 while
   }
 
