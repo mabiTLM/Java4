@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class testFindLetter {
   public static void main(String[] args) {
+
+    // 문제마다 클래스를 새로파서 주석으로 달아놨습니다.
+
     Find find = new Find();
     Reverse reverse = new Reverse();
     StringTrim removeBlank = new StringTrim();
