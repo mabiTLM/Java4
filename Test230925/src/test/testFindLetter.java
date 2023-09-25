@@ -41,6 +41,7 @@ public class testFindLetter {
         System.out.print(",");
       }
     }
+
     updownGame.updownGame();
 
 
@@ -235,6 +236,7 @@ class FindArray {
     for (int i = 0; i < result.length; i++) {
       if (result[i] == num) {
         same = true;
+        break;
       }
     }
 
