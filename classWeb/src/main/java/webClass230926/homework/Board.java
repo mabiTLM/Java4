@@ -69,7 +69,9 @@ public class Board extends HttpServlet {
     html += "<div>내용 : " + temp.getPost() + "</div>";
 
     html += "<a href = ./board><button>돌아가기</button></a>";
-    html += "<a href = ./board><button>게시글 삭제 미구현</button></a>";
+    html += "<form action = 'delete?postNumber=" + temp.getIdNumber() + "' method='post'>";
+    html += "<button>게시글 삭제</button>";
+    html += "</form>";
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);

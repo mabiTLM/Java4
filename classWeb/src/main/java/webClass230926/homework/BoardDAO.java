@@ -8,12 +8,14 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import webClass230926.student.StudentVO;
 
 public class BoardDAO {
 
   private Connection con;
 
+  /**
+   * 게시글 나열하기
+   **/
   public List<BoardVO> getList() {
     List<BoardVO> list = new ArrayList<BoardVO>();
 
@@ -36,7 +38,9 @@ public class BoardDAO {
     return list;
   }
 
-
+  /**
+   * 다른 함수들 처리를 위해 모든 정보 불러오기
+   **/
   public BoardVO getBoard(int postId) {
     BoardVO temp = null;
     try {
@@ -59,8 +63,11 @@ public class BoardDAO {
   }
 
 
-  public StudentVO insertBoard(String title, String writer, String post) {
-    StudentVO temp = null;
+  /**
+   * 게시글쓰기
+   **/
+  public BoardVO insertBoard(String title, String writer, String post) {
+    BoardVO temp = null;
     try {
       connect();
       String insertQuery = "insert into board (title,writer,post) values (?,?,?)";;
@@ -68,6 +75,25 @@ public class BoardDAO {
       pstmt.setString(1, title);
       pstmt.setString(2, writer);
       pstmt.setString(3, post);
+      pstmt.executeUpdate();
+      pstmt.close();
+      con.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return temp;
+  }
+
+  /**
+   * 게시글번호기반으로 삭제
+   **/
+  public BoardVO deleteBoard(int id) {
+    BoardVO temp = null;
+    try {
+      connect();
+      String insertQuery = "delete from board where id =?";;
+      PreparedStatement pstmt = con.prepareStatement(insertQuery);
+      pstmt.setInt(1, id);
       pstmt.executeUpdate();
       pstmt.close();
       con.close();
