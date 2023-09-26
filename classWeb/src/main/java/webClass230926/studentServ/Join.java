@@ -1,7 +1,6 @@
 package webClass230926.studentServ;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +23,6 @@ public class Join extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    StudentDAO dao = new StudentDAO();
-    List<StudentVO> list = dao.getList();
 
     response.setCharacterEncoding("UTF-8");
     String html = "<html>";

@@ -129,10 +129,8 @@ public class StudentDAO {
   // }
 
   private void connect() throws Exception {
-
     // Class.forName("oracle.jdbc.OracleDriver");
     // con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "java", "qwer");
-
     Context ctx = new InitialContext();
     // DriverManager =>DM
     // initialize 초기화
