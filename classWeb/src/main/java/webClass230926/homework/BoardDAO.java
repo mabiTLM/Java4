@@ -91,9 +91,30 @@ public class BoardDAO {
     BoardVO temp = null;
     try {
       connect();
-      String insertQuery = "delete from board where id =?";;
-      PreparedStatement pstmt = con.prepareStatement(insertQuery);
+      String deleteQuery = "delete from board where id =?";
+      PreparedStatement pstmt = con.prepareStatement(deleteQuery);
       pstmt.setInt(1, id);
+      pstmt.executeUpdate();
+      pstmt.close();
+      con.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return temp;
+  }
+
+  /**
+   * 게시글번호기반으로 수정
+   **/
+  public BoardVO editBoard(int id, String title, String post) {
+    BoardVO temp = null;
+    try {
+      connect();
+      String updateQuery = "update board set title=? post=? where id = ?";
+      PreparedStatement pstmt = con.prepareStatement(updateQuery);
+      pstmt.setString(1, title);
+      pstmt.setString(2, post);
+      pstmt.setInt(3, id);
       pstmt.executeUpdate();
       pstmt.close();
       con.close();

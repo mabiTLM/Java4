@@ -18,6 +18,8 @@ public class WritePage extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    String currentId = request.getParameter("student-id");
+
     response.setCharacterEncoding("UTF-8");
     String html = "<html>";
     html += "<head>";
@@ -28,9 +30,8 @@ public class WritePage extends HttpServlet {
     html += "</head>";
     html += "<body>";
 
-    html += "<form action = 'writePage' method='post'>";
+    html += "<form action = 'writePage?writer = " + currentId + "' method='post'>";
     html += "<input type = 'text' name ='title' placeholder='제목'/>";
-    html += "<input type = 'text' name ='writer' placeholder='로그인미구현으로 수동'/>";
     html += "<input type = 'text' name ='post' placeholder='내용을 적어주세요'/>";
     html += "<button>작성하기</button>";
     html += "</form>";

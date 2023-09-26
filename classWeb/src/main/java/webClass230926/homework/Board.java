@@ -18,7 +18,9 @@ public class Board extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    String currentId = request.getParameter("student-id");
 
+    // 오류가 없다면 if(currentId!=null) 처리하면 된다.
     BoardDAO dao = new BoardDAO();
     List<BoardVO> list = dao.getList();
     response.setCharacterEncoding("UTF-8");
@@ -34,14 +36,16 @@ public class Board extends HttpServlet {
     html += "<ol>";
     for (int i = 0; i < list.size(); ++i) {
       html += "<li>";
-      html += "<form action = 'board?postNumber=" + list.get(i).getIdNumber() + "' method='post'>";
+      html += "<form action = 'board?postNumber=" + list.get(i).getIdNumber() + "&student-id="
+          + currentId + "' method='post'>";
       html += "<button>" + list.get(i).getTitle() + "</button>";
       html += "</form>";
       html += "</li>";
     }
     html += "</ol>";
-
-    html += "<a href = ./writePage><button>글쓰기</button></a>";
+    html += "<form action = 'writePage?student-id=" + currentId + "' method='post'>";
+    html += "<button>글쓰기</button>";
+    html += "</form>";
 
     html += "</body>";
     html += "</html>";
@@ -50,6 +54,7 @@ public class Board extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    String currentId = request.getParameter("student-id");
     int postNumber = Integer.parseInt(request.getParameter("postNumber"));
     BoardDAO dao = new BoardDAO();
     BoardVO temp = dao.getBoard(postNumber);
@@ -62,16 +67,22 @@ public class Board extends HttpServlet {
     html += "</title>";
     html += "</head>";
     html += "<body>";
-
     html += "<div>제목 : " + temp.getTitle() + "</div>";
     html += "<div>작성자 : " + temp.getWriter() + "</div>";
     html += "<div>작성시각 : " + temp.getDate() + "</div>";
     html += "<div>내용 : " + temp.getPost() + "</div>";
 
     html += "<a href = ./board><button>돌아가기</button></a>";
-    html += "<form action = 'delete?postNumber=" + temp.getIdNumber() + "' method='post'>";
-    html += "<button>게시글 삭제</button>";
-    html += "</form>";
+
+    if (temp.getWriter().equals(currentId)) {// 접속아이디와 게시물작성자가 같을때만 수정과 삭제가능
+      html += "<form action = 'edit?postNumber=" + temp.getIdNumber() + "' method='get'>";
+      html += "<button>게시글 수정</button>";
+      html += "</form>";
+
+      html += "<form action = 'delete?postNumber=" + temp.getIdNumber() + "' method='post'>";
+      html += "<button>게시글 삭제</button>";
+      html += "</form>";
+    }
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);

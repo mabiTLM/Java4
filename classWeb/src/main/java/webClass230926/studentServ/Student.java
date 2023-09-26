@@ -56,6 +56,9 @@ public class Student extends HttpServlet {
       html += student.getName() + "님 어서오세요.";
       html += "</div>";
       html += "<a href='./student'><button>로그아웃</button></a>";
+      html += "<form action = 'board?student-id= " + student.getId() + "' method='post'>";
+      html += "<button>게시판으로</button>";
+      html += "</form>";
     }
     html += "<ol>";
     for (int i = 0; i < list.size(); ++i) {
