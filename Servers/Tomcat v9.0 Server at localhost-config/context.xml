@@ -35,6 +35,8 @@
     	url = "jdbc:oracle:thin:@localhost:1521/xe"
     	username = "java"
     	password = "qwer"
+    	maxActive ="50"
+    	maxWait = "-1"
     />
     
 </Context>
