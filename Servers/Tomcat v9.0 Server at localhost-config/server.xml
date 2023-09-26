@@ -162,7 +162,7 @@
 
 	
 
-      <Context docBase="classWeb" path="/classWeb" reloadable="true" source="org.eclipse.jst.jee.server:classWeb"/><Context docBase="makeCardGame230901" path="/makeCardGame230901" reloadable="true" source="org.eclipse.jst.jee.server:makeCardGame230901"/></Host>
+      </Host>
     </Engine>
   </Service>
 </Server>
