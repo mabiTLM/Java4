@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/CreateServ")
 public class CreateServ extends HttpServlet {
-
   /**
    * 
    */
