@@ -26,8 +26,13 @@ public class Student extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    System.out.println("id : " + request.getParameter("id"));
     StudentDAO dao = new StudentDAO();
     List<StudentVO> list = dao.getList();
+    StudentVO student = null;
+    if (request.getParameter("id") != null) {
+      student = dao.getStudent(Integer.parseInt(request.getParameter("id")));
+    }
     System.out.println(list.size());
     response.setCharacterEncoding("UTF-8");
     String html = "<html>";
@@ -38,6 +43,20 @@ public class Student extends HttpServlet {
     html += "</title>";
     html += "</head>";
     html += "<body>";
+
+    if (student == null) {
+      html += "<form action = 'student' method='post'>";
+      html += "<input type = 'text' name ='student-id' placeholder='ID'/>";
+      html += "<input type = 'text' name ='student-pw' placeholder='PASSWORD'/>";
+      html += "<button>로그인</button>";
+      html += "</form>";
+      html += "<a href='./join'> <button>회원가입</button></a>";
+    } else {
+      html += "<div>";
+      html += student.getName() + "님 어서오세요.";
+      html += "</div>";
+      html += "<a href='./student'><button>로그아웃</button></a>";
+    }
     html += "<ol>";
     for (int i = 0; i < list.size(); ++i) {
       html += "<li>";
@@ -48,13 +67,22 @@ public class Student extends HttpServlet {
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);
-
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    doGet(request, response);
+    // doGet(request, response);
+    String studentId = request.getParameter("student-id");// name과 매치를 시킨다
+    String password = request.getParameter("student-pw");
+    StudentDAO dao = new StudentDAO();
+    StudentVO temp = dao.getStudent(studentId);
+    System.out.println(temp);
+    if (temp != null && password.equals(temp.getstudentPw())) {
+      response.sendRedirect("student" + "?id=" + temp.getId());
+    } else {
+      response.sendRedirect("student");
+    }
+    // response.getWriter().append("testing");
   }
 
 }
