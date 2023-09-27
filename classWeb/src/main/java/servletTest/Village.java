@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/village")
 public class Village extends HttpServlet {
-  /**
-   * 
-   */
   private static final long serialVersionUID = 6370713015178192768L;
 
   public Village() {
