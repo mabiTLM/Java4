@@ -151,8 +151,8 @@
       
       <!-- 추가 수정 절대경로만되는중-->
       <Context docBase="C:/Users/KGA/git/Java4/classWeb/src/main/java/servletTest/scripts" path="/scripts/" reloadable="true"/>
-      <Context docBase="C:/Users/KGA/git/Java4/classWeb/src/main/java/servletTest/styles" path="/styles/" reloadable="true"/>
-      <!-- 추가 수정 -->
+    <!--  <Context docBase="C:/Users/KGA/git/Java4/classWeb/src/main/java/servletTest/styles" path="/styles/" reloadable="true"/>
+     --> <!-- 추가 수정 -->
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
