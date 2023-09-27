@@ -1,4 +1,4 @@
-let card = ["1", "21", "3"];
+let card = ["2연참","공격","공격","공격","굳히기","방어","방어","방어"];
 
 function setCookie(name, value) {
   var exdate = new Date();

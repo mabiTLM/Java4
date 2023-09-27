@@ -9,6 +9,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/KGA/git/Java4/makeCardGame230901/dist/makeCardGame230901.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
