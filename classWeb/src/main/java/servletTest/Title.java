@@ -30,14 +30,15 @@ public class Title extends HttpServlet {
     html += "<link rel='stylesheet' href='styles/style.css' />";
     html += "</head>";
     html += "<body>";
+    html += "<div>";
     html += "<a href='village'>";
     html += "<button style='text-align: center; font-size: 100px' onclick='newGame()'>";
     html += "새로운 시작";
     html += "</button>";
     html += "</a>";
+    html += "</div>";
     html += "</body>";
     html += "</html>";
-
     response.getWriter().append(html);
 
   }

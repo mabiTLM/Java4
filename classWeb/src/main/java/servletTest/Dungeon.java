@@ -1,19 +1,20 @@
 package servletTest;
 
 import java.io.IOException;
-import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
+import makeCardGame230901.mapBundle.FirstFloor;
 
 @WebServlet("/dungeon")
 public class Dungeon extends HttpServlet {
 
   private boolean makeDungeon = true;
-  private int firstMap[][] = new int[14][7];
-
+  private boolean isEvent = false;
+  FirstFloor make = new FirstFloor();
   private static final long serialVersionUID = 6758670203372055408L;
 
   public Dungeon() {
@@ -23,38 +24,86 @@ public class Dungeon extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {// 여기다 맵표시
     if (makeDungeon) {
-      Random random = new Random();
-      for (int i = 0; i < 14; i++) {
-        for (int j = 0; j < 7; j++) {
-          int roomPercent = random.nextInt(100);
-          int roomType = 0;
-          if (i == 14 - 1) {
-            continue;
-          }
-          if (roomPercent >= 92)// 강한몹
-          {
-            roomType = 1;
-          } else if (roomPercent >= 39)// 일반몹1
-          {
-            roomType = 2;
-          } else if (roomPercent >= 17)// 이벤트
-          {
-            roomType = 3;
-          } else if (roomPercent >= 5)// 불
-          {
-            roomType = 4;
-          } else if (roomPercent >= 0)// 상점
-          {
-            roomType = 5;
-          }
-
-          firstMap[i][j] = roomType;
-        }
-      }
+      make.makeFirstMap();
+      makeDungeon = false;
     }
+    int[][] temp = make.getFirstMap();
+
+    response.setCharacterEncoding("UTF-8");
+    String html = "";
+    html += "<!DOCTYPE html>";
+    html += "<html lang='ko'>";
+    html += "<head>";
+    html += "<meta charset='UTF-8' />";
+    html += "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
+    html += "<title>던전</title>";
+    html += "<script src='scripts/makeCardGame.js'></script>";
+    html += "<link rel='stylesheet' href='styles/style.css' />";
+    html += "</head>";
+    html += "<body>";
+
+    for (int i = 0; i < temp.length; i++) {
+      html += "<div>";
+      for (int j = 0; j < temp[0].length; j++) {
+        html += "<form action='dungeon' method='post'>";
+        html += "<input type = 'hidden' name ='event' value = '" + temp[i][j] + "'/>";
+        html += "<button>";
+        if (temp[i][j] == 1) {
+          html += "엘리트";
+        } else if (temp[i][j] == 2) {
+          html += "일반몹";
+        } else if (temp[i][j] == 3) {
+          html += "이벤트";
+        } else if (temp[i][j] == 4) {
+          html += "모닥불";
+        } else if (temp[i][j] == 5) {
+          html += "상_점";
+        }
+        html += "</button>";
+        html += "</form>";
+      }
+      html += "<br>";
+      html += "</div>";
+    }
+
+    html += "</body>";
+    html += "</html>";
+    response.getWriter().append(html);
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {// 이벤트발생하면 여기서 처리
+
+    int temp = Integer.parseInt(request.getParameter("event"));
+    response.setCharacterEncoding("UTF-8");
+    String html = "";
+    html += "<!DOCTYPE html>";
+    html += "<html lang='ko'>";
+    html += "<head>";
+    html += "<meta charset='UTF-8' />";
+    html += "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
+    html += "<title>던전</title>";
+    html += "<script src='scripts/makeCardGame.js'></script>";
+    html += "<link rel='stylesheet' href='styles/style.css' />";
+    html += "</head>";
+    html += "<body>";
+
+    if (temp == 1) {
+      FirstFloorEnemy monster = new FirstFloorEnemy();
+      html += "<button>";
+      html += monster.stageEliteData()[0].getName();
+      html += "</button>";
+    }
+
+    if (isEvent) {// 각이벤트마다 설정해주자
+      html += "<form action='dungeon'>";
+      html += "<button>";
+      html += "확인";
+      html += "</button>";
+      html += "</form>";
+    }
+    html += "</body>";
+    html += "</html>";
+    response.getWriter().append(html);
   }
 }

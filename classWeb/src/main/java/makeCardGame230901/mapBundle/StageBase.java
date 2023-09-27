@@ -10,9 +10,6 @@ import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
 public class StageBase implements Serializable {
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1542812992788523986L;
   EventInDungeon eventInDungeon;
   BattleCombine battleCombine;
@@ -27,6 +24,10 @@ public class StageBase implements Serializable {
 
   private int height = mapHeight - 1;
   private int width = 3;
+
+  StageBase() {
+
+  }
 
   StageBase(BattleCombine battleCombine, MoveInVillage moveInvillage, PlayerCharacter player) {
     this.battleCombine = battleCombine;
@@ -156,5 +157,9 @@ public class StageBase implements Serializable {
 
   public int getWidth() {
     return width;
+  }
+
+  public int[][] getFirstMap() {
+    return firstMap;
   }
 }

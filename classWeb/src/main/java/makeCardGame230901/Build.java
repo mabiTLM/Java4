@@ -9,9 +9,6 @@ import makeCardGame230901.mapBundle.MoveInDungeon;
 import makeCardGame230901.village.MoveInVillage;
 
 public class Build implements Serializable {
-  /**
-   * 
-   */
   private static final long serialVersionUID = -233598961694881345L;
   private PlayerCharacter player = new PlayerCharacter();
   private Battle battle = new Battle(player);

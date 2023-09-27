@@ -11,6 +11,10 @@ public class FirstFloor extends StageBase {
    */
   private static final long serialVersionUID = -4972267835659690844L;
 
+  public FirstFloor() {
+    super();
+  }
+
   FirstFloor(BattleCombine battleCombine, MoveInVillage moveInvillage, PlayerCharacter player) {
     super(battleCombine, moveInvillage, player);
     // TODO Auto-generated constructor stub
