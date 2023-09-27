@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/writePage")
 public class WritePage extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+
+  private static final long serialVersionUID = 5890753821823199391L;
 
   public WritePage() {
     super();
@@ -30,13 +31,17 @@ public class WritePage extends HttpServlet {
     html += "</head>";
     html += "<body>";
 
-    html += "<form action = 'writePage?writer = " + currentId + "' method='post'>";
+    html += "<form action = 'writePage' method='post'>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
     html += "<input type = 'text' name ='title' placeholder='제목'/>";
     html += "<input type = 'text' name ='post' placeholder='내용을 적어주세요'/>";
     html += "<button>작성하기</button>";
     html += "</form>";
 
-    html += "<a href = './board'> <button>돌아가기</button> </a>";
+    html += "<form action = 'board' method='get'>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
+    html += "<button>돌아가기</button>";
+    html += "</form>";
 
     html += "</body>";
     html += "</html>";
@@ -48,11 +53,11 @@ public class WritePage extends HttpServlet {
       throws ServletException, IOException {
     String title = request.getParameter("title");
     String post = request.getParameter("post");
-    String writer = request.getParameter("writer");
+    String writer = request.getParameter("student-id");
 
     BoardDAO temp = new BoardDAO();
     temp.insertBoard(title, writer, post);
-    response.sendRedirect("board");
+    response.sendRedirect("board?student-id=" + writer);
 
 
   }

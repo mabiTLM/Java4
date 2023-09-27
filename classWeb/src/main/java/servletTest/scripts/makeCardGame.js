@@ -1,4 +1,4 @@
-let card = ["1", "21", "3"];
+let card = [];
 
 function setCookie(name, value) {
   var exdate = new Date();

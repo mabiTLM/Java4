@@ -26,14 +26,14 @@ public class Student extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    System.out.println("id : " + request.getParameter("id"));
+    // System.out.println("id : " + request.getParameter("id"));
     StudentDAO dao = new StudentDAO();
     List<StudentVO> list = dao.getList();
     StudentVO student = null;
     if (request.getParameter("id") != null) {
       student = dao.getStudent(Integer.parseInt(request.getParameter("id")));
     }
-    System.out.println(list.size());
+    // System.out.println(list.size());
     response.setCharacterEncoding("UTF-8");
     String html = "<html>";
     html += "<head>";
@@ -56,9 +56,12 @@ public class Student extends HttpServlet {
       html += student.getName() + "님 어서오세요.";
       html += "</div>";
       html += "<a href='./student'><button>로그아웃</button></a>";
-      html += "<form action = 'board?student-id= " + student.getId() + "' method='post'>";
+      html += "<form action = 'board' method='get'>";
+      html +=
+          "<input type = 'hidden' name ='student-id' value = '" + student.getStudentId() + "'/>";
       html += "<button>게시판으로</button>";
-      html += "</form>";
+      html += "<form>";
+
     }
     html += "<ol>";
     for (int i = 0; i < list.size(); ++i) {
@@ -79,7 +82,7 @@ public class Student extends HttpServlet {
     String password = request.getParameter("student-pw");
     StudentDAO dao = new StudentDAO();
     StudentVO temp = dao.getStudent(studentId);
-    System.out.println(temp);
+    // System.out.println(temp);
     if (temp != null && password.equals(temp.getstudentPw())) {
       response.sendRedirect("student" + "?id=" + temp.getId());
     } else {

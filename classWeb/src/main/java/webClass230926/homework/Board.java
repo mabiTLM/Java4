@@ -20,7 +20,6 @@ public class Board extends HttpServlet {
       throws ServletException, IOException {
     String currentId = request.getParameter("student-id");
 
-    // 오류가 없다면 if(currentId!=null) 처리하면 된다.
     BoardDAO dao = new BoardDAO();
     List<BoardVO> list = dao.getList();
     response.setCharacterEncoding("UTF-8");
@@ -43,8 +42,13 @@ public class Board extends HttpServlet {
       html += "</li>";
     }
     html += "</ol>";
-    html += "<form action = 'writePage?student-id=" + currentId + "' method='post'>";
+    html += "<form action = 'writePage' method='get'>";
     html += "<button>글쓰기</button>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
+    html += "</form>";
+
+    html += "<form action = 'student' method='get'>";
+    html += "<button>로그아웃</button>";
     html += "</form>";
 
     html += "</body>";
@@ -72,14 +76,21 @@ public class Board extends HttpServlet {
     html += "<div>작성시각 : " + temp.getDate() + "</div>";
     html += "<div>내용 : " + temp.getPost() + "</div>";
 
-    html += "<a href = ./board><button>돌아가기</button></a>";
+    html += "<form action = 'board' method='get'>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
+    html += "<button>돌아가기</button>";
+    html += "</form>";
 
     if (temp.getWriter().equals(currentId)) {// 접속아이디와 게시물작성자가 같을때만 수정과 삭제가능
-      html += "<form action = 'edit?postNumber=" + temp.getIdNumber() + "' method='get'>";
+      html += "<form action = 'edit' method='get'>";
+      html += "<input type = 'hidden' name ='postNumber' value = '" + temp.getIdNumber() + "'/>";
+      html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
       html += "<button>게시글 수정</button>";
       html += "</form>";
 
-      html += "<form action = 'delete?postNumber=" + temp.getIdNumber() + "' method='post'>";
+      html += "<form action = 'delete' method='post'>";
+      html += "<input type = 'hidden' name ='postNumber' value = '" + temp.getIdNumber() + "'/>";
+      html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
       html += "<button>게시글 삭제</button>";
       html += "</form>";
     }

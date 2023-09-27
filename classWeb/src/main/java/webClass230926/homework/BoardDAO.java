@@ -110,7 +110,7 @@ public class BoardDAO {
     BoardVO temp = null;
     try {
       connect();
-      String updateQuery = "update board set title=? post=? where id = ?";
+      String updateQuery = "update board set title=?, post=? where id = ?";
       PreparedStatement pstmt = con.prepareStatement(updateQuery);
       pstmt.setString(1, title);
       pstmt.setString(2, post);

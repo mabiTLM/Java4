@@ -14,7 +14,7 @@ import webClass230926.student.StudentVO;
  */
 @WebServlet("/join")
 public class Join extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = -5922994481993275404L;
 
   public Join() {
     super();

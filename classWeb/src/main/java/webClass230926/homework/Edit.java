@@ -32,13 +32,18 @@ public class Edit extends HttpServlet {
     html += "</head>";
     html += "<body>";
 
-    html += "<form action = 'edit?postNumber=" + temp.getIdNumber() + "' method='post'>";
+    html += "<form action = 'edit' method='post'>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + temp.getWriter() + "'/>";
+    html += "<input type = 'hidden' name ='postNumber' value = '" + temp.getIdNumber() + "'/>";
     html += "<input type = 'text' name ='title' value = '" + temp.getTitle() + "'/>";
     html += "<input type = 'text' name ='post' value = ' " + temp.getPost() + " '/>";
     html += "<button>수정하기</button>";
     html += "</form>";
 
-    html += "<a href = './board'> <button>돌아가기</button> </a>";
+    html += "<form action = 'board' method='get'>";
+    html += "<input type = 'hidden' name ='student-id' value = '" + temp.getIdNumber() + "'/>";
+    html += "<button>돌아가기</button>";
+    html += "</form>";
 
     html += "</body>";
     html += "</html>";
@@ -50,9 +55,9 @@ public class Edit extends HttpServlet {
       throws ServletException, IOException {
     int postNumber = Integer.parseInt(request.getParameter("postNumber"));
     BoardDAO dao = new BoardDAO();
-    BoardVO temp = dao.getBoard(postNumber);
-    dao.editBoard(postNumber, temp.getTitle(), temp.getPost());
-    response.sendRedirect("board");
+    System.out.println(postNumber);
+    dao.editBoard(postNumber, request.getParameter("title"), request.getParameter("post"));
+    response.sendRedirect("board?student-id=" + request.getParameter("student-id"));
   }
 
 }
