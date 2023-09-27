@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import webClass230926.studentServ.Student;
 
 @WebServlet("/board")
 public class Board extends HttpServlet {
@@ -19,6 +20,7 @@ public class Board extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     String currentId = request.getParameter("student-id");
+    Student s = new Student();
 
     BoardDAO dao = new BoardDAO();
     List<BoardVO> list = dao.getList();
@@ -42,15 +44,20 @@ public class Board extends HttpServlet {
       html += "</li>";
     }
     html += "</ol>";
-    html += "<form action = 'writePage' method='get'>";
-    html += "<button>글쓰기</button>";
-    html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
-    html += "</form>";
 
+    if (s.isLogin) {
+      html += "<form action = 'writePage' method='get'>";
+      html += "<button>글쓰기</button>";
+      html += "<input type = 'hidden' name ='student-id' value = '" + currentId + "'/>";
+      html += "</form>";
+    }
     html += "<form action = 'student' method='get'>";
-    html += "<button>로그아웃</button>";
+    if (s.isLogin) {
+      html += "<button>로그아웃</button>";
+    } else {
+      html += "<button>로그인</button>";
+    }
     html += "</form>";
-
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);
@@ -62,6 +69,9 @@ public class Board extends HttpServlet {
     int postNumber = Integer.parseInt(request.getParameter("postNumber"));
     BoardDAO dao = new BoardDAO();
     BoardVO temp = dao.getBoard(postNumber);
+
+    Student s = new Student();
+
     response.setCharacterEncoding("UTF-8");
     String html = "<html>";
     html += "<head>";

@@ -16,6 +16,8 @@ public class Student extends HttpServlet {
 
   private static final long serialVersionUID = 4979268612911450776L;
 
+  public static boolean isLogin = false;
+
   public Student() {
     super();
   }
@@ -32,6 +34,8 @@ public class Student extends HttpServlet {
     StudentVO student = null;
     if (request.getParameter("id") != null) {
       student = dao.getStudent(Integer.parseInt(request.getParameter("id")));
+    } else {
+      isLogin = false;
     }
     // System.out.println(list.size());
     response.setCharacterEncoding("UTF-8");
@@ -47,7 +51,7 @@ public class Student extends HttpServlet {
     if (student == null) {
       html += "<form action = 'student' method='post'>";
       html += "<input type = 'text' name ='student-id' placeholder='ID'/>";
-      html += "<input type = 'text' name ='student-pw' placeholder='PASSWORD'/>";
+      html += "<input type = 'password' name ='student-pw' placeholder='PASSWORD'/>";
       html += "<button>로그인</button>";
       html += "</form>";
       html += "<a href='./join'> <button>회원가입</button></a>";
@@ -56,13 +60,16 @@ public class Student extends HttpServlet {
       html += student.getName() + "님 어서오세요.";
       html += "</div>";
       html += "<a href='./student'><button>로그아웃</button></a>";
-      html += "<form action = 'board' method='get'>";
+    }
+    html += "<form action = 'board' method='get'>";
+    if (isLogin) {
       html +=
           "<input type = 'hidden' name ='student-id' value = '" + student.getStudentId() + "'/>";
-      html += "<button>게시판으로</button>";
-      html += "<form>";
-
     }
+    html += "<button>게시판으로</button>";
+    html += "<form>";
+
+
     html += "<ol>";
     for (int i = 0; i < list.size(); ++i) {
       html += "<li>";
@@ -84,6 +91,7 @@ public class Student extends HttpServlet {
     StudentVO temp = dao.getStudent(studentId);
     // System.out.println(temp);
     if (temp != null && password.equals(temp.getstudentPw())) {
+      isLogin = true;
       response.sendRedirect("student" + "?id=" + temp.getId());
     } else {
       response.sendRedirect("student");
