@@ -90,10 +90,18 @@ public class Dungeon extends HttpServlet {
 
     if (temp == 1) {
       FirstFloorEnemy monster = new FirstFloorEnemy();
+
+      html += "<div>";
       html += "<button>";
       html += monster.stageEliteData()[0].getName();
       html += "</button>";
+      html += monster.stageEliteData()[0].getHp();
+      html += "</div>";
     }
+    html += "<button>";
+    html += "임시카드";
+    html += "</button>";
+
 
     if (isEvent) {// 각이벤트마다 설정해주자
       html += "<form action='dungeon'>";
