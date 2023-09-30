@@ -75,26 +75,16 @@ public class Dungeon extends HttpServlet {
 
     int temp = Integer.parseInt(request.getParameter("event"));
     response.setCharacterEncoding("UTF-8");
-    String html = "";
-    html += "<!DOCTYPE html>";
-    html += "<html lang='ko'>";
-    html += "<head>";
-    html += "<meta charset='UTF-8' />";
-    html += "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
-    html += "<title>던전</title>";
-    html += "<script src='scripts/makeCardGame.js'></script>";
-    html += "<link rel='stylesheet' href='styles/style.css' />";
-    html += "</head>";
-    html += "<body>";
-
     if (temp == 1) {
-      response.sendRedirect("/battle");
+      response.sendRedirect("elite");
+    } else if (temp == 2) {
+      response.sendRedirect("normal");
+    } else if (temp == 3) {
+      response.sendRedirect("event");
+    } else if (temp == 4) {
+      response.sendRedirect("fire");
+    } else if (temp == 5) {
+      response.sendRedirect("dungeonShop");
     }
-
-
-
-    html += "</body>";
-    html += "</html>";
-    response.getWriter().append(html);
   }
 }

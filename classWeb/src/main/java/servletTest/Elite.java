@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/battle")
-public class Battle extends HttpServlet {
+@WebServlet("/elite")
+public class Elite extends HttpServlet {
   private static final long serialVersionUID = -8987317198854163427L;
 
-  public Battle() {
+  public Elite() {
     super();
 
   }

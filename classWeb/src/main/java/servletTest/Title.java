@@ -18,6 +18,9 @@ public class Title extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    CardDAO card = new CardDAO();
+
+    card.totalCardInsert();
     response.setCharacterEncoding("UTF-8");
     String html = "";
     html += "<!DOCTYPE html>";
