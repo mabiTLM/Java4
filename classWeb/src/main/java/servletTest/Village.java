@@ -16,7 +16,7 @@ public class Village extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+      throws ServletException, IOException {// 카드 자료를 어디에 저장해야 좋을까 db? 자바스크립트? 자바?
     response.setCharacterEncoding("UTF-8");
     String html = "";
     html += "<!DOCTYPE html>";

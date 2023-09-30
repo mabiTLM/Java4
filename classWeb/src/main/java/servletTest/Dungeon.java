@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
 import makeCardGame230901.mapBundle.FirstFloor;
 
 @WebServlet("/dungeon")
@@ -89,27 +88,11 @@ public class Dungeon extends HttpServlet {
     html += "<body>";
 
     if (temp == 1) {
-      FirstFloorEnemy monster = new FirstFloorEnemy();
-
-      html += "<div>";
-      html += "<button>";
-      html += monster.stageEliteData()[0].getName();
-      html += "</button>";
-      html += monster.stageEliteData()[0].getHp();
-      html += "</div>";
+      response.sendRedirect("/battle");
     }
-    html += "<button>";
-    html += "임시카드";
-    html += "</button>";
 
 
-    if (isEvent) {// 각이벤트마다 설정해주자
-      html += "<form action='dungeon'>";
-      html += "<button>";
-      html += "확인";
-      html += "</button>";
-      html += "</form>";
-    }
+
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);
