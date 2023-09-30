@@ -48,7 +48,7 @@ public class Student extends HttpServlet {
     html += "</head>";
     html += "<body>";
 
-    if (isLogin) {
+    if (!isLogin) {
       html += "<form action = 'student' method='post'>";
       html += "<input type = 'text' name ='student-id' placeholder='ID'/>";
       html += "<input type = 'password' name ='student-pw' placeholder='PASSWORD'/>";
