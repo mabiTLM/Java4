@@ -9,29 +9,29 @@ import javax.servlet.http.HttpServletResponse;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
 
-@WebServlet("/elite")
-public class Elite extends HttpServlet {
-  private static final long serialVersionUID = -8987317198854163427L;
-
+/**
+ * Servlet implementation class Normal
+ */
+@WebServlet("/normal")
+public class Normal extends HttpServlet {
+  private static final long serialVersionUID = 178385972209299671L;
   private EnemyCharacter eArray;
 
   private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
   {
     EnemyCharacter[] currentEnemy;
     eArray = new FirstFloorEnemy();
-    int temp = (int) (Math.random() * 2 + 1);
+    int temp = (int) (Math.random() * 4 + 1);
     currentEnemy = new EnemyCharacter[temp];
     for (int i = 0; i < currentEnemy.length; i++) {
-      int enemyNumberTemp = (int) (Math.random() * eArray.stageEliteData().length);
-      currentEnemy[i] = eArray.stageEliteData()[enemyNumberTemp];
+      int enemyNumberTemp = (int) (Math.random() * eArray.stageData().length);
+      currentEnemy[i] = eArray.stageData()[enemyNumberTemp];
     }
     return currentEnemy;
   }
 
-
-  public Elite() {
+  public Normal() {
     super();
-
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +52,7 @@ public class Elite extends HttpServlet {
     html += "<body>";
 
     for (int i = 0; i < encount().length; i++) {
-      EnemyCharacter c = monster.stageEliteData()[i];// current
+      EnemyCharacter c = monster.stageData()[i];// current
       html += "<span>";
       html += "<button onclick=target(" + i + ")>";// 체력이 다되면 없어져야하는데...
       html += c.getName();
@@ -67,22 +67,10 @@ public class Elite extends HttpServlet {
       html += "</span>";
       html += "<br>";
     }
-    // html += "<button>";
-    // html += "임시카드";
-    // html += "</button>";
-
-    // if (isEvent) {// 각이벤트마다 설정해주자
-    // html += "<form action='dungeon'>";
-    // html += "<button>";
-    // html += "확인";
-    // html += "</button>";
-    // html += "</form>";
-    // }
 
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);
-
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
