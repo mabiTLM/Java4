@@ -8,7 +8,6 @@ import makeCardGame230901.cardBundle.cardSortBundle.SortCard;
 import makeCardGame230901.characterBundle.PlayerCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 import makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy;
-import makeCardGame230901.characterBundle.enemyBundle.SecondFloorEnemy;
 import makeCardGame230901.mapBundle.EventInDungeon;
 
 public class Battle implements Serializable {
@@ -36,15 +35,7 @@ public class Battle implements Serializable {
 
   public void encounter() // 어떤 적을 만날지 정해주자
   {
-    tempBattleDeck = sortCard.deepCopyDeck(player.getCardDeck());
-    // 현재덱을 깊은 복사 싸우는 도중에 덱이 변경되어도 전투가 끝나면 돌아오게하기위한 밑준비
-    tempBattleDeck = sortCard.suffleDeck(tempBattleDeck);
-    if (player.getNowFloor() == 1) {
-      eArray = new FirstFloorEnemy();
-    } else if (player.getNowFloor() == 2) {
-      eArray = new SecondFloorEnemy();
-    }
-    encountFloor();
+    eArray = new FirstFloorEnemy();
   }
 
   private void encountFloor() {
@@ -57,13 +48,7 @@ public class Battle implements Serializable {
         currentEnemy[i] = eArray.stageData()[enemyNumberTemp];
       }
     } else if (monsterType == MONSTERTYPE.ELITE) {
-      int temp = (int) (Math.random() * 2 + 1);// 1~4마리
-      currentEnemy = new EnemyCharacter[temp];
-      System.out.println("엘리트적이 " + temp + "마리 출현했다.");
-      for (int i = 0; i < currentEnemy.length; i++) {
-        int enemyNumberTemp = (int) (Math.random() * eArray.stageEliteData().length);
-        currentEnemy[i] = eArray.stageEliteData()[enemyNumberTemp];
-      }
+
     } else if (monsterType == MONSTERTYPE.BOSS) {
       currentEnemy = new EnemyCharacter[1];
       currentEnemy[0] = eArray.stageBossData()[0];
