@@ -54,7 +54,7 @@ public class Elite extends HttpServlet {
     for (int i = 0; i < encount().length; i++) {
       EnemyCharacter c = monster.stageEliteData()[i];// current
       html += "<span>";
-      html += "<button onclick=target(" + i + ")>";// 이거 누르면 타겟되게
+      html += "<button onclick=target(" + i + ")>";// 체력이 다되면 없어져야하는데...
       html += c.getName();
       html += "</button>";
       html += "</span>";
