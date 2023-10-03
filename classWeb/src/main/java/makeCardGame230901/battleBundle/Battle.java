@@ -88,7 +88,6 @@ public class Battle implements Serializable {
       }
       currentEnemy[i].status();
     }
-
   }
 
 

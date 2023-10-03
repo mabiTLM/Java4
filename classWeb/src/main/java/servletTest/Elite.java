@@ -54,13 +54,16 @@ public class Elite extends HttpServlet {
     for (int i = 0; i < encount().length; i++) {
       EnemyCharacter c = monster.stageEliteData()[i];// current
       html += "<span>";
-      html += "<button>";// 이거 누르면 타겟되게
+      html += "<button onclick=target(" + i + ")>";// 이거 누르면 타겟되게
       html += c.getName();
       html += "</button>";
       html += "</span>";
-      html += "<span id=monsterHp" + i + ">";
-      html += "체력 : " + c.getHp() + " 쉴드 : " + c.getDef() + " 공격력 : " + c.getAtk() + " 속도 : "
-          + c.getSpeed();
+      html += "<span>";
+      html += "체력 : ";
+      html += "<span id=monsterHp" + i + ">" + c.getHp() + "</span>";
+      html += " 쉴드 : ";
+      html += "<span id=monsterDef" + i + ">" + c.getDef() + "</span>";
+      html += " 공격력 : " + c.getAtk() + " 속도 : " + c.getSpeed();
       html += "</span>";
       html += "<br>";
     }

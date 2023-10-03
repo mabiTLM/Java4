@@ -42,3 +42,15 @@ function watchCard() {
     console.log(card[i]);
   }
 }
+
+
+let currentTarget;
+
+function target(num) {
+	currentTarget=num;
+}
+
+function usecard() {
+	monsterDef+currentTarget;
+	monsterHp+currentTarget;
+}
