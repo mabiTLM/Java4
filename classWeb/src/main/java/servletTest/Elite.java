@@ -49,12 +49,14 @@ public class Elite extends HttpServlet {
     html += "<link rel='stylesheet' href='styles/style.css' />";
     html += "</head>";
     html += "<body>";
+    // html += "<script>";// 여기에서 체력 방어력넣어야한다.
+    // html += "$(document).ready(function() {console.log('확인용')})";
+    // html += "</script>";
 
     for (int i = 0; i < encount().length; i++) {
       EnemyCharacter c = monster.stageEliteData()[i];// current
       html += "<span>";
-      html += "<button id='monster" + i + "' onclick='target(" + i + "," + c.getHp() + ","
-          + c.getDef() + ")'>";
+      html += "<button id='monster" + i + "' onclick='target(" + i + ")'>";
       html += c.getName();
       html += "</button>";
       html += "</span>";

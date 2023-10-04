@@ -51,28 +51,26 @@ function watchCard() {
 
 /////// 몬스터처리
 let monsterHp;
-let monsterDef;
-let currentTarget;
+let monsterDef=[];
+let currentTarget=[];
 
-function target(num,hp,def) {//이걸로 고르고
+function target(num) {
 	currentTarget=num;
-	monsterHp=hp;
-	monsterDef=def;	
 }
 function usecard(type,value) {
 	if(type=="Attack")
 	{
 		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
 		const monsterHpPrint = document.getElementById("monsterHp"+currentTarget);
-		monsterDef -= value;
-		if(monsterDef<0)
+		monsterDef[currentTarget] -= value;
+		if(monsterDef[currentTarget]<0)
 		{
-			monsterHp-=Math.abs(monsterDef);
-			monsterDef=0;
+			monsterHp[currentTarget]-=Math.abs(monsterDef[currentTarget]);
+			monsterDef[currentTarget]=0;
 		}
-		monsterDefPrint.innerHTML = monsterDef;
-		monsterHpPrint.innerHTML = monsterHp;
-		if(monsterHp==0)
+		monsterDefPrint.innerHTML = monsterDef[currentTarget];
+		monsterHpPrint.innerHTML = monsterHp[currentTarget];
+		if(monsterHp[currentTarget]==0)
 		{
 			const target= document.getElementById("monster"+currentTarget);
 			target.disabled = true;
@@ -80,7 +78,8 @@ function usecard(type,value) {
 			
 			const finish = document.getElementById("finish");
 			finish.setAttribute('type','button');
-		}	
+		}
+		console.log("에잉");
 	}
 	else if(type=="Defend")
 	{
