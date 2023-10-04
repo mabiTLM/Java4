@@ -4,14 +4,9 @@ import makeCardGame230901.characterBundle.CharacterBase;
 import makeCardGame230901.characterBundle.MONSTEREFFECT;
 
 public class EnemyCharacter extends CharacterBase {
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = -7446461043874643802L;
   private boolean enemyTurn = false;
   private int effectValue = 0;
-
 
   MONSTEREFFECT monstereffect;
 

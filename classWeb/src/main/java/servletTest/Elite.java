@@ -31,7 +31,6 @@ public class Elite extends HttpServlet {
 
   public Elite() {
     super();
-
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)

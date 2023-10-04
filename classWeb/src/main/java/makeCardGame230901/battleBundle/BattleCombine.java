@@ -7,9 +7,7 @@ import makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter;
 import makeCardGame230901.village.MoveInVillage;
 
 public class BattleCombine implements Serializable {
-  /**
-   * 
-   */
+
   private static final long serialVersionUID = 5511722642112669026L;
   private PlayerCharacter player;
   private Battle battle;
