@@ -1,0 +1,2 @@
+module webClass231004 {
+}

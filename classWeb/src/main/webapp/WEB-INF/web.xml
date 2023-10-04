@@ -19,5 +19,9 @@
     <url-pattern>/second</url-pattern>  
   </servlet-mapping>
   
+  <context-param>
+  <param-name>test_xml</param-name>
+  <param-value>xml에 추가한 데이터이다.</param-value>
+  </context-param>
   
 </web-app>
