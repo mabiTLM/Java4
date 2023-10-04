@@ -79,7 +79,7 @@ function usecard(type,value) {
 			const finish = document.getElementById("finish");
 			finish.setAttribute('type','button');
 		}
-		console.log("에잉");
+		console.log("확인용");
 	}
 	else if(type=="Defend")
 	{
