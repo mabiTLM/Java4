@@ -1,5 +1,10 @@
 let card = ["2연참","공격","공격","공격","굳히기","방어","방어","방어"];
 
+const playerHp = 200;
+const playerDef = 0;
+const playerMaxMana = 5;
+const playerMana = 0;
+
 function setCookie(name, value) {
   var exdate = new Date();
   exdate.setDate(exdate.getDate() + 30);
@@ -44,13 +49,38 @@ function watchCard() {
 }
 
 
+/////// 몬스터처리
+let monsterHp;
+let monsterDef;
 let currentTarget;
 
-function target(num) {
+function target(num,hp,def) {//이걸로 고르고
 	currentTarget=num;
+	monsterHp=hp;
+	monsterDef=def;	
 }
-
-function usecard() {
-	monsterDef+currentTarget;
-	monsterHp+currentTarget;
+function usecard(type,value) {
+	if(type=="Attack")
+	{
+		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
+		const monsterHpPrint = document.getElementById("monsterHp"+currentTarget);
+		monsterDef -= value;
+		if(monsterDef<0)
+		{
+			monsterHp-=Math.abs(monsterDef);
+			monsterDef=0;
+		}
+		monsterDefPrint.innerHTML = monsterDef;
+		monsterHpPrint.innerHTML = monsterHp;
+		if(monsterHp==0)
+		{
+			const target= document.getElementById("monster"+currentTarget);
+			target.disabled = true;
+			currentTarget=-1;
+		}	
+	}
+	else if(type=="Defend")
+	{
+		playerDef+=value;
+	}
 }

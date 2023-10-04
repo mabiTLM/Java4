@@ -53,7 +53,8 @@ public class Elite extends HttpServlet {
     for (int i = 0; i < encount().length; i++) {
       EnemyCharacter c = monster.stageEliteData()[i];// current
       html += "<span>";
-      html += "<button onclick=target(" + i + ")>";// 체력이 다되면 없어져야하는데...
+      html += "<button id='monster" + i + "' onclick='target(" + i + "," + c.getHp() + ","
+          + c.getDef() + ")'>";
       html += c.getName();
       html += "</button>";
       html += "</span>";
@@ -66,9 +67,9 @@ public class Elite extends HttpServlet {
       html += "</span>";
       html += "<br>";
     }
-    // html += "<button>";
-    // html += "임시카드";
-    // html += "</button>";
+    html += "<button onclick = usecard('Attack',30)>";
+    html += "임시카드";
+    html += "</button>";
 
     // if (isEvent) {// 각이벤트마다 설정해주자
     // html += "<form action='dungeon'>";
@@ -85,8 +86,5 @@ public class Elite extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-  }
-
+      throws ServletException, IOException {}
 }
