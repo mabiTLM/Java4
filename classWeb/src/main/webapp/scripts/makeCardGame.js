@@ -77,6 +77,9 @@ function usecard(type,value) {
 			const target= document.getElementById("monster"+currentTarget);
 			target.disabled = true;
 			currentTarget=-1;
+			
+			const finish = document.getElementById("finish");
+			finish.setAttribute('type','button');
 		}	
 	}
 	else if(type=="Defend")

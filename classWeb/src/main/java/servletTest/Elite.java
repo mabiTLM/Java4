@@ -71,13 +71,11 @@ public class Elite extends HttpServlet {
     html += "임시카드";
     html += "</button>";
 
-    // if (isEvent) {// 각이벤트마다 설정해주자
-    // html += "<form action='dungeon'>";
-    // html += "<button>";
-    // html += "확인";
-    // html += "</button>";
-    // html += "</form>";
-    // }
+
+    html += "<form action='dungeon'>";
+    html += "<input type=hidden id=finish value='전투종료'>";
+    html += "</form>";
+
 
     html += "</body>";
     html += "</html>";
