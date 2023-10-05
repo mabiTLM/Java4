@@ -63,7 +63,6 @@ public class Dungeon extends HttpServlet {
       html += "<br>";
       html += "</div>";
     }
-
     html += "</body>";
     html += "</html>";
     response.getWriter().append(html);
@@ -71,7 +70,6 @@ public class Dungeon extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {// 이벤트발생하면 여기서 처리
-
     int temp = Integer.parseInt(request.getParameter("event"));
     response.setCharacterEncoding("UTF-8");
     if (temp == 1) {
