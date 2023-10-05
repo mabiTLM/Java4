@@ -12,7 +12,6 @@ import makeCardGame230901.mapBundle.FirstFloor;
 public class Dungeon extends HttpServlet {
 
   private boolean makeDungeon = true;
-  private boolean isEvent = false;
   FirstFloor make = new FirstFloor();
   private static final long serialVersionUID = 6758670203372055408L;
 
@@ -76,9 +75,9 @@ public class Dungeon extends HttpServlet {
     int temp = Integer.parseInt(request.getParameter("event"));
     response.setCharacterEncoding("UTF-8");
     if (temp == 1) {
-      response.sendRedirect("elite");
+      response.sendRedirect("elite.jsp");
     } else if (temp == 2) {
-      response.sendRedirect("normal");
+      response.sendRedirect("normal.jsp");
     } else if (temp == 3) {
       response.sendRedirect("event");
     } else if (temp == 4) {

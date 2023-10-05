@@ -50,14 +50,29 @@ function watchCard() {
 
 
 /////// 몬스터처리
-let monsterHp;
-let monsterDef=[];
-let currentTarget=[];
+let monsterCount =-1;
+let monsterHp=[0,0,0,0];
+let monsterDef=[0,0,0,0];
+let currentTarget;
 
-function target(num) {
+function target(num,Hp,Def,count) {
 	currentTarget=num;
+	console.log(count);
+	if(monsterHp[num]==0)
+	{
+		monsterHp[num]=Hp;
+	}
+	if(monsterDef[num]==0)
+	{
+		monsterDef[num]=Def;
+	}
+	if(monsterCount==-1)
+	{
+		monsterCount=count;
+	}
 }
 function usecard(type,value) {
+	console.log(monsterCount);
 	if(type=="Attack")
 	{
 		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
@@ -70,16 +85,22 @@ function usecard(type,value) {
 		}
 		monsterDefPrint.innerHTML = monsterDef[currentTarget];
 		monsterHpPrint.innerHTML = monsterHp[currentTarget];
-		if(monsterHp[currentTarget]==0)
+		if(monsterHp[currentTarget]<=0)
 		{
+			monsterHp[currentTarget]=0;
+			monsterHpPrint.innerHTML = monsterHp[currentTarget];
 			const target= document.getElementById("monster"+currentTarget);
 			target.disabled = true;
+			monsterCount=monsterCount-1;
 			currentTarget=-1;
-			
-			const finish = document.getElementById("finish");
-			finish.setAttribute('type','button');
 		}
-		console.log("확인용");
+		
+		if(monsterCount<=0){
+			monsterCount=-1;
+			const finish = document.getElementById("finish");
+		finish.setAttribute('type','submit');					
+		}
+		
 	}
 	else if(type=="Defend")
 	{
