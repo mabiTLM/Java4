@@ -2,10 +2,6 @@
 
     pageEncoding="UTF-8"%>
     
-    
-<%!
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,5 +10,16 @@
 </head>
 <body>
 
+<% for(int i = 0; i <10; i++){%>
+  <div>
+  반복되나?
+  </div>
+<% } %>
+
+
+
 </body>
 </html>
+ 
+
+
