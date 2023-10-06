@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import = "javax.servlet.RequestDispatcher"
+	errorPage="../c231006/exception.jsp"
     pageEncoding="UTF-8"%>
     
 <%!

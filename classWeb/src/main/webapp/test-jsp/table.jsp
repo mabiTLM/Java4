@@ -25,4 +25,11 @@ for(int i = 0; i < list.size(); ++i)
 <th><%=hobby1 %></th>
 </tr>
 
+<tr>
+<th><%=num1 %></th>
+<th><%=request.getParameter("name") %></th>
+<th><%=hobby1 %></th>
+</tr>
+
+
 </table>
