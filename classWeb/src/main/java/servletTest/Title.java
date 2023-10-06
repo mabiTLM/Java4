@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servletTest.card.CardDAO;
 
 @WebServlet("/title")
 public class Title extends HttpServlet {
@@ -18,8 +19,7 @@ public class Title extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // CardDAO card = new CardDAO();
-    // card.totalCardInsert();
+
     response.setCharacterEncoding("UTF-8");
     String html = "";
     html += "<!DOCTYPE html>";
@@ -33,11 +33,15 @@ public class Title extends HttpServlet {
     html += "</head>";
     html += "<body>";
     html += "<div>";
-    html += "<a href='village'>";
-    html += "<button style='text-align: center; font-size: 100px' onclick='newGame()'>";
-    html += "새로운 시작";
-    html += "</button>";
-    html += "</a>";
+    html += "<form action='title' method='post'>";
+    html +=
+        "<input type='submit' name='start' value='새로운 시작' style='text-align: center; font-size: 100px'>";
+    html += "</form>";
+    html += "</br>";
+    html += "<form action='title' method='post'>";
+    html +=
+        "<input type='submit' name='start' value='이어하기' style='text-align: center; font-size: 100px'>";
+    html += "</form>";
     html += "</div>";
     html += "</body>";
     html += "</html>";
@@ -47,8 +51,21 @@ public class Title extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    String temp = request.getParameter("start");
 
-    doGet(request, response);
+    if (temp.equals("새로운 시작")) {
+      CardDAO card = new CardDAO();
+      card.newStart();
+      for (int i = 0; i < 10; i++) {
+        card.insertDeck(1, "card", "deck");
+        card.insertDeck(2, "card", "deck");
+      }
+      response.sendRedirect("village.jsp");
+
+    } else if (temp.equals("이어하기")) {
+      response.sendRedirect("village.jsp");
+    }
+
   }
 
 }

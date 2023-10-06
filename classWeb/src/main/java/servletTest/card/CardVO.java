@@ -1,9 +1,9 @@
-package servletTest;
+package servletTest.card;
 
 public class CardVO {
   // db에서 enum타입이나 boolean이이 변환되므로 새로만들어주자
 
-  private int id;
+  private int id = 0;
   private String cardName;
   private String cardType;
   private int cardValue;
@@ -28,8 +28,6 @@ public class CardVO {
     this.enforce = enforce;
     this.volatility = volatility;
   }
-
-
 
   public CardVO(String cardName, String cardType, int cardValue, int cardConsumeMana, int cardPrice,
       String effect, int effectValue, String enforce, String volatility) {

@@ -4,10 +4,7 @@ import makeCardGame230901.cardBundle.TotalCardBase;
 
 
 public class PlayerCharacter extends CharacterBase {
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -1264577156287833465L;
+  private static final long serialVersionUID = -3261597035015246229L;
   private int drawCardNumber = 5;
   private int nowFloor = 1;
   private int currentTurnUseCard = 0; // 턴 카드 사용횟수에 따른 카드 추가 준비용
