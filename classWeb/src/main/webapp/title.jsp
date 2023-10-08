@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!--
+<--%@ page language="java" contentType="text/html; charset=UTF-8"
 	import = "servletTest.card.CardDAO"
 pageEncoding="UTF-8"%>
-<%!
+<--%!
 CardDAO c = new CardDAO();
 %>
-<%
+<--%
 c.totalCardInsert();
 %>
 <!DOCTYPE html>
@@ -26,3 +27,4 @@ c.totalCardInsert();
 </div>
 </body>
 </html>
+-->
