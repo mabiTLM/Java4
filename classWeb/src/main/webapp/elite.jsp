@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import = "makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter"
 import = "makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
+import = "servletTest.card.*"
     pageEncoding="UTF-8"%>
     <%!
     private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
@@ -15,6 +16,11 @@ import = "makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
       return currentEnemy;
     }
     %>
+    <%!
+    private CardVO CardJSP(){//아직 오류가 있다.
+    CardDAO cardDAO = new CardDAO();
+    }
+   %>
 <!DOCTYPE html>
 <html lang='ko'>
 <head>
