@@ -16,11 +16,6 @@ import = "servletTest.card.*"
       return currentEnemy;
     }
     %>
-    <%!
-    private CardVO CardJSP(){//아직 오류가 있다.
-    CardDAO cardDAO = new CardDAO();
-    }
-   %>
 <!DOCTYPE html>
 <html lang='ko'>
 <head>
@@ -51,9 +46,21 @@ for (int i = 0; i < monster.length; i++) {
   <br>
 <%} %>
 
-    <button onclick = "usecard('Attack',30)">
-    임시카드
+
+<%! private CardVO Hand(int i){
+  CardDAO cardDAO = new CardDAO();
+  CardVO temp = cardDAO.getCard(i, "deck");
+  return temp;
+}
+  %><!-- db에서 카드 뽑아오기-->
+
+<% for(int i =1;i<=8; i++){ %>
+
+    <button onclick = "usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>)">
+    <%=Hand(i).getCardName()%>
     </button>
+    
+    <%} %>
 
     <form action='dungeon'>
     <input type=hidden id=finish value='전투종료'>

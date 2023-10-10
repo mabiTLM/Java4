@@ -56,7 +56,7 @@ public class Title extends HttpServlet {
     if (temp.equals("새로운 시작")) {
       CardDAO card = new CardDAO();
       card.newStart();
-      for (int i = 0; i < 10; i++) {
+      for (int i = 0; i < 4; i++) {
         card.insertDeck(1, "card", "deck");
         card.insertDeck(2, "card", "deck");
       }
