@@ -47,9 +47,28 @@ for (int i = 0; i < monster.length; i++) {
 <%} %>
 <script>
 document.write("체력"+playerHp);
-document.write("마나"+playerMana);
 </script>
+
+<span>
+방어력 : 
+<span id="playerDefSpan">
+<script>
+document.write(playerDef);
+</script>
+</span>
+</span>
+
+<span>
+마나 : 
+<span id="playerManaSpan">
+<script>
+document.write(playerMana);
+</script>
+</span>
+</span>
  <br>
+ 
+ 
 <%! private CardVO Hand(int i){
   CardDAO cardDAO = new CardDAO();
   CardVO temp = cardDAO.getCard(i, "deck");
@@ -63,7 +82,7 @@ document.write("마나"+playerMana);
     </button>
     
     <%} %>
-    
+    <br>
     <button>
     턴종료미구현
     </button>

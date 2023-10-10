@@ -80,6 +80,10 @@ function usecard(type,value,consumeMana) {
 	else if(type=="Attack")
 	{
 		playerMana=playerMana-consumeMana;
+		const playerManaPrint = document.getElementById("playerManaSpan");
+		playerManaPrint.innerHTML = playerMana;
+		
+		
 		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
 		const monsterHpPrint = document.getElementById("monsterHp"+currentTarget);
 		monsterDef[currentTarget] -= value;
@@ -105,11 +109,17 @@ function usecard(type,value,consumeMana) {
 			const finish = document.getElementById("finish");
 		finish.setAttribute('type','submit');					
 		}
-		
 	}
 	else if(type=="Defend")
 	{
-		playerMana=playerMana-consumeMana;
-		playerDef+=value;
+	playerMana=playerMana-consumeMana;
+		const playerManaPrint = document.getElementById("playerManaSpan");
+		playerManaPrint.innerHTML = playerMana;
+		
+		playerDef= playerDef + value;
+		
+		const playerDefPrint = document.getElementById("playerDefSpan");
+		playerDefPrint.innerHTML = playerDef;
+		
 	}
 }
