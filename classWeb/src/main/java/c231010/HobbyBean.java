@@ -1,12 +1,12 @@
-package webClass231006;
+package c231010;
 
-public class StudentBean {
+public class HobbyBean {
   private String name;
   private int num;
 
-  public StudentBean() {}
+  public HobbyBean() {}
 
-  public StudentBean(String name) {
+  public HobbyBean(String name) {
     this.name = name;
   }
 
@@ -25,5 +25,4 @@ public class StudentBean {
   public int getNum() {
     return num;
   }
-
 }
