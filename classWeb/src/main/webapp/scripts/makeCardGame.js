@@ -1,9 +1,9 @@
 let card = ["2연참","공격","공격","공격","굳히기","방어","방어","방어"];//카드의 고유아이디만 저장해두자
 
-const playerHp = 200;
-const playerDef = 0;
-const playerMaxMana = 5;
-const playerMana = 0;
+let playerHp = 200;
+let playerDef = 0;
+let playerMaxMana = 5;
+let playerMana = 5;
 
 function setCookie(name, value) {
   var exdate = new Date();
@@ -71,10 +71,15 @@ function target(num,Hp,Def,count) {
 		monsterCount=count;
 	}
 }
-function usecard(type,value) {
-	console.log(monsterCount);
-	if(type=="Attack")
+function usecard(type,value,consumeMana) {
+	
+	if(playerMana-consumeMana<0)
 	{
+		alert("마나가 부족합니다");
+	}
+	else if(type=="Attack")
+	{
+		playerMana=playerMana-consumeMana;
 		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
 		const monsterHpPrint = document.getElementById("monsterHp"+currentTarget);
 		monsterDef[currentTarget] -= value;
@@ -104,6 +109,7 @@ function usecard(type,value) {
 	}
 	else if(type=="Defend")
 	{
+		playerMana=playerMana-consumeMana;
 		playerDef+=value;
 	}
 }

@@ -45,22 +45,28 @@ for (int i = 0; i < monster.length; i++) {
   </span>
   <br>
 <%} %>
-
-
+<script>
+document.write("체력"+playerHp);
+document.write("마나"+playerMana);
+</script>
+ <br>
 <%! private CardVO Hand(int i){
   CardDAO cardDAO = new CardDAO();
   CardVO temp = cardDAO.getCard(i, "deck");
   return temp;
 }
-  %><!-- db에서 카드 뽑아오기-->
-
+  %>
 <% for(int i =1;i<=8; i++){ %>
 
-    <button onclick = "usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>)">
+    <button onclick = "usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
     <%=Hand(i).getCardName()%>
     </button>
     
     <%} %>
+    
+    <button>
+    턴종료미구현
+    </button>
 
     <form action='dungeon'>
     <input type=hidden id=finish value='전투종료'>
