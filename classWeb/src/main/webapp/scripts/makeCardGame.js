@@ -50,18 +50,18 @@ function watchCard() {
 
 /////// 몬스터처리
 let monsterCount =-1;
-let monsterHp=[0,0,0,0];
-let monsterDef=[0,0,0,0];
+let monsterHp=[-1,-1,-1,-1];
+let monsterDef=[-1,-1,-1,-1];
 let currentTarget;
 
 function target(num,Hp,Def,count) {
 	currentTarget=num;
 	console.log(count);
-	if(monsterHp[num]==0)
+	if(monsterHp[num]==-1)
 	{
 		monsterHp[num]=Hp;
 	}
-	if(monsterDef[num]==0)
+	if(monsterDef[num]==-1)
 	{
 		monsterDef[num]=Def;
 	}
@@ -110,14 +110,21 @@ function usecard(type,value,consumeMana) {
 	}
 	else if(type=="Defend")
 	{
-	playerMana=playerMana-consumeMana;
+		playerMana=playerMana-consumeMana;
 		const playerManaPrint = document.getElementById("playerManaSpan");
 		playerManaPrint.innerHTML = playerMana;
 		
 		playerDef= playerDef + value;
 		
 		const playerDefPrint = document.getElementById("playerDefSpan");
-		playerDefPrint.innerHTML = playerDef;
-		
+		playerDefPrint.innerHTML = playerDef;	
 	}
+}
+
+function turnFinish(name){
+	playerMana=playerMaxMana;
+	const playerManaPrint = document.getElementById("playerManaSpan");
+	playerManaPrint.innerHTML = playerMana;
+	
+	console.log(name[0]);
 }

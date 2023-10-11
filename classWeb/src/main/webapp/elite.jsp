@@ -15,6 +15,18 @@ import = "servletTest.card.*"
       }
       return currentEnemy;
     }
+    
+    private String[] enemyName(){
+      String[] temp = new String[encount().length];
+      
+      for(int i =0; i<temp.length;i++)
+      {
+        temp[i]=encount()[i].getName();
+      }
+      
+      return temp;
+    }
+     
     %>
 <!DOCTYPE html>
 <html lang='ko'>
@@ -41,9 +53,9 @@ for (int i = 0; i < monster.length; i++) {
   <span id='monsterHp<%=i%>'><%out.print(c.getHp());%></span>
    쉴드 : 
   <span id='monsterDef<%=i%>'><%out.print(c.getDef());%></span>
-   공격력 : <%out.print(c.getAtk());%> 속도 : <%out.print(c.getSpeed());%>
+   공격력 : <%out.print(c.getAtk());%>
   </span>
-  <br>
+  <br/>
 <%} %>
 
 
@@ -68,7 +80,7 @@ document.write(playerMana);
 </script>
 </span>
 </span>
- <br>
+ <br/>
  
  
 <%! private CardVO Hand(int i){
@@ -77,6 +89,7 @@ document.write(playerMana);
   return temp;
 }
   %>
+  
 <% for(int i =1;i<=8; i++){ %>
 
     <button onclick = "usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
@@ -84,9 +97,9 @@ document.write(playerMana);
     </button>
     
     <%} %>
-    <br>
-    <button>
-    턴종료미구현
+    <br/>
+    <button onclick = 'turnFinish(<%=%>)'>
+    턴종료
     </button>
 
     <form action='dungeon'>

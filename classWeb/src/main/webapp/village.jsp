@@ -9,11 +9,31 @@
 <meta name='viewport'content='width=device-width, initial-scale=1.0' />
 <title>마을</title>
 <script src='scripts/makeCardGame.js'></script>
-<link rel='stylesheet' href='styles/style.css' />
+<link rel='stylesheet' href='styles/villageStyle.css' />
 </head>
+
+<style>
+body{
+	background-image: url('images/village.png');
+	background-size : 1000px;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+</style>
+
 <body>
-   <button>덱수정</button>
-    <button>상점</button>
-    <a href='dungeon'><button>모험으로</button></a>
+
+<div>
+
+	<div >
+	<img src="images/deckEdit.png" alt="덱수정" class="editDeck"/>
+	</div>
+
+	<div>
+	<img src="images/dungeonEntrance.png" alt="모험으로" class="inToTheDungeon">
+    </div>
+    
+</div>
+    
 </body>
 </html>

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+.editDeck{
+	width: 100px;
+	position: absolute;
+	left: 25%;
+	bottom: 50%;
+}
+
+.inToTheDungeon{
+	width: 100px;
+	position: absolute;
+	right: 25%;
+	bottom: 50%;
+}
