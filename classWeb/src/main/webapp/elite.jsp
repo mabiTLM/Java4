@@ -45,6 +45,8 @@ for (int i = 0; i < monster.length; i++) {
   </span>
   <br>
 <%} %>
+
+
 <script>
 document.write("체력"+playerHp);
 </script>

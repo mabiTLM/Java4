@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import = "makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter"
 import = "makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
+import = "servletTest.card.*"
     pageEncoding="UTF-8"%>
     <%!
     private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
@@ -45,10 +46,48 @@ for (int i = 0; i < monster.length; i++) {
   <br>
 <%} %>
 
-    <button onclick = "usecard('Attack',30)">
-    임시카드
-    </button>
 
+<script>
+document.write("체력"+playerHp);
+</script>
+
+<span>
+방어력 : 
+<span id="playerDefSpan">
+<script>
+document.write(playerDef);
+</script>
+</span>
+</span>
+
+<span>
+마나 : 
+<span id="playerManaSpan">
+<script>
+document.write(playerMana);
+</script>
+</span>
+</span>
+ <br>
+ 
+ 
+<%! private CardVO Hand(int i){
+  CardDAO cardDAO = new CardDAO();
+  CardVO temp = cardDAO.getCard(i, "deck");
+  return temp;
+}
+  %>
+<% for(int i =1;i<=8; i++){ %>
+
+    <button onclick = "usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
+    <%=Hand(i).getCardName()%>
+    </button>
+    
+    <%} %>
+    <br>
+    <button>
+    턴종료미구현
+    </button>
 
     <form action='dungeon'>
     <input type=hidden id=finish value='전투종료'>
