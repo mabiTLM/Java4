@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 .editDeck{
 	width: 100px;
 	position: absolute;
@@ -10,6 +9,7 @@
 
 .inToTheDungeon{
 	width: 100px;
+	height: 200px;
 	position: absolute;
 	right: 25%;
 	bottom: 50%;

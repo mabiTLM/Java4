@@ -25,13 +25,15 @@ body{
 
 <div>
 
-	<div >
+	<div>
 	<img src="images/deckEdit.png" alt="덱수정" class="editDeck"/>
 	</div>
 
-	<div>
-	<img src="images/dungeonEntrance.png" alt="모험으로" class="inToTheDungeon">
-    </div>
+	<a href = dungeon.jsp>
+	<div> 
+	<img src="images/dungeonEntrance.png" onmouseover="this.src='images/dungeonEntranceOpen.png'" onmouseout="this.src='images/dungeonEntrance.png'" alt="모험으로" class="inToTheDungeon"/>
+	</div>
+    </a>
     
 </div>
     
