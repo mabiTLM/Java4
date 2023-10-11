@@ -6,7 +6,7 @@ public class UserDAOTest {
     UserDAO dao = new DAOFactory().userDAO();
 
     UserBean user = new UserBean();
-    user.setName("임현규");
+    user.setName("임");
     user.setUserId("hk");
     user.setPassword("486");
     dao.add(user);
