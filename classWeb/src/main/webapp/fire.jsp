@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>모닥불</title>
 </head>
 <body>
-
+<img src="images/fire.jpg" alt="모닥불" class="fire"/>
 </body>
 </html>

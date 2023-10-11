@@ -12,28 +12,25 @@
 <link rel='stylesheet' href='styles/villageStyle.css' />
 </head>
 
-<style>
-body{
-	background-image: url('images/village.png');
-	background-size : 1000px;
-	background-repeat: no-repeat;
-	background-position: center top;
-}
-</style>
-
 <body>
 
 <div>
 
-	<div>
-	<img src="images/deckEdit.png" alt="덱수정" class="editDeck"/>
-	</div>
+<div>
+<img src="images/village.png" alt="상점" class="shop"/>
 
+	<a href = editDeck.jsp>
+	<div>
+	<img src="images/deckEdit.png" onmouseover="this.src='images/deckEditOpen.jpg'" onmouseout="this.src='images/deckEdit.png'" alt="덱수정" class="editDeck"/>
+	</div>
+ 	</a>
 	<a href = dungeon.jsp>
 	<div> 
 	<img src="images/dungeonEntrance.png" onmouseover="this.src='images/dungeonEntranceOpen.png'" onmouseout="this.src='images/dungeonEntrance.png'" alt="모험으로" class="inToTheDungeon"/>
 	</div>
     </a>
+    
+    </div>
     
 </div>
     
