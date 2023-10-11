@@ -48,7 +48,6 @@ function watchCard() {
   }
 }
 
-
 /////// 몬스터처리
 let monsterCount =-1;
 let monsterHp=[0,0,0,0];
@@ -83,7 +82,6 @@ function usecard(type,value,consumeMana) {
 		const playerManaPrint = document.getElementById("playerManaSpan");
 		playerManaPrint.innerHTML = playerMana;
 		
-		
 		const monsterDefPrint = document.getElementById("monsterDef"+currentTarget);
 		const monsterHpPrint = document.getElementById("monsterHp"+currentTarget);
 		monsterDef[currentTarget] -= value;
@@ -107,7 +105,7 @@ function usecard(type,value,consumeMana) {
 		if(monsterCount<=0){
 			monsterCount=-1;
 			const finish = document.getElementById("finish");
-		finish.setAttribute('type','submit');					
+		finish.setAttribute('type','submit');
 		}
 	}
 	else if(type=="Defend")
