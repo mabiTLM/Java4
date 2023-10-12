@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+
+body{
+	background-image: url('../images/edit/decktracker.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.haveCard{
+	position: relative;
+	top: 160px;
+	left: 250px;
+	width: 200px;
+}
+.select{
+	display: none;
+	position: relative;
+	top: 165px;
+	left: 38px;
+	width: 200px;
+	z-index: -1;
+}
+
+.haveCard:hover+.select{
+display: inline;
+}

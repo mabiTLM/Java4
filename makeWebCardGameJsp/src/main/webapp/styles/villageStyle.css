@@ -20,3 +20,16 @@
 	right: 24%;
 	bottom: 41%;
 }
+
+.sellCard{
+	left: 30%;
+	top: 15%;
+	position: absolute;
+	width: 70px;
+}
+.sellCard:hover{
+	left: 30%;
+	top: 15%;
+	position: absolute;
+	width: 200px;
+}
