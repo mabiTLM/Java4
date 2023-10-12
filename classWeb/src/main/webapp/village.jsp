@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
 
 	<a href = editDeck.jsp>
 	<div>
-	<img src="images/deckEdit.png" onmouseover="this.src='images/deckEditOpen.jpg'" onmouseout="this.src='images/deckEdit.png'" alt="덱수정" class="editDeck"/>
+	<img src="images/deckEdit.png" onmouseover="this.src='images/deckEditOpen.png'" onmouseout="this.src='images/deckEdit.png'" alt="덱수정" class="editDeck"/>
 	</div>
  	</a>
 	<a href = dungeon.jsp>

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.shop{
+	left: 24%;
+	position: absolute;
+	width: 1000px;
+}
+
+.editDeck{
+	width: 100px;
+	position: absolute;
+	left: 24%;
+	bottom: 41%;
+}
+
+.inToTheDungeon{
+	width: 120px;
+	height: 180px;
+	position: absolute;
+	right: 24%;
+	bottom: 41%;
+}
