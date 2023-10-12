@@ -37,7 +37,11 @@ import = "servletTest.card.*"
 <link rel='stylesheet' href='styles/style.css' />
 <title>엘리트배틀</title>
 </head>
+
 <body>
+
+<div>
+
 <%
 EnemyCharacter[] monster = encount();
 for (int i = 0; i < monster.length; i++) {
@@ -105,6 +109,8 @@ document.write(playerMana);
     <form action='dungeon'>
     <input type=hidden id=finish value='전투종료'>
     </form>
+
+
 
 </body>
 </html>

@@ -1,35 +1,50 @@
 @charset "UTF-8";
 
-.shop{
-	left: 24%;
-	position: absolute;
-	width: 1000px;
+* {
+	box-sizing: border-box;
 }
 
-.editDeck{
+.root {
+	display: flex;
+}
+
+.shop {
+	left: 24%;
+	width: 900px;
+	margin: 0 0 0 600px;
+}
+
+.editDeck {
 	width: 100px;
-	position: absolute;
 	left: 24%;
 	bottom: 41%;
 }
 
-.inToTheDungeon{
+.area {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+
+
+.inToTheDungeon {
 	width: 120px;
 	height: 180px;
-	position: absolute;
 	right: 24%;
 	bottom: 41%;
 }
 
-.sellCard{
-	left: 30%;
-	top: 15%;
-	position: absolute;
-	width: 70px;
+.sellCard {
+	width: 150px;
+	height: 190px;
+	border-radius: 5px;
 }
-.sellCard:hover{
-	left: 30%;
-	top: 15%;
-	position: absolute;
-	width: 200px;
+
+.sellCard:hover {
+	width: 300px;
+	height: 380px;
+	border-radius: 5px;
 }
