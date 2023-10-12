@@ -7,6 +7,6 @@
 <title>던전지도</title>
 </head>
 <body>
-<img src="images/dungeonMap.png" alt="덱" class="deck"/>
+<img src="images/dungeon/dungeonMap.png" alt="덱" class="deck"/>
 </body>
 </html>
