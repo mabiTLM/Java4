@@ -162,7 +162,7 @@
 
 	
 
-      <Context docBase="makeCardGame230901" path="/makeCardGame230901" reloadable="true" source="org.eclipse.jst.jee.server:makeCardGame230901"/><Context docBase="makeWebCardGameJsp" path="/classWeb" reloadable="true" source="org.eclipse.jst.jee.server:makeWebCardGameJsp"/></Host>
+      <Context docBase="makeCardGame230901" path="/makeCardGame230901" reloadable="true" source="org.eclipse.jst.jee.server:makeCardGame230901"/><Context docBase="makeWebCardGameJsp" path="/classWeb" reloadable="true" source="org.eclipse.jst.jee.server:makeWebCardGameJsp"/><Context docBase="cardGameJsp" path="/cardGameJsp" reloadable="true" source="org.eclipse.jst.jee.server:cardGameJsp"/></Host>
     </Engine>
   </Service>
 </Server>

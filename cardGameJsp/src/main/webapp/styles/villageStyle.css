@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+.root {
+	display: flex;
+}
+
+.shop {
+	left: 24%;
+	width: 900px;
+	margin: 0 0 0 600px;
+}
+
+.editDeck {
+	width: 100px;
+	left: 24%;
+	bottom: 41%;
+}
+
+.area {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+
+
+.inToTheDungeon {
+	width: 120px;
+	height: 180px;
+	right: 24%;
+	bottom: 41%;
+}
+
+.sellCard {
+	width: 150px;
+	height: 190px;
+	border-radius: 5px;
+}
+
+.sellCard:hover {
+	width: 300px;
+	height: 380px;
+	border-radius: 5px;
+}

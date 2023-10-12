@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	
+}
+
+body {
+	/*
+	background-image: url('../images/edit/decktracker.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	*/
+}
+
+#root {
+	width: 1000px;
+	height: 500px;
+	background-image: url('../images/edit/decktracker.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+
+}
+
+.inventory {
+	width: 73%;
+	height: 100%;
+	background-color: rgba(255, 0, 0, 0.5);
+	padding: 86px 50px 17px 135px;
+}
+
+.deck {
+	width: 27%;
+	height: 100%;
+	background-color: rgba(0, 255, 0, 0.5);
+	padding: 91px 58px 81px 18px;
+
+}
+
+.area {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+
+.card {
+	width: 150px;
+	height: 190px;
+	border-radius: 5px;
+}
+
+.card:hover {
+	/*
+	background-color: white;
+	border: 1px solid yellow;
+	padding: 1px;
+	*/
+	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
+}
+
+.card img {
+	width: 100%;
+}
+
+/*
+.card:hover img {
+	box-shadow: 0 0 10px 0 white;
+}
+*/
+.haveCard {
+	position: relative;
+	top: 160px;
+	left: 250px;
+	width: 200px;
+}
