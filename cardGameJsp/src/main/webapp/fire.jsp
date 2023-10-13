@@ -3,10 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>모닥불</title>
+<link rel='stylesheet' href='styles/fireEvent.css' />
 </head>
 <body>
-<img src="images/fire.jpg" alt="모닥불" class="fire"/>
+
+<div id="root">
+
+</div>
 </body>
 </html>

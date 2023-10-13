@@ -2,7 +2,6 @@
 
 * {
 	box-sizing: border-box;
-	
 }
 
 body {
@@ -20,7 +19,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	display: flex;
-
+	margin: auto;
 }
 
 .inventory {

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#root {
+	width: 1800px;
+	height: 1000px;
+	background-image: url('../images/dungeon/eventFire.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	background-position: center;
+	margin: auto;
+}
