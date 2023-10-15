@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,22 @@
 </head>
 <body>
 
-<div id="root">
+	<div id="root">
 
-</div>
+		<div class="padding-box">
+			<div class="choice-box">
+				<img src="images/dungeon/campfire/rest.png" alt="휴식" class="button">
+				<div class="text">휴식하기</div>
+			</div>
+			<div class="choice-box">
+				<img src="images/dungeon/campfire/enhance.png" alt="강화"
+					class="button">
+				<div class="text">강화하기</div>
+			</div>
+
+		</div>
+
+
+	</div>
 </body>
 </html>
