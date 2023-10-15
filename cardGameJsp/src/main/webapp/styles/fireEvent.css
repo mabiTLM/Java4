@@ -37,8 +37,10 @@
 
 .text{
 	text-align: center;
+	font-size: 25px;
+	font-weight: 1000;
 }
 
 .text:hover{
-	color: red;
+	color: red;	
 }

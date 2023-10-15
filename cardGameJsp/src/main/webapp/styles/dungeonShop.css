@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+#root {
+	width: 1800px;
+	height: 1000px;
+	background-image: url('../images/dungeon/shop/sellItem.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	background-position: center;
+	margin: auto;
+}
+
+.padding-box{
+	width: 100%;
+	height: 100%;
+	padding: 80px 70px 80px 100px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cardBorder {
+	position: static;
+	width: 150px;
+	height: 190px;
+	margin: 7px;
+}
+
+.sellCard {
+	position: absolute;
+	width: 150px;
+	height: 190px;
+}
+
+.sellCard:hover {
+	position: absolute;
+	width: 160px;
+	height: 200px;
+}
