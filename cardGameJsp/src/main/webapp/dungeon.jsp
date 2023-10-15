@@ -15,20 +15,42 @@
 		<div class="paddingBox">
 			<div class="map">
 				<div class="box">
-					<img src="images/dungeon/elite.png" alt="던전지도" class="elite">
+					<img src="images/dungeon/elite.png" alt="엘리트" class="elite">
 					<div class="text">엘리트</div>
 				</div>
 				<div class="box">
-					<img src="images/dungeon/normal.png" alt="던전지도" class="elite">
+					<img src="images/dungeon/normal.png" alt="일반적" class="elite">
 					<div class="text">노말</div>
 				</div>
 				<div class="box">
-					<img src="images/dungeon/fire.png" alt="던전지도" class="elite">
+					<img src="images/dungeon/fire.png" alt="모닥불" class="elite">
 					<div class="text">모닥불</div>
 				</div>
 
 				<div class="box">
-					<img src="images/dungeon/dungeonShop.png" alt="던전지도" class="elite">
+					<img src="images/dungeon/dungeonShop.png" alt="상점" class="elite">
+					<div class="text">상점</div>
+				</div>
+
+				<div class="box">
+					<img src="images/dungeon/event.png" alt="던전지도" class="elite">
+					<div class="text">이벤트</div>
+				</div>
+							<div class="box">
+					<img src="images/dungeon/elite.png" alt="엘리트" class="elite">
+					<div class="text">엘리트</div>
+				</div>
+				<div class="box">
+					<img src="images/dungeon/normal.png" alt="일반적" class="elite">
+					<div class="text">노말</div>
+				</div>
+				<div class="box">
+					<img src="images/dungeon/fire.png" alt="모닥불" class="elite">
+					<div class="text">모닥불</div>
+				</div>
+
+				<div class="box">
+					<img src="images/dungeon/dungeonShop.png" alt="상점" class="elite">
 					<div class="text">상점</div>
 				</div>
 
