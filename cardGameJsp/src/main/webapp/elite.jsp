@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter" import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy" import="servletTest.card.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter"
+	import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
+	import="servletTest.card.*" pageEncoding="UTF-8"%>
 <%!private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
 	{
 		int temp = (int) (Math.random() * 2 + 1);
@@ -40,13 +43,17 @@
 				for (int i = 0; i < monster.length; i++) {
 					EnemyCharacter c = monster[i];
 				%>
-				<span> <img src="images/dungeon/monster/<%=c.getName()%>.webp" alt="<%=c.getName()%>>" class="temp" />
-					<button id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
+				<div class="enemystanding">
+					<img src="images/dungeon/monster/<%=c.getName()%>.webp"
+						alt="<%=c.getName()%>>" class="temp" />
+					<!-- <button id='monster<%--=i%>'
+						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
 						<%
 						out.print(c.getName());
-						%>
-					</button>
-				</span> <span> 체력 : <span id='monsterHp<%=i%>'> <%
+						--%>
+					</button> -->
+				</div>
+				<span> 체력 : <span id='monsterHp<%=i%>'> <%
  out.print(c.getHp());
  %>
 				</span> 쉴드 : <span id='monsterDef<%=i%>'> <%
@@ -65,43 +72,49 @@
 			<div class="player-area">
 
 				<script>
-document.write("체력"+playerHp);
-</script>
+					document.write("체력" + playerHp);
+				</script>
 				<span> 방어력 : <span id="playerDefSpan"> <script>
-document.write(playerDef);
-</script>
+					document.write(playerDef);
+				</script>
 				</span>
 				</span> <span> 마나 : <span id="playerManaSpan"> <script>
-document.write(playerMana);
-</script>
+					document.write(playerMana);
+				</script>
 				</span>
 				</span> <br />
 
+				<div class="hand-area">
 
-				<%!private CardVO Hand(int i) {
+					<%!private CardVO Hand(int i) {
       CardDAO cardDAO = new CardDAO();
       CardVO temp = cardDAO.getCard(i, "deck");
       return temp;
     }%>
 
-				<%
-				for (int i = 1; i <= 8; i++) {
-				%>
-				<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" />
-				<button onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
-					<%=Hand(i).getCardName()%>
-				</button>
+					<%
+					for (int i = 1; i <= 8; i++) {
+					%>
+					<img src="images/card/<%=Hand(i).getCardName()%>.png"
+						alt="<%=Hand(i).getCardName()%>>" class="hand" />
+					<!--<button
+						onclick="usecard('<%--=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
+						<%=Hand(i).getCardName()--%>
+					</button> -->
 
-				<%
-				}
-				%>
-				<br />
-				<button onclick='turnFinish()'>턴종료</button>
-
+					<%
+					}
+					%>
+					<br />
+				</div>
+				<div class = "finish-button">
+					<button onclick='turnFinish()'>턴종료</button>
+				</div>
 				<form action='dungeon'>
 					<input type=hidden id=finish value='전투종료'>
 				</form>
 			</div>
+
 		</div>
 	</div>
 </body>

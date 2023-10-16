@@ -15,11 +15,18 @@
 	margin: auto;
 }
 
+.category {
+	width: 100%;
+	height: 100%;
+	padding: 80px 100px 85px 150px;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
 .editDeck {
 	width: 0px;
 	height: 0px;
 	position: relative;
-	right: 61%;
+	right: 100%;
 	top: 83%;
 }
 
@@ -104,13 +111,6 @@
 	font-weight: bold;
 }
 
-.category {
-	width: 61%;
-	height: 100%;
-	padding: 90px 55px 110px 110px;
-	/*background-color: rgba(255, 0, 0, 0.5);*/
-}
-
 .flex-box {
 	display: flex;
 	flex-wrap: wrap;
@@ -123,8 +123,8 @@
 
 .cardBorder {
 	position: static;
-	width: 84px;
-	height: 107px;
+	width: 110px;
+	height: 122px;
 }
 
 .sellCard {
