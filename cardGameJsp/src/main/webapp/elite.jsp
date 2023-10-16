@@ -28,7 +28,7 @@
 <meta charset='UTF-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <script src='scripts/makeCardGame.js'></script>
-<link rel='stylesheet' href='styles/style.css' />
+<link rel='stylesheet' href='styles/battle.css' />
 <title>엘리트배틀</title>
 </head>
 
@@ -102,7 +102,7 @@ document.write(playerMana);
 		}
 		%>
 		<br />
-		<button onclick='turnFinish(<%=%>)'>턴종료</button>
+		<button onclick='turnFinish()'>턴종료</button>
 
 		<form action='dungeon'>
 			<input type=hidden id=finish value='전투종료'>

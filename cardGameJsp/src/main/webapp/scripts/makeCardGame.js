@@ -121,10 +121,9 @@ function usecard(type,value,consumeMana) {
 	}
 }
 
-function turnFinish(name){
+function turnFinish(){
 	playerMana=playerMaxMana;
 	const playerManaPrint = document.getElementById("playerManaSpan");
 	playerManaPrint.innerHTML = playerMana;
-	
-	console.log(name[0]);
+
 }
