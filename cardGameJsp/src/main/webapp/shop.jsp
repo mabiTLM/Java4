@@ -16,6 +16,12 @@
 			<div class="cardBorder">
 				<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
 			</div>
+			<div class="cardBorder">
+				<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+			</div>
+			<div class="cardBorder">
+				<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+			</div>
 
 		</div>
 

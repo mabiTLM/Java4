@@ -4,14 +4,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	/*
-	background-image: url('../images/edit/decktracker.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	*/
-}
-
 #root {
 	width: 1000px;
 	height: 500px;
