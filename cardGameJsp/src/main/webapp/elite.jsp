@@ -40,7 +40,7 @@
 				for (int i = 0; i < monster.length; i++) {
 					EnemyCharacter c = monster[i];
 				%>
-				<span>
+				<span> <img src="images/dungeon/monster/<%=c.getName()%>.webp" alt="<%=c.getName()%>>" class="temp" />
 					<button id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
 						<%
 						out.print(c.getName());
@@ -87,6 +87,7 @@ document.write(playerMana);
 				<%
 				for (int i = 1; i <= 8; i++) {
 				%>
+				<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" />
 				<button onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 					<%=Hand(i).getCardName()%>
 				</button>

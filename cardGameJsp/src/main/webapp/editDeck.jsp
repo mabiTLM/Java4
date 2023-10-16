@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,65 +7,82 @@
 <link rel='stylesheet' href='styles/editDeck.css' />
 </head>
 <body>
-<!-- 일단 임시 카드 두개 -->
+	<!-- 일단 임시 카드 두개 -->
 	<div id="root">
 		<div class="inventory">
-			<div class="area">
+			<div class="inventory-area">
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
-				</div>
-				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
-				</div>
-					<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
 				<div class="card">
-					<img src="images/card/attack.png" alt="카드"/>
-				 	<div class="mana">
-					</div>
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
 				</div>
-				
+				<div class="card">
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
+				</div>
+				<div class="card">
+					<img src="images/card/attack.png" alt="카드" />
+					<div class="mana"></div>
+				</div>
+
 			</div>
 		</div>
 		<div class="deck">
-			<div class="area">
+			<div class="deck-area">
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+				<div class="deck-in-card">
+					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
+				</div>
+
+
 			</div>
 		</div>
 	</div>

@@ -10,17 +10,20 @@
 </head>
 <body>
 
-	<div class="root">
-		<div class="startButton">
-			<form action='title' method='post'>
-				<input type='submit' name='start' value='새로운 시작' style='text-align: center; font-size: 50px' class="titleButton">
-			</form>
-		</div>
-		</br>
-		<div class="loadButton">
-			<form action='title' method='post'>
-				<input type='submit' name='start' value='이어하기' style='text-align: center; font-size: 50px' class="titleButton">
-			</form>
+	<div id="root">
+
+		<div class="padding-box">
+			<div class="startButton">
+				<form action='title' method='post'>
+					<input type='submit' name='start' value='새로운 시작' style='text-align: center; font-size: 50px' class="titleButton">
+				</form>
+			</div>
+			</br>
+			<div class="loadButton">
+				<form action='title' method='post'>
+					<input type='submit' name='start' value='이어하기' style='text-align: center; font-size: 50px' class="titleButton">
+				</form>
+			</div>
 		</div>
 	</div>
 </body>
