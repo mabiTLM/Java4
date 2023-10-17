@@ -21,6 +21,7 @@
 .titleButton {
 	background-image: url('../images/title/startbutton.png');
 	color: gold;
+	cursor: pointer;
 }
 
 .titleButton:hover {

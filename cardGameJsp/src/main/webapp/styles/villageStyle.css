@@ -28,6 +28,8 @@
 	position: relative;
 	right: 100%;
 	top: 83%;
+	cursor: pointer;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
 }
 
 .editDeckIcon {
@@ -36,8 +38,8 @@
 }
 
 .editDeckButton {
+	cursor: pointer;
 	width: 75px;
-
 	font-size: 18px;
 	font-weight: bold;
 
@@ -95,6 +97,8 @@
 	height: 0px;
 	right: 9%;
 	top: 79%;
+	cursor: pointer;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
 }
 
 .inToTheDungeonIcon {
@@ -109,6 +113,7 @@
 	background-color: green;
 	font-size: 18px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .flex-box {
@@ -130,6 +135,7 @@
 .sellCard {
 	position: absolute;
 	width: 84px;
+	cursor: pointer;
 }
 
 .sellCard:hover {

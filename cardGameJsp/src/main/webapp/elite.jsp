@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter"
-	import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
-	import="servletTest.card.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter" import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy" import="servletTest.card.*" pageEncoding="UTF-8"%>
 <%!private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
 	{
 		int temp = (int) (Math.random() * 2 + 1);
@@ -12,15 +9,6 @@
 			currentEnemy[i] = eArray.stageEliteData()[enemyNumberTemp];
 		}
 		return currentEnemy;
-	}
-	private String[] enemyName() {
-		String[] temp = new String[encount().length];
-
-		for (int i = 0; i < temp.length; i++) {
-			temp[i] = encount()[i].getName();
-		}
-
-		return temp;
 	}%>
 <!DOCTYPE html>
 <html lang='ko'>
@@ -44,45 +32,46 @@
 					EnemyCharacter c = monster[i];
 				%>
 				<div class="enemystanding">
-					<img src="images/dungeon/monster/<%=c.getName()%>.webp"
-						alt="<%=c.getName()%>>" class="temp" />
+					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" />
 					<!-- <button id='monster<%--=i%>'
 						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
 						<%
 						out.print(c.getName());
 						--%>
 					</button> -->
-				</div>
-				<span> 체력 : <span id='monsterHp<%=i%>'> <%
+
+
+					<span> 체력 : <span id='monsterHp<%=i%>'> <%
  out.print(c.getHp());
  %>
-				</span> 쉴드 : <span id='monsterDef<%=i%>'> <%
+					</span><br /> 쉴드 : <span id='monsterDef<%=i%>'> <%
  out.print(c.getDef());
  %>
-				</span> 공격력 : <%
-				out.print(c.getAtk());
-				%>
-				</span> <br />
+					</span><br /> 공격력 : <%
+					out.print(c.getAtk());
+					%>
+					</span>
+				</div>
 				<%
 				}
 				%>
-
 			</div>
 
 			<div class="player-area">
-
-				<script>
-					document.write("체력" + playerHp);
-				</script>
-				<span> 방어력 : <span id="playerDefSpan"> <script>
-					document.write(playerDef);
-				</script>
-				</span>
-				</span> <span> 마나 : <span id="playerManaSpan"> <script>
-					document.write(playerMana);
-				</script>
-				</span>
-				</span> <br />
+				<div class="status-area">
+					<script>
+						document.write("체력" + playerHp);
+					</script>
+					<span> 방어력 : <span id="playerDefSpan"> <script>
+						document.write(playerDef);
+					</script>
+					</span>
+					</span> <span> 마나 : <span id="playerManaSpan"> <script>
+						document.write(playerMana);
+					</script>
+					</span>
+					</span>
+				</div>
 
 				<div class="hand-area">
 
@@ -95,8 +84,7 @@
 					<%
 					for (int i = 1; i <= 8; i++) {
 					%>
-					<img src="images/card/<%=Hand(i).getCardName()%>.png"
-						alt="<%=Hand(i).getCardName()%>>" class="hand" />
+					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" />
 					<!--<button
 						onclick="usecard('<%--=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 						<%=Hand(i).getCardName()--%>
@@ -107,7 +95,7 @@
 					%>
 					<br />
 				</div>
-				<div class = "finish-button">
+				<div class="finish-button">
 					<button onclick='turnFinish()'>턴종료</button>
 				</div>
 				<form action='dungeon'>
