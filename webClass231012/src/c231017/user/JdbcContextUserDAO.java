@@ -52,10 +52,8 @@ public class JdbcContextUserDAO {
         pstmt.setString(3, user.getPassword());
         return pstmt;
       }
-
     });
   }
-
 
   public void delete(int id) throws SQLException {
     jdbcContextWithStatementStrategy(new StatementStrategy() {
@@ -68,13 +66,6 @@ public class JdbcContextUserDAO {
       }
     });
   }
-
-
-  // public UserBean get(String userId) {
-  // return jdbcContextWithStatementStrategy(new);
-  // }
-
-
 }
 
 

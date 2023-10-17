@@ -13,55 +13,13 @@ import c231017.user.UsedSpringUserDAO;
 import c231017.user.UserBean;
 import c231017.user.UserInterface;
 
-// User의 DAO를 테스트
 public class UserDAOTest {
-
-  // public static void main(String[] args) throws Exception {
-  // addAndGetTest();
-  // }
-  //
-  // private static void addAndGetTest() throws Exception {
-  // ApplicationContext context = new AnnotationConfigApplicationContext(DAOFactory.class);
-  // UsedSpringUserDAO dao = context.getBean("usedSpringUserDAO", UsedSpringUserDAO.class);
-  // TestUserDAO testUserDAO = context.getBean("testUserDAO", TestUserDAO.class);
-  //
-  // try {
-  // testUserDAO.drop();
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // }
-  // testUserDAO.create();
-  //
-  // UserBean user = new UserBean();
-  // user.setName("임");
-  // user.setUserId("lim1");
-  // user.setPassword("1111");
-  // dao.add(user);
-  // System.out.println("추가 성공");
-  //
-  // UserInterface createdUser = dao.get("lim1");
-  // System.out.println(createdUser.getId());
-  //
-  // if (!createdUser.getName().equals(user.getName())) {
-  // System.out.println("이름 문제 발생");
-  // } else if (!createdUser.getUserId().equals(user.getUserId())) {
-  // System.out.println("아이디 문제 발생");
-  // } else if (!createdUser.getPassword().equals(user.getPassword())) {
-  // System.out.println("비번 문제 발생");
-  // } else {
-  // System.out.println("조회 성공");
-  // }
-  //
-  // }
-
 
   private UserInterface user1 = new UserBean();
   private ApplicationContext context = new AnnotationConfigApplicationContext(DAOFactory.class);
 
   @Before
   public void initialize() throws SQLException {
-
-
     TestUserDAO testUserDAO = context.getBean("testUserDAO", TestUserDAO.class);
     UsedSpringUserDAO dao = context.getBean("usedSpringUserDAO", UsedSpringUserDAO.class);
     try {
