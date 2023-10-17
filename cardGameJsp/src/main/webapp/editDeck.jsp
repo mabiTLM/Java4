@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,14 +83,12 @@
 					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
 				</div>
 
-
+				<div class="edit-button">완료</div>
 			</div>
 		</div>
-		
-		<div class = "edit-button">
-		완료
-		</div>
-		
+
+
+
 	</div>
 
 </body>
