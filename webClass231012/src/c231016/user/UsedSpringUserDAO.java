@@ -6,10 +6,10 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-public class usedSpringUserDAO {
+public class UsedSpringUserDAO {
   private JdbcTemplate jdbcTemplate;
 
-  public usedSpringUserDAO(DataSource dataSource) {
+  public UsedSpringUserDAO(DataSource dataSource) {
     jdbcTemplate = new JdbcTemplate(dataSource);
   }
 
@@ -19,9 +19,6 @@ public class usedSpringUserDAO {
   }
 
   public UserInterface get(String userId) throws SQLException {
-    // jdbcTemplate.queryForInt("select count(*) from users");// 몇개있는지 가져온다 loss
-
-    jdbcTemplate.queryForList("qeury", UserBean.class, "? 1", "? 2");
 
     return jdbcTemplate.queryForObject("select * from users where user_id=?", new Object[] {userId},
         new RowMapper<UserBean>() {
@@ -29,9 +26,11 @@ public class usedSpringUserDAO {
           public UserBean mapRow(ResultSet rs, int rowNum) throws SQLException {
             UserBean user = new UserBean();
             user.setId(rs.getInt("id"));
+            user.setName(rs.getString("name"));
+            user.setUserId(rs.getString("user_id"));
+            user.setPassword(rs.getString("password"));
             return user;
           }
         });
   }
-
 }
