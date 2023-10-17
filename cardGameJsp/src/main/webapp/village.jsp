@@ -16,48 +16,77 @@
 		<div class="category">
 			<div class="flex-box">
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+						<div class="card-text-area">
+						카드 설명
+						</div>
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
 				<div class="cardBorder">
-					<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
 				</div>
-
+				<div class="cardBorder">
+					<div class="card-area">
+						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+					</div>
+				</div>
 
 			</div>
 		</div>
 		<!-- 여기에 카드 불러오는 로직만들어서 출력 일단 하나만 -->
 		<div class="editDeck">
 			<a href=editDeck.jsp>
-				<img src="images/village/editDeck.png" alt="덱수정" class="editDeckIcon"/>
+				<img src="images/village/editDeck.png" alt="덱수정" class="editDeckIcon" />
 				<button class="editDeckButton">덱수정</button>
-			</a>			
+			</a>
 		</div>
 		<div class="inToTheDungeon">
 			<a href=dungeon.jsp>
@@ -66,6 +95,5 @@
 			</a>
 		</div>
 	</div>
-
 </body>
 </html>

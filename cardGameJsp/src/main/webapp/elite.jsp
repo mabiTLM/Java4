@@ -31,8 +31,8 @@
 				for (int i = 0; i < monster.length; i++) {
 					EnemyCharacter c = monster[i];
 				%>
-				<div class="enemystanding">
-					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" />
+				<div class="enemystanding" >
+					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)"/>
 					<!-- <button id='monster<%--=i%>'
 						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
 						<%
@@ -41,15 +41,23 @@
 					</button> -->
 
 
-					<span> 체력 : <span id='monsterHp<%=i%>'> <%
- out.print(c.getHp());
- %>
-					</span><br /> 쉴드 : <span id='monsterDef<%=i%>'> <%
- out.print(c.getDef());
- %>
-					</span><br /> 공격력 : <%
-					out.print(c.getAtk());
-					%>
+					<span>
+						체력 :
+						<span id='monsterHp<%=i%>'>
+							<%
+							out.print(c.getHp());
+							%>
+						</span>
+						<br /> 쉴드 :
+						<span id='monsterDef<%=i%>'>
+							<%
+							out.print(c.getDef());
+							%>
+						</span>
+						<br /> 공격력 :
+						<%
+						out.print(c.getAtk());
+						%>
 					</span>
 				</div>
 				<%
@@ -62,14 +70,21 @@
 					<script>
 						document.write("체력" + playerHp);
 					</script>
-					<span> 방어력 : <span id="playerDefSpan"> <script>
+					<span>
+						방어력 :
+						<span id="playerDefSpan">
+							<script>
 						document.write(playerDef);
 					</script>
+						</span>
 					</span>
-					</span> <span> 마나 : <span id="playerManaSpan"> <script>
+					<span>
+						마나 :
+						<span id="playerManaSpan">
+							<script>
 						document.write(playerMana);
 					</script>
-					</span>
+						</span>
 					</span>
 				</div>
 
@@ -84,7 +99,7 @@
 					<%
 					for (int i = 1; i <= 8; i++) {
 					%>
-					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" />
+					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 					<!--<button
 						onclick="usecard('<%--=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 						<%=Hand(i).getCardName()--%>
@@ -95,12 +110,14 @@
 					%>
 					<br />
 				</div>
-				<div class="finish-button">
+				<div class="turnoff-button">
 					<button onclick='turnFinish()'>턴종료</button>
 				</div>
-				<form action='dungeon'>
-					<input type=hidden id=finish value='전투종료'>
-				</form>
+				<div class="battlefinish-area" id="finish-area">
+					<form action='dungeon.jsp' class="finish-button">
+						<input type=hidden id=finish value='전투종료' class="finish-button">
+					</form>
+				</div>
 			</div>
 
 		</div>
