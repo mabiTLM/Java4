@@ -21,12 +21,14 @@
 				%>
 				<div class="cardBorder">
 					<div class="card-area">
-						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+						<div class="card-area-inner">
+							<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
 
-						<div class="card-mana">1</div>
+							<div class="card-mana">1</div>
 
-						<div class="card-explain-area">카드 설명~~카드 설명~~카드 설명~~카드 설명~~카드 설명~~</div>
-						<div class="card-price">1000</div>
+							<div class="card-explain-area">카드 설명~~카드 설명~~카드 설명~~카드 설명~~카드 설명~~</div>
+							<div class="card-price">1000</div>
+						</div>
 					</div>
 				</div>
 				<%
