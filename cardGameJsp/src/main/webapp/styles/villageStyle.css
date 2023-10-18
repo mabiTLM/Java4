@@ -131,32 +131,48 @@
 	width: 16%;
 	height: 26%;
 	/*background-color: rgba(255, 0, 0, 0.5);*/
+	transform: scale(1.0);
+	transition: transform .5s;
+}
+
+.cardBorder:hover {
+	transform: scale(2.0);
+	transition: transform .5s;
+	z-index: 2;
 }
 
 .card-area {
+	font-size: 10px;
+	color: white;
 	width: 75%;
 	height: 88%;
 	/*background-color: rgba(255, 0, 0, 0.5);*/
+
 }
 
 .sellCard {
-	position: absolute;
-	width: 105px;
+	width: 100%;
 	cursor: pointer;
 }
 
-.sellCard:hover {
-	position: absolute;
-	width: 300px;
-	z-index: 5;
+.card-mana {
+	bottom: 100%;
+	padding: 3px 0px 0px 7px;
+	position: relative;
+	z-index: 1;
 }
 
-.card-text-area {
-	font-size: 10px;
-	width: 100px;
-	position: absolute;
-	color: white;
-	padding: 77px 0px 0px 14px;
-	/*background-color: rgba(255, 0, 0, 0.5);*/
+.card-explain-area {
+	overflow: auto;
+	bottom: 100%;
+	width: 90%;
+	height: 84%;
+	position: relative;
+	padding: 58px 0px 0px 12px;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
 	z-index: 1;
+}
+
+.card-explain-area::-webkit-scrollbar {
+	display: none;
 }
