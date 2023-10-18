@@ -139,6 +139,7 @@
 	transform: scale(2.0);
 	transition: transform .5s;
 	z-index: 2;
+	background-color: gray;
 }
 
 .card-area {
@@ -175,4 +176,12 @@
 
 .card-explain-area::-webkit-scrollbar {
 	display: none;
+}
+
+.card-price {
+	left: 33%;
+	bottom: 92%;
+	padding: 0px 0px 0px 0px;
+	position: relative;
+	z-index: 1;
 }

@@ -15,20 +15,23 @@
 	<div id="root">
 		<div class="category">
 			<div class="flex-box">
-			
-			<%for(int i = 0; i <20; i++) {%>
+
+				<%
+				for (int i = 0; i < 20; i++) {
+				%>
 				<div class="cardBorder">
 					<div class="card-area">
 						<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
-						
+
 						<div class="card-mana">1</div>
-						
-						<div class="card-explain-area">
-						카드 설명~~카드 설명~~카드 설명~~카드 설명~~카드 설명~~
-						</div>
+
+						<div class="card-explain-area">카드 설명~~카드 설명~~카드 설명~~카드 설명~~카드 설명~~</div>
+						<div class="card-price">1000</div>
 					</div>
 				</div>
-			<%} %>
+				<%
+				}
+				%>
 
 			</div>
 		</div>
