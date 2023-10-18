@@ -3,6 +3,7 @@ package servletTest.card;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -37,7 +38,7 @@ public class CardDAO {
   // }
 
   /**
-   * 게임을 처음시작할때 데이버베이스 세팅
+   * 게임을 처음시작할때 데이버베이스 세팅 일단 전부하나로 되있는데 분리해야한다.
    **/
   public void newStart() {
     TotalCardBase totalCardBase = new TotalCardBase();
@@ -79,7 +80,6 @@ public class CardDAO {
     }
 
     try {
-      connect();
       String deleteQuery = "drop table deck";
       PreparedStatement stmt = con.prepareStatement(deleteQuery);
       stmt.executeUpdate();
@@ -89,7 +89,6 @@ public class CardDAO {
     }
 
     try {
-      connect();
       String createDeckQuery = "create table Deck (id number(10,0) not null,"
           + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
           + "price number(10,0) not null,effect varchar2(20) default '통상',"
@@ -104,20 +103,75 @@ public class CardDAO {
 
 
     try {
-      connect();
-      String createDeckQuery = "create table cardInventory (id number(10,0) not null,"
-          + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
-          + "price number(10,0) not null,effect varchar2(20) default '통상',"
-          + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-          + "volatility varchar2(10) default 'false')";
-      PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
-      crePstmt.executeUpdate();
-      crePstmt.close();
-      con.close();
+      String deleteQuery = "drop table villageShop";
+      PreparedStatement stmt = con.prepareStatement(deleteQuery);
+      stmt.executeUpdate();
+      stmt.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
 
+
+    try {
+      String createDeckQuery =
+          "create table villageShop (id number(10,0) generated as identity primary key,"
+              + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
+              + "price number(10,0) not null,effect varchar2(20) default '통상',"
+              + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
+              + "volatility varchar2(10) default 'false')";
+      PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
+      crePstmt.executeUpdate();
+      crePstmt.close();
+
+      for (int i = 0; i < totalCardBase.shopSellCard().length; i++) {
+        String insertQuery =
+            "insert into villageShop (name,type,cardValue,consumeMana,price,effect,effectValue,volatility) values (?,?,?,?,?,?,?,?)";
+        PreparedStatement pstmt = con.prepareStatement(insertQuery);
+        pstmt.setString(1, totalCardBase.shopSellCard()[i].getCardName());
+        pstmt.setString(2, totalCardBase.shopSellCard()[i].getCardType().toString());
+        pstmt.setInt(3, totalCardBase.shopSellCard()[i].getCardValue());
+        pstmt.setInt(4, totalCardBase.shopSellCard()[i].getCardConsumeMana());
+        pstmt.setInt(5, totalCardBase.shopSellCard()[i].getCardPrice());
+        pstmt.setString(6, totalCardBase.shopSellCard()[i].getEffect());
+        pstmt.setInt(7, totalCardBase.shopSellCard()[i].getEffectValue());
+        pstmt.setString(8, String.valueOf(totalCardBase.shopSellCard()[i].getVolatility()));
+        pstmt.executeUpdate();
+        pstmt.close();
+
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      String deleteQuery = "drop table cardInventory";
+      PreparedStatement stmt = con.prepareStatement(deleteQuery);
+      stmt.executeUpdate();
+      stmt.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      String createDeckQuery =
+          "create table cardInventory (id number(10,0) generated as identity primary key,"
+              + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
+              + "price number(10,0) not null,effect varchar2(20) default '통상',"
+              + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
+              + "volatility varchar2(10) default 'false')";
+      PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
+      crePstmt.executeUpdate();
+      crePstmt.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      con.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
   }
 
@@ -127,11 +181,11 @@ public class CardDAO {
   public void insertDeck(int id, String fromDeck, String toDeck) {
     try {
       CardVO temp = getCard(id, fromDeck);// 안에서 닫아버리니까 뒤에서 열자
-      int finalCard = 1;
-      for (int i = 1; i <= 40; i++)// 덱갯수제한
+      int finalCard = 0;
+      for (int i = 0; i < 40; i++)// 덱갯수제한
       {
         if (getCard(i, toDeck) == null) {
-          finalCard = i;
+          finalCard = i + 1;
           break;
         }
       }
@@ -162,7 +216,7 @@ public class CardDAO {
       connect();
       String query = "select * from " + from + " where id = ?";
       PreparedStatement pstmt = con.prepareStatement(query);
-      pstmt.setInt(1, id);
+      pstmt.setInt(1, id + 1);
       ResultSet rs = pstmt.executeQuery();
       if (rs.next()) {
         temp = new CardVO(rs.getInt("id"), rs.getString("name"), rs.getString("type"),

@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="servletTest.card.*" pageEncoding="UTF-8"%>
+
+<%!private CardVO VillageShop(int i) {
+    CardDAO cardDAO = new CardDAO();
+    CardVO temp = cardDAO.getCard(i, "villageShop");
+    return temp;
+  }%>
+
 
 <!DOCTYPE html>
 <html lang='ko'>
@@ -22,12 +29,12 @@
 				<div class="cardBorder">
 					<div class="card-area">
 						<div class="card-area-inner">
-							<img src="images/card/attack.png" alt="기본공격" class="sellCard" />
+							<img src="images/card/<%=VillageShop(i).getCardName()%>.png" alt="<%=VillageShop(i).getCardName()%>" class="sellCard" />
 
-							<div class="card-mana">1</div>
+							<div class="card-mana"><%=VillageShop(i).getCardConsumeMana()%></div>
 
-							<div class="card-explain-area">카드 설명~~카드 설명~~카드 설명~~카드 설명~~카드 설명~~</div>
-							<div class="card-price">1000</div>
+							<div class="card-explain-area"><%=VillageShop(i).cardExplain()%></div>
+							<div class="card-price"><%=VillageShop(i).getCardPrice()%></div>
 						</div>
 					</div>
 				</div>

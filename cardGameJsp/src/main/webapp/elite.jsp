@@ -31,8 +31,8 @@
 				for (int i = 0; i < monster.length; i++) {
 					EnemyCharacter c = monster[i];
 				%>
-				<div class="enemystanding" >
-					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)"/>
+				<div class="enemystanding">
+					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)" />
 					<!-- <button id='monster<%--=i%>'
 						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
 						<%
@@ -96,7 +96,7 @@
     }%>
 
 					<%
-					for (int i = 1; i <= 8; i++) {
+					for (int i = 0; i < 8; i++) {
 					%>
 					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 					<!--<button

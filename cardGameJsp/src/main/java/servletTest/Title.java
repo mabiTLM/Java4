@@ -59,9 +59,12 @@ public class Title extends HttpServlet {
       CardDAO card = new CardDAO();
       card.newStart();
       for (int i = 0; i < 4; i++) {
+        card.insertDeck(0, "card", "deck");
         card.insertDeck(1, "card", "deck");
-        card.insertDeck(2, "card", "deck");
       }
+
+
+
       response.sendRedirect("village.jsp");
 
     } else if (temp.equals("이어하기")) {

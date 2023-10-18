@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>던전 상점</title>
 <link rel='stylesheet' href='styles/dungeonShop.css' />
 </head>

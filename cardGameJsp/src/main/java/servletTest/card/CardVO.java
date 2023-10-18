@@ -81,4 +81,36 @@ public class CardVO {
   public String getVolatility() {
     return volatility;
   }
+
+  public String cardExplain() {
+    String temp = "";
+    temp += getCardName() + " : " + getCardValue();
+    if (getCardType().equals("Attack")) {
+      temp += "공격력";
+    }
+
+    else if (getCardType().equals("Defend")) {
+      temp += "방어도";
+    }
+
+    else if (getCardType().equals("_Heal_")) {
+      temp += "회복";
+    }
+
+
+    if (!getEffect().equals("통상")) {
+
+      if (getEffectValue() == 0) {
+        temp += " /효과 : " + getEffect();
+      } else {
+        temp += " /효과 : " + getEffectValue() + getEffect();
+      }
+    }
+    if (getVolatility().equals("true")) {
+      temp += " 휘발성";
+    }
+
+    return temp;
+
+  }
 }
