@@ -13,7 +13,7 @@ public class UsedSpringUserDAO {
     jdbcTemplate = new JdbcTemplate(dataSource);
   }
 
-  public void add(UserInterface user) throws SQLException {
+  public void add(UserInterface user) {// 에러처리를 안해도 저절로 된다. 9월7일 에러처리 자료
     jdbcTemplate.update("insert into users (name,user_id,password) values (?,?,?)", user.getName(),
         user.getUserId(), user.getPassword());
   }

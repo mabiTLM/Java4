@@ -15,9 +15,7 @@ public class UserDAO {
 
   public UserDAO(DataSource dataSource) {
     this.dataSource = dataSource;
-
   }
-
 
   public void add(UserBean user) throws SQLException {
     Connection conn = null;
@@ -64,7 +62,6 @@ public class UserDAO {
 
   }
 
-
   public UserInterface get(String userId) throws Exception {
     // Connection conn = maker.makeConnection();
     Connection conn = dataSource.getConnection();
@@ -98,6 +95,4 @@ public class UserDAO {
    * 
    * return pstmt; }
    */
-
-
 }

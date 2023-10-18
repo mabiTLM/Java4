@@ -56,7 +56,6 @@ public class JdbcContextUserDAO {
     });
   }
 
-
   public void delete(int id) throws SQLException {
     jdbcContextWithStatementStrategy(new StatementStrategy() {
 
@@ -69,11 +68,9 @@ public class JdbcContextUserDAO {
     });
   }
 
-
   // public UserBean get(String userId) {
   // return jdbcContextWithStatementStrategy(new);
   // }
-
 
 }
 
