@@ -232,14 +232,14 @@ public class CardDAO {
     return temp;
   }
 
-  public void start() {
+  public void DBLengthCheck(String from) {
     try {
+      connect();
 
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-
 
   private void connect() throws Exception {
     // Class.forName("oracle.jdbc.OracleDriver");
