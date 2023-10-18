@@ -27,16 +27,19 @@
 				for (int i = 0; i < 20; i++) {
 				%>
 				<div class="cardBorder">
-					<div class="card-area">
+					<!-- 영역자체를 form으로해서 보내자 -->
+					<form class="card-area" action='village' method='post'>
 						<div class="card-area-inner">
-							<img src="images/card/<%=VillageShop(i).getCardName()%>.png" alt="<%=VillageShop(i).getCardName()%>" class="sellCard" />
-
-							<div class="card-mana"><%=VillageShop(i).getCardConsumeMana()%></div>
-
-							<div class="card-explain-area"><%=VillageShop(i).cardExplain()%></div>
-							<div class="card-price"><%=VillageShop(i).getCardPrice()%></div>
+							<input type="hidden" name="card-index" value="<%=i%>" />
+							<button class="buy-button">
+								<img src="images/card/<%=VillageShop(i).getCardName()%>.png" alt="<%=VillageShop(i).getCardName()%>" class="sellCard" />
+								<div class="card-mana"><%=VillageShop(i).getCardConsumeMana()%></div>
+								<div class="card-explain-area"><%=VillageShop(i).cardExplain()%></div>
+								<div class="card-price"><%=VillageShop(i).getCardPrice()%></div>
+							</button>
 						</div>
-					</div>
+
+					</form>
 				</div>
 				<%
 				}
@@ -44,7 +47,6 @@
 
 			</div>
 		</div>
-		<!-- 여기에 카드 불러오는 로직만들어서 출력 일단 하나만 -->
 		<div class="editDeck">
 			<a href=editDeck.jsp>
 				<img src="images/village/editDeck.png" alt="덱수정" class="editDeckIcon" />

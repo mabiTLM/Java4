@@ -154,12 +154,11 @@ public class CardDAO {
     }
 
     try {
-      String createDeckQuery =
-          "create table cardInventory (id number(10,0) generated as identity primary key,"
-              + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
-              + "price number(10,0) not null,effect varchar2(20) default '통상',"
-              + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-              + "volatility varchar2(10) default 'false')";
+      String createDeckQuery = "create table cardInventory (id number(10,0) not null,"
+          + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
+          + "price number(10,0) not null,effect varchar2(20) default '통상',"
+          + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
+          + "volatility varchar2(10) default 'false')";
       PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
       crePstmt.executeUpdate();
       crePstmt.close();
@@ -182,8 +181,7 @@ public class CardDAO {
     try {
       CardVO temp = getCard(id, fromDeck);// 안에서 닫아버리니까 뒤에서 열자
       int finalCard = 0;
-      for (int i = 0; i < 40; i++)// 덱갯수제한
-      {
+      for (int i = 0; i < 100; i++) {
         if (getCard(i, toDeck) == null) {
           finalCard = i + 1;
           break;

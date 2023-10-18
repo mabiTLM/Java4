@@ -63,14 +63,10 @@ public class Title extends HttpServlet {
         card.insertDeck(1, "card", "deck");
       }
 
-
-
       response.sendRedirect("village.jsp");
 
     } else if (temp.equals("이어하기")) {
       response.sendRedirect("village.jsp");
     }
-
   }
-
 }
