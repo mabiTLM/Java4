@@ -40,7 +40,6 @@
 						--%>
 					</button> -->
 
-
 					<span>
 						체력 :
 						<span id='monsterHp<%=i%>'>

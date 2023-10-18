@@ -117,8 +117,8 @@
 						<input type=hidden id=finish value='전투종료' class="finish-button">
 					</form>
 				</div>
-
 			</div>
 		</div>
+	</div>
 </body>
 </html>

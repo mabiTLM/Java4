@@ -98,10 +98,27 @@ public class CardDAO {
       PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
       crePstmt.executeUpdate();
       crePstmt.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+
+    try {
+      connect();
+      String createDeckQuery = "create table cardInventory (id number(10,0) not null,"
+          + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
+          + "price number(10,0) not null,effect varchar2(20) default '통상',"
+          + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
+          + "volatility varchar2(10) default 'false')";
+      PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
+      crePstmt.executeUpdate();
+      crePstmt.close();
       con.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+
   }
 
   /**

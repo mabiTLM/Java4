@@ -18,7 +18,7 @@
 					<input type='submit' name='start' value='새로운 시작' style='text-align: center; font-size: 50px' class="titleButton">
 				</form>
 			</div>
-			</br>
+			<br/>
 			<div class="loadButton">
 				<form action='title' method='post'>
 					<input type='submit' name='start' value='이어하기' style='text-align: center; font-size: 50px' class="titleButton">

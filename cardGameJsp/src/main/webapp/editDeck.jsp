@@ -83,7 +83,7 @@
 					<img src="images/card/tempCard.png" alt="카드" class="deck-in-card" />
 				</div>
 
-				<div class="edit-button">완료</div>
+				<div class="edit-button"><a href="village.jsp">완료</a></div>
 			</div>
 		</div>
 
