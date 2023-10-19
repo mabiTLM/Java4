@@ -17,7 +17,12 @@ public class Village extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {}
+      throws ServletException, IOException {
+
+
+
+    response.sendRedirect("dungeon.jsp");
+  }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {

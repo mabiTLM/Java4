@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="servletTest.card.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	import="servletTest.card.*" pageEncoding="UTF-8"%>
 
 <%!CardDAO cardDAO = new CardDAO();
 
@@ -28,10 +29,11 @@
 
 				<form action="editDeck" method='post' class="inventory-card-area">
 					<div class="card-area-inner">
-						<input type="hidden" name="card-index" value="<%=i%>" />
-						<input type="hidden" name="is-in-deck" value="true" />
+						<input type="hidden" name="card-index" value="<%=i%>" /> <input
+							type="hidden" name="is-in-deck" value="true" />
 						<button class="in-to-deck-button">
-							<img src="images/card/<%=Inventory(i).getCardName()%>.png" alt="<%=Inventory(i).getCardName()%>" class="inventoryCard" />
+							<img src="images/card/<%=Inventory(i).getCardName()%>.png"
+								alt="<%=Inventory(i).getCardName()%>" class="inventoryCard" />
 							<div class="card-mana"><%=Inventory(i).getCardConsumeMana()%></div>
 							<div class="card-explain-area"><%=Inventory(i).cardExplain()%></div>
 						</button>
@@ -55,14 +57,15 @@
 
 				<form action="editDeck" method='post' class="deck-in-card">
 					<div class="deck-area-inner">
-						<input type="hidden" name="card-index" value="<%=i%>" />
-						<input type="hidden" name="is-in-deck" value="false" />
+						<input type="hidden" name="card-index" value="<%=i%>" /> <input
+							type="hidden" name="is-in-deck" value="false" />
 						<button class="in-to-deck-button">
 							<div class="deck-in-card-text">
 								<div class="deck-in-card-mana"><%=Inventory(i).getCardConsumeMana()%></div>
 								<div class="deck-in-card-name"><%=Inventory(i).getCardName()%></div>
 							</div>
-							<img src="images/card/inDeck/<%=Inventory(i).getCardName()%>.png" alt="<%=Inventory(i).getCardName()%>" class="deck-in-cardimg" />
+							<img src="images/card/inDeck/<%=Inventory(i).getCardName()%>.png"
+								alt="<%=Inventory(i).getCardName()%>" class="deck-in-cardimg" />
 						</button>
 					</div>
 				</form>

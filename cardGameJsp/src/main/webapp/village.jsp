@@ -60,10 +60,11 @@
 			</a>
 		</div>
 		<div class="inToTheDungeon">
-			<a href=dungeon.jsp>
+			<form action="village.jsp">
+			<!-- 이거눌렀을때 deck DB만들게하자 기존 전투에서 임시덱쓰던것처럼 -->
 				<img src="images/dungeonEntrance.png" alt="모험으로" class="inToTheDungeonIcon" />
 				<button class="dungeonButton">입장하기</button>
-			</a>
+			</form>
 		</div>
 	</div>
 </body>

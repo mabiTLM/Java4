@@ -11,40 +11,35 @@
 <body>
 
 	<div id="root">
-		<!-- 여기서 for문 돌려서 글자 넣고 모양만들자 -->
+		<!-- 몬스터를 누를경우 임시덱을 만들게해서 전투 도중 덱이 변경되도 다시 돌아올 수 있게해야한다. -->
 
 		<div class="padding-box">
 			<div class="map">
 				<div class="box">
 					<a href="elite.jsp">
 						<img src="images/dungeon/elite.png" alt="엘리트" class="elite">
-						<div class="text">엘리트</div>
 					</a>
 				</div>
 				<div class="box">
 					<a href="normal.jsp">
 						<img src="images/dungeon/normal.png" alt="일반적" class="elite">
-						<div class="text">노말</div>
 					</a>
 				</div>
 				<div class="box">
 					<a href="fire.jsp">
 						<img src="images/dungeon/fire.png" alt="모닥불" class="elite">
-						<div class="text">모닥불</div>
 					</a>
 				</div>
 
 				<div class="box">
 					<a href="shop.jsp">
 						<img src="images/dungeon/dungeonShop.png" alt="상점" class="elite">
-						<div class="text">상점</div>
 					</a>
 				</div>
 
 				<div class="box">
 					<a href="event.jsp">
 						<img src="images/dungeon/event.png" alt="던전지도" class="elite">
-						<div class="text">이벤트</div>
 					</a>
 				</div>
 			</div>
