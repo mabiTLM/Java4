@@ -40,23 +40,15 @@
 						--%>
 					</button> -->
 
-					<span>
-						체력 :
-						<span id='monsterHp<%=i%>'>
-							<%
-							out.print(c.getHp());
-							%>
-						</span>
-						<br /> 쉴드 :
-						<span id='monsterDef<%=i%>'>
-							<%
-							out.print(c.getDef());
-							%>
-						</span>
-						<br /> 공격력 :
-						<%
-						out.print(c.getAtk());
-						%>
+					<span> 체력 : <span id='monsterHp<%=i%>'> <%
+ out.print(c.getHp());
+ %>
+					</span> <br /> 쉴드 : <span id='monsterDef<%=i%>'> <%
+ out.print(c.getDef());
+ %>
+					</span> <br /> 공격력 : <%
+ out.print(c.getAtk());
+ %>
 					</span>
 				</div>
 				<%
@@ -69,34 +61,28 @@
 					<script>
 						document.write("체력" + playerHp);
 					</script>
-					<span>
-						방어력 :
-						<span id="playerDefSpan">
-							<script>
+					<span> 방어력 : <span id="playerDefSpan"> <script>
 						document.write(playerDef);
 					</script>
-						</span>
 					</span>
-					<span>
-						마나 :
-						<span id="playerManaSpan">
-							<script>
+					</span> <span> 마나 : <span id="playerManaSpan"> <script>
 						document.write(playerMana);
 					</script>
-						</span>
+					</span>
 					</span>
 				</div>
 
 				<div class="hand-area">
 
-					<%!private CardVO Hand(int i) {
-      CardDAO cardDAO = new CardDAO();
+					<%!CardDAO cardDAO = new CardDAO();
+
+    private CardVO Hand(int i) {
       CardVO temp = cardDAO.getCard(i, "deck");
       return temp;
     }%>
 
 					<%
-					for (int i = 0; i < 8; i++) {
+					for (int i = 0; i < cardDAO.DBLengthCheck("deck"); i++) {
 					%>
 					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
 					<!--<button

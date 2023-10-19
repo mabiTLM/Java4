@@ -15,6 +15,30 @@
 	margin: auto;
 }
 
+.havegold {
+	top: 4%;
+	position: relative;
+	left: 84%;
+	width: 0px;
+	height: 0px;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.goldimg-area {
+	top: 1%;
+	position: relative;
+	left: 91%;
+	width: 0px;
+	height: 0px;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+.havegoldimg{
+	width: 60px;
+}
+
 .category {
 	width: 100%;
 	padding: 80px 80px 134px 140px;

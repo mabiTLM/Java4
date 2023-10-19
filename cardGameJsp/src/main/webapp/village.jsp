@@ -6,7 +6,6 @@
     return temp;
   }%>
 
-
 <!DOCTYPE html>
 <html lang='ko'>
 <head>
@@ -20,15 +19,22 @@
 <body>
 
 	<div id="root">
+		<div class="havegold">10000G</div>
+
+		<div class="goldimg-area">
+			<img src="images/village/gold.png" alt="금화주머니" class="havegoldimg" />
+		</div>
+
 		<div class="category">
 			<div class="flex-box">
 
 				<%
-				for (int i = 0; i < 20; i++) {
+				CardDAO cardDAO = new CardDAO();
+				for (int i = 0; i < cardDAO.DBLengthCheck("villageshop"); i++) {
 				%>
 				<div class="cardBorder">
 					<!-- 영역자체를 form으로해서 보내자 -->
-					<form class="card-area" action='village' method='post'>
+					<form action='village' method='post' class="card-area">
 						<div class="card-area-inner">
 							<input type="hidden" name="card-index" value="<%=i%>" />
 							<button class="buy-button">

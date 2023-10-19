@@ -21,14 +21,6 @@
 	padding: 86px 27px 8px 76px;
 }
 
-.deck {
-	width: 27%;
-	height: 100%;
-	/*background-color: rgba(0, 255, 0, 0.5);*/
-	padding: 95px 17px 0px 38px;
-
-}
-
 .inventory-area {
 	width: 100%;
 	height: 100%;
@@ -39,6 +31,74 @@
 	overflow: auto;
 }
 
+.in-to-deck-button {
+	border: 0;
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+}
+
+.inventory-card-area {
+	width: 33%;
+	height: 38%;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+.inventory-card-area:hover {
+	/*
+	background-color: white;
+	border: 1px solid yellow;
+	padding: 1px;
+	*/
+	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+.card-area-inner {
+	width: 100%;
+	height: 100%;
+	/*background-color: rgba(255, 0, 0, 0.5);*/
+}
+
+.inventoryCard {
+	width: 100%;
+}
+
+.card-mana {
+	font-size: 20px;
+	color: white;
+	left: -43%;
+	bottom: 97%;
+	padding: 3px 0px 0px 7px;
+	position: relative;
+	z-index: 1;
+}
+
+.card-explain-area {
+	font-size: 20px;
+	color: white;
+	overflow: auto;
+	bottom: 53%;
+	width: 88%;
+	height: 35%;
+	position: relative;
+	padding: 0px 0px 0px 23px;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
+	z-index: 1;
+}
+
+.card-explain-area::-webkit-scrollbar {
+	display: none;
+}
+
+
+
+.deck {
+	width: 27%;
+	height: 100%;
+	/*background-color: rgba(0, 255, 0, 0.5);*/
+	padding: 95px 17px 0px 38px;
+}
 
 .deck-area {
 	width: 100%;
@@ -54,37 +114,13 @@
 }
 
 
-.card {
-	width: 150px;
-	height: 190px;
-	border-radius: 5px;
-}
 
-.card:hover {
-	/*
-	background-color: white;
-	border: 1px solid yellow;
-	padding: 1px;
-	*/
-	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
-}
-
-.card img {
-	width: 100%;
-}
-
-/*
-.card:hover img {
-	box-shadow: 0 0 10px 0 white;
-}
-*/
 .haveCard {
 	position: relative;
 	top: 160px;
 	left: 250px;
 	width: 200px;
 }
-
 
 .deck-in-card {
 	width: 220px;
@@ -96,12 +132,49 @@
 	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
 }
 
-.edit-button {
+.deck-in-cardimg {
+	width: 100%;
+}
+
+.deck-in-card-text {
+	color: white;
 	position: relative;
-	left: 53%;
-	top: 25%;
-	width: 47%;
-	height: 7%;
+	width: 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.deck-in-card-mana {
+	position: absolute;
+	width: 22px;
+	margin: 16px 0px 0px 12px;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+.deck-in-card-name {
+	position: absolute;
+	width: 123px;
+	margin: 11px 0px 0px 43px;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+
+.edit-button-area {
+	position: relative;
+	width: 0px;
+	height: 0px;
+	left: -13%;
+	top: 91%;
+}
+
+.edit-button {
+	width: 126px;
+	height: 70px;
 	/*background-color: rgba(0, 255, 0, 0.5);*/
 	padding: 0px 0px 0px 0px;
+}
+
+.edit-deck-finish {
+	width: 100%;
+	height: 100%;
 }

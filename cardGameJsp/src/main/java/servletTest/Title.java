@@ -20,35 +20,6 @@ public class Title extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    // response.setCharacterEncoding("UTF-8");
-    // String html = "";
-    // html += "<!DOCTYPE html>";
-    // html += "<html lang='ko'>";
-    // html += "<head>";
-    // html += "<meta charset='UTF-8' />";
-    // html += "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
-    // html += "<title>시작화면</title>";
-    // html += "<script src='scripts/makeCardGame.js'></script>";
-    // html += "<link rel='stylesheet' href='styles/style.css' />";
-    // html += "</head>";
-    // html += "<body>";
-    // html += "<div>";
-    // html += "<form action='title' method='post'>";
-    // html +=
-    // "<input type='submit' name='start' value='새로운 시작' style='text-align: center; font-size:
-    // 100px'>";
-    // html += "</form>";
-    // html += "</br>";
-    // html += "<form action='title' method='post'>";
-    // html +=
-    // "<input type='submit' name='start' value='이어하기' style='text-align: center; font-size:
-    // 100px'>";
-    // html += "</form>";
-    // html += "</div>";
-    // html += "</body>";
-    // html += "</html>";
-    // response.getWriter().append(html);
-
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,8 +30,8 @@ public class Title extends HttpServlet {
       CardDAO card = new CardDAO();
       card.newStart();
       for (int i = 0; i < 4; i++) {
-        card.insertDeck(0, "card", "deck");
-        card.insertDeck(1, "card", "deck");
+        card.insertDeck(0, "card", "cardInventory");
+        card.insertDeck(1, "card", "cardInventory");
       }
 
       response.sendRedirect("village.jsp");

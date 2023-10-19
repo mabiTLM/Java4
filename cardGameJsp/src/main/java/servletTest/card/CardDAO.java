@@ -111,7 +111,6 @@ public class CardDAO {
       e.printStackTrace();
     }
 
-
     try {
       String createDeckQuery =
           "create table villageShop (id number(10,0) generated as identity primary key,"
@@ -158,7 +157,7 @@ public class CardDAO {
           + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
           + "price number(10,0) not null,effect varchar2(20) default '통상',"
           + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-          + "volatility varchar2(10) default 'false')";
+          + "volatility varchar2(10) default 'false'," + "isInDeck varchar2(10) default 'false')";
       PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
       crePstmt.executeUpdate();
       crePstmt.close();
@@ -208,6 +207,9 @@ public class CardDAO {
     }
   }
 
+  /**
+   * from에서 id번째 카드를 가져온다.
+   **/
   public CardVO getCard(int id, String from) {
     CardVO temp = null;
     try {
@@ -232,21 +234,92 @@ public class CardDAO {
     return temp;
   }
 
-  public void DBLengthCheck(String from) {
+  /**
+   * 인벤토리에서 id번째 카드를 가져온다.
+   **/
+  public CardVO getCard(int id) {
+    CardVO temp = null;
     try {
       connect();
+      String query = "select * from cardinventory where id = ?";
+      PreparedStatement pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, id + 1);
+      ResultSet rs = pstmt.executeQuery();
+      if (rs.next()) {
+        temp = new CardVO(rs.getInt("id"), rs.getString("name"), rs.getString("type"),
+            rs.getInt("cardvalue"), rs.getInt("consumemana"), rs.getInt("price"),
+            rs.getString("effect"), rs.getInt("effectvalue"), rs.getString("enforce"),
+            rs.getString("volatility"), rs.getString("isInDeck"));
+      }
+      rs.close();
+      pstmt.close();
+      con.close();
 
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return temp;
   }
 
+
+  /**
+   * from 테이블의 길이를 알아내는 쿼리
+   **/
+  public int DBLengthCheck(String from) {
+    int i = 0;
+    PreparedStatement pstmt = null;
+    try {
+      connect();
+      while (true) {
+        i++;
+        String query = "select * from " + from + " where id = ?";
+        pstmt = con.prepareStatement(query);
+        pstmt.setInt(1, i);
+        ResultSet rs = pstmt.executeQuery();
+        if (!rs.next()) {
+          rs.close();
+          break;
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      pstmt.close();
+      con.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return i - 1;
+
+  }
+
+
+  public void updateInventory(int id, String what) {
+    try {
+      connect();
+      String updateQuery = "update cardinventory set isIndeck='" + what + "' where id=?";
+      PreparedStatement pstmt = con.prepareStatement(updateQuery);
+      pstmt.setInt(1, id + 1);
+      pstmt.executeUpdate();
+      pstmt.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      con.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+
+
   private void connect() throws Exception {
-    // Class.forName("oracle.jdbc.OracleDriver");
-    // con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "java", "qwer");
     Context ctx = new InitialContext();
-    // DriverManager =>DM
-    // initialize 초기화
     Context envContext = (Context) ctx.lookup("java:/comp/env");
     DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
     con = dataFactory.getConnection();

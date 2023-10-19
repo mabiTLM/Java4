@@ -13,6 +13,7 @@ public class CardVO {
   private int effectValue;
   private String enforce;
   private String volatility;
+  private String isInDeck;
 
 
   public CardVO(int id, String cardName, String cardType, int cardValue, int cardConsumeMana,
@@ -28,6 +29,23 @@ public class CardVO {
     this.enforce = enforce;
     this.volatility = volatility;
   }
+
+  public CardVO(int id, String cardName, String cardType, int cardValue, int cardConsumeMana,
+      int cardPrice, String effect, int effectValue, String enforce, String volatility,
+      String isInDeck) {
+    this.id = id;
+    this.cardName = cardName;
+    this.cardType = cardType;// 공방 타입
+    this.cardValue = cardValue;// 카드의 수치
+    this.cardConsumeMana = cardConsumeMana;
+    this.cardPrice = cardPrice;
+    this.effect = effect;
+    this.effectValue = effectValue;
+    this.enforce = enforce;
+    this.volatility = volatility;
+    this.isInDeck = isInDeck;
+  }
+
 
   public CardVO(String cardName, String cardType, int cardValue, int cardConsumeMana, int cardPrice,
       String effect, int effectValue, String enforce, String volatility) {
@@ -81,6 +99,13 @@ public class CardVO {
   public String getVolatility() {
     return volatility;
   }
+
+
+  public String getIsInDeck() {
+    return isInDeck;
+  }
+
+
 
   public String cardExplain() {
     String temp = "";

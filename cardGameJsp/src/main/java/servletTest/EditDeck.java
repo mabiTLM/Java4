@@ -8,28 +8,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import servletTest.card.CardDAO;
 
-@WebServlet("/village")
-public class Village extends HttpServlet {
-  private static final long serialVersionUID = 6370713015178192768L;
+@WebServlet("/editDeck")
+public class EditDeck extends HttpServlet {
+  private static final long serialVersionUID = 1L;
 
-  public Village() {
+  public EditDeck() {
     super();
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {}
+      throws ServletException, IOException {
+
+    response.getWriter().append("Served at: ").append(request.getContextPath());
+  }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    String tempIndex = request.getParameter("card-index");
+    String isInDeck = request.getParameter("is-in-deck");
 
-    String temp = request.getParameter("card-index");
-
-    int index = Integer.parseInt(temp);
+    int index = Integer.parseInt(tempIndex);
 
     CardDAO card = new CardDAO();
-    card.insertDeck(index, "villageshop", "cardinventory");
-
-    response.sendRedirect("village.jsp");
+    card.updateInventory(index, isInDeck);
+    response.sendRedirect("editDeck.jsp");
   }
 
 }

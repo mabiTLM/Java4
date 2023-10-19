@@ -52,7 +52,7 @@ function watchCard() {
 let monsterCount = -1;
 let monsterHp = [-1, -1, -1, -1];
 let monsterDef = [-1, -1, -1, -1];
-let currentTarget;
+let currentTarget = -1;
 
 function target(num, Hp, Def, count) {
 	currentTarget = num;
@@ -73,36 +73,45 @@ function usecard(type, value, consumeMana) {
 		alert("마나가 부족합니다");
 	}
 	else if (type == "Attack") {
-		playerMana = playerMana - consumeMana;
-		const playerManaPrint = document.getElementById("playerManaSpan");
-		playerManaPrint.innerHTML = playerMana;
 
-		const monsterDefPrint = document.getElementById("monsterDef" + currentTarget);
-		const monsterHpPrint = document.getElementById("monsterHp" + currentTarget);
-		monsterDef[currentTarget] -= value;
-		if (monsterDef[currentTarget] < 0) {
-			monsterHp[currentTarget] -= Math.abs(monsterDef[currentTarget]);
-			monsterDef[currentTarget] = 0;
+		if (currentTarget==-1) {
+			alert("타겟을 골라주세요");
 		}
-		monsterDefPrint.innerHTML = monsterDef[currentTarget];
-		monsterHpPrint.innerHTML = monsterHp[currentTarget];
-		if (monsterHp[currentTarget] <= 0) {
-			monsterHp[currentTarget] = 0;
+		else {
+
+			playerMana = playerMana - consumeMana;
+			const playerManaPrint = document.getElementById("playerManaSpan");
+			playerManaPrint.innerHTML = playerMana;
+
+			const monsterDefPrint = document.getElementById("monsterDef" + currentTarget);
+			const monsterHpPrint = document.getElementById("monsterHp" + currentTarget);
+			monsterDef[currentTarget] -= value;
+			if (monsterDef[currentTarget] < 0) {
+				monsterHp[currentTarget] -= Math.abs(monsterDef[currentTarget]);
+				monsterDef[currentTarget] = 0;
+			}
+			monsterDefPrint.innerHTML = monsterDef[currentTarget];
 			monsterHpPrint.innerHTML = monsterHp[currentTarget];
-			const target = document.getElementById("monster" + currentTarget);
-			target.disabled = true;
-			monsterCount = monsterCount - 1;
-			currentTarget = -1;
-		}
+			if (monsterHp[currentTarget] <= 0) {
+				monsterHp[currentTarget] = 0;
+				monsterHpPrint.innerHTML = monsterHp[currentTarget];
+				const target = document.getElementById("monster" + currentTarget);
+				target.disabled = true;
+				monsterCount = monsterCount - 1;
+				currentTarget = -1;
+			}
 
-		if (monsterCount <= 0) {
-			monsterCount = -1;
-			const finish = document.getElementById("finish");
-			const finishArea = document.getElementById("finish-area");
-			finishArea.setAttribute('style','width:22%');
-			finish.setAttribute('type', 'submit');
+			if (monsterCount <= 0) {
+				monsterCount = -1;
+				const finish = document.getElementById("finish");
+				const finishArea = document.getElementById("finish-area");
+				finishArea.setAttribute('style', 'width:22%');
+				finish.setAttribute('type', 'submit');
+			}
 		}
 	}
+
+
 	else if (type == "Defend") {
 		playerMana = playerMana - consumeMana;
 		const playerManaPrint = document.getElementById("playerManaSpan");
