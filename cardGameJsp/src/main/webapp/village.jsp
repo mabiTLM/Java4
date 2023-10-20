@@ -59,11 +59,16 @@
 				<button class="editDeckButton">덱수정</button>
 			</a>
 		</div>
+
 		<div class="inToTheDungeon">
-			<form action="village.jsp">
-			<!-- 이거눌렀을때 deck DB만들게하자 기존 전투에서 임시덱쓰던것처럼 -->
-				<img src="images/dungeonEntrance.png" alt="모험으로" class="inToTheDungeonIcon" />
+			<form action="village">
+				<!-- 이거눌렀을때 deck DB만들게하자 기존 전투에서 임시덱쓰던것처럼 -->
+
+				<button class="inToTheDungeonButton">
+					<img src="images/dungeonEntrance.png" alt="모험으로" class="inToTheDungeonIcon" />
+				</button>
 				<button class="dungeonButton">입장하기</button>
+
 			</form>
 		</div>
 	</div>

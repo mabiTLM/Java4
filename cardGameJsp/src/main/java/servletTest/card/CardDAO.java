@@ -8,10 +8,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import makeCardGame230901.cardBundle.TotalCardBase;
+import servletTest.card.cardDAO.CreateTable;
+import servletTest.card.cardDAO.DropTable;
 
 public class CardDAO {
   private Connection con;
-
+  private DropTable dropTable = new DropTable();
+  private CreateTable createTable = new CreateTable();
   // db에 자료넣기
 
   // drop table card;
@@ -37,6 +40,7 @@ public class CardDAO {
   // + "volatility varchar2(10) default 'false');";
   // }
 
+
   /**
    * 게임을 처음시작할때 데이버베이스 세팅 일단 전부하나로 되있는데 분리해야한다.
    **/
@@ -44,46 +48,18 @@ public class CardDAO {
     TotalCardBase totalCardBase = new TotalCardBase();
     try {
       connect();
-      String deleteQuery = "drop table card";
-      PreparedStatement stmt = con.prepareStatement(deleteQuery);
-      stmt.executeUpdate();
-      stmt.close();
+      dropTable.dropTableCard(con);
     } catch (Exception e) {
       e.printStackTrace();
     }
     try {
-      String createQuery = "create table Card(id number(10,0) generated as identity primary key,"
-          + "name varchar2(20) not null, type varchar2(20) not null,cardValue number(10,0) not null,consumeMana number(10,0) not null,"
-          + "price number(10,0) not null,effect varchar2(20) default '통상',"
-          + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-          + "volatility varchar2(10) default 'false')";
-      PreparedStatement crePstmt = con.prepareStatement(createQuery);
-      crePstmt.executeUpdate();
-      crePstmt.close();
-      for (int i = 0; i < totalCardBase.totalCard().length; i++) {
-        String insertQuery =
-            "insert into Card (name,type,cardValue,consumeMana,price,effect,effectValue,volatility) values (?,?,?,?,?,?,?,?)";
-        PreparedStatement pstmt = con.prepareStatement(insertQuery);
-        pstmt.setString(1, totalCardBase.totalCard()[i].getCardName());
-        pstmt.setString(2, totalCardBase.totalCard()[i].getCardType().toString());
-        pstmt.setInt(3, totalCardBase.totalCard()[i].getCardValue());
-        pstmt.setInt(4, totalCardBase.totalCard()[i].getCardConsumeMana());
-        pstmt.setInt(5, totalCardBase.totalCard()[i].getCardPrice());
-        pstmt.setString(6, totalCardBase.totalCard()[i].getEffect());
-        pstmt.setInt(7, totalCardBase.totalCard()[i].getEffectValue());
-        pstmt.setString(8, String.valueOf(totalCardBase.totalCard()[i].getVolatility()));
-        pstmt.executeUpdate();
-        pstmt.close();
-      }
+      createTable.creatCardTable(con);
     } catch (Exception e) {
       e.printStackTrace();
     }
 
     try {
-      String deleteQuery = "drop table deck";
-      PreparedStatement stmt = con.prepareStatement(deleteQuery);
-      stmt.executeUpdate();
-      stmt.close();
+      dropTable.dropTableDeck(con);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -103,10 +79,7 @@ public class CardDAO {
 
 
     try {
-      String deleteQuery = "drop table villageShop";
-      PreparedStatement stmt = con.prepareStatement(deleteQuery);
-      stmt.executeUpdate();
-      stmt.close();
+      dropTable.dropTableVillageShop(con);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -144,10 +117,7 @@ public class CardDAO {
     }
 
     try {
-      String deleteQuery = "drop table cardInventory";
-      PreparedStatement stmt = con.prepareStatement(deleteQuery);
-      stmt.executeUpdate();
-      stmt.close();
+      dropTable.dropTableCardInventory(con);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -172,6 +142,8 @@ public class CardDAO {
     }
 
   }
+
+
 
   /**
    * fromDeck카드의 id번째 카드를 toDeck에 넣는다.
@@ -315,8 +287,6 @@ public class CardDAO {
       e.printStackTrace();
     }
   }
-
-
 
   private void connect() throws Exception {
     Context ctx = new InitialContext();
