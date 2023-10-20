@@ -237,7 +237,7 @@ public class CardDAO {
   /**
    * from 테이블의 길이를 알아내는 쿼리
    **/
-  public int DBLengthCheck(String from) {
+  public int dBLengthCheck(String from) {
     int i = 0;
     PreparedStatement pstmt = null;
     try {

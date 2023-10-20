@@ -30,7 +30,7 @@
 
 				<%
 				CardDAO cardDAO = new CardDAO();
-				for (int i = 0; i < cardDAO.DBLengthCheck("villageshop"); i++) {
+				for (int i = 0; i < cardDAO.dBLengthCheck("villageshop"); i++) {
 				%>
 				<div class="cardBorder">
 					<!-- 영역자체를 form으로해서 보내자 -->
@@ -44,7 +44,6 @@
 								<div class="card-price"><%=VillageShop(i).getCardPrice()%></div>
 							</button>
 						</div>
-
 					</form>
 				</div>
 				<%

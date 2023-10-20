@@ -19,10 +19,9 @@ public class Village extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     CardDAO card = new CardDAO();
-    for (int i = 0; i < card.DBLengthCheck("cardinventory"); i++) {
+    for (int i = 0; i < card.dBLengthCheck("cardinventory"); i++) {
       if (card.getCard(i).getIsInDeck().equals("true")) {
         card.insertDeck(i, "cardinventory", "deck");
-        System.out.println("왜전부들어가");
       }
     }
     response.sendRedirect("dungeon.jsp");

@@ -33,12 +33,6 @@
 				%>
 				<div class="enemystanding">
 					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" id='monster<%=i%>' onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)" />
-					<!-- <button id='monster<%--=i%>'
-						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)">
-						<%
-						out.print(c.getName());
-						--%>
-					</button> -->
 
 					<span>
 						체력 :
@@ -97,14 +91,19 @@
     }%>
 
 					<%
-					for (int i = 0; i < cardDAO.DBLengthCheck("deck"); i++) {
+					for (int i = 0; i < cardDAO.dBLengthCheck("deck"); i++) {
 					%>
-					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
-					<!--<button
-						onclick="usecard('<%--=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
-						<%=Hand(i).getCardName()--%>
-					</button> -->
 
+					<form action='' method='post' class="card-area">
+						<div class="card-area-inner">
+							<input type="hidden" name="card-index" value="<%=i%>" />
+							<button class="use-button">
+								<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
+								<div class="card-mana"><%=Hand(i).getCardConsumeMana()%></div>
+								<div class="card-explain-area"><%=Hand(i).cardExplain()%></div>
+							</button>
+						</div>
+					</form>
 					<%
 					}
 					%>

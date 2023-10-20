@@ -89,14 +89,15 @@
 
 				<div class="hand-area">
 
-					<%!private CardVO Hand(int i) {
-      CardDAO cardDAO = new CardDAO();
+					<%!CardDAO cardDAO = new CardDAO();
+
+    private CardVO Hand(int i) {
       CardVO temp = cardDAO.getCard(i, "deck");
       return temp;
     }%>
 
 					<%
-					for (int i = 0; i < 8; i++) {
+					for (int i = 0; i < cardDAO.dBLengthCheck("deck"); i++) {
 					%>
 					<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)" />
 					<!--<button
