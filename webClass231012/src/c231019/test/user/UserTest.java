@@ -39,15 +39,15 @@ public class UserTest {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
-    user1.setName("정");
-    user1.setUserId("jhk1");
-    user1.setPassword("1111");
+    user1.setName("이");
+    user1.setUserId("lmg");
+    user1.setPassword("1234");
     dao.add(user1);
   }
 
   @After
   public void dropTable() {
-    testDAO.drop();
+    // testDAO.drop();
   }
 
   @Test
@@ -63,8 +63,8 @@ public class UserTest {
   public void add() throws SQLException {
 
     UserBean user = new UserBean();
-    user.setName("정");
-    user.setUserId("jhk2");
+    user.setName("송");
+    user.setUserId("ssm");
     user.setPassword("1111");
     dao.add(user);
   }
@@ -73,8 +73,8 @@ public class UserTest {
   public void addAndGet() throws Exception {
     UserBean user = new UserBean();
 
-    user.setName("lim1");
-    user.setUserId("asdf2");
+    user.setName("정");
+    user.setUserId("jhk");
     user.setPassword("1111");
     dao.add(user);
 
