@@ -33,13 +33,13 @@
 				for (int i = 0; i < cardDAO.dBLengthCheck("villageshop"); i++) {
 				%>
 				<div class="cardBorder">
-					<!-- 영역자체를 form으로해서 보내자 -->
 					<form action='village' method='post' class="card-area">
 						<div class="card-area-inner">
 							<input type="hidden" name="card-index" value="<%=i%>" />
 							<button class="buy-button">
 								<img src="images/card/<%=VillageShop(i).getCardName()%>.png" alt="<%=VillageShop(i).getCardName()%>" class="sellCard" />
 								<div class="card-mana"><%=VillageShop(i).getCardConsumeMana()%></div>
+								<div class="card-name"><%=VillageShop(i).getCardName()%></div>
 								<div class="card-explain-area"><%=VillageShop(i).cardExplain()%></div>
 								<div class="card-price"><%=VillageShop(i).getCardPrice()%></div>
 							</button>

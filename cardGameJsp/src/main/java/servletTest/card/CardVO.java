@@ -109,7 +109,7 @@ public class CardVO {
 
   public String cardExplain() {
     String temp = "";
-    temp += getCardName() + " : " + getCardValue();
+    temp += getCardValue();
     if (getCardType().equals("Attack")) {
       temp += "공격력";
     }

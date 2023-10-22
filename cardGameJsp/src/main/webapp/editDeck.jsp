@@ -22,7 +22,7 @@
 			<div class="inventory-area">
 
 				<%
-				for (int i = 0; i < cardDAO.DBLengthCheck("cardinventory"); i++) {
+				for (int i = 0; i < cardDAO.dBLengthCheck("cardinventory"); i++) {
 
 				  if (Inventory(i).getIsInDeck().equals("false")) {
 				%>
@@ -35,6 +35,7 @@
 							<img src="images/card/<%=Inventory(i).getCardName()%>.png"
 								alt="<%=Inventory(i).getCardName()%>" class="inventoryCard" />
 							<div class="card-mana"><%=Inventory(i).getCardConsumeMana()%></div>
+							<div class="card-name"><%=Inventory(i).getCardName()%></div>
 							<div class="card-explain-area"><%=Inventory(i).cardExplain()%></div>
 						</button>
 					</div>
@@ -51,7 +52,7 @@
 			<div class="deck-area">
 
 				<%
-				for (int i = 0; i < cardDAO.DBLengthCheck("cardinventory"); i++) {
+				for (int i = 0; i < cardDAO.dBLengthCheck("cardinventory"); i++) {
 				  if (Inventory(i).getIsInDeck().equals("true")) {
 				%>
 

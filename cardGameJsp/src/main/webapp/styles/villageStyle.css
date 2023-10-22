@@ -203,6 +203,16 @@
 	z-index: 1;
 }
 
+.card-name {
+	font-size: 10px;
+	color: white;
+    left: -5%;
+    bottom: 94%;
+	padding: 3px 0px 0px 7px;
+	position: relative;
+	z-index: 1;
+}
+
 .card-explain-area {
 	font-size: 10px;
 	color: white;
