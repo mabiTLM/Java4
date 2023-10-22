@@ -13,18 +13,20 @@
 
 		<div class="padding-box">
 			<div class="choice-box">
-				<img src="images/dungeon/campfire/rest.png" alt="휴식" class="button">
-				<div class="text">휴식하기</div>
+				<a href="dungeon.jsp">
+					<img src="images/dungeon/campfire/rest.png" alt="휴식" class="button">
+					<div class="text">휴식하기</div>
+				</a>
 			</div>
 			<div class="choice-box">
-				<img src="images/dungeon/campfire/enhance.png" alt="강화"
-					class="button">
-				<div class="text">강화하기</div>
+			<!-- 반투명창으로 띄우고 눌러서 강화할까 -->
+				<a href="enhance.jsp">
+					<img src="images/dungeon/campfire/enhance.png" alt="강화"
+						class="button" />
+					<div class="text">강화하기</div>
+				</a>
 			</div>
-
 		</div>
-
-
 	</div>
 </body>
 </html>

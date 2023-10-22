@@ -15,6 +15,10 @@ public class CardDAO {
   private Connection con;
   private DropTable dropTable = new DropTable();
   private CreateTable createTable = new CreateTable();
+
+
+  // 여기있는것 대부분을 서비스를 만들어서 옮겨야한다.
+
   // db에 자료넣기
 
   // drop table card;

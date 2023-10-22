@@ -12,6 +12,7 @@
 	background-size: contain;
 	display: flex;
 	margin: auto;
+	/*background-color: rgba(0, 255, 0, 0.5);*/
 }
 
 .padding-box {
