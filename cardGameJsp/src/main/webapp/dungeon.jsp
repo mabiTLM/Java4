@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="box">
-					<a href="shop.jsp"> <img src="images/dungeon/dungeonShop.png"
+					<a href="dungeonShop.jsp"> <img src="images/dungeon/dungeonShop.png"
 						alt="상점" class="elite">
 					</a>
 				</div>

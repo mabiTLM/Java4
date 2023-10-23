@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import servletTest.card.CardDAO;
+import servletTest.deck.DeckDAO;
 
 @WebServlet("/village")
 public class Village extends HttpServlet {
@@ -19,6 +20,15 @@ public class Village extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     CardDAO card = new CardDAO();
+    DeckDAO deck = new DeckDAO();
+    try {
+      deck.dropTableDeck();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    deck.createTableDeck();
+
     for (int i = 0; i < card.dBLengthCheck("cardinventory"); i++) {
       if (card.getCard(i).getIsInDeck().equals("true")) {
         card.insertDeck(i, "cardinventory", "deck");

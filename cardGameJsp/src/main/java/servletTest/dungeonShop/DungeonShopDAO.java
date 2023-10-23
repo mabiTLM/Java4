@@ -38,10 +38,42 @@ public class DungeonShopDAO {
       pstmt.setString(8, String.valueOf(totalCardBase.dungeonShopCard()[i].getVolatility()));
       pstmt.executeUpdate();
       pstmt.close();
-      con.close();
-
     }
+    con.close();
   }
+
+  public void dropDungeonShopTable() throws Exception {
+    connect();
+    String deleteQuery = "drop table dungeonShop";
+    PreparedStatement stmt = con.prepareStatement(deleteQuery);
+    stmt.executeUpdate();
+    stmt.close();
+    con.close();
+  }
+
+  // public CardVO getCard(int id) {
+  // CardVO temp = null;
+  // try {
+  // connect();
+  // String query = "select * from dungeonShop where id = ?";
+  // PreparedStatement pstmt = con.prepareStatement(query);
+  // pstmt.setInt(1, id + 1);
+  // ResultSet rs = pstmt.executeQuery();
+  // if (rs.next()) {
+  // temp = new CardVO(rs.getInt("id"), rs.getString("name"), rs.getString("type"),
+  // rs.getInt("cardvalue"), rs.getInt("consumemana"), rs.getInt("price"),
+  // rs.getString("effect"), rs.getInt("effectvalue"), rs.getString("enforce"),
+  // rs.getString("volatility"));
+  // }
+  // rs.close();
+  // pstmt.close();
+  // con.close();
+  //
+  // } catch (Exception e) {
+  // e.printStackTrace();
+  // }
+  // return temp;
+  // }
 
 
 

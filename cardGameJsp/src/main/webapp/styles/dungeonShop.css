@@ -23,21 +23,90 @@
 	flex-wrap: wrap;
 }
 
-.cardBorder {
-	position: static;
-	width: 150px;
-	height: 190px;
-	margin: 7px;
+.sell-card-area {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
 }
+
+
+.buy-form-area {
+	width: 20%;
+	height: 33%;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+.card-area-inner {
+	width: 100%;
+	height: 100%;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+.card-area-inner:hover {
+	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
+}
+
+.buy-button {
+	border: 0;
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+.card-mana {
+	font-size: 20px;
+	color: white;
+	left: -43%;
+	bottom: 90%;
+	padding: 3px 0px 0px 7px;
+	position: relative;
+	z-index: 1;
+}
+
+.card-name {
+	font-size: 20px;
+	color: white;
+	left: -3%;
+	bottom: 97%;
+	padding: 3px 0px 0px 7px;
+	position: relative;
+	z-index: 1;
+}
+
+.card-explain-area {
+	font-size: 20px;
+	color: white;
+	overflow: auto;
+	bottom: 63%;
+	width: 88%;
+	height: 35%;
+	position: relative;
+	padding: 0px 0px 0px 23px;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
+	z-index: 1;
+}
+
+.card-explain-area::-webkit-scrollbar {
+	display: none;
+}
+
+.card-price-area {
+	font-size: 20px;
+	color: white;
+	left: 22%;
+	bottom: 58%;
+	width: 0%;
+	height: 0%;
+	position: relative;
+	padding: 0px 0px 0px 23px;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
+	z-index: 1;
+}
+
 
 .sellCard {
-	position: absolute;
-	width: 150px;
-	height: 190px;
-}
-
-.sellCard:hover {
-	position: absolute;
-	width: 160px;
-	height: 200px;
+	width: 100%;
+	/*background-color: rgba(0, 0, 0, 0.5);*/
 }

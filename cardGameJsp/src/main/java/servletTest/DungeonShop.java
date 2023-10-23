@@ -6,36 +6,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servletTest.card.CardDAO;
+import servletTest.deck.DeckDAO;
 
-/**
- * Servlet implementation class DungeonShop
- */
 @WebServlet("/dungeonShop")
 public class DungeonShop extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DungeonShop() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+  public DungeonShop() {
+    super();
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    response.getWriter().append("Served at: ").append(request.getContextPath());
+  }
+
+
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    DeckDAO deckDAO = new DeckDAO();
+
+    String temp = request.getParameter("card-index");
+
+    int index = Integer.parseInt(temp);
+
+    CardDAO card = new CardDAO();
+    card.insertDeck(index, "dungeonShop", "deck");
+
+    response.sendRedirect("dungeonShop.jsp");
+  }
 
 }

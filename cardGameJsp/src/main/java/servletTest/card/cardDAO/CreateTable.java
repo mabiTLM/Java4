@@ -3,16 +3,26 @@ package servletTest.card.cardDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import makeCardGame230901.cardBundle.TotalCardBase;
 
 public class CreateTable {
   TotalCardBase totalCardBase = new TotalCardBase();
+  private Connection con;
 
   public CreateTable() {
 
   }
 
-  public void creatCardTable(Connection con) throws SQLException {
+  public void creatCardTable() throws SQLException {
+    try {
+      connect();
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     String createQuery = "create table Card(id number(10,0) generated as identity primary key,"
         + "name varchar2(20) not null, type varchar2(20) not null,cardValue number(10,0) not null,consumeMana number(10,0) not null,"
         + "price number(10,0) not null,effect varchar2(20) default '통상',"
@@ -37,5 +47,12 @@ public class CreateTable {
       pstmt.close();
     }
 
+  }
+
+  private void connect() throws Exception {
+    Context ctx = new InitialContext();
+    Context envContext = (Context) ctx.lookup("java:/comp/env");
+    DataSource dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+    con = dataFactory.getConnection();
   }
 }

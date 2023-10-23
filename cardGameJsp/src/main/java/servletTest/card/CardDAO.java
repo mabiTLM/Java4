@@ -10,85 +10,63 @@ import javax.sql.DataSource;
 import makeCardGame230901.cardBundle.TotalCardBase;
 import servletTest.card.cardDAO.CreateTable;
 import servletTest.card.cardDAO.DropTable;
+import servletTest.dungeonShop.DungeonShopDAO;
 
 public class CardDAO {
   private Connection con;
   private DropTable dropTable = new DropTable();
   private CreateTable createTable = new CreateTable();
 
+  public void dropTableCard() throws Exception {
+    connect();
+    String deleteQuery = "drop table card";
+    PreparedStatement stmt = con.prepareStatement(deleteQuery);
+    stmt.executeUpdate();
+    stmt.close();
+    con.close();
+  }
 
-  // 여기있는것 대부분을 서비스를 만들어서 옮겨야한다.
 
-  // db에 자료넣기
-
-  // drop table card;
-  //
-  // create table Card(
-  // id number(10,0) generated as identity primary key,
-  // name varchar2(20) not null,
-  // type varchar2(20) not null,
-  // consumeMana number(10,0) not null,
-  // price number(10,0) not null,
-  // effect varchar2(20) default '통상',
-  // effectValue number(10,0) default 0,
-  // enforce varchar2(10) default 'false',
-  // volatility varchar2(10) default 'false'
-  // );
-
-  // public void makeTable() {
-  // insertQuery += "drop table card;";
-  // insertQuery += "create table Card(id number(10,0) generated as identity primary key,"
-  // + "name varchar2(20) not null, type varchar2(20) not null,consumeMana number(10,0) not null,"
-  // + "price number(10,0) not null,effect varchar2(20) default '통상',"
-  // + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-  // + "volatility varchar2(10) default 'false');";
-  // }
+  /////////////////////////////////////// 여기 밑으론 분리 다시해야한다.
 
 
   /**
    * 게임을 처음시작할때 데이버베이스 세팅 일단 전부하나로 되있는데 분리해야한다.
    **/
   public void newStart() {
+    DungeonShopDAO dungeonShopDAO = new DungeonShopDAO();
+
+    try {
+      dungeonShopDAO.dropDungeonShopTable();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      dungeonShopDAO.createDungeonShopTable();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
     TotalCardBase totalCardBase = new TotalCardBase();
     try {
+      dropTableCard();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      createTable.creatCardTable();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      dropTable.dropTableVillageShop();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
       connect();
-      dropTable.dropTableCard(con);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    try {
-      createTable.creatCardTable(con);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    try {
-      dropTable.dropTableDeck(con);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    try {
-      String createDeckQuery = "create table Deck (id number(10,0) not null,"
-          + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
-          + "price number(10,0) not null,effect varchar2(20) default '통상',"
-          + "effectValue number(10,0) default 0,enforce varchar2(10) default 'false',"
-          + "volatility varchar2(10) default 'false')";
-      PreparedStatement crePstmt = con.prepareStatement(createDeckQuery);
-      crePstmt.executeUpdate();
-      crePstmt.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-
-    try {
-      dropTable.dropTableVillageShop(con);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    try {
       String createDeckQuery =
           "create table villageShop (id number(10,0) generated as identity primary key,"
               + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
@@ -121,12 +99,13 @@ public class CardDAO {
     }
 
     try {
-      dropTable.dropTableCardInventory(con);
+      dropTable.dropTableCardInventory();
     } catch (Exception e) {
       e.printStackTrace();
     }
 
     try {
+      connect();
       String createDeckQuery = "create table cardInventory (id number(10,0) not null,"
           + "name varchar2(20) not null, type varchar2(20) not null,cardvalue number(10,0) not null,consumeMana number(10,0) not null,"
           + "price number(10,0) not null,effect varchar2(20) default '통상',"

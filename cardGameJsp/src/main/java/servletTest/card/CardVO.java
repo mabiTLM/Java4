@@ -118,7 +118,7 @@ public class CardVO {
       temp += "방어도";
     }
 
-    else if (getCardType().equals("_Heal_")) {
+    else if (getCardType().equals("_HEAL_")) {
       temp += "회복";
     }
 
