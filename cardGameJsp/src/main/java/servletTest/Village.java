@@ -21,6 +21,7 @@ public class Village extends HttpServlet {
       throws ServletException, IOException {
     CardDAO card = new CardDAO();
     DeckDAO deck = new DeckDAO();
+    Dungeon dungeon = new Dungeon();
     try {
       deck.dropTableDeck();
     } catch (Exception e) {
@@ -34,7 +35,8 @@ public class Village extends HttpServlet {
         card.insertDeck(i, "cardinventory", "deck");
       }
     }
-    response.sendRedirect("dungeon.jsp");
+    dungeon.setMakeDungeon(true);
+    response.sendRedirect("dungeon");
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)

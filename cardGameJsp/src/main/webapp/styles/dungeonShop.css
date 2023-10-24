@@ -110,3 +110,23 @@
 	width: 100%;
 	/*background-color: rgba(0, 0, 0, 0.5);*/
 }
+
+.back-button-area {
+	position: relative;
+	width: 0%;
+	top: 77%;
+	right: 15%;
+	/*  background-color: rgba(255, 0, 0, 0.5);*/
+
+}
+
+.back-button {
+	font-size: 20px;
+	font-weight: bold;
+	width: 100px;
+	height: 55px;
+}
+
+.back-button-img {
+	width: 105px;
+}

@@ -185,6 +185,8 @@
 }
 
 .edit-deck-finish {
+	font-size: 50px;
+    font-weight: bold;
 	width: 100%;
 	height: 100%;
 }

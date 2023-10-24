@@ -101,10 +101,10 @@ public class TotalCardBase implements Serializable {
     cardData[4] = new TotalCardBase("참격", CARDTYPE.Attack, 12, 1, 100);
     cardData[5] = new TotalCardBase("굳건", CARDTYPE.Defend, 15, 1, 100);
     cardData[6] = new TotalCardBase("속공", CARDTYPE.Attack, 10, 1, 10000, "드로우", 1);
-    cardData[7] = new TotalCardBase("상처찢기", CARDTYPE.Attack, 40, 2, 5000, "마무리", 1);
+    cardData[7] = new TotalCardBase("상처찢기", CARDTYPE.Attack, 40, 2, 5000, "마무리");
     cardData[8] = new TotalCardBase("불굴", CARDTYPE.Defend, 15, 0, 5000);
     cardData[9] = new TotalCardBase("빛의수호", CARDTYPE.Defend, 80, 3, 10000);
-    cardData[10] = new TotalCardBase("실드차지", CARDTYPE.Attack, 0, 1, 20000, "실드차지", 0);
+    cardData[10] = new TotalCardBase("실드차지", CARDTYPE.Attack, 0, 1, 20000, "실드차지");
     cardData[11] = new TotalCardBase("힐링", CARDTYPE._HEAL_, 10, 1, 10);
     cardData[12] = new TotalCardBase("신속", CARDTYPE.Attack, 20, 2, 10000, "드로우", 3);
     cardData[13] = new TotalCardBase("스매시", CARDTYPE.Attack, 20, 2, 20000, "방패깨기");

@@ -126,13 +126,13 @@ public class CardVO {
     if (!getEffect().equals("통상")) {
 
       if (getEffectValue() == 0) {
-        temp += " /효과 : " + getEffect();
+        temp += "<br>효과 : " + getEffect();
       } else {
-        temp += " /효과 : " + getEffectValue() + getEffect();
+        temp += "<br>효과 : " + getEffectValue() + getEffect();
       }
     }
     if (getVolatility().equals("true")) {
-      temp += " 휘발성";
+      temp += "<br>휘발성";
     }
 
     return temp;

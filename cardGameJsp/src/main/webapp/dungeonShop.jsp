@@ -41,6 +41,15 @@
 
 			</div>
 		</div>
+		
+		<div class="back-button-area">
+		<a href="dungeon">
+		<img src="images/dungeon/shop/remove.png" alt="돌아가기" class="back-button-img" />
+		<button class="back-button">
+		돌아가기
+		</button>
+		</a>
+		</div>
 
 	</div>
 

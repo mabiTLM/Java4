@@ -95,8 +95,12 @@ function usecard(type, value, consumeMana) {
 			if (monsterHp[currentTarget] <= 0) {
 				monsterHp[currentTarget] = 0;
 				monsterHpPrint.innerHTML = monsterHp[currentTarget];
-				const target = document.getElementById("monster" + currentTarget);
-				target.disabled = true;
+				
+				
+				const enemyArea = document.getElementById("monster" + currentTarget);
+				enemyArea.setAttribute('style', 'display:none');
+				
+				
 				monsterCount = monsterCount - 1;
 				currentTarget = -1;
 			}

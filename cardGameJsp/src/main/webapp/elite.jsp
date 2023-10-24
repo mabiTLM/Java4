@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter"
-	import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy"
-	import="servletTest.card.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="makeCardGame230901.characterBundle.enemyBundle.EnemyCharacter" import="makeCardGame230901.characterBundle.enemyBundle.FirstFloorEnemy" import="servletTest.card.*" pageEncoding="UTF-8"%>
 <%!private EnemyCharacter[] encount() // 어떤 적을 만날지 정해주자
 	{
 		int temp = (int) (Math.random() * 2 + 1);
@@ -34,10 +31,8 @@
 				for (int i = 0; i < monster.length; i++) {
 					EnemyCharacter c = monster[i];
 				%>
-				<div class="enemystanding">
-					<img src="images/battle/monster/<%=c.getName()%>.png"
-						alt="<%=c.getName()%>>" class="enemyimg" id='monster<%=i%>'
-						onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)" />
+				<div class="enemystanding" id='monster<%=i%>'>
+					<img src="images/battle/monster/<%=c.getName()%>.png" alt="<%=c.getName()%>>" class="enemyimg" onclick="target(<%=i%>,<%=c.getHp()%>,<%=c.getDef()%>,<%=monster.length%>)" />
 
 					<span>
 						체력 :
@@ -103,10 +98,8 @@
 
 					<div class="card-area">
 						<div class="card-area-inner">
-							<button class="use-button"
-								onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
-								<img src="images/card/<%=Hand(i).getCardName()%>.png"
-									alt="<%=Hand(i).getCardName()%>>" class="hand">
+							<button class="use-button" onclick="usecard('<%=Hand(i).getCardType()%>',<%=Hand(i).getCardValue()%>,<%=Hand(i).getCardConsumeMana()%>)">
+								<img src="images/card/<%=Hand(i).getCardName()%>.png" alt="<%=Hand(i).getCardName()%>>" class="hand">
 								<div class="card-mana"><%=Hand(i).getCardConsumeMana()%></div>
 								<div class="card-name"><%=Hand(i).getCardName()%></div>
 								<div class="card-explain-area"><%=Hand(i).cardExplain()%></div>
@@ -122,7 +115,7 @@
 					<button onclick='turnFinish()' class="turnoff-button">턴종료</button>
 				</div>
 				<div class="battlefinish-area" id="finish-area">
-					<form action='dungeon.jsp' class="finish-button">
+					<form action='dungeon' class="finish-button">
 						<input type=hidden id=finish value='전투종료' class="finish-button">
 					</form>
 				</div>
