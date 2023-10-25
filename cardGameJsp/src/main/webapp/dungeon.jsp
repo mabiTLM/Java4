@@ -10,6 +10,7 @@ int[] playerLocation = (int[]) request.getAttribute("playerLocation");
 <head>
 <meta charset="UTF-8">
 <title>던전지도</title>
+<script src='scripts/dungeon.js'></script>
 <link rel='stylesheet' href='styles/dungeon.css' />
 </head>
 
@@ -18,7 +19,7 @@ int[] playerLocation = (int[]) request.getAttribute("playerLocation");
 		<!-- 몬스터를 누를경우 임시덱을 만들게해서 전투 도중 덱이 변경되도 다시 돌아올 수 있게해야한다. -->
 		<!-- 한번만 랜덤으로 만들고 다시오면 고정되어야하니까 다른곳에서 맵생성을 처리해야한다. -->
 		<div class="padding-box">
-			<div class="map">
+			<div class="map" id="map">
 				<%
 				for (int i = 0; i < 14; i++) {
 				  for (int j = 0; j < 7; j++) {

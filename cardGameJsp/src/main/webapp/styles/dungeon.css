@@ -37,8 +37,12 @@
 
 }
 
-.can-click-box img{
-	box-shadow: 0 0 10px 0 white, inset 0 0 10px 0 white;
+.can-click-box img {
+	box-shadow: 0px 0px 10px 0px white, inset 0px 0px 0px 25px white;
+}
+
+.can-click-box :hover {
+	opacity: 1;
 }
 
 .cant-click-box {
