@@ -33,10 +33,8 @@ public class BoardServiceTx implements BoardService {
 
 
   public void update(Board board, User user) {
-
     TransactionStatus status =
         transactionManager.getTransaction(new DefaultTransactionDefinition());
-
     try {
       boardServiceImpl.update(board, user);
       transactionManager.commit(status);
@@ -46,12 +44,9 @@ public class BoardServiceTx implements BoardService {
     }
   }
 
-
   public void updateAll(User user) {
-
     TransactionStatus status =
         transactionManager.getTransaction(new DefaultTransactionDefinition());
-
     try {
       boardServiceImpl.updateAll(user);
       transactionManager.commit(status);
