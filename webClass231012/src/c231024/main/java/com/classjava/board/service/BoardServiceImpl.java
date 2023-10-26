@@ -25,11 +25,11 @@ public class BoardServiceImpl implements BoardService {
   }
 
   public void add(Board board, int userId) {
-    if (userService.isLogIn(userId)) {
-      boardDAO.add(board);
-    } else {
-      new RuntimeException("로그인 실패");
-    }
+    // if (userService.isLogIn(userId)) {
+    boardDAO.add(board);
+    // } else {
+    // new RuntimeException("로그인 실패");
+    // }
   }
 
   public Board get(int id) {
