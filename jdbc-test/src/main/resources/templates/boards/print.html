@@ -1,0 +1,44 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
+    <link rel="stylesheet" href="/boards/print.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div class="title-upper">
+        <div class="title-area">
+          제목 :
+          <div class="title">제목넣을 곳</div>
+        </div>
+        <hr />
+        <div class="user-info-area">
+          작성자 :
+          <div class="user-name">이름넣을 곳</div>
+        </div>
+      </div>
+      <div class="content">내용 넣을 곳</div>
+      <div class="button-area">
+        <a href="/board"><button>돌아가기</button></a>
+      </div>
+    </div>
+
+    <script>
+      async function getCurrentPost() {
+        const list = (await axios.post("/board/print", {})).data;
+        console.log(list);
+        console.log(list[0].user);
+        list.forEach((item) => {
+          document.getElementsByClassName("title")[0].innerHTML = item.title;
+          document.getElementsByClassName("user-name")[0].innerHTML = item.user;
+          document.getElementsByClassName("content")[0].innerHTML =
+            item.content;
+        });
+      }
+
+      getCurrentPost();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+#root {
+  background-color: rgb(181, 214, 146);
+  padding: 50px;
+}
+
+.title-upper {
+  border: solid 1px;
+  padding: 10px;
+}
+
+.title-area {
+  display: flex;
+}
+.content {
+  padding: 10px;
+  margin: 10px 0px;
+  border: solid 1px;
+}
+
+.user-info-area {
+  justify-content: right;
+  display: flex;
+  text-align: right;
+}
+
+.button-area {
+  display: flex;
+  justify-content: right;
+}
