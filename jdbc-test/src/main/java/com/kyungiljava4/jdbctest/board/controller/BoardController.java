@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.kyungiljava4.jdbctest.board.domain.Board;
@@ -19,7 +21,7 @@ public class BoardController {
 
   @GetMapping("/board")
   public String listPage() {
-    return "boards/index";
+    return "board/index";
   }
 
   @ResponseBody
@@ -43,7 +45,7 @@ public class BoardController {
 
   @GetMapping("/board/add")
   public String addPage() {
-    return "boards/add";
+    return "board/add";
   }
 
   @PostMapping("/board/add")
@@ -57,7 +59,7 @@ public class BoardController {
   public String printPage(@RequestParam Map<String, String> data, HttpSession session) {
     session.setAttribute("id", data.get("id"));
     // boardService.get(Integer.valueOf(data.get("id")));
-    return "boards/print";
+    return "board/print";
   }
 
   @ResponseBody
@@ -72,6 +74,35 @@ public class BoardController {
     sb.append("\"content\":\"" + post.getContent() + "\"}");
     sb.append("]");
     return sb.toString();
+  }
+
+  @GetMapping("/board/item")
+  public String item(@RequestParam Map<String, String> data, HttpSession session) {
+
+    return "board/item";
+  }
+
+  @PostMapping("/board/item")
+  @ResponseBody
+  public String get(@RequestBody Map<String, String> data) {
+    Board board = boardService.get(Integer.parseInt(data.get("id")));
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("{\"id\":" + board.getId() + ",");
+    sb.append("\"user\":\"" + board.getUser() + "\",");
+    sb.append("\"title\":\"" + board.getTitle() + "\",");
+    sb.append("\"content\":\"" + board.getContent() + "\"}");
+    return sb.toString();
+  }
+
+  @GetMapping("/board/thyme")
+  public String listThymePage(Model model) {
+    List<Board> list = boardService.getAll();
+    model.addAttribute("list", list);
+    model.addAttribute("test", "이거 읽어올 수 있나?");
+    model.addAttribute("tag", "<strong>이거 읽어올 수 있나?<strong>");
+
+    return "board/thyme/index";
   }
 
 }
