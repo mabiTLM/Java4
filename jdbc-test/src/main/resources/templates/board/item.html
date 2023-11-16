@@ -12,7 +12,13 @@
       <h2 id="user"></h2>
       <p id="content"></p>
     </div>
-
+    <a>
+      <button>수정</button>
+    </a>
+    <form action="/board/hwDelete" method="post">
+      <input type="hidden" name="id" id="hwDelete" />
+      <button>삭제</button>
+    </form>
     <script>
       async function getBoard() {
         const board = (
@@ -24,6 +30,7 @@
         document.getElementById("title").innerHTML = board.title;
         document.getElementById("user").innerHTML = board.user;
         document.getElementById("content").innerHTML = board.content;
+        document.getElementById("hwDelete").value = board.id;
       }
       getBoard();
     </script>

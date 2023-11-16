@@ -105,4 +105,20 @@ public class BoardController {
     return "board/thyme/index";
   }
 
+
+
+  @GetMapping("/board/hwDelete")
+  public String hwDeletePage() {
+    return "board/hwDelete";
+  }
+
+  @PostMapping("/board/hwDelete")
+  public String hwDeletePost(@RequestBody Map<String, String> data) {
+
+    System.out.println("확인1");
+    boardService.hwDelete(Integer.parseInt(data.get("id")));
+    System.out.println("확인2");
+    return "redirect:/board";
+  }
+
 }

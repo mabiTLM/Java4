@@ -35,6 +35,10 @@ public class BoardDAO {
 
   public List<Board> getAll() {
     return jdbcTemplate.query("select * from spring_boards order by \"id\"", mapper);
+  }
+
+  public Board hwDelete(int id) {
+    return jdbcTemplate.queryForObject("delete from spring_boards where \"id\"=?", mapper, id);
 
   }
 

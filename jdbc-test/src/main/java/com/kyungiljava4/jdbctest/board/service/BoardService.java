@@ -25,4 +25,9 @@ public class BoardService {
     return list;
   }
 
+
+  public void hwDelete(int id) {
+    boardDAO.hwDelete(id);
+  }
+
 }
