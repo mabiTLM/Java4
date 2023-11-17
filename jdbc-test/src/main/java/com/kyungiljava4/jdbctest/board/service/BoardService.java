@@ -22,6 +22,7 @@ public class BoardService {
 
   public List<Board> getAll() {
     List<Board> list = boardDAO.getAll();
+    System.out.println(list.get(0));
     return list;
   }
 
