@@ -2,6 +2,7 @@ package com.webClass231117hw.boardHw.board.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,5 +23,14 @@ public class BoardDAO {
           rs.getBoolean("isWithdrew"), rs.getInt("userId"));
     }
   };
+
+  public void add(Board board) {
+    jdbcTemplate.update("insert into boards (user_id, title, content) values (?,?,?)",
+        board.getUserId(), board.getTitle(), board.getContent());
+  }
+
+  public List<Board> getAll() {
+    return jdbcTemplate.query("select * from boards", mapper);
+  }
 
 }

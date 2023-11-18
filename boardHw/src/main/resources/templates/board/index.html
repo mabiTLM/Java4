@@ -6,16 +6,19 @@
   <body>
     <div th:fragment="boardFragment" class="board">
       <div>
-        <form action="">
-          <textarea name="" class="table-text"></textarea>
+        <form action="" method="post">
+          <input type="text" name="title" placeholder="제목" />
+          <textarea
+            name="content"
+            class="table-text"
+            placeholder="내용"
+          ></textarea>
           <button>글쓰기</button>
         </form>
       </div>
       <div>글나올곳</div>
-      <div>
-        오늘의 숙제~<br />dao, service 추가해서 게시판 글작성, 목록보기
-        만들기<br />UI간단하게 여기에 작성해서 완성하고
-      </div>
+
+      <div>아이디를 먼저 만들지 않으면 오류가 뜹니다.</div>
     </div>
   </body>
 </html>
