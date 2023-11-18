@@ -1,17 +1,13 @@
 package com.webClass231117hw.boardHw.board.domain;
 
-import java.sql.Date;
-import com.webClass231117hw.boardHw.category.domain.Category;
-import com.webClass231117hw.boardHw.user.domain.User;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class Board {
   private int id;
@@ -19,18 +15,11 @@ public class Board {
   private String title;
   @NonNull
   private String content;
+  private int views = 0;
+  private int likes = 0;
+  private int hates = 0;
+  private Timestamp createdAt;
+  private boolean isWithdrew = false;
   @NonNull
-  private int views;
-  @NonNull
-  private int likes;
-  @NonNull
-  private int hates;
-  @NonNull
-  private Date createdAt;
-  @NonNull
-  private User writer;
-  @NonNull
-  private Category category;
-  @NonNull
-  private boolean isWithdrew;
+  private int userId;
 }

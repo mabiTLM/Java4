@@ -105,8 +105,6 @@ public class BoardController {
     return "board/thyme/index";
   }
 
-
-
   @GetMapping("/board/hwDelete")
   public String hwDeletePage() {
     return "board/hwDelete";
