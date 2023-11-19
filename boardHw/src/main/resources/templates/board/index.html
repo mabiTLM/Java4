@@ -2,10 +2,11 @@
 <html mxlns:th="http://www.thymeleaf.org">
   <head th:fragment="boardFragmentHead">
     <link rel="stylesheet" href="/styles/board/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div th:fragment="boardFragment" class="board">
-      <div>
+      <div class="write-area">
         <form action="" method="post">
           <input type="text" name="title" placeholder="제목" />
           <textarea
@@ -16,9 +17,41 @@
           <button>글쓰기</button>
         </form>
       </div>
+
+
+      <ul id="list">
+
+      </ul>
+
+
+      <li class="items none">
+        <a class="items-inner-box">
+        <div class="title"></div>        
+        <div class="user">내용 : <span class="content"></span></div>        
+        </a>        
+      </li>
+
+
       <div>글나올곳</div>
 
-      <div>아이디를 먼저 만들지 않으면 오류가 뜹니다.</div>
+        <script>
+          async function getList() {          
+          const list = (await axios.post("/board", {})).data;          
+          console.log(list);          
+          const listElem = document.getElementById("list");          
+          const itemElemTemplate = document.getElementsByClassName("none")[0];          
+          list.forEach((item) => {          
+          const tempElem = itemElemTemplate.cloneNode(true);          
+          console.log(tempElem);          
+          tempElem.classList.remove("none");    
+          tempElem.getElementsByClassName("title")[0].innerHTML = item.title;          
+          tempElem.getElementsByClassName("content")[0].innerHTML = item.content;          
+          listElem.append(tempElem);          
+          });          
+          }          
+          getList();
+          
+          </script>
     </div>
   </body>
 </html>

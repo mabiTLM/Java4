@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Board {
+  @NonNull
+  private String content;
   private int id;
   @NonNull
   private String title;
-  @NonNull
-  private String content;
   private int views = 0;
   private int likes = 0;
   private int hates = 0;

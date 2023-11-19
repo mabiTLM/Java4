@@ -17,10 +17,18 @@ public class BoardDAO {
   private RowMapper<Board> mapper = new RowMapper<Board>() {
     @Override
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+      boolean tempDrew = false;
+
+      String tempLongContent = rs.getString("content");
+
+      if (rs.getInt("is_withdrew") == 1) {
+        tempDrew = true;
+      }
+
       // TODO Auto-generated method stub
-      return new Board(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
-          rs.getInt("views"), rs.getInt("likes"), rs.getInt("hates"), rs.getTimestamp("createdAt"),
-          rs.getBoolean("isWithdrew"), rs.getInt("userId"));
+      return new Board(tempLongContent, rs.getInt("id"), rs.getString("title"), rs.getInt("views"),
+          rs.getInt("likes"), rs.getInt("hates"), rs.getTimestamp("created_at"), tempDrew,
+          rs.getInt("user_id"));
     }
   };
 

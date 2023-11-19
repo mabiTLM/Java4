@@ -20,12 +20,14 @@ birth DATE
 
 create table boards (
 id number generated as identity primary key,
-user_id number,
 title varchar2(100) not null,
 content long not null,
 views number default 0,
-created_at timestamp,
-is_withdrew number(1),
+likes number default 0,
+hates number default 0,
+created_at timestamp default sysdate,
+is_withdrew number(1) default 0,
+user_id number,
 constraint fk_users_to_boards foreign key (user_id) references users(id)
 );
 
@@ -34,7 +36,7 @@ id number generated as identity primary key,
 user_id number,
 board_id number,
 likes_or_hates number(1),
-created_at timestamp,
+created_at timestamp default sysdate,
 constraint fk_users_to_likes_and_hates foreign key (user_id) references users(id),
 constraint fk_boards_to_likes_and_hates foreign key (board_id) references boards(id)
 );
