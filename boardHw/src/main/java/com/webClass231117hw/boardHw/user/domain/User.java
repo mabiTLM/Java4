@@ -29,7 +29,6 @@ public class User {
   private String gitAddress;
   @NonNull
   private boolean gender;
-  @NonNull
   private Date createdAt;
   @NonNull
   private Date birth;

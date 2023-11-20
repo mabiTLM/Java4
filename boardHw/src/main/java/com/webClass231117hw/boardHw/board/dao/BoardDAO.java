@@ -11,34 +11,56 @@ import com.webClass231117hw.boardHw.board.domain.Board;
 
 @Repository
 public class BoardDAO {
+
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
   private RowMapper<Board> mapper = new RowMapper<Board>() {
     @Override
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
-      boolean tempDrew = false;
 
-      String tempLongContent = rs.getString("content");
-
-      if (rs.getInt("is_withdrew") == 1) {
-        tempDrew = true;
-      }
-
-      // TODO Auto-generated method stub
-      return new Board(tempLongContent, rs.getInt("id"), rs.getString("title"), rs.getInt("views"),
-          rs.getInt("likes"), rs.getInt("hates"), rs.getTimestamp("created_at"), tempDrew,
+      return new Board(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
+          rs.getInt("views"), 0, 0, rs.getTimestamp("created_at"), rs.getInt("is_withdrew") == 1,
           rs.getInt("user_id"));
     }
   };
 
   public void add(Board board) {
-    jdbcTemplate.update("insert into boards (user_id, title, content) values (?,?,?)",
-        board.getUserId(), board.getTitle(), board.getContent());
+    jdbcTemplate.update(
+        "insert into boards (title, content, is_withdrew, user_id) values (?,?,?,?)",
+        board.getTitle(), board.getContent(), 0, 1);
   }
 
   public List<Board> getAll() {
-    return jdbcTemplate.query("select * from boards", mapper);
+    return jdbcTemplate.query("select * from boards order by id", mapper);
   }
 
+  // 직접만든것
+  // @Autowired
+  // private JdbcTemplate jdbcTemplate;
+  // private RowMapper<Board> mapper = new RowMapper<Board>() {
+  // @Override
+  // public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+  // boolean tempDrew = false;
+  //
+  // String tempLongContent = rs.getString("content");
+  //
+  // if (rs.getInt("is_withdrew") == 1) {
+  // tempDrew = true;
+  // }
+  //
+  // return new Board(rs.getInt("id"), rs.getString("title"),tempLongContent,rs.getInt("views"),
+  // rs.getInt("likes"), rs.getInt("hates"), rs.getTimestamp("created_at"), tempDrew,
+  // rs.getInt("user_id"));
+  // }
+  // };
+  //
+  // public void add(Board board) {
+  // jdbcTemplate.update("insert into boards (user_id, title, content) values (?,?,?)",
+  // board.getUserId(), board.getTitle(), board.getContent());
+  // }
+  //
+  // public List<Board> getAll() {
+  // return jdbcTemplate.query("select * from boards", mapper);
+  // }
 }
