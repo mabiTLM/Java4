@@ -16,9 +16,6 @@ public class BoardController {
   @Autowired
   BoardService boardService;
 
-  // @Autowired
-  // BoardDAO boardDAO;
-
   @GetMapping("/")
   public String boardMainPage(Model model) {
     model.addAttribute("title", "게시판");
@@ -38,36 +35,6 @@ public class BoardController {
 
     return "redirect:/";
   }
-
-  // @PostMapping("/")
-  // public String mainPagePost(Model model, @RequestParam Map<String, String> data) {
-  //
-  // boardDAO.add(new Board(data.get("title"), data.get("content"), 1));
-  //
-  // return "redirect:/";
-  // }
-
-  // @ResponseBody
-  // @PostMapping("/board")
-  // public String boardPagePost() {
-  // List<Board> list = boardDAO.getAll();
-  //
-  // StringBuilder sb = new StringBuilder();
-  //
-  // sb.append("[");
-  // for (int i = 0; i < list.size(); ++i) {
-  // sb.append("{\"id\":" + list.get(i).getId() + ",");
-  // sb.append("\"title\":\"" + list.get(i).getTitle() + "\",");
-  // sb.append("\"content\":\"" + list.get(i).getContent() + "\"}");
-  // if (i < list.size() - 1) {
-  // sb.append(",");
-  // }
-  // }
-  // sb.append("]");
-  //
-  // return sb.toString();
-  // }
-
 
   @GetMapping("/notice")
   public String noticePage(Model model) {

@@ -35,32 +35,4 @@ public class BoardDAO {
     return jdbcTemplate.query("select * from boards order by id", mapper);
   }
 
-  // 직접만든것
-  // @Autowired
-  // private JdbcTemplate jdbcTemplate;
-  // private RowMapper<Board> mapper = new RowMapper<Board>() {
-  // @Override
-  // public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
-  // boolean tempDrew = false;
-  //
-  // String tempLongContent = rs.getString("content");
-  //
-  // if (rs.getInt("is_withdrew") == 1) {
-  // tempDrew = true;
-  // }
-  //
-  // return new Board(rs.getInt("id"), rs.getString("title"),tempLongContent,rs.getInt("views"),
-  // rs.getInt("likes"), rs.getInt("hates"), rs.getTimestamp("created_at"), tempDrew,
-  // rs.getInt("user_id"));
-  // }
-  // };
-  //
-  // public void add(Board board) {
-  // jdbcTemplate.update("insert into boards (user_id, title, content) values (?,?,?)",
-  // board.getUserId(), board.getTitle(), board.getContent());
-  // }
-  //
-  // public List<Board> getAll() {
-  // return jdbcTemplate.query("select * from boards", mapper);
-  // }
 }
