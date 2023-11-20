@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html mxlns:th="http://www.thymeleaf.org">
+  <head th:fragment="joinFragmentHead">
+    <link rel="stylesheet" href="/styles/board/index.css" />
+  </head>
+  <body>
+    <div th:fragment="joinFragment" class="join container">
+      <form action="/join" method="post">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">아이디</span>
+          <input
+            type="text"
+            class="form-control"
+            name="user-id"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">비밀번호</span>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">이름</span>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">전화번호</span>
+          <input
+            type="text"
+            class="form-control"
+            name="phone"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">주소</span>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">이메일</span>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">깃 주소</span>
+          <input
+            type="text"
+            class="form-control"
+            name="git-address"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="radio"
+              name="gender"
+              value="1"
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with radio button"
+            readonly="readonly"
+            value="남자"
+          />
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="radio"
+              name="gender"
+              value="0"
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with radio button"
+            readonly="readonly"
+            value="여자"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">생년월일</span>
+          <input
+            type="date"
+            class="form-control"
+            name="birth"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <button>가입</button>
+      </form>
+    </div>
+  </body>
+</html>

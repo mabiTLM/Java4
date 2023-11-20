@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.webClass231117hw.boardHw.board.domain.Board;
 import com.webClass231117hw.boardHw.board.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
@@ -30,9 +31,10 @@ public class BoardController {
 
 
   @PostMapping("/add")
-  public String add(@RequestParam Map<String, String> data) {
+  public String add(@RequestParam Map<String, String> data, HttpSession session) {
 
-    boardService.add(new Board(data.get("title"), data.get("content"), 1));
+    boardService.add(
+        new Board(data.get("title"), data.get("content"), (int) session.getAttribute("user-id")));
 
     return "redirect:/";
   }
