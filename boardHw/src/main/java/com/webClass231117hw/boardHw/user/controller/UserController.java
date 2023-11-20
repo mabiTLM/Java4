@@ -50,7 +50,7 @@ public class UserController {
   @PostMapping("/login")
   public String loginPagePost(@RequestParam Map<String, String> data, HttpSession session) {
     if (userService.login(data.get("user-id"), data.get("password")) != 0) {
-      session.setAttribute("user-id", userService.login(data.get("user-id"), data.get("password")));
+      session.setAttribute("userId", userService.login(data.get("user-id"), data.get("password")));
       return "redirect:/";
     } else {
       return "redirect:/login";
@@ -60,7 +60,7 @@ public class UserController {
   @GetMapping("/logout")
   public String logout(HttpSession session) {
 
-    session.setAttribute("user-id", null);
+    session.setAttribute("userId", null);
     return "redirect:/";
 
   }

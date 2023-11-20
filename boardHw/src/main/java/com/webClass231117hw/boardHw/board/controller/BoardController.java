@@ -34,7 +34,7 @@ public class BoardController {
   public String add(@RequestParam Map<String, String> data, HttpSession session) {
 
     boardService.add(
-        new Board(data.get("title"), data.get("content"), (int) session.getAttribute("user-id")));
+        new Board(data.get("title"), data.get("content"), (int) session.getAttribute("userId")));
 
     return "redirect:/";
   }
