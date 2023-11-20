@@ -3,3 +3,13 @@
 #header h1 {
   text-align: center;
 }
+
+.login-area {
+  justify-content: right;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.login-area > div {
+  margin-left: 10px;
+}
