@@ -48,7 +48,7 @@
     <div th:fragment="registFragment" class="regist container">
       <form action="regist" method="post" class="row" id="regist">
         <div class="input-group mb-3">
-          <span class="input-group-text" >ID</span>
+          <span class="input-group-text">ID</span>
           <input
             type="text"
             class="form-control"
@@ -56,9 +56,11 @@
             aria-label="user-id"
             aria-describedby="user-id"
             name="userId"
+            id="user-id"
+            required
           />
 
-          <span class="input-group-text" >PW</span>
+          <span class="input-group-text">PW</span>
           <input
             type="password"
             class="form-control"
@@ -66,10 +68,12 @@
             aria-label="password"
             aria-describedby="password"
             name="password"
-          /> 
+            id="resist-password"
+            required
+          />
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Name</span>
+          <span class="input-group-text">Name</span>
           <input
             type="text"
             class="form-control"
@@ -78,11 +82,12 @@
             aria-describedby="name"
             id="name"
             name="name"
+            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" >phone</span>
+          <span class="input-group-text">phone</span>
           <input
             type="text"
             class="form-control"
@@ -91,11 +96,12 @@
             aria-describedby="phone"
             id="phone"
             name="phone"
+            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" >address</span>
+          <span class="input-group-text">address</span>
           <input
             type="text"
             class="form-control"
@@ -108,7 +114,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" >E-mail</span>
+          <span class="input-group-text">E-mail</span>
           <input
             type="email"
             class="form-control"
@@ -117,11 +123,12 @@
             aria-describedby="email"
             id="email"
             name="email"
+            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" >Github Address</span>
+          <span class="input-group-text">Github Address</span>
           <input
             type="text"
             class="form-control"
