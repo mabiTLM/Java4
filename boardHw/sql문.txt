@@ -28,11 +28,11 @@ user_id varchar2(50) not null unique,
 password varchar2(64) not null,
 name varchar2(15) not null,
 phone varchar2(14) not null,
-address varchar2(100) not null,
+address varchar2(100),
 email varchar2(100) not null unique,
 git_address varchar2(100),
-gender number(1) not null,
-birth date not null,
+gender number(1),
+birth date,
 created_at timestamp default sysdate
 );
 

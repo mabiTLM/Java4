@@ -3,25 +3,14 @@
     <link rel="stylesheet" href="/styles/header.css" />
   </head>
   <body>
-    <div th:fragment="headerFragment" id="header">
+    <div
+      th:fragment="headerFragment"
+      id="header"
+      class="d-flex justify-content-between align-items-center px-2"
+    >
+      <a href="/"><button class="btn btn-secondary btn-sm">home</button></a>
       <h1 th:text="${title}"></h1>
-      <div class="container mb-3">
-        <div class="login-area" th:if="${session.userId==null}">
-          <div>
-            <a href="/login">
-              <button class="btn btn-info">로그인</button>
-            </a>
-          </div>
-          <div>
-            <a href="/join">
-              <button class="btn btn-info">회원가입</button>
-            </a>
-          </div>
-        </div>
-        <div th:unless="${session.userId==null}">
-          <a href="/logout"><button class="btn btn-info">로그아웃</button></a>
-        </div>
-      </div>
+      <div th:replace="~{/user/loginBox :: loginFragment}"></div>
     </div>
   </body>
 </html>

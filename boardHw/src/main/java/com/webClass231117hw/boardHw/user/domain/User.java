@@ -1,6 +1,7 @@
 package com.webClass231117hw.boardHw.user.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,12 @@ public class User {
   private String name;
   @NonNull
   private String phone;
-  @NonNull
   private String address;
   @NonNull
   private String email;
-  @NonNull
   private String gitAddress;
-  @NonNull
-  private boolean gender;
-  private Date createdAt;
-  @NonNull
+  private int gender;
   private Date birth;
+  private Timestamp createdAt;
+
 }
