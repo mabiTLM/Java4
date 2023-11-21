@@ -19,20 +19,19 @@ public class UserDAO {
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
       return new User(rs.getInt("id"), rs.getString("user_id"), rs.getString("password"),
           rs.getString("name"), rs.getString("phone"), rs.getString("address"),
-          rs.getString("email"), rs.getString("git_address"), rs.getInt("gender") == 1,
-          rs.getDate("created_at"), rs.getDate("birth"));
+          rs.getString("email"), rs.getString("git_address"), rs.getInt("gender"),
+          rs.getDate("birth"), rs.getTimestamp("created_at"));
     }
   };
 
   public void add(User user) {
-    int tempGender = 0;
-    if (user.isGender()) {
-      tempGender = 1;
-    }
+
     jdbcTemplate.update(
         "insert into users (user_id, password, name, phone, address, email, git_address, gender, birth) values (?,?,?,?,?,?,?,?,?)",
         user.getUserId(), user.getPassword(), user.getName(), user.getPhone(), user.getAddress(),
-        user.getEmail(), user.getGitAddress(), tempGender, user.getBirth());
+        user.getEmail(), user.getGitAddress(), user.getGender(), user.getBirth());
+
+    // user.isGender ? 1 : 0 삼항 연산자
   }
 
   public User get(int id) {
