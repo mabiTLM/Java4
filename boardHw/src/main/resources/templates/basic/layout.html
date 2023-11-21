@@ -25,5 +25,14 @@
       <div id="menu"></div>
       <div id="content" th:insert="~{${path} :: ${content}}"></div>
     </div>
+
+    <script th:inline="javascript">
+      function errorCheck(){
+      var requestError = [[${requestError}]];
+      if(requestError!=null){
+        alert(requestError);
+      }}
+      errorCheck();
+    </script>
   </body>
 </html>

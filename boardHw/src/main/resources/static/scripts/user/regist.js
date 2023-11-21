@@ -3,8 +3,8 @@ function finalCheck() {
     const id_check = /^[a-z|A-Z|0-9|]+$/;
     if (
       !id_check.test(document.getElementById("user-id").value) ||
-      document.getElementById("user-id").value.length < 2 ||
-      document.getElementById("user-id").value.length > 21
+      document.getElementById("user-id").value.length < 3 ||
+      document.getElementById("user-id").value.length > 20
     ) {
       e.preventDefault();
       alert("아이디는 영어 또는 숫자 3~20만 가능합니다");
