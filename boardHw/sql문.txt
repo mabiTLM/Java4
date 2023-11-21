@@ -26,7 +26,7 @@ create table users (
 id number generated as identity primary key,
 user_id varchar2(50) not null unique,
 password varchar2(64) not null,
-name varchar2(15) not null,
+name varchar2(20) not null,
 phone varchar2(14) not null,
 address varchar2(100),
 email varchar2(100) not null unique,

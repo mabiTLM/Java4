@@ -30,13 +30,29 @@ public class UserController {
   @PostMapping("/user/regist")
   public String registPost(@RequestParam Map<String, String> map, Model model) {
     try {
+
+
+
       User tempUser = new User(map.get("userId"), map.get("password"), map.get("name"),
           map.get("phone"), map.get("email"));
+
+      if (map.get("phone").length() == 10) {
+        String temp = map.get("phone").substring(0, 3) + "-" + map.get("phone").substring(3, 6)
+            + "-" + map.get("phone").substring(6);
+
+        tempUser.setPhone(temp);
+      }
+      if (map.get("phone").length() == 11) {
+        String temp = map.get("phone").substring(0, 3) + "-" + map.get("phone").substring(3, 7)
+            + "-" + map.get("phone").substring(7);
+        tempUser.setPhone(temp);
+      }
       if (map.get("address") != "") {
         tempUser.setAddress(map.get("address"));
       }
       if (map.get("gitAddress") != "") {
-        tempUser.setGitAddress(map.get("gitAddress"));
+        map.get("gitAddress").replaceAll("https://github.com/", "");
+        tempUser.setGitAddress("https://github.com/" + map.get("gitAddress"));
       }
       if (map.get("gender") != null) {
         tempUser.setGender(Integer.parseInt(map.get("gender")));
