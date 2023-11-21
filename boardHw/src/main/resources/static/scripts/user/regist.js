@@ -1,7 +1,9 @@
-document.getElementById("regist").onsubmit = (e) => {
+function finalCheck(){
+  document.getElementById("regist").onsubmit = (e) => {
+    e.preventDefault();
   const maxByte = 20;
   const input_text = document.getElementById("name").value;
-  const text_length = input_text.length;
+  const text_length = input_text[0].length;
 
   let currentByte = 0;
 
@@ -31,4 +33,5 @@ document.getElementById("regist").onsubmit = (e) => {
     e.preventDefault();
     alert("숫자10~11 또는 -포함 12~13");
   }
+}
 };

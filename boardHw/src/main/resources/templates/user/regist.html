@@ -43,13 +43,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/scripts/user/regist.js"></script>
   </head>
   <body>
     <div th:fragment="registFragment" class="regist container">
       <form action="regist" method="post" class="row" id="regist">
         <div class="input-group mb-3">
-          <span class="input-group-text" id="user-id">ID</span>
+          <span class="input-group-text" >ID</span>
           <input
             type="text"
             class="form-control"
@@ -57,15 +56,9 @@
             aria-label="user-id"
             aria-describedby="user-id"
             name="userId"
-            maxlength="20"
-            minlength="3"
-            pattern="^[a-zA-Z0-9]+$"
-            oninvalid="this.setCustomValidity('영어와 숫자만 3~20글자')"
-            oninput="setCustomValidity('')"
-            required
           />
 
-          <span class="input-group-text" id="password">PW</span>
+          <span class="input-group-text" >PW</span>
           <input
             type="password"
             class="form-control"
@@ -73,14 +66,10 @@
             aria-label="password"
             aria-describedby="password"
             name="password"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,30}$"
-            oninvalid="this.setCustomValidity('영어 대소문자, 특수문자 포함 10~30자')"
-            oninput="setCustomValidity('')"
-            required
-          />
+          /> 
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">Name</span>
+          <span class="input-group-text" >Name</span>
           <input
             type="text"
             class="form-control"
@@ -89,17 +78,11 @@
             aria-describedby="name"
             id="name"
             name="name"
-            minlength="3"
-            maxlength="20"
-            pattern="^[a-zA-Zㄱ-ㅎ가-힣]+$"
-            oninvalid="this.setCustomValidity('한글2~10 영어 4~20')"
-            oninput="setCustomValidity('')"
-            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">phone</span>
+          <span class="input-group-text" >phone</span>
           <input
             type="text"
             class="form-control"
@@ -108,16 +91,11 @@
             aria-describedby="phone"
             id="phone"
             name="phone"
-            minlength="10"
-            maxlength="13"
-            oninvalid="this.setCustomValidity('숫자10~11 또는 -포함 12~13')"
-            oninput="setCustomValidity('')"
-            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">address</span>
+          <span class="input-group-text" >address</span>
           <input
             type="text"
             class="form-control"
@@ -126,13 +104,11 @@
             aria-describedby="address"
             id="address"
             name="address"
-            minlength="5"
-            maxlength="100"
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">E-mail</span>
+          <span class="input-group-text" >E-mail</span>
           <input
             type="email"
             class="form-control"
@@ -141,12 +117,11 @@
             aria-describedby="email"
             id="email"
             name="email"
-            required
           />
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">Github Address</span>
+          <span class="input-group-text" >Github Address</span>
           <input
             type="text"
             class="form-control"
@@ -218,6 +193,7 @@
           //multidate: true,
         });
       </script>
+      <script src="/scripts/user/regist.js"></script>
     </div>
   </body>
 </html>
