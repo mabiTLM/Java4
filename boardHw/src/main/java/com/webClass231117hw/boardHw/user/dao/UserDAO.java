@@ -26,12 +26,10 @@ public class UserDAO {
   };
 
   public void add(User user) {
-
     jdbcTemplate.update(
         "insert into users (user_id, password, name, phone, address, email, git_address, gender, birth) values (?,?,?,?,?,?,?,?,?)",
         user.getUserId(), user.getPassword(), user.getName(), user.getPhone(), user.getAddress(),
         user.getEmail(), user.getGitAddress(), user.getGender(), user.getBirth());
-
     // user.isGender ? 1 : 0 삼항 연산자
   }
 
