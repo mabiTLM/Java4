@@ -18,7 +18,6 @@ public class BoardDAO {
   private RowMapper<Board> mapper = new RowMapper<Board>() {
     @Override
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
-
       return new Board(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
           rs.getInt("views"), 0, 0, rs.getTimestamp("created_at"), rs.getInt("is_withdrew") == 1,
           rs.getInt("user_id"));

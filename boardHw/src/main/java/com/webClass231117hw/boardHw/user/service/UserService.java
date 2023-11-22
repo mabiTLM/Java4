@@ -1,6 +1,7 @@
 package com.webClass231117hw.boardHw.user.service;
 
 import java.security.MessageDigest;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.webClass231117hw.boardHw.user.dao.UserDAO;
@@ -18,7 +19,7 @@ public class UserService {
 
   public User login(User user) {
     try {
-      User tempUser = userDAO.get(user.getUserId());
+      User tempUser = userDAO.getId(user.getUserId());
       if (tempUser != null && tempUser.getPassword().equals(cryptoPassword(user.getPassword()))) {
         return tempUser;
       }
@@ -44,9 +45,16 @@ public class UserService {
     }
   }
 
+  public List<User> getAll() {
+    return userDAO.getAll();
+  }
 
   public User get(int id) {
     return userDAO.get(id);
+  }
+
+  public User getName(String name) {
+    return userDAO.getName(name);
   }
 
   // public int login(String userId, String password) {

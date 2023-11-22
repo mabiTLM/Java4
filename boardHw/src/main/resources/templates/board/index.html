@@ -45,7 +45,12 @@
           <tr th:each="item:${list}" th:object="${item}">
             <th scope="row" th:text="*{id}"></th>
             <td th:text="*{title}"></td>
-            <td th:text="*{userId}"></td>
+
+            <td
+              th:each="userList:${userList}"
+              th:if="${item.userId==userList.id}"
+              th:text="${userList.name}"
+            ></td>
             <td th:text="*{createdAt}"></td>
           </tr>
         </tbody>

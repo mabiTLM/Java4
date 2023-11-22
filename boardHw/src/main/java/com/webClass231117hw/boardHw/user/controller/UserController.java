@@ -32,20 +32,16 @@ public class UserController {
   public String registPost(@RequestParam Map<String, String> map, Model model,
       RedirectAttributes redirectAttributes) {
     try {
-
-      if (map.get("userId").replaceAll("^[a-zA-Z0-9]", "").equals("")
+      if (map.get("userId").replaceAll("[a-zA-Z0-9]", "").equals("")
           && map.get("userId").length() > 2 && map.get("userId").length() < 21) {
 
-        if (map.get("password").replaceAll("^[A-Za-z\\d!@#$%^&]", "").equals("")
+        if (map.get("password").replaceAll("[A-Za-z\\d!@#$%^&]", "").equals("")
             && map.get("password").length() > 9 && map.get("password").length() < 31) {
-
-          if (map.get("name").replaceAll("^[가-힣]", "aa").length() > 3
-              && map.get("name").replaceAll("^[가-힣]", "aa").length() < 21) {
-
-            if (map.get("phone").replaceAll("0-9-", "").equals("")
+          if (map.get("name").replaceAll("[가-힣]", "aa").length() > 3
+              && map.get("name").replaceAll("[가-힣]", "aa").length() < 21) {
+            if (map.get("phone").replaceAll("[0-9-]", "").equals("")
                 && (map.get("phone").replaceAll("-", "").length() == 10
                     || map.get("phone").replaceAll("-", "").length() == 11)) {
-
 
               if (map.get("email").endsWith(".com") || map.get("email").endsWith(".org")
                   || map.get("email").endsWith(".net") || map.get("email").endsWith(".co.kr")) {

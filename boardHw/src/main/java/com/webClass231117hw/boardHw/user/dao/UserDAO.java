@@ -2,6 +2,7 @@ package com.webClass231117hw.boardHw.user.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -34,11 +35,19 @@ public class UserDAO {
     // user.isGender ? 1 : 0 삼항 연산자
   }
 
+  public List<User> getAll() {
+    return jdbcTemplate.query("select * from users order by id", mapper);
+  }
+
   public User get(int id) {
     return jdbcTemplate.queryForObject("select * from users where id = ?", mapper, id);
   }
 
-  public User get(String userId) {
-    return jdbcTemplate.queryForObject("select * from users where user_id = ?", mapper, userId);
+  public User getId(String name) {
+    return jdbcTemplate.queryForObject("select * from users where user_id = ?", mapper, name);
+  }
+
+  public User getName(String name) {
+    return jdbcTemplate.queryForObject("select * from users where name = ?", mapper, name);
   }
 }
