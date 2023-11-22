@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/styles/index.css" />
     <head th:replace="~{/basic/header :: headerFragmentHead}"></head>
     <head th:replace="~{/board/index :: boardFragmentHead}"></head>
+    <head th:replace="~{/basic/modal :: modalFragmentHead}"></head>
     <head th:replace="~{${path} :: ${contentHead}}"></head>
   </head>
   <body>
@@ -24,15 +25,7 @@
       <div id="header" th:replace="~{/basic/header :: headerFragment}"></div>
       <div id="menu"></div>
       <div id="content" th:insert="~{${path} :: ${content}}"></div>
+      <div id="modal" th:replace="~{/basic/modal :: modalFragment}"></div>
     </div>
-
-    <script th:inline="javascript">
-      function errorCheck(){
-      var requestError = [[${requestError}]];
-      if(requestError!=null){
-        alert(requestError);
-      }}
-      errorCheck();
-    </script>
   </body>
 </html>

@@ -32,40 +32,68 @@ public class UserController {
   public String registPost(@RequestParam Map<String, String> map, Model model,
       RedirectAttributes redirectAttributes) {
     try {
-      User tempUser = new User(map.get("userId"), map.get("password"), map.get("name"),
-          map.get("phone"), map.get("email"));
 
-      if (map.get("phone").length() == 10) {
-        String temp = map.get("phone").substring(0, 3) + "-" + map.get("phone").substring(3, 6)
-            + "-" + map.get("phone").substring(6);
+      if (map.get("userId").replaceAll("^[a-zA-Z0-9]", "").equals("")
+          && map.get("userId").length() > 2 && map.get("userId").length() < 21) {
 
-        tempUser.setPhone(temp);
+        if (map.get("password").replaceAll("^[A-Za-z\\d!@#$%^&]", "").equals("")
+            && map.get("password").length() > 9 && map.get("password").length() < 31) {
+
+          if (map.get("name").replaceAll("^[가-힣]", "aa").length() > 3
+              && map.get("name").replaceAll("^[가-힣]", "aa").length() < 21) {
+
+            if (map.get("phone").replaceAll("0-9-", "").equals("")
+                && (map.get("phone").replaceAll("-", "").length() == 10
+                    || map.get("phone").replaceAll("-", "").length() == 11)) {
+
+
+              if (map.get("email").endsWith(".com") || map.get("email").endsWith(".org")
+                  || map.get("email").endsWith(".net") || map.get("email").endsWith(".co.kr")) {
+
+                User tempUser = new User(map.get("userId"), map.get("password"), map.get("name"),
+                    map.get("phone"), map.get("email"));
+
+                if (map.get("address") != "") {
+                  tempUser.setAddress(map.get("address"));
+                }
+                if (map.get("gitAddress") != "") {
+                  map.get("gitAddress").replaceAll("https://github.com/", "");
+                  tempUser.setGitAddress("https://github.com/" + map.get("gitAddress"));
+                }
+                if (map.get("gender") != null) {
+                  tempUser.setGender(Integer.parseInt(map.get("gender")));
+                }
+                if (map.get("birth") != "") {
+                  tempUser.setBirth(Date.valueOf(map.get("birth")));
+                }
+                userService.add(tempUser);
+              }
+            }
+          }
+        }
       }
-      if (map.get("phone").length() == 11) {
-        String temp = map.get("phone").substring(0, 3) + "-" + map.get("phone").substring(3, 7)
-            + "-" + map.get("phone").substring(7);
-        tempUser.setPhone(temp);
-      }
-      if (map.get("address") != "") {
-        tempUser.setAddress(map.get("address"));
-      }
-      if (map.get("gitAddress") != "") {
-        map.get("gitAddress").replaceAll("https://github.com/", "");
-        tempUser.setGitAddress("https://github.com/" + map.get("gitAddress"));
-      }
-      if (map.get("gender") != null) {
-        tempUser.setGender(Integer.parseInt(map.get("gender")));
-      }
-      if (map.get("birth") != "") {
-        tempUser.setBirth(Date.valueOf(map.get("birth")));
-      }
-      userService.add(tempUser);
       return "redirect:/";
+
     } catch (Exception e) {
       e.printStackTrace();
       redirectAttributes.addFlashAttribute("requestError", "아이디 또는 이메일 중복");
       return "redirect:/user/regist";
     }
+  }
+
+  @PostMapping("/user/login")
+  public String loginPost(@RequestParam Map<String, String> map, HttpSession session,
+      RedirectAttributes redirectAttributes) {
+    User tempUser = new User();
+    tempUser.setUserId(map.get("userId"));
+    tempUser.setPassword(map.get("password"));
+    tempUser = userService.login(tempUser);
+    if (tempUser != null) {
+      session.setAttribute("userName", tempUser.getName());
+    } else {
+      redirectAttributes.addFlashAttribute("requestError", "로그인 실패 아이디 또는 비밀번호 확인");
+    }
+    return "redirect:/";
   }
 
 
@@ -90,24 +118,6 @@ public class UserController {
   // userService.add(tempUser);
   // return "redirect:/";
   // }
-
-
-  @PostMapping("/user/login")
-  public String loginPost(@RequestParam Map<String, String> map, HttpSession session,
-      RedirectAttributes redirectAttributes) {
-    User tempUser = new User();
-    tempUser.setUserId(map.get("userId"));
-    tempUser.setPassword(map.get("password"));
-    tempUser = userService.login(tempUser);
-    if (tempUser != null) {
-      session.setAttribute("userName", tempUser.getName());
-    } else {
-      redirectAttributes.addFlashAttribute("requestError", "로그인 실패 아이디 또는 비밀번호 확인");
-    }
-    return "redirect:/";
-  }
-
-
   // @GetMapping("/login")
   // public String loginPage(Model model) {
   // model.addAttribute("title", "로그인");
@@ -127,7 +137,6 @@ public class UserController {
   // return "redirect:/login";
   // }
   // }
-
   @GetMapping("/user/logout")
   public String logout(HttpSession session) {
     session.removeAttribute("userName");;

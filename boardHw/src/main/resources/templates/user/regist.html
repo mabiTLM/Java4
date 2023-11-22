@@ -46,7 +46,7 @@
   </head>
   <body>
     <div th:fragment="registFragment" class="regist container">
-      <form action="regist" method="post" class="row" id="regist">
+      <form action="regist" method="post" class="row" id="regist-form">
         <div class="input-group mb-3">
           <span class="input-group-text">ID</span>
           <input
@@ -56,8 +56,6 @@
             aria-label="user-id"
             aria-describedby="user-id"
             name="userId"
-            id="user-id"
-            required
           />
 
           <span class="input-group-text">PW</span>
@@ -68,8 +66,6 @@
             aria-label="password"
             aria-describedby="password"
             name="password"
-            id="resist-password"
-            required
           />
         </div>
         <div class="input-group mb-3">
@@ -82,7 +78,6 @@
             aria-describedby="name"
             id="name"
             name="name"
-            required
           />
         </div>
 
@@ -96,7 +91,6 @@
             aria-describedby="phone"
             id="phone"
             name="phone"
-            required
           />
         </div>
 
@@ -123,7 +117,6 @@
             aria-describedby="email"
             id="email"
             name="email"
-            required
           />
         </div>
 
@@ -179,28 +172,9 @@
         </div>
 
         <div class="input-group">
-          <button
-            class="btn btn-primary btn-lg m-auto"
-            id="sign-in"
-            onclick="finalCheck()"
-          >
-            Sign in
-          </button>
+          <button class="btn btn-primary btn-lg m-auto">Sign in</button>
         </div>
       </form>
-
-      <script>
-        $("#datePicker").datepicker({
-          format: "yyyy-mm-dd",
-          //startDate: "-1d",
-          endDate: "1d",
-          autoclose: true,
-          clearBtn: true,
-          title: "Birth day",
-          language: "ko",
-          //multidate: true,
-        });
-      </script>
       <script src="/scripts/user/regist.js"></script>
     </div>
   </body>
