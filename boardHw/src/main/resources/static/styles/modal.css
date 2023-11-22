@@ -15,4 +15,7 @@
 #modal-box {
   padding: 2rem;
   background-color: white;
+  border: 1px solid black;
+  border-radius: 1rem;
+  max-width: 75%;
 }

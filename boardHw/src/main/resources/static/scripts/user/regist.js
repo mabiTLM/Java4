@@ -10,7 +10,7 @@ $("#datePicker").datepicker({
 });
 
 const idReg = /^[A-Za-z0-9]{3,20}$/;
-const pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*[0-9]).{10,30}$/;
+const pwReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&])(?=.*[0-9]).{10,30}$/;
 const koreanReg = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
 const englishReg = /[a-zA-Z]/g;
 const phoneReg = /^\d{3}-[0-9]{3,4}-[0-9]{4}$/; //\w영어 \d다이알로그 숫자 \s스페이스 \t탭 \뒤는 문자로 인식
@@ -71,6 +71,7 @@ document.getElementById("regist-form").onsubmit = function (e) {
     console.log(msg);
     e.preventDefault();
     document.getElementById("modal-container").classList.add("on");
+    document.getElementById("modal-msg").innerHTML = msg;
   } else {
     e.target.phone.value = tempPhone;
     if (
