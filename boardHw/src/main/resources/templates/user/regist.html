@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html mxlns:th="http://www.thymeleaf.org">
   <head th:fragment="registFragmentHead">
-    <link rel="stylesheet" href="/styles/user/regist.css" />
+    <!-- <link rel="stylesheet" href="/styles/user/regist.css" /> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
@@ -47,9 +47,18 @@
   </head>
   <body>
     <div th:fragment="registFragment" class="regist container">
-      <form action="regist" method="post" class="row">
+      <!-- <div id="parent" style="background-color: cornsilk">
+        부모
+        <div id="child1">
+          자식1
+          <div id="child-child">손자</div>
+        </div>
+        <div id="child2">자식2</div>
+      </div> -->
+
+      <form action="regist" method="post" class="row" id="regist-form">
         <div class="input-group mb-3">
-          <span class="input-group-text" id="user-id">ID</span>
+          <span class="input-group-text">ID</span>
           <input
             type="text"
             class="form-control"
@@ -59,7 +68,7 @@
             name="userId"
           />
 
-          <span class="input-group-text" id="password">PW</span>
+          <span class="input-group-text">PW</span>
           <input
             type="password"
             class="form-control"
@@ -70,7 +79,7 @@
           />
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">Name</span>
+          <span class="input-group-text">Name</span>
           <input
             type="text"
             class="form-control"
@@ -83,7 +92,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">phone</span>
+          <span class="input-group-text">phone</span>
           <input
             type="text"
             class="form-control"
@@ -96,7 +105,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">address</span>
+          <span class="input-group-text">address</span>
           <input
             type="text"
             class="form-control"
@@ -109,7 +118,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">E-mail</span>
+          <span class="input-group-text">E-mail</span>
           <input
             type="email"
             class="form-control"
@@ -122,7 +131,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="name">Github Address</span>
+          <span class="input-group-text">Github Address</span>
           <input
             type="text"
             class="form-control"
@@ -176,18 +185,7 @@
           <button class="btn btn-primary btn-lg m-auto">Sign in</button>
         </div>
       </form>
-      <script>
-        $("#datePicker").datepicker({
-          format: "yyyy-mm-dd",
-          //startDate: "-1d",
-          endDate: "1d",
-          autoclose: true,
-          clearBtn: true,
-          title: "Birth day",
-          language: "ko",
-          //multidate: true,
-        });
-      </script>
+      <script src="/scripts/user/regist.js"></script>
     </div>
   </body>
 </html>
