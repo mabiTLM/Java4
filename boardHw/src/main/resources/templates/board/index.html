@@ -30,8 +30,8 @@
               <td
                 th:text="*{userName}"
                 th:onmouseover="modal_git_address([[*{gitAddress}]])"
-                onmouseleave="modal_out()"
                 name="postUserName"
+                class="postUserName"
               ></td>
               <td th:text="*{createdAt}"></td>
             </tr>
