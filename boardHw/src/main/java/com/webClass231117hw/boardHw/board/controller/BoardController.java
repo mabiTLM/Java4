@@ -26,13 +26,12 @@ public class BoardController {
     return "/basic/layout";
   }
 
-
   @PostMapping("/add")
   public String add(@RequestParam Map<String, String> data, HttpSession session) {
-
-    boardService.add(
-        new Board(data.get("title"), data.get("content"), (int) session.getAttribute("userId")));
-
+    if (session.getAttribute("userName") != null) {
+      boardService.add(new Board(data.get("title"), data.get("content"),
+          Integer.parseInt(session.getAttribute("userId").toString())));
+    }
     return "redirect:/";
   }
 
