@@ -16,7 +16,23 @@ public class BoardService {
     boardDAO.add(board);
   }
 
+  public Board get(int id) {
+    return boardDAO.get(id);
+  }
+
+  public List<Board> getAll(int page) {
+    return boardDAO.getAll(page);
+  }
+
   public List<Board> getAll() {
     return boardDAO.getAll();
+  }
+
+  public void delete(int id) {
+    boardDAO.delete(id);
+  }
+
+  public void edit(int id, String title, String content) {
+    boardDAO.edit(id, title, content);
   }
 }

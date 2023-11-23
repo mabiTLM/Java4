@@ -1,0 +1,36 @@
+<html mxlns:th="http://www.thymeleaf.org">
+  <head th:fragment="pageControllFragmentHead">
+    <link rel="stylesheet" href="/styles/pageControll.css" />
+  </head>
+  <body>
+    <div
+      th:fragment="pageControllFragment"
+      id="pageControll"
+      class="d-flex justify-content-center"
+    >
+      <form action="">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" name="page" th:value="${currentPage-1}">
+                Previous
+              </button>
+            </li>
+            <th:block th:each="num: ${#numbers.sequence(1,totalPage)}">
+              <li class="page-item">
+                <button class="page-link" name="page" th:value="*{num}">
+                  [[${num}]]
+                </button>
+              </li>
+            </th:block>
+            <li class="page-item">
+              <button class="page-link" name="page" th:value="${currentPage+1}">
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </form>
+    </div>
+  </body>
+</html>

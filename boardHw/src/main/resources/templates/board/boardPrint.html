@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html mxlns:th="http://www.thymeleaf.org">
+  <head th:fragment="printFragmentHead">
+    <link rel="stylesheet" href="/styles/board/print.css" />
+  </head>
+  <body>
+    <div th:fragment="printFragment" class="print">
+      <div>작성자 : <span th:text="${currentPost.userName}"></span></div>
+      <div>작성일자 : <span th:text="${currentPost.createdAt}"></span></div>
+      <div>내용 : <span th:text="${currentPost.content}"></span></div>
+
+      <div>
+        <th:block th:if="${currentPost.userId==session.userId}">
+          <form action="/edit">
+            <input
+              type="hidden"
+              name="postUser"
+              th:value="${currentPost.userId}"
+            />
+            <button name="currentPost" th:value="${currentPost.id}">
+              수정
+            </button>
+          </form>
+          <form action="/delete" method="post">
+            <input
+              type="hidden"
+              name="postUser"
+              th:value="${currentPost.userId}"
+            />
+            <button name="currentPost" th:value="${currentPost.id}">
+              삭제
+            </button>
+          </form>
+        </th:block>
+        <a href="/">
+          <button>목록</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

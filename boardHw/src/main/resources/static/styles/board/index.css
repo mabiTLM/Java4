@@ -5,9 +5,15 @@
   height: 30%;
 }
 
-.none{
-	display: none;
+.none {
+  display: none;
 }
 
-.write-area{
+.postButton {
+  border: none;
+  background-color: unset;
+}
+
+.postUserName {
+  z-index: 99;
 }

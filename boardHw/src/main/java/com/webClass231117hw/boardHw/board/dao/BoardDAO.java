@@ -24,6 +24,13 @@ public class BoardDAO {
     }
   };
 
+  private RowMapper<Board> mapperPage = new RowMapper<Board>() {
+    @Override
+    public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+      return new Board();
+    }
+  };
+
   public void add(Board board) {
     jdbcTemplate.update(
         "insert into boards (title, content, is_withdrew, user_id) values (?,?,?,?)",
@@ -31,9 +38,29 @@ public class BoardDAO {
   }
 
   public List<Board> getAll() {
+    return jdbcTemplate.query("select * from boards order by id", mapperPage);
+  }
+
+  public List<Board> getAll(int start) {
     return jdbcTemplate.query(
-        "select a.*, b.name from boards a join users b on a.user_id = b.id order by a.id offset 0 rows fetch first 5 rows only",
+        "select a.*, b.name from boards a join users b on a.user_id = b.id order by a.id offset "
+            + (start - 1) * 5 + " rows fetch first " + start * 5 + " rows only",
         mapper);
+  }
+
+  public Board get(int id) {
+    return jdbcTemplate.queryForObject(
+        "select a.*, b.name from boards a join users b on a.user_id = b.id where a.id = ?", mapper,
+        id);
+  }
+
+  public void delete(int id) {
+    jdbcTemplate.update("delete from boards where id = ?", id);
+  }
+
+  public void edit(int id, String title, String content) {
+    jdbcTemplate.update(
+        "update boards set title = '" + title + "', content = '" + content + "' where id = " + id);
   }
 
 }

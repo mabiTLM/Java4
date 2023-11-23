@@ -21,16 +21,30 @@ public class BoardController {
   UserService userService;
 
   @GetMapping("/")
-  public String boardMainPage(Model model) {
+  public String boardMainPage(Model model, @RequestParam Map<String, String> data) {
     model.addAttribute("title", "게시판");
     model.addAttribute("path", "/board/index");
     model.addAttribute("content", "boardFragment");
     model.addAttribute("contentHead", "boardFragmentHead");
-    model.addAttribute("list", boardService.getAll());
-    model.addAttribute("userList", userService.getAll());
+    int tempPage = 1;
+    if (data.get("page") != null) {
+      tempPage = Integer.parseInt(data.get("page"));
+    }
+    if (tempPage < 1) {
+      tempPage = 1;
+    }
+    int tempTotalPage = boardService.getAll().size() / 5 + 1;
+    if (boardService.getAll().size() % 5 == 0) {
+      tempTotalPage = tempTotalPage - 1;
+    }
+    if (tempPage > tempTotalPage) {
+      tempPage = tempTotalPage;
+    }
+    model.addAttribute("list", boardService.getAll(tempPage));
+    model.addAttribute("currentPage", tempPage);
+    model.addAttribute("totalPage", tempTotalPage);
     return "/basic/layout";
   }
-
 
   @PostMapping("/add")
   public String add(@RequestParam Map<String, String> data, HttpSession session,
@@ -51,7 +65,51 @@ public class BoardController {
     model.addAttribute("path", "/board/notice");
     model.addAttribute("content", "noticeFragment");
     model.addAttribute("contentHead", "noticeFragmentHead");
-
     return "/basic/layout";
+  }
+
+  @GetMapping("/print")
+  public String printPage(Model model, @RequestParam Map<String, String> data) {
+    Board tempBoard = boardService.get(Integer.parseInt(data.get("postId")));
+    model.addAttribute("title", tempBoard.getTitle());
+    model.addAttribute("path", "/board/boardPrint");
+    model.addAttribute("content", "printFragment");
+    model.addAttribute("contentHead", "printFragmentHead");
+    model.addAttribute("currentPost", tempBoard);
+    return "/basic/layout";
+  }
+
+  @PostMapping("/delete")
+  public String deletePage(HttpSession session, @RequestParam Map<String, String> data) {
+    if (Integer.parseInt(session.getAttribute("userId").toString()) == Integer
+        .parseInt(data.get("postUser"))) {
+      boardService.delete(Integer.parseInt(data.get("currentPost")));
+    }
+    return "redirect:/";
+  }
+
+  @GetMapping("/edit")
+  public String editPage(Model model, HttpSession session, @RequestParam Map<String, String> data) {
+    if (Integer.parseInt(session.getAttribute("userId").toString()) == Integer
+        .parseInt(data.get("postUser"))) {
+      model.addAttribute("title", "수정");
+      model.addAttribute("path", "/board/edit");
+      model.addAttribute("content", "editFragment");
+      model.addAttribute("contentHead", "editFragmentHead");
+      model.addAttribute("editPost", boardService.get(Integer.parseInt(data.get("currentPost"))));
+      return "/basic/layout";
+    }
+    return "redirect:/";
+  }
+
+  @PostMapping("/edit")
+  public String editPagePost(HttpSession session, @RequestParam Map<String, String> data) {
+    if (Integer.parseInt(session.getAttribute("userId").toString()) == Integer
+        .parseInt(data.get("postUser"))) {
+
+      boardService.edit(Integer.parseInt(data.get("currentPost")), data.get("title"),
+          data.get("content"));
+    }
+    return "redirect:/";
   }
 }

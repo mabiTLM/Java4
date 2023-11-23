@@ -8,24 +8,41 @@
       <th:block th:if="${session.userName !=null}">
         <div th:replace="~{/board/addBoard :: addBoardFragment}"></div>
       </th:block>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일자</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider">
-          <tr th:each="item:${list}" th:object="${item}">
-            <th scope="row" th:text="*{id}"></th>
-            <td th:text="*{title}"></td>
-            <td th:text="*{userName}"></td>
-            <td th:text="*{createdAt}"></td>
-          </tr>
-        </tbody>
-      </table>
+      <form action="/print">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">제목</th>
+              <th scope="col">작성자</th>
+              <th scope="col">작성일자</th>
+            </tr>
+          </thead>
+
+          <tbody class="table-group-divider">
+            <tr th:each="item:${list}" th:object="${item}">
+              <th scope="row" th:text="*{id}"></th>
+              <td>
+                <button class="postButton" name="postId" th:value="*{id}">
+                  [[*{title}]]
+                </button>
+              </td>
+              <td
+                th:text="*{userName}"
+                th:onmouseover="modal_git_address([[*{userName}]])"
+                onmouseleave="modal_out()"
+                name="postUserName"
+              ></td>
+              <td th:text="*{createdAt}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <div
+        id="pageControll"
+        th:replace="~{/board/pageControll :: pageControllFragment}"
+      ></div>
+      <script src="/scripts/board/board.js"></script>
     </div>
   </body>
 </html>
