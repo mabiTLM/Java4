@@ -20,18 +20,20 @@ public class BoardDAO {
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
       return new Board(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
           rs.getInt("views"), 0, 0, rs.getTimestamp("created_at"), rs.getInt("is_withdrew") == 1,
-          rs.getInt("user_id"));
+          rs.getInt("user_id"), rs.getString("name"));
     }
   };
 
   public void add(Board board) {
     jdbcTemplate.update(
         "insert into boards (title, content, is_withdrew, user_id) values (?,?,?,?)",
-        board.getTitle(), board.getContent(), 0, board.getUserId());
+        board.getTitle(), board.getContent(), board.isWithdrew() ? 1 : 0, board.getUserId());
   }
 
   public List<Board> getAll() {
-    return jdbcTemplate.query("select * from boards order by id", mapper);
+    return jdbcTemplate.query(
+        "select a.*, b.name from boards a join users b on a.user_id = b.id order by a.id offset 0 rows fetch first 5 rows only",
+        mapper);
   }
 
 }

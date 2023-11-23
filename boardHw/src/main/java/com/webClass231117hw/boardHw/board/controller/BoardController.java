@@ -36,9 +36,8 @@ public class BoardController {
   public String add(@RequestParam Map<String, String> data, HttpSession session,
       RedirectAttributes redirectAttributes) {
     try {
-      System.out.println(session.getAttribute("userName").toString());
       boardService.add(new Board(data.get("title"), data.get("content"),
-          userService.getName(session.getAttribute("userName").toString()).getId()));
+          Integer.parseInt(session.getAttribute("userId").toString())));
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("requestError", "게시글은 로그인 후 입력해주세요");
       e.printStackTrace();

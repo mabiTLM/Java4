@@ -86,6 +86,7 @@ public class UserController {
     tempUser = userService.login(tempUser);
     if (tempUser != null) {
       session.setAttribute("userName", tempUser.getName());
+      session.setAttribute("userId", tempUser.getId());
     } else {
       redirectAttributes.addFlashAttribute("requestError", "로그인 실패 아이디 또는 비밀번호 확인");
     }
@@ -93,49 +94,10 @@ public class UserController {
   }
 
 
-  // @GetMapping("/join")
-  // public String joinPage(Model model) {
-  // model.addAttribute("title", "회원가입");
-  // model.addAttribute("path", "/join/index");
-  // model.addAttribute("content", "joinFragment");
-  // model.addAttribute("contentHead", "joinFragmentHead");
-  // return "/basic/layout";
-  // }
-  //
-  // @PostMapping("/join")
-  // public String joinPagePost(@RequestParam Map<String, String> data) {
-  //
-  // User tempUser = new User(data.get("user-id"), data.get("password"), data.get("name"),
-  // data.get("phone"), data.get("email"));
-  // tempUser.setAddress(data.get("address"));
-  // tempUser.setGitAddress(data.get("git-address"));
-  // tempUser.setGender(Integer.parseInt(data.get("gender")));
-  // tempUser.setBirth(Date.valueOf(data.get("birth")));
-  // userService.add(tempUser);
-  // return "redirect:/";
-  // }
-  // @GetMapping("/login")
-  // public String loginPage(Model model) {
-  // model.addAttribute("title", "로그인");
-  // model.addAttribute("path", "/login/index");
-  // model.addAttribute("content", "loginFragment");
-  // model.addAttribute("contentHead", "loginFragmentHead");
-  //
-  // return "/basic/layout";
-  // }
-  //
-  // @PostMapping("/login")
-  // public String loginPagePost(@RequestParam Map<String, String> data, HttpSession session) {
-  // if (userService.login(data.get("user-id"), data.get("password")) != 0) {
-  // session.setAttribute("userId", userService.login(data.get("user-id"), data.get("password")));
-  // return "redirect:/";
-  // } else {
-  // return "redirect:/login";
-  // }
-  // }
   @GetMapping("/user/logout")
   public String logout(HttpSession session) {
-    session.removeAttribute("userName");;
+    session.removeAttribute("userName");
+    session.removeAttribute("userId");
     return "redirect:/";
   }
 }
