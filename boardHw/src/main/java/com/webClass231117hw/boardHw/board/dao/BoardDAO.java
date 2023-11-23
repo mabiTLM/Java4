@@ -20,7 +20,7 @@ public class BoardDAO {
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
       return new Board(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
           rs.getInt("views"), 0, 0, rs.getTimestamp("created_at"), rs.getInt("is_withdrew") == 1,
-          rs.getInt("user_id"), rs.getString("name"));
+          rs.getInt("user_id"), rs.getString("name"), rs.getString("git_address"));
     }
   };
 
@@ -43,15 +43,15 @@ public class BoardDAO {
 
   public List<Board> getAll(int start) {
     return jdbcTemplate.query(
-        "select a.*, b.name from boards a join users b on a.user_id = b.id order by a.id offset "
+        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id order by a.id offset "
             + (start - 1) * 5 + " rows fetch first " + start * 5 + " rows only",
         mapper);
   }
 
   public Board get(int id) {
     return jdbcTemplate.queryForObject(
-        "select a.*, b.name from boards a join users b on a.user_id = b.id where a.id = ?", mapper,
-        id);
+        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id where a.id = ?",
+        mapper, id);
   }
 
   public void delete(int id) {
