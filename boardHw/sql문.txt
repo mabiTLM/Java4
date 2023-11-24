@@ -20,6 +20,7 @@ qwer
 --alter table likes_and_hates drop constraint fk_boards_to_likes_and_hates;
 --alter table comments drop constraint fk_users_to_comments;
 --alter table comments drop constraint fk_boards_to_comments;
+--alter table comments drop constraint fk_comments_to_comments;
 --drop table users;
 --drop table boards;
 --drop table likes_and_hates;
@@ -67,6 +68,8 @@ content varchar2(150) not null,
 created_at timestamp default sysdate,
 writer_id number,
 board_id number,
+reply number,
 constraint fk_users_to_comments foreign key (writer_id) references users(id),
-constraint fk_boards_to_comments foreign key (board_id) references boards(id)
+constraint fk_boards_to_comments foreign key (board_id) references boards(id),
+constraint fk_comments_to_comments foreign key (reply) references comments(id)
 );

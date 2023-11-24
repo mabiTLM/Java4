@@ -19,7 +19,7 @@ public class CommentDAO {
     @Override
     public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
       return new Comment(rs.getInt("id"), rs.getString("content"), rs.getTimestamp("created_at"),
-          rs.getInt("writer_id"), rs.getInt("board_id"), rs.getString("name"));
+          rs.getInt("writer_id"), rs.getInt("board_id"), rs.getString("name"), rs.getInt("reply"));
     }
   };
 

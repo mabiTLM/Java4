@@ -21,4 +21,5 @@ public class Comment {
   @NonNull
   private int boardId;
   private String name;
+  private int reply;
 }

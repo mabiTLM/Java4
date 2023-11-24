@@ -16,14 +16,28 @@
       <div>
         댓글
         <div>
-          <div
-            th:each="item:${comment}"
-            th:object="${item}"
-            class="d-flex justify-content-between align-items-center"
-          >
-            <div>작성자 : [[*{name}]]</div>
-            <div th:text="*{content}"></div>
-            <div th:text="*{createdAt}"></div>
+          <div th:each="item:${comment}" th:object="${item}">
+            <div
+              th:if="*{reply==0}"
+              class="d-flex justify-content-between align-items-center"
+            >
+              <div>작성자 : [[*{name}]]</div>
+              <div th:text="*{content}"></div>
+              <div th:text="*{createdAt}"></div>
+              <!-- <div>
+                답글
+                <div
+                  th:each="recomment:${comment}"
+                  th:object="${recomment}"
+                  class="d-flex justify-content-between align-items-center"
+                  th:if="{recomment.reply==item.id}"
+                >
+                  <div>작성자 : [[*{name}]]</div>
+                  <div th:text="*{content}"></div>
+                  <div th:text="*{createdAt}"></div>
+                </div>
+              </div> -->
+            </div>
           </div>
         </div>
 
