@@ -24,12 +24,12 @@ public class BoardDAO {
     }
   };
 
-  private RowMapper<Board> mapperPage = new RowMapper<Board>() {
-    @Override
-    public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
-      return new Board();
-    }
-  };
+  // private RowMapper<Board> mapperPage = new RowMapper<Board>() {
+  // @Override
+  // public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+  // return new Board();
+  // }
+  // };
 
   public void add(Board board) {
     jdbcTemplate.update(
@@ -37,15 +37,14 @@ public class BoardDAO {
         board.getTitle(), board.getContent(), board.isWithdrew() ? 1 : 0, board.getUserId());
   }
 
-  public List<Board> getAll() {
-    return jdbcTemplate.query("select * from boards order by id", mapperPage);
+  public List<Board> getAll(int idx, int count) {
+    return jdbcTemplate.query(
+        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id order by a.id desc offset ? rows fetch first ? rows only",
+        mapper, idx, count);
   }
 
-  public List<Board> getAll(int start) {
-    return jdbcTemplate.query(
-        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id order by a.id offset "
-            + (start - 1) * 5 + " rows fetch first " + start * 5 + " rows only",
-        mapper);
+  public int getCount() {
+    return jdbcTemplate.queryForObject("select count(*) from boards", Integer.class);
   }
 
   public Board get(int id) {
@@ -53,6 +52,25 @@ public class BoardDAO {
         "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id where a.id = ?",
         mapper, id);
   }
+
+  // public List<Board> getAll() {
+  // return jdbcTemplate.query("select * from boards order by id", mapperPage);
+  // }
+
+  // public List<Board> getAll(int start) {
+  // return jdbcTemplate.query(
+  // "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id order by a.id
+  // offset "
+  // + (start - 1) * 5 + " rows fetch first " + start * 5 + " rows only",
+  // mapper);
+  // }
+
+  // public Board get(int id) {
+  // return jdbcTemplate.queryForObject(
+  // "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id where a.id =
+  // ?",
+  // mapper, id);
+  // }
 
   public void delete(int id) {
     jdbcTemplate.update("delete from boards where id = ?", id);

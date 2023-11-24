@@ -16,17 +16,30 @@ public class BoardService {
     boardDAO.add(board);
   }
 
+
+  public List<Board> getAll(int page, int count) {
+    return boardDAO.getAll((page - 1) * count, count);
+  }
+
+  public int getPageCount(int count) {
+    return (boardDAO.getCount() - 1) / count + 1;
+  }
+
   public Board get(int id) {
     return boardDAO.get(id);
   }
 
-  public List<Board> getAll(int page) {
-    return boardDAO.getAll(page);
-  }
+  // public Board get(int id) {
+  // return boardDAO.get(id);
+  // }
 
-  public List<Board> getAll() {
-    return boardDAO.getAll();
-  }
+  // public List<Board> getAll(int page) {
+  // return boardDAO.getAll(page);
+  // }
+  //
+  // public List<Board> getAll() {
+  // return boardDAO.getAll();
+  // }
 
   public void delete(int id) {
     boardDAO.delete(id);
