@@ -12,6 +12,15 @@
       <hr />
       <p th:utext="*{content}"></p>
       <!-- <p>[(*{content})]</p> -->
+
+      <form action="/edit">
+        <input type="hidden" th:value="*{userId}" name="postUser" />
+        <button th:value="*{id}" name="currentPost">수정</button>
+      </form>
+      <form action="/delete" method="post">
+        <input type="hidden" th:value="*{userId}" name="postUser" />
+        <button th:value="*{id}" name="currentPost">삭제</button>
+      </form>
     </div>
   </body>
 </html>
