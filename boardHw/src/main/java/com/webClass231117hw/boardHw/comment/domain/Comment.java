@@ -1,21 +1,24 @@
 package com.webClass231117hw.boardHw.comment.domain;
 
-import java.sql.Date;
-import com.webClass231117hw.boardHw.board.domain.Board;
-import com.webClass231117hw.boardHw.user.domain.User;
+import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Comment {
   private int id;
   @NonNull
   private String content;
+  private Timestamp createdAt;
   @NonNull
-  private int likes;
+  private int writerId;
   @NonNull
-  private Date createdAt;
-  @NonNull
-  private User writer;
-  @NonNull
-  private Board board;
-
+  private int boardId;
+  private String name;
 }

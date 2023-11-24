@@ -18,9 +18,12 @@ qwer
 --alter table boards drop constraint fk_users_to_boards;
 --alter table likes_and_hates drop constraint fk_users_to_likes_and_hates;
 --alter table likes_and_hates drop constraint fk_boards_to_likes_and_hates;
+--alter table comments drop constraint fk_users_to_comments;
+--alter table comments drop constraint fk_boards_to_comments;
 --drop table users;
 --drop table boards;
 --drop table likes_and_hates;
+--drop table comments;
 
 create table users (
 id number generated as identity primary key,
@@ -55,4 +58,15 @@ likes_or_hates number(1),
 created_at timestamp default sysdate,
 constraint fk_users_to_likes_and_hates foreign key (user_id) references users(id),
 constraint fk_boards_to_likes_and_hates foreign key (board_id) references boards(id)
+);
+
+
+create table comments (
+id number generated as identity primary key,
+content varchar2(150) not null,
+created_at timestamp default sysdate,
+writer_id number,
+board_id number,
+constraint fk_users_to_comments foreign key (writer_id) references users(id),
+constraint fk_boards_to_comments foreign key (board_id) references boards(id)
 );

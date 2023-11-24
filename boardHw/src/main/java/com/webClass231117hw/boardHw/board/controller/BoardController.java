@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.webClass231117hw.boardHw.board.domain.Board;
 import com.webClass231117hw.boardHw.board.service.BoardService;
+import com.webClass231117hw.boardHw.comment.service.CommentService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -18,8 +19,10 @@ public class BoardController {
   @Autowired
   BoardService boardService;
 
-  int count = 5;
+  @Autowired
+  CommentService commentService;
 
+  int count = 5;
 
   @GetMapping("/")
   public String boardMainPage(Model model, @RequestParam Map<String, String> data) {
@@ -94,6 +97,7 @@ public class BoardController {
     model.addAttribute("contentHead", "boardItemFragmentHead");
     board.setContent(board.getContent().replace("\n", "<br />"));
     model.addAttribute("board", board);
+    model.addAttribute("comment", commentService.getBoardId(boardId));
 
     return "/basic/layout";
   }
