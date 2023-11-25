@@ -18,9 +18,34 @@ public class CommentController {
   @PostMapping("/comment")
   public String addComment(@RequestParam Map<String, String> data, HttpSession session,
       RedirectAttributes redirectAttributes) {
-    commentService.add(new Comment(data.get("comment"),
+    Comment tempComment = new Comment(data.get("comment"),
         Integer.parseInt(session.getAttribute("userId").toString()),
-        Integer.parseInt(data.get("currentPost"))));
+        Integer.parseInt(data.get("currentPost")));
+
+    if (data.get("replyId") != null) {
+      tempComment.setReply(Integer.valueOf(data.get("replyId")));
+    }
+
+    commentService.add(tempComment);
+
+    return "redirect:/board/" + data.get("currentPost");
+  }
+
+
+  @PostMapping("/commenttest")
+  public String addCommenttest(@RequestParam Map<String, String> data, HttpSession session,
+      RedirectAttributes redirectAttributes) {
+    Comment tempComment = new Comment(data.get("comment"),
+        Integer.parseInt(session.getAttribute("userId").toString()),
+        Integer.parseInt(data.get("currentPost")));
+
+    if (data.get("replyId") != null) {
+      tempComment.setReply(Integer.valueOf(data.get("replyId")));
+      tempComment.setReply(Integer.valueOf(data.get("replyId")));
+      tempComment.setReply(Integer.valueOf(data.get("replyId")));
+    }
+
+    commentService.add(tempComment);
 
     return "redirect:/board/" + data.get("currentPost");
   }

@@ -19,13 +19,25 @@ public class CommentDAO {
     @Override
     public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
       return new Comment(rs.getInt("id"), rs.getString("content"), rs.getTimestamp("created_at"),
-          rs.getInt("writer_id"), rs.getInt("board_id"), rs.getString("name"), rs.getInt("reply"));
+          rs.getInt("writer_id"), rs.getInt("board_id"), rs.getString("name"), rs.getInt("reply"),
+          rs.getInt("reply_step"), rs.getInt("reply_level"));
     }
   };
 
+  private RowMapper<Comment> isMapper = new RowMapper<Comment>() {
+    @Override
+    public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
+      return new Comment();
+    }
+  };
+
+  // 레벨의 이전껄 참조해서 불러오면된다.
+  // 스텝은? 댓글을 달때는 제일 마지막껄 대댓글을 달때는 다는곳에서 가져와야한다
   public void add(Comment comment) {
-    jdbcTemplate.update("insert into comments (content, writer_id, board_id) values (?,?,?)",
-        comment.getContent(), comment.getWriterId(), comment.getBoardId());
+    jdbcTemplate.update(
+        "insert into comments (content, writer_id, board_id, reply, reply_step, reply_level) values (?,?,?,?,?,?)",
+        comment.getContent(), comment.getWriterId(), comment.getBoardId(), comment.getReply(),
+        comment.getStep(), comment.getLevel());
   }
 
   public List<Comment> getBoardId(int board_id) {
@@ -34,4 +46,12 @@ public class CommentDAO {
         mapper, board_id);
   }
 
+  public boolean getStep(int step) {
+    return jdbcTemplate.query("select * from comments where reply_step = ?", isMapper,
+        step) == null;
+  }
+
+  public void upStep(int reply) {// level의 마지막 스텝을 가져오자
+    jdbcTemplate.update("update comments set reply_step = reply_step + 1 where reply = " + reply);
+  }
 }

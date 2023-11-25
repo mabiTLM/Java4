@@ -17,33 +17,46 @@
         댓글
         <div>
           <div th:each="item:${comment}" th:object="${item}">
+            <div th:if="*{reply==0}">
+              <div
+                class="comment-read-area d-flex justify-content-between align-items-center"
+              >
+                <div>작성자 : [[*{name}]]</div>
+                <div th:text="*{content}"></div>
+                <div th:text="*{createdAt}"></div>
+              </div>
+              <form
+                action="/comment"
+                method="post"
+                class="comment-text-area"
+                id="comment-text-area"
+                style="display: none"
+              >
+                <textarea class="comment-text" name="comment"></textarea>
+                <input
+                  type="hidden"
+                  th:value="${board.id}"
+                  name="currentPost"
+                />
+                <input type="hidden" name="replyId" th:value="*{id}" />
+                <button>대댓글 쓰기</button>
+              </form>
+            </div>
             <div
-              th:if="*{reply==0}"
+              th:each="reply:${comment}"
+              th:if="${item.id==reply.reply}"
               class="d-flex justify-content-between align-items-center"
             >
-              <div>작성자 : [[*{name}]]</div>
-              <div th:text="*{content}"></div>
-              <div th:text="*{createdAt}"></div>
-              <!-- <div>
-                답글
-                <div
-                  th:each="recomment:${comment}"
-                  th:object="${recomment}"
-                  class="d-flex justify-content-between align-items-center"
-                  th:if="{recomment.reply==item.id}"
-                >
-                  <div>작성자 : [[*{name}]]</div>
-                  <div th:text="*{content}"></div>
-                  <div th:text="*{createdAt}"></div>
-                </div>
-              </div> -->
+              <div>작성자 : [[${reply.name}]]</div>
+              <div th:text="${reply.content}"></div>
+              <div th:text="${reply.createdAt}"></div>
             </div>
           </div>
         </div>
 
         <form action="/comment" method="post">
           <input type="hidden" th:value="*{id}" name="currentPost" />
-          <textarea name="comment" id="" cols="30" rows="10"></textarea>
+          <textarea name="comment" cols="30" rows="10"></textarea>
           <button>댓글 쓰기</button>
         </form>
       </div>
@@ -56,6 +69,7 @@
         <input type="hidden" th:value="*{userId}" name="postUser" />
         <button th:value="*{id}" name="currentPost">삭제</button>
       </form>
+      <script src="/scripts/board/item.js"></script>
     </div>
   </body>
 </html>

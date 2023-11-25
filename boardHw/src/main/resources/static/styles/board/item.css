@@ -12,3 +12,8 @@
 .user-name:hover .user-git-address {
   display: block;
 }
+
+.comment-text {
+  width: 100%;
+  height: 5%;
+}

@@ -22,4 +22,6 @@ public class Comment {
   private int boardId;
   private String name;
   private int reply;
+  private int step;
+  private int level;
 }
