@@ -63,14 +63,21 @@ const getList = async () => {
 };
 getList();
 
+let number = 1;
+var tempOlArr = [];
+var tempLiArr = [];
 function reply(a) {
-  const tempOl = document.createElement("ul");
+  tempOlArr[number] = document.createElement("ul");
   a.children.forEach((b) => {
-    const tempLi = document.createElement("li");
-    tempLi.innerHTML = `${b.content} - ${b.name}`;
+    tempLiArr[number] = document.createElement("li");
+    tempLiArr.innerHTML = `${b.content} - ${b.name} - ${dateChange(
+      b.createdAt
+    )}`;
     if (b.children != null) {
+      number++;
       reply(b);
     }
-    tempOl.append(tempLi);
+    tempOlArr[number].append(tempLiArr);
+    number--;
   });
 }
