@@ -8,11 +8,11 @@ const getList = async () => {
 
   list.forEach((item) => {
     const tempLiElem = document.createElement("li");
-    tempLiElem.innerHTML = `${item.content} - ${item.userId}`;
+    tempLiElem.innerHTML = `${item.content} - ${item.name}`;
     const tempOlElem = document.createElement("ul");
     item.children.forEach((child) => {
       const tempLiElem2 = document.createElement("li");
-      tempLiElem2.innerHTML = `${child.content} - ${child.userId}`;
+      tempLiElem2.innerHTML = `${child.content} - ${child.name}`;
       tempOlElem.append(tempLiElem2);
     });
     tempLiElem.append(tempOlElem);
