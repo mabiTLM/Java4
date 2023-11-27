@@ -29,13 +29,9 @@ public class CommentController {
     Comment comment = new Comment(map.get("content"), Integer.parseInt(map.get("user_id")),
         Integer.parseInt(map.get("board_id")));
     commentService.add(comment);
-
     return "redirect:/board/" + map.get("board_id");
-
   }
 }
-
-
 
 // @Controller
 // public class CommentController {
@@ -57,7 +53,6 @@ public class CommentController {
 //
 // return "redirect:/board/" + data.get("currentPost");
 // }
-//
 //
 // @PostMapping("/commenttest")
 // public String addCommenttest(@RequestParam Map<String, String> data, HttpSession session,

@@ -38,7 +38,6 @@ public class CommentService {
   }
 }
 
-
 // package com.webClass231117hw.boardHw.comment.service;
 //
 // import java.util.List;

@@ -20,6 +20,7 @@ public class Comment {
   private final int boardId;
   private int commentId;
   private List<Comment> children;
+  private String name;
 }
 // @Data
 // @AllArgsConstructor
