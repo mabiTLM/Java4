@@ -97,7 +97,7 @@ public class BoardController {
     model.addAttribute("contentHead", "boardItemFragmentHead");
     board.setContent(board.getContent().replace("\n", "<br />"));
     model.addAttribute("board", board);
-    model.addAttribute("comment", commentService.getBoardId(boardId));
+
 
     return "/basic/layout";
   }

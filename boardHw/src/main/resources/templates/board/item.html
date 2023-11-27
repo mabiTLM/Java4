@@ -1,6 +1,7 @@
 <html mxlns:th="http://www.thymeleaf.org">
   <head th:fragment="boardItemFragmentHead">
     <link rel="stylesheet" href="/styles/board/item.css" />
+    <head th:replace="~{board/comment :: commentFragmentHead}"></head>
     <head th:replace="~{basic/userInfo :: userInfoFragmentHead}"></head>
   </head>
   <body>
@@ -11,9 +12,24 @@
       </div>
       <hr />
       <p th:utext="*{content}"></p>
-      <!-- <p>[(*{content})]</p> -->
+      <div th:replace="~{/board/comment :: commentFragment}"></div>
 
-      <div>
+      <form action="/edit">
+        <input type="hidden" th:value="*{userId}" name="postUser" />
+        <button th:value="*{id}" name="currentPost">수정</button>
+      </form>
+      <form action="/delete" method="post">
+        <input type="hidden" th:value="*{userId}" name="postUser" />
+        <button th:value="*{id}" name="currentPost">삭제</button>
+      </form>
+      <script src="/scripts/board/item.js"></script>
+    </div>
+  </body>
+</html>
+
+<!-- <p>[(*{content})]</p> -->
+
+<!-- <div>
         댓글
         <div>
           <div th:each="item:${comment}" th:object="${item}">
@@ -59,17 +75,4 @@
           <textarea name="comment" cols="30" rows="10"></textarea>
           <button>댓글 쓰기</button>
         </form>
-      </div>
-
-      <form action="/edit">
-        <input type="hidden" th:value="*{userId}" name="postUser" />
-        <button th:value="*{id}" name="currentPost">수정</button>
-      </form>
-      <form action="/delete" method="post">
-        <input type="hidden" th:value="*{userId}" name="postUser" />
-        <button th:value="*{id}" name="currentPost">삭제</button>
-      </form>
-      <script src="/scripts/board/item.js"></script>
-    </div>
-  </body>
-</html>
+      </div> -->
