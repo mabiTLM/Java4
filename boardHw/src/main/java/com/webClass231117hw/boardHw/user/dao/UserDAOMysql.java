@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.webClass231117hw.boardHw.user.domain.User;
 
 @Repository
-public class UserDAO {
+public class UserDAOMysql {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 

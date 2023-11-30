@@ -1,5 +1,5 @@
 <html mxlns:th="http://www.thymeleaf.org">
-  <head th:fragment="addFragmentHead">
+  <head th:fragment="addBoardFragmentHead">
     <link rel="stylesheet" href="/styles/board/add.css" />
   </head>
   <body>
@@ -13,7 +13,7 @@
             id="floatingInput"
             placeholder="제목"
           />
-          <label for="floatingInput">제목</label>
+          <!-- <label for="floatingInput">제목</label> -->
         </div>
 
         <div class="form-floating mb-3">
@@ -21,13 +21,20 @@
             class="form-control"
             name="content"
             placeholder="글"
-            id="floatingInput"
+            id="floatingTextarea"
           ></textarea>
-          <label for="floatingInput">내용</label>
+          <!-- <label for="floatingInput">내용</label> -->
         </div>
-
         <button class="btn btn-primary">글올리기</button>
       </form>
+      <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+      <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/translations/ko.js"></script>
+      <script>
+        ClassicEditor.create(document.getElementById("floatingTextarea"), {
+          language: "ko",
+          ckfinder: { uploadUrl: "/upload" },
+        });
+      </script>
     </div>
   </body>
 </html>
