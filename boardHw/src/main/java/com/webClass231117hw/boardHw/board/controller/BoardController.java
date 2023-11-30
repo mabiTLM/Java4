@@ -1,13 +1,19 @@
 package com.webClass231117hw.boardHw.board.controller;
 
+import java.io.File;
 import java.util.Map;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.webClass231117hw.boardHw.board.domain.Board;
 import com.webClass231117hw.boardHw.board.service.BoardService;
@@ -68,10 +74,13 @@ public class BoardController {
   public String add(@RequestParam Map<String, String> data, HttpSession session,
       RedirectAttributes redirectAttributes) {
     try {
-      boardService.add(new Board(data.get("title"), data.get("content"),
+      String tempContent = data.get("content");
+      tempContent = tempContent.replaceAll("width=\"[0-9]*\"", "width=\"100%\"");
+      tempContent = tempContent.replaceAll("height=\"[0-9]*\"", "height=\"auto\"");
+      boardService.add(new Board(data.get("title"), tempContent,
           Integer.parseInt(session.getAttribute("userId").toString())));
     } catch (Exception e) {
-      redirectAttributes.addFlashAttribute("requestError", "게시글은 로그인 후 입력해주세요");
+      redirectAttributes.addFlashAttribute("requestError", "게시글을 정확히 입력해주세요");
       e.printStackTrace();
     }
     return "redirect:/";
@@ -102,17 +111,32 @@ public class BoardController {
     return "/basic/layout";
   }
 
+  @PostMapping("/upload")
+  @ResponseBody
+  public ModelMap uploadImage(MultipartHttpServletRequest req) {
+    ModelMap model = new ModelMap();
+    try {
+      MultipartFile uploadFile = req.getFile("upload");
+      System.out.println(uploadFile.getOriginalFilename());
+      String originName = uploadFile.getOriginalFilename();
+      String[] tempNames = originName.split("[.]");
+      System.out.println(tempNames[0]);
+      String ext = originName.substring(originName.indexOf("."));
+      String randomName = UUID.randomUUID() + ext;
+      String savePath =
+          "C:\\Users\\KGA\\git\\Java4\\boardHw\\src\\main\\resources\\static\\imgs\\" + randomName;
+      String uploadUrl = "/imgs/" + randomName;
+      File file = new File(savePath);
+      uploadFile.transferTo(file);
+      model.addAttribute("uploaded", true);
+      model.addAttribute("url", uploadUrl);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return model;
+  }
 
-  // @GetMapping("/print")
-  // public String printPage(Model model, @RequestParam Map<String, String> data) {
-  // Board tempBoard = boardService.get(Integer.parseInt(data.get("postId")));
-  // model.addAttribute("title", tempBoard.getTitle());
-  // model.addAttribute("path", "/board/boardPrint");
-  // model.addAttribute("content", "printFragment");
-  // model.addAttribute("contentHead", "printFragmentHead");
-  // model.addAttribute("currentPost", tempBoard);
-  // return "/basic/layout";
-  // }
+
 
   @PostMapping("/delete")
   public String deletePage(HttpSession session, @RequestParam Map<String, String> data) {
@@ -147,4 +171,15 @@ public class BoardController {
     }
     return "redirect:/";
   }
+
+  // @GetMapping("/print")
+  // public String printPage(Model model, @RequestParam Map<String, String> data) {
+  // Board tempBoard = boardService.get(Integer.parseInt(data.get("postId")));
+  // model.addAttribute("title", tempBoard.getTitle());
+  // model.addAttribute("path", "/board/boardPrint");
+  // model.addAttribute("content", "printFragment");
+  // model.addAttribute("contentHead", "printFragmentHead");
+  // model.addAttribute("currentPost", tempBoard);
+  // return "/basic/layout";
+  // }
 }

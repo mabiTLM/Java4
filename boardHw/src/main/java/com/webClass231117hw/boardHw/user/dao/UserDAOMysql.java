@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.webClass231117hw.boardHw.user.domain.User;
 
 @Repository
-
-public class UserDAO {
+public class UserDAOMysql {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
@@ -26,15 +25,13 @@ public class UserDAO {
   };
 
   public void add(User user) {
+
     jdbcTemplate.update(
         "insert into users (user_id, password, name, phone, address, email, git_address, gender, birth) values (?,?,?,?,?,?,?,?,?)",
         user.getUserId(), user.getPassword(), user.getName(), user.getPhone(), user.getAddress(),
         user.getEmail(), user.getGitAddress(), user.getGender(), user.getBirth());
-    // user.isGender ? 1 : 0 삼항 연산자
-  }
 
-  public List<User> getAll() {
-    return jdbcTemplate.query("select * from users order by id", mapper);
+    // user.isGender ? 1 : 0 삼항 연산자
   }
 
   public User get(int id) {
@@ -47,5 +44,9 @@ public class UserDAO {
 
   public User getName(String name) {
     return jdbcTemplate.queryForObject("select * from users where name = ?", mapper, name);
+  }
+
+  public List<User> getAll() {
+    return jdbcTemplate.query("select * from users order by id", mapper);
   }
 }

@@ -4,13 +4,13 @@ import java.security.MessageDigest;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.webClass231117hw.boardHw.user.dao.UserDAO;
+import com.webClass231117hw.boardHw.user.dao.UserDAOMysql;
 import com.webClass231117hw.boardHw.user.domain.User;
 
 @Service
 public class UserService {
   @Autowired
-  UserDAO userDAO;
+  UserDAOMysql userDAO;
 
   public void add(User user) {
     user.setPassword(cryptoPassword(user.getPassword()));
@@ -19,7 +19,7 @@ public class UserService {
 
   public User login(User user) {
     try {
-      User tempUser = userDAO.getId(user.getUserId());
+      User tempUser = userDAO.get(user.getUserId());
       if (tempUser != null && tempUser.getPassword().equals(cryptoPassword(user.getPassword()))) {
         return tempUser;
       }
