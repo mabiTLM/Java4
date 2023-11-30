@@ -33,7 +33,7 @@ public class CommentDAOMysql {
 
   public List<Comment> getParents(int boardId, int start) {
     return jdbcTemplate.query(
-        "select comments.*, users.name from comments join users on comments.user_id=users.id where comments.board_id = ? and comments.comment_id is null order by comments.id desc offset ? rows fetch first 5 rows only",
+        "select comments.*, users.name from comments join users on comments.user_id=users.id where comments.board_id = ? and comments.comment_id is null order by comments.id desc limit ?,?",
         mapper, boardId, start);
   }
 

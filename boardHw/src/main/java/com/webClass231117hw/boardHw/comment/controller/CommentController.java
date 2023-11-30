@@ -19,7 +19,6 @@ public class CommentController {
   @Autowired
   CommentService commentService;
 
-
   @GetMapping
   @ResponseBody
   public ResponseComment getComments(@RequestParam Map<String, String> map) {

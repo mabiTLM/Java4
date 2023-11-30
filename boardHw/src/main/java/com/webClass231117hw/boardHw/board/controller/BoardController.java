@@ -17,16 +17,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.webClass231117hw.boardHw.board.domain.Board;
 import com.webClass231117hw.boardHw.board.service.BoardService;
-import com.webClass231117hw.boardHw.comment.service.CommentService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
   @Autowired
   BoardService boardService;
-
-  @Autowired
-  CommentService commentService;
 
   int count = 5;
 

@@ -30,12 +30,6 @@ public class BoardDAOMysql {
         board.getTitle(), board.getContent(), board.isWithdrew() ? 1 : 0, board.getUserId());
   }
 
-  public List<Board> getAll(int idx, int count) {
-    return jdbcTemplate.query(
-        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id order by a.id desc limit ?,?",
-        mapper, idx, count);
-  }
-
   public int getCount() {
     return jdbcTemplate.queryForObject("select count(*) from boards", Integer.class);
   }
@@ -44,6 +38,12 @@ public class BoardDAOMysql {
     return jdbcTemplate.queryForObject(
         "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id where a.id = ?",
         mapper, id);
+  }
+
+  public List<Board> getAll(int idx, int count) {
+    return jdbcTemplate.query(
+        "select boards.*, users.name, users.git_address from boards join users on boards.user_id=users.id order by boards.id desc limit ?, ?",
+        mapper, idx, count);
   }
 
   public void delete(int id) {
