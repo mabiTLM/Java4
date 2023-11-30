@@ -36,7 +36,7 @@ public class BoardDAOMysql {
 
   public Board get(int id) {
     return jdbcTemplate.queryForObject(
-        "select a.*, b.name, b.git_address from boards a join users b on a.user_id = b.id where a.id = ?",
+        "select boards.*, users.name, users.git_address from boards join users on boards.user_id=users.id where boards.id=?",
         mapper, id);
   }
 
