@@ -1,6 +1,10 @@
 # 텍스트로 이루어진 게임 기획
 
-## 목차
+# 플로우 차트
+
+<img src = "https://mabitlm.github.io/Portfolio/file/dungeonFlow.png">
+
+# 텍스트 정리 목차
 
 1.장르
 
